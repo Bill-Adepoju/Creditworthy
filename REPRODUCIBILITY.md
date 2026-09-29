@@ -107,12 +107,12 @@ npx snarkjs zkey export verificationkey ctb_final.zkey ctb_verification_key.json
 
 ### Phase 4: Fabric Network
 ```bash
-# 13. Start Fabric network
+# 13-14. Generate crypto, start network, create channel, deploy and test chaincode
 cd chain
-docker-compose up -d
+./scripts/setup-all.sh
 
-# 14. Deploy chaincode
-./scripts/deploy_chaincode.sh
+# Later restarts: `docker start` the existing containers.
+# scripts/start.sh runs `docker-compose down --volumes`, which wipes the ledger.
 ```
 
 ### Phase 5: Integration Testing

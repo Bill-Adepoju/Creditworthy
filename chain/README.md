@@ -36,6 +36,8 @@ ZK Credit Scoring consortium network implementation for T31.
 
 The RegulatoryObserver implements "embedded supervision" per Auer (2022) - they can observe all transactions in real-time but cannot modify ledger state.
 
+**Which regulator identity can read.** The observer org's Writers policy is `OR('RegulatoryObserverMSP.admin')`, and Fabric requires Writers for every proposal, reads included. So only `Admin@regulator.credit.ng` can query; `User1@regulator` is refused at the channel policy before chaincode runs. Writes from the admin reach the chaincode and are rejected there with `access denied: RegulatoryObserverMSP is not authorized to perform write operations`.
+
 ## Chaincode Functions
 
 ### Write Operations (Endorsers Only)
@@ -72,7 +74,7 @@ The RegulatoryObserver implements "embedded supervision" per Auer (2022) - they 
   "did": "borrower DID",
   "eventType": "verification|approval|rejection|default|repayment",
   "proofHash": "hash of ZK proof",
-  "thresholdUsed": 650,
+  "thresholdUsed": 550,
   "issuerMSP": "recording org",
   "timestamp": "ISO8601",
   "txId": "transaction ID"
@@ -105,6 +107,8 @@ docker exec cli ./scripts/test-chaincode.sh
 # Stop network
 ./scripts/stop.sh
 ```
+
+**Restarting keeps or wipes the ledger depending on the command.** To bring back stopped containers with their ledger intact, `docker start` them: the orderer, then the four peers and `cli`, then the `dev-peer*` chaincode containers. `./scripts/start.sh` runs `docker-compose down --volumes` first, which deletes the ledger and requires re-creating the channel and re-deploying chaincode.
 
 ## Directory Structure
 
