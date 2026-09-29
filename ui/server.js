@@ -31,6 +31,18 @@ const CONFIG = {
     cryptoPath: path.resolve(__dirname, '../chain/config/crypto-config'),
     peerEndpoint: 'localhost:7051',
     peerHostAlias: 'peer0.commercialbanka.credit.ng',
+    // The Regulator view connects as the observer org itself. Only its admin satisfies
+    // the org's Writers policy, which Fabric requires for any proposal (reads included).
+    regulator: {
+        mspId: 'RegulatoryObserverMSP',
+        org: 'regulator.credit.ng',
+        user: 'Admin@regulator.credit.ng',
+        peerEndpoint: 'localhost:10051',
+        peerHostAlias: 'peer0.regulator.credit.ng'
+    },
+    featuresPath: path.resolve(__dirname, '../data/features_processed.csv'),
+    splitPath: path.resolve(__dirname, '../results/canonical_split.json'),
+    demoBorrowerCount: 25,
     zkeyPath: path.resolve(__dirname, '../circuits/build/ctb_final.zkey'),
     wasmPath: path.resolve(__dirname, '../circuits/build/credit_threshold_banded_js/credit_threshold_banded.wasm'),
     vkeyPath: path.resolve(__dirname, '../circuits/build/ctb_verification_key.json')
@@ -40,111 +52,84 @@ const CONFIG = {
 const BANDS = [400, 550, 700, 850];
 const LENDER_THRESHOLD = 550;
 
-// Load model coefficients
-const modelPath = path.resolve(__dirname, '../results/lr_model_coefficients.json');
-let modelCoeffs = null;
-try {
-    const raw = JSON.parse(fs.readFileSync(modelPath, 'utf8'));
-    // Convert arrays to object format for easy lookup
-    modelCoeffs = {
-        intercept: raw.intercept,
-        coefficients: {},
-        scaler_mean: {},
-        scaler_scale: {}
-    };
-    raw.feature_names.forEach((name, i) => {
-        modelCoeffs.coefficients[name] = raw.coefficients[i];
-        modelCoeffs.scaler_mean[name] = raw.scaler_mean[i];
-        modelCoeffs.scaler_scale[name] = raw.scaler_scale[i];
-    });
-    console.log('  Model coefficients loaded');
-} catch (e) {
-    console.error('Warning: Could not load model coefficients:', e.message);
+// L1 model: the logistic regression exported by ml/export_model_coefficients.py.
+// Fails loudly rather than falling back to a made-up score.
+const MODEL = JSON.parse(fs.readFileSync(path.resolve(__dirname, '../results/lr_model_coefficients.json'), 'utf8'));
+console.log(`  Model coefficients loaded (${MODEL.feature_names.length} features)`);
+
+// One-hot groups are shown to the borrower as a single decoded value.
+const CATEGORICAL_PREFIXES = ['bank_account_type_', 'employment_status_', 'region_lat_band_'];
+
+function parseFeatureRow(header, line) {
+    const cells = line.split(',');
+    const row = {};
+    header.forEach((h, i) => { row[h] = cells[i]; });
+    return row;
 }
 
-// Load sample borrowers from test set
-const borrowersPath = path.resolve(__dirname, '../data/test_borrowers_sample.json');
-let sampleBorrowers = [];
-try {
-    sampleBorrowers = JSON.parse(fs.readFileSync(borrowersPath, 'utf8'));
-    console.log(`  Loaded ${sampleBorrowers.length} sample borrowers`);
-} catch (e) {
-    console.log('  Using default sample borrowers');
-    // Create sample borrowers if file doesn't exist
-    sampleBorrowers = [
-        {
-            id: '8a858e6e55c554c20155d574b4596645',
-            label: 'Borrower A - Premium',
-            score: 717,
-            features: {
-                txn_count_30d: 47,
-                txn_regularity: 0.89,
-                avg_balance: 125000,
-                income_stability: 0.92,
-                expense_ratio: 0.58,
-                utility_payment_rate: 0.97
-            }
-        },
-        {
-            id: '8a858fa3552ae1120155486928255fc1',
-            label: 'Borrower B - Subprime',
-            score: 362,
-            features: {
-                txn_count_30d: 12,
-                txn_regularity: 0.34,
-                avg_balance: 8500,
-                income_stability: 0.41,
-                expense_ratio: 0.91,
-                utility_payment_rate: 0.52
-            }
-        },
-        {
-            id: '8a858e885c87dee5015c881f237f214b',
-            label: 'Borrower C - Standard',
-            score: 577,
-            features: {
-                txn_count_30d: 28,
-                txn_regularity: 0.72,
-                avg_balance: 45000,
-                income_stability: 0.68,
-                expense_ratio: 0.72,
-                utility_payment_rate: 0.85
-            }
-        },
-        {
-            id: '8a8588dd54be35520154c05cbe9759e5',
-            label: 'Borrower D - Near-prime',
-            score: 495,
-            features: {
-                txn_count_30d: 22,
-                txn_regularity: 0.61,
-                avg_balance: 28000,
-                income_stability: 0.55,
-                expense_ratio: 0.78,
-                utility_payment_rate: 0.71
-            }
-        },
-        {
-            id: '8a858e1d5cd58f9e015cd91cdee408ca',
-            label: 'Borrower E - Elite',
-            score: 798,
-            features: {
-                txn_count_30d: 63,
-                txn_regularity: 0.95,
-                avg_balance: 285000,
-                income_stability: 0.98,
-                expense_ratio: 0.42,
-                utility_payment_rate: 1.0
-            }
-        }
-    ];
+function modelInputs(row) {
+    return MODEL.feature_names.map((name) => {
+        const v = row[name];
+        if (v === 'True') return 1;
+        if (v === 'False') return 0;
+        return Number(v);
+    });
+}
+
+// score = round(1000 * (1 - P(default))), P(default) from the standardised LR model.
+function scoreFromInputs(x) {
+    let logit = MODEL.intercept;
+    x.forEach((v, i) => {
+        logit += MODEL.coefficients[i] * ((v - MODEL.scaler_mean[i]) / MODEL.scaler_scale[i]);
+    });
+    const pDefault = 1 / (1 + Math.exp(-logit));
+    return { pDefault, score: Math.round(1000 * (1 - pDefault)) };
+}
+
+// What the borrower is shown: every model input, with one-hot groups decoded.
+function displayFeatures(row) {
+    const out = {};
+    for (const name of MODEL.feature_names) {
+        const prefix = CATEGORICAL_PREFIXES.find((p) => name.startsWith(p));
+        if (!prefix) { out[name] = Number(row[name]); continue; }
+        if (row[name] === 'True') out[prefix.slice(0, -1)] = name.slice(prefix.length);
+    }
+    return out;
+}
+
+const BAND_NAMES = { 400: 'Basic', 550: 'Standard', 700: 'Good', 850: 'Premium' };
+
+// Demo borrowers: real customers from the canonical TEST split (never seen in training),
+// picked at evenly spaced score quantiles so every band is represented.
+function loadDemoBorrowers() {
+    const lines = fs.readFileSync(CONFIG.featuresPath, 'utf8').trim().split(/\r?\n/);
+    const header = lines[0].split(',');
+    const testIdx = JSON.parse(fs.readFileSync(CONFIG.splitPath, 'utf8')).indices.test;
+
+    const scored = testIdx.map((i) => {
+        const row = parseFeatureRow(header, lines[i + 1]);
+        const inputs = modelInputs(row);
+        return { id: row.customerid, inputs, features: displayFeatures(row), ...scoreFromInputs(inputs) };
+    }).sort((a, b) => a.score - b.score || a.id.localeCompare(b.id));
+
+    const n = CONFIG.demoBorrowerCount;
+    const picked = Array.from({ length: n }, (_, k) => scored[Math.round(k * (scored.length - 1) / (n - 1))]);
+    return picked.reverse().map((b, k) => {
+        const band = getBand(b.score);
+        return { ...b, label: `Borrower ${String.fromCharCode(65 + k)} · ${band ? BAND_NAMES[band] : 'Below 400'}` };
+    });
 }
 
 // Globals
-let gateway = null;
-let contract = null;
+let contract = null;           // CommercialBankA identity: borrower anchoring, lender reads + approvals
+let regulatorContract = null;  // RegulatoryObserverMSP identity: regulator view
 let poseidon = null;
 let verificationKey = null;
+let sampleBorrowers = [];
+
+// Borrower-held credential {score, salt, commitment}. In deployment this lives in the
+// borrower's wallet and the proof is generated client-side; the demo server plays that role.
+const borrowerWallet = new Map();
 
 // Initialize connections
 async function initialize() {
@@ -162,81 +147,70 @@ async function initialize() {
         console.error('  Warning: Could not load verification key');
     }
 
-    // Fabric Gateway
+    sampleBorrowers = loadDemoBorrowers();
+    console.log(`  Loaded ${sampleBorrowers.length} demo borrowers from the test split (scores ${sampleBorrowers[sampleBorrowers.length - 1].score}-${sampleBorrowers[0].score})`);
+
     try {
-        const tlsCertPath = path.join(
-            CONFIG.cryptoPath,
-            'peerOrganizations/commercialbanka.credit.ng/peers/peer0.commercialbanka.credit.ng/tls/ca.crt'
-        );
-        const tlsCert = fs.readFileSync(tlsCertPath);
-        const credentials = grpc.credentials.createSsl(tlsCert);
-
-        const client = new grpc.Client(
-            CONFIG.peerEndpoint,
-            credentials,
-            {
-                'grpc.ssl_target_name_override': CONFIG.peerHostAlias,
-                'grpc.keepalive_time_ms': 120000,
-                'grpc.http2.min_time_between_pings_ms': 120000,
-                'grpc.keepalive_timeout_ms': 20000,
-                'grpc.http2.max_pings_without_data': 0,
-                'grpc.keepalive_permit_without_calls': 1,
-            }
-        );
-
-        const certPath = path.join(
-            CONFIG.cryptoPath,
-            'peerOrganizations/commercialbanka.credit.ng/users/User1@commercialbanka.credit.ng/msp/signcerts/User1@commercialbanka.credit.ng-cert.pem'
-        );
-        const keyPath = path.join(
-            CONFIG.cryptoPath,
-            'peerOrganizations/commercialbanka.credit.ng/users/User1@commercialbanka.credit.ng/msp/keystore/priv_sk'
-        );
-
-        const identity = { mspId: CONFIG.mspId, credentials: fs.readFileSync(certPath) };
-        const privateKey = crypto.createPrivateKey(fs.readFileSync(keyPath));
-        const signer = signers.newPrivateKeySigner(privateKey);
-
-        gateway = connect({
-            client,
-            identity,
-            signer,
-            evaluateOptions: () => ({ deadline: Date.now() + 30000 }),
-            endorseOptions: () => ({ deadline: Date.now() + 30000 }),
-            submitOptions: () => ({ deadline: Date.now() + 30000 }),
-            commitStatusOptions: () => ({ deadline: Date.now() + 120000 }),
+        contract = connectAs({
+            mspId: CONFIG.mspId,
+            org: 'commercialbanka.credit.ng',
+            user: 'User1@commercialbanka.credit.ng',
+            peerEndpoint: CONFIG.peerEndpoint,
+            peerHostAlias: CONFIG.peerHostAlias
         });
-
-        const network = gateway.getNetwork(CONFIG.channelName);
-        contract = network.getContract(CONFIG.chaincodeName);
-        console.log('  Fabric Gateway connected');
+        console.log('  Fabric Gateway connected (CommercialBankAMSP)');
     } catch (e) {
         console.error('  Warning: Could not connect to Fabric:', e.message);
+    }
+
+    try {
+        regulatorContract = connectAs(CONFIG.regulator);
+        console.log('  Fabric Gateway connected (RegulatoryObserverMSP)');
+    } catch (e) {
+        console.error('  Warning: Could not connect regulator identity:', e.message);
     }
 
     console.log('Server initialization complete.\n');
 }
 
+function connectAs({ mspId, org, user, peerEndpoint, peerHostAlias }) {
+    const orgDir = path.join(CONFIG.cryptoPath, 'peerOrganizations', org);
+    const tlsCert = fs.readFileSync(path.join(orgDir, 'peers', peerHostAlias, 'tls/ca.crt'));
+    const client = new grpc.Client(peerEndpoint, grpc.credentials.createSsl(tlsCert), {
+        'grpc.ssl_target_name_override': peerHostAlias,
+        'grpc.keepalive_time_ms': 120000,
+        'grpc.http2.min_time_between_pings_ms': 120000,
+        'grpc.keepalive_timeout_ms': 20000,
+        'grpc.http2.max_pings_without_data': 0,
+        'grpc.keepalive_permit_without_calls': 1,
+    });
+
+    const mspDir = path.join(orgDir, 'users', user, 'msp');
+    const gateway = connect({
+        client,
+        identity: { mspId, credentials: fs.readFileSync(path.join(mspDir, 'signcerts', `${user}-cert.pem`)) },
+        signer: signers.newPrivateKeySigner(crypto.createPrivateKey(fs.readFileSync(path.join(mspDir, 'keystore/priv_sk')))),
+        evaluateOptions: () => ({ deadline: Date.now() + 30000 }),
+        endorseOptions: () => ({ deadline: Date.now() + 30000 }),
+        submitOptions: () => ({ deadline: Date.now() + 30000 }),
+        commitStatusOptions: () => ({ deadline: Date.now() + 120000 }),
+    });
+    return gateway.getNetwork(CONFIG.channelName).getContract(CONFIG.chaincodeName);
+}
+
+// Fabric Gateway errors carry per-peer messages in e.details; the top-level message is generic.
+function fabricErrorDetail(e) {
+    const details = Array.isArray(e.details) ? e.details.map((d) => (d.address ? `${d.address}: ` : '') + (d.message || JSON.stringify(d))) : [];
+    return [e.message, ...details].filter(Boolean).join(' | ');
+}
+
+function didFor(borrowerId) {
+    return `did:credit:${borrowerId.substring(0, 16)}`;
+}
+
 // Utility functions
 function timeMs(start) {
     return Number(process.hrtime.bigint() - start) / 1_000_000;
-}
-
-function sigmoid(x) {
-    return 1 / (1 + Math.exp(-x));
-}
-
-function computeScore(features) {
-    if (!modelCoeffs || !features) return Math.floor(Math.random() * 600) + 300;
-
-    let logit = modelCoeffs.intercept;
-    for (const [name, coef] of Object.entries(modelCoeffs.coefficients)) {
-        if (features[name] !== undefined) {
-            logit += coef * features[name];
-        }
-    }
-    const pDefault = sigmoid(logit);
-    return Math.round(1000 * (1 - pDefault));
 }
 
 function getBand(score) {
@@ -253,9 +227,10 @@ function computeCommitment(score, salt) {
 
 // API Endpoints
 
-// Get sample borrowers for dropdown
+// Borrower picker list. Deliberately id + label only: every view (including the lender's)
+// loads this, so scores and features must not travel with it.
 app.get('/api/borrowers', (req, res) => {
-    res.json(sampleBorrowers);
+    res.json(sampleBorrowers.map(({ id, label }) => ({ id, label })));
 });
 
 // Get available threshold bands
@@ -285,20 +260,19 @@ app.post('/api/borrower/process', async (req, res) => {
         result.consentTimestamp = new Date().toISOString();
         timings.consent = timeMs(t0);
 
-        // L1: Feature engineering (simulated for demo)
+        // L1: Feature retrieval. Features were engineered offline (ml/ pipeline) into
+        // features_processed.csv, so this times a lookup, not feature engineering itself.
         t0 = process.hrtime.bigint();
         const borrower = sampleBorrowers.find(b => b.id === borrowerId);
         timings.feature_engineering = timeMs(t0);
-
-        // Include features for borrower transparency
-        if (borrower?.features) {
-            result.features = borrower.features;
+        if (!borrower) {
+            return res.status(404).json({ error: 'Unknown borrower' });
         }
+        result.features = borrower.features;
 
-        // L1: ML Inference
+        // L1: ML inference on the borrower's real model inputs
         t0 = process.hrtime.bigint();
-        const score = borrower?.score || computeScore(borrower?.features);
-        const pDefault = (1000 - score) / 1000;
+        const { score, pDefault } = scoreFromInputs(borrower.inputs);
         timings.ml_inference = timeMs(t0);
 
         result.score = score;
@@ -322,7 +296,7 @@ app.post('/api/borrower/process', async (req, res) => {
         // L2: Anchor to ledger
         if (contract) {
             t0 = process.hrtime.bigint();
-            const did = `did:credit:${borrowerId.substring(0, 16)}`;
+            const did = didFor(borrowerId);
             try {
                 console.log(`[ANCHOR] Attempting to anchor commitment for ${did}`);
                 await contract.submitTransaction('AnchorCommitment', '0x' + commitment, did, 'lr_model_v1');
@@ -385,6 +359,10 @@ app.post('/api/borrower/process', async (req, res) => {
             result.ledgerError = 'Fabric not connected';
         }
 
+        if (result.ledgerAnchored) {
+            borrowerWallet.set(borrowerId, { score, salt, commitment: '0x' + commitment });
+        }
+
         result.timings = timings;
         result.totalL1 = (timings.consent + timings.feature_engineering + timings.ml_inference + timings.commitment).toFixed(2);
         result.totalL2 = (timings.ledger_anchor || 0).toFixed(2);
@@ -423,54 +401,69 @@ app.post('/api/lender/verify', async (req, res) => {
     };
 
     try {
-        const borrower = sampleBorrowers.find(b => b.id === borrowerId);
-        const score = borrower?.score || computeScore(borrower?.features);
-        const band = getBand(score);
-
-        // Cannot generate proof if below lowest band or band < threshold
-        if (band === null) {
-            result.eligible = false;
-            result.reason = 'No valid band - score below lowest threshold';
-            result.proofGenerated = false;
-            return res.json(result);
+        if (!contract) {
+            return res.status(503).json({ error: 'Fabric not connected' });
         }
 
-        if (band < threshold) {
-            result.eligible = false;
-            result.reason = `Band ${band} is below threshold ${threshold}`;
-            result.proofGenerated = false;
-            return res.json(result);
-        }
-
-        // Generate ZK proof
-        const salt = BigInt('0x' + crypto.randomBytes(31).toString('hex'));
-        const commitment = computeCommitment(band, salt); // Prove band membership
-
-        // Circuit inputs - bands are hardcoded in circuit template, not inputs
-        const input = {
-            score: band.toString(),
-            salt: salt.toString(),
-            threshold: threshold.toString(),
-            commitment: BigInt('0x' + commitment).toString()
-        };
-
+        // L2: the lender reads the borrower's commitment from the ledger. This is the
+        // public input the proof must bind to; the lender never takes it from the borrower.
+        const did = didFor(borrowerId);
         let t0 = process.hrtime.bigint();
-        const { proof, publicSignals } = await snarkjs.groth16.fullProve(
-            input,
+        let onChain;
+        try {
+            onChain = JSON.parse(Buffer.from(await contract.evaluateTransaction('GetCommitment', did)).toString('utf8'));
+        } catch (e) {
+            return res.status(409).json({ error: `No commitment on the ledger for ${did}. Process this borrower's score in the Borrower view first.` });
+        }
+        timings.commitment_retrieval = timeMs(t0);
+        result.layers = ['L2', 'L3'];
+        result.did = did;
+
+        if (onChain.status !== 'active') {
+            return res.status(409).json({ error: `On-chain commitment for ${did} is ${onChain.status}` });
+        }
+
+        // L3 prover side: the borrower's credential (score + salt) opens that commitment.
+        const credential = borrowerWallet.get(borrowerId);
+        if (!credential || credential.commitment.toLowerCase() !== onChain.commitmentHash.toLowerCase()) {
+            return res.status(409).json({ error: 'The borrower holds no credential for the current on-chain commitment. Re-run Process Credit Score in the Borrower view.' });
+        }
+
+        // The circuit hard-constrains score >= threshold, so an ineligible borrower cannot
+        // produce a proof at all. The lender learns the same single bit from the refusal.
+        if (credential.score < threshold) {
+            result.eligible = false;
+            result.proofGenerated = false;
+            result.reason = 'Borrower cannot produce a proof for this threshold';
+            result.timings = timings;
+            return res.json(result);
+        }
+
+        const commitmentField = BigInt(onChain.commitmentHash).toString();
+        t0 = process.hrtime.bigint();
+        const { proof } = await snarkjs.groth16.fullProve(
+            {
+                score: credential.score.toString(),
+                salt: credential.salt.toString(),
+                commitment: commitmentField,
+                threshold: threshold.toString()
+            },
             CONFIG.wasmPath,
             CONFIG.zkeyPath
         );
         timings.proof_generation = timeMs(t0);
 
-        // Verify proof
+        // Lender side: verify against public signals the lender assembles itself
+        // [eligible, commitment (from ledger), threshold (lender's choice)].
         t0 = process.hrtime.bigint();
-        const isValid = await snarkjs.groth16.verify(verificationKey, publicSignals, proof);
+        const isValid = await snarkjs.groth16.verify(verificationKey, ['1', commitmentField, threshold.toString()], proof);
         timings.proof_verification = timeMs(t0);
 
         result.eligible = isValid;
         result.proofGenerated = true;
         result.proofValid = isValid;
         result.proofSize = JSON.stringify(proof).length;
+        result.proofHash = '0x' + crypto.createHash('sha256').update(JSON.stringify(proof)).digest('hex');
         result.timings = timings;
         result.totalL3 = (timings.proof_generation + timings.proof_verification).toFixed(2);
 
@@ -485,7 +478,7 @@ app.post('/api/lender/verify', async (req, res) => {
 app.post('/api/lender/approve', async (req, res) => {
     const { borrowerId, threshold, proofHash, amount } = req.body;
 
-    const did = `did:credit:${borrowerId.substring(0, 16)}`;
+    const did = didFor(borrowerId);
     const result = {
         borrowerId,
         did,
@@ -545,7 +538,7 @@ app.post('/api/lender/approve', async (req, res) => {
 // REGULATOR FLOW: Query ledger history (read-only)
 app.post('/api/regulator/history', async (req, res) => {
     const { borrowerId } = req.body;
-    const did = `did:credit:${borrowerId.substring(0, 16)}`;
+    const did = didFor(borrowerId);
 
     console.log(`[REGULATOR] Querying records for ${did}`);
 
@@ -558,14 +551,14 @@ app.post('/api/regulator/history', async (req, res) => {
     };
 
     try {
-        if (!contract) {
-            return res.status(503).json({ error: 'Fabric not connected' });
+        if (!regulatorContract) {
+            return res.status(503).json({ error: 'Fabric not connected (regulator identity)' });
         }
 
-        // Query commitment
+        // Query commitment, as RegulatoryObserverMSP
         const t0 = process.hrtime.bigint();
         try {
-            const commitmentResult = await contract.evaluateTransaction('GetCommitment', did);
+            const commitmentResult = await regulatorContract.evaluateTransaction('GetCommitment', did);
             // Fabric Gateway returns Uint8Array, need to convert properly
             const commitmentStr = Buffer.from(commitmentResult).toString('utf8');
             result.commitment = JSON.parse(commitmentStr);
@@ -578,7 +571,7 @@ app.post('/api/regulator/history', async (req, res) => {
 
         // Query history
         try {
-            const historyResult = await contract.evaluateTransaction('GetCreditHistory', did);
+            const historyResult = await regulatorContract.evaluateTransaction('GetCreditHistory', did);
             // Fabric Gateway returns Uint8Array, need to convert properly
             const historyStr = Buffer.from(historyResult).toString('utf8');
             console.log(`[REGULATOR] History raw response for ${did}:`, historyStr.substring(0, 200));
@@ -590,13 +583,6 @@ app.post('/api/regulator/history', async (req, res) => {
         }
 
         result.queryTime = timeMs(t0);
-        result.readOnlyEnforced = true;
-        result.writeBlocked = {
-            status: 'BLOCKED',
-            reason: 'RegulatoryObserverMSP is not authorized to perform write operations',
-            enforcement: 'Chaincode ACL + Endorsement Policy'
-        };
-
         res.json(result);
 
     } catch (error) {
@@ -604,15 +590,33 @@ app.post('/api/regulator/history', async (req, res) => {
     }
 });
 
-// REGULATOR: Attempt write (to demonstrate ACL rejection)
+// REGULATOR: attempt a real write as RegulatoryObserverMSP. The rejection shown in the UI
+// is whatever Fabric actually returns, not a canned message.
 app.post('/api/regulator/attemptWrite', async (req, res) => {
-    res.json({
-        status: 'BLOCKED',
-        error: 'access denied: RegulatoryObserverMSP is not authorized to perform write operations',
-        explanation: 'The Regulatory Observer has read-only access to the ledger. Write attempts are rejected by chaincode ACL.',
-        embeddedSupervision: 'Per Auer (2022), the regulator can observe all transactions without being able to modify them.',
-        layers: ['L2']
-    });
+    if (!regulatorContract) {
+        return res.status(503).json({ error: 'Fabric not connected (regulator identity)' });
+    }
+    const probeDid = 'did:credit:regulator-write-probe';
+    const t0 = process.hrtime.bigint();
+    try {
+        await regulatorContract.submitTransaction('AnchorCommitment', '0x' + '0'.repeat(63) + '1', probeDid, 'regulator_write_probe');
+        // Reaching here means read-only enforcement is broken; surface it, never mask it.
+        console.error('[REGULATOR] WRITE ACCEPTED - read-only enforcement failed');
+        res.json({ status: 'ACCEPTED', error: 'WRITE ACCEPTED: RegulatoryObserverMSP was able to write to the ledger', rejectedBy: null, timeMs: timeMs(t0) });
+    } catch (e) {
+        const detail = fabricErrorDetail(e);
+        const peerMsg = (Array.isArray(e.details) ? e.details : []).find((d) => /access denied/.test(d.message || ''));
+        const chaincodeMatch = peerMsg && peerMsg.message.match(/chaincode response \d+, (.*)$/);
+        console.log('[REGULATOR] Write rejected:', detail.substring(0, 300));
+        res.json({
+            status: 'BLOCKED',
+            error: chaincodeMatch ? chaincodeMatch[1] : detail,
+            rejectedBy: chaincodeMatch ? 'chaincode' : 'fabric',
+            peer: peerMsg ? peerMsg.address : null,
+            detail,
+            timeMs: timeMs(t0)
+        });
+    }
 });
 
 // Serve HTML pages

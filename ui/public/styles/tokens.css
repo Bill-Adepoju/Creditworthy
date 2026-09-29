@@ -1,128 +1,106 @@
 /* ============================================
-   DESIGN TOKENS
+   DESIGN TOKENS — Industry direction
    Privacy-Preserving Credit Scoring Demo
-
-   Light mode only - optimized for print/dissertation figures.
+   Drop-in replacement for public/styles/tokens.css
    ============================================ */
-
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
+@import url('../fonts/fonts.css');
 
 :root {
-  /* ----------------------------------------
-     BASE — warm neutral, prints cleanly
-     ---------------------------------------- */
-  --bg:            #F8F7F4;
-  --surface:       #FFFFFF;
-  --surface-sunk:  #F0EFEB;
-  --border:        #E5E3DC;
-  --border-strong: #D0CEC5;
+  /* ---------- Ground & ink ---------- */
+  --bg:            #f2f2f3;
+  --surface:       #e9e9ea;   /* input wells, bar tracks */
+  --ink:           #1d1f20;
+  --ink-secondary: #424244;   /* neutral-800 */
+  --ink-muted:     #5d5d60;   /* neutral-700 — lowest allowed for text (≈6:1) */
+  --ink-faint:     #7a7a7d;   /* neutral-600 — icons, idle numerals only */
+  --divider:       rgba(29, 31, 32, 0.16);
+  --divider-soft:  rgba(29, 31, 32, 0.08);
+  --mark:          rgba(29, 31, 32, 0.55);   /* registration "+" marks */
 
-  /* ----------------------------------------
-     INK — text colors
-     ---------------------------------------- */
-  --ink:           #1A1A1A;
-  --ink-secondary: #5C5C5C;
-  --ink-muted:     #8C8C8C;
+  /* ---------- Steel accent ramp (mono scheme) ---------- */
+  --accent-100: #eef6ff;
+  --accent-200: #d6ebff;
+  --accent-300: #b5d9fd;
+  --accent-400: #94bce3;
+  --accent-500: #749dc4;
+  --accent:     #5980a6;      /* base; chrome, fills, large text only */
+  --accent-600: #597ea3;      /* hover */
+  --accent-700: #416180;      /* accent-coloured body text, links */
+  --accent-800: #2c455d;      /* text on tints, "done" fills, L3 */
+  --accent-900: #1d2d3d;      /* full-field verdict / emphasis block */
 
-  /* ----------------------------------------
-     PRIMARY ACTION — deep indigo
-     ---------------------------------------- */
-  --primary:       #3D3A8C;
-  --primary-hover: #4E4AA3;
-  --primary-soft:  #EBEBF5;
+  --neutral-400: #b7b7ba;
+  --neutral-500: #98989b;
 
-  /* ----------------------------------------
-     ARCHITECTURE LAYERS — semantic colors
-     ---------------------------------------- */
-  --l1:            #047857;   /* ML (green)              */
-  --l1-soft:       #ECFDF5;
-  --l2:            #B45309;   /* Ledger (amber, NOT red) */
-  --l2-soft:       #FEF3C7;
-  --l3:            #6D28D9;   /* ZK proofs (purple)      */
-  --l3-soft:       #EDE9FE;
+  /* ---------- Architecture layers (mono: treatment, not hue) ---------- */
+  --l1-bg: var(--accent-100); --l1-border: var(--accent-300); --l1-fg: var(--accent-800);  /* tinted  */
+  --l2-bg: transparent;       --l2-border: var(--accent);     --l2-fg: var(--accent-700);  /* outline */
+  --l3-bg: var(--accent-800); --l3-border: var(--accent-800); --l3-fg: var(--bg);          /* solid   */
 
-  /* ----------------------------------------
-     STATE — success/danger
-     ---------------------------------------- */
-  --success:       #047857;
-  --success-soft:  #ECFDF5;
-  --danger:        #B91C1C;
-  --danger-soft:   #FEF2F2;
+  /* ---------- Credit bands (score bar) ---------- */
+  --band-poor:      var(--accent-200);
+  --band-fair:      var(--accent-300);
+  --band-good:      var(--accent-500);
+  --band-excellent: var(--accent-800);
 
-  /* ----------------------------------------
-     TYPOGRAPHY
-     ---------------------------------------- */
-  --font-sans: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
-  --font-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, monospace;
+  /* ---------- State ---------- */
+  --success:      var(--accent-800);   /* success is steel, not green */
+  --success-soft: var(--accent-100);
+  --danger:       #9b3b3b;   /* ONLY: ACL rejection stamp, chaincode errors, form errors */
+  --danger-soft:  #f7ecec;
+  --danger-ink:   #7a2a2a;
 
-  /* Type scale */
-  --text-h1-size: 24px;
-  --text-h1-lh: 1.2;
-  --text-h1-weight: 700;
+  /* ---------- Type ---------- */
+  --font-heading: 'Barlow Condensed', system-ui, sans-serif;
+  --font-body:    'Barlow', system-ui, sans-serif;
+  --font-mono:    'JetBrains Mono', ui-monospace, SFMono-Regular, monospace;
 
-  --text-h2-size: 16px;
-  --text-h2-lh: 1.3;
-  --text-h2-weight: 600;
+  --text-display: 56px;   /* landing h1 */
+  --text-h1:      40px;   /* page title */
+  --text-h2:      26px;   /* card title */
+  --text-h3:      22px;   /* section title */
+  --text-metric:  30px;   /* data-card values */
+  --text-score:   88px;   /* borrower score */
+  --text-verdict: 40px;
+  --text-body:    15px;
+  --text-small:   14px;
+  --text-caption: 13px;
+  --text-label:   12px;   /* uppercase labels, .08em tracking */
+  --text-kicker:  11px;   /* uppercase kickers, .1em tracking */
+  --text-mono:    13px;
 
-  --text-body-size: 15px;
-  --text-body-lh: 1.55;
-  --text-body-weight: 400;
-
-  --text-label-size: 11px;
-  --text-label-lh: 1.4;
-  --text-label-weight: 600;
-  --text-label-spacing: 0.04em;
-
-  --text-mono-size: 13px;
-  --text-mono-lh: 1.5;
-  --text-mono-weight: 400;
-
-  /* ----------------------------------------
-     SPACING — 8px scale
-     ---------------------------------------- */
+  /* ---------- Space (0.85× density) ---------- */
   --space-1: 4px;
   --space-2: 8px;
   --space-3: 12px;
   --space-4: 16px;
   --space-5: 24px;
-  --space-6: 32px;
-  --space-7: 48px;
-  --space-8: 64px;
+  --space-6: 28px;
+  --space-7: 32px;
+  --space-8: 56px;
 
-  /* ----------------------------------------
-     RADIUS
-     ---------------------------------------- */
-  --r-sm: 4px;
-  --r-md: 8px;
-  --r-lg: 12px;
-  --r-full: 999px;
+  /* ---------- Shape & elevation ---------- */
+  --radius: 0;             /* everything is square */
+  --shadow-md: 0 3px 10px color-mix(in srgb, #2b2b2d 16%, transparent);   /* dropdowns only */
 
-  /* ----------------------------------------
-     SHADOWS — light, print-friendly
-     ---------------------------------------- */
-  --shadow-1: 0 1px 2px rgba(0,0,0,.04), 0 1px 3px rgba(0,0,0,.03);
-  --shadow-2: 0 4px 12px rgba(0,0,0,.08), 0 2px 4px rgba(0,0,0,.04);
+  /* ---------- Motion ---------- */
+  --ease:       cubic-bezier(.22, .61, .36, 1);
+  --ease-stamp: cubic-bezier(.3, 1.4, .5, 1);
+  --dur-fast:   150ms;
+  --dur-base:   300ms;
+  --dur-slow:   450ms;
+  --step-borrower: 520ms;   /* per pipeline stage */
+  --step-retrieve: 700ms;   /* lender phases */
+  --step-prove:    1400ms;
+  --step-verify:   600ms;
+  --stagger:       80ms;
 
-  /* ----------------------------------------
-     MOTION
-     ---------------------------------------- */
-  --ease: cubic-bezier(.22,.61,.36,1);
-  --dur-fast: 120ms;
-  --dur-base: 200ms;
-  --dur-slow: 400ms;
-
-  /* ----------------------------------------
-     LAYOUT
-     ---------------------------------------- */
-  --sidebar-width: 380px;
+  /* ---------- Layout ---------- */
+  --sidebar-width: 400px;
   --max-content-width: 1200px;
 }
 
-/* Reduced motion */
 @media (prefers-reduced-motion: reduce) {
-  :root {
-    --dur-fast: 0ms;
-    --dur-base: 0ms;
-    --dur-slow: 0ms;
-  }
+  :root { --dur-fast: 1ms; --dur-base: 1ms; --dur-slow: 1ms; --step-borrower: 60ms; --step-retrieve: 60ms; --step-prove: 60ms; --step-verify: 60ms; --stagger: 0ms; }
+  *, *::before, *::after { animation-duration: 1ms !important; transition-duration: 1ms !important; }
 }

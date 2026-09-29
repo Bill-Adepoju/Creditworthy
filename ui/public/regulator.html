@@ -6,538 +6,116 @@
     <title>Regulator View - Credit Scoring Demo</title>
     <link rel="stylesheet" href="/styles/tokens.css">
     <link rel="stylesheet" href="/styles/components.css">
-    <style>
-        /* Regulator page specific styles */
-        .results-panel {
-            opacity: 0.5;
-            transition: opacity var(--dur-base) var(--ease);
-        }
-
-        .results-panel--active {
-            opacity: 1;
-        }
-
-        /* Read-only badge */
-        .badge-readonly {
-            display: inline-flex;
-            align-items: center;
-            gap: var(--space-1);
-            padding: var(--space-1) var(--space-3);
-            background: var(--l2-soft);
-            color: var(--l2);
-            border: 1px solid var(--l2);
-            border-radius: var(--r-full);
-            font-size: var(--text-label-size);
-            font-weight: var(--text-label-weight);
-            text-transform: uppercase;
-            letter-spacing: var(--text-label-spacing);
-        }
-
-        /* Commitment section - compact */
-        .commitment-section {
-            background: var(--surface-sunk);
-            border-radius: var(--r-md);
-            padding: var(--space-3);
-            margin-bottom: var(--space-3);
-        }
-
-        .commitment-section h3 {
-            font-size: 10px;
-            font-weight: 600;
-            color: var(--ink-muted);
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            margin-bottom: var(--space-2);
-        }
-
-        .commitment-hash {
-            font-family: var(--font-mono);
-            font-size: 11px;
-            background: var(--surface);
-            padding: var(--space-2);
-            border-radius: var(--r-sm);
-            word-break: break-all;
-            border: 1px solid var(--border);
-        }
-
-        .commitment-meta {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: var(--space-2);
-            margin-top: var(--space-2);
-        }
-
-        .commitment-meta-item {
-            display: flex;
-            justify-content: space-between;
-            font-size: 11px;
-        }
-
-        .commitment-meta-label {
-            color: var(--ink-muted);
-        }
-
-        .commitment-meta-value {
-            font-family: var(--font-mono);
-            color: var(--ink);
-        }
-
-        /* Timeline - compact */
-        .timeline-section {
-            margin-bottom: var(--space-3);
-        }
-
-        .timeline-section h3 {
-            font-size: 10px;
-            font-weight: 600;
-            color: var(--ink-muted);
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            margin-bottom: var(--space-2);
-        }
-
-        .timeline {
-            position: relative;
-            padding-left: var(--space-5);
-        }
-
-        .timeline::before {
-            content: '';
-            position: absolute;
-            left: 5px;
-            top: 4px;
-            bottom: 4px;
-            width: 2px;
-            background: var(--border);
-        }
-
-        .timeline-item {
-            position: relative;
-            padding-bottom: var(--space-3);
-        }
-
-        .timeline-item:last-child {
-            padding-bottom: 0;
-        }
-
-        .timeline-dot {
-            position: absolute;
-            left: calc(-1 * var(--space-5));
-            top: 2px;
-            width: 12px;
-            height: 12px;
-            border-radius: 50%;
-            background: var(--surface);
-            border: 2px solid var(--l2);
-        }
-
-        .timeline-item--commitment .timeline-dot {
-            background: var(--l2);
-        }
-
-        .timeline-timestamp {
-            font-family: var(--font-mono);
-            font-size: 10px;
-            color: var(--ink-muted);
-        }
-
-        .timeline-event {
-            font-weight: 600;
-            font-size: 13px;
-            color: var(--ink);
-            text-transform: capitalize;
-        }
-
-        .timeline-meta {
-            font-size: 11px;
-            color: var(--ink-secondary);
-        }
-
-        .timeline-empty {
-            color: var(--ink-muted);
-            font-style: italic;
-            padding: var(--space-3);
-            text-align: center;
-            background: var(--surface-sunk);
-            border-radius: var(--r-sm);
-            font-size: 13px;
-        }
-
-        /* Query footer - compact */
-        .query-footer {
-            background: var(--surface-sunk);
-            border-radius: var(--r-sm);
-            padding: var(--space-2);
-            font-family: var(--font-mono);
-            font-size: 10px;
-            color: var(--ink-muted);
-            display: flex;
-            flex-wrap: wrap;
-            gap: var(--space-3);
-        }
-
-        .query-footer-item {
-            display: flex;
-            gap: var(--space-2);
-        }
-
-        .query-footer-label {
-            color: var(--ink-muted);
-        }
-
-        .query-footer-value {
-            color: var(--ink);
-        }
-
-        /* Blocked Write Demo */
-        .blocked-demo {
-            background: var(--danger-soft);
-            border: 1px solid var(--danger);
-            border-radius: var(--r-lg);
-            padding: var(--space-5);
-            margin-top: var(--space-5);
-        }
-
-        .blocked-demo h3 {
-            font-size: var(--text-h2-size);
-            font-weight: 600;
-            color: var(--danger);
-            margin-bottom: var(--space-2);
-        }
-
-        .blocked-demo p {
-            color: var(--ink-secondary);
-            margin-bottom: var(--space-4);
-        }
-
-        .btn-attempt-write {
-            background: var(--surface);
-            color: var(--danger);
-            border: 2px solid var(--danger);
-            width: 100%;
-            position: relative;
-        }
-
-        .btn-attempt-write:hover:not(:disabled) {
-            background: var(--danger);
-            color: white;
-        }
-
-        /* Shake animation */
-        @keyframes shake {
-            0%, 100% { transform: translateX(0); }
-            20% { transform: translateX(-8px); }
-            40% { transform: translateX(8px); }
-            60% { transform: translateX(-6px); }
-            80% { transform: translateX(6px); }
-        }
-
-        .btn--shaking {
-            animation: shake 0.4s ease-in-out;
-        }
-
-        /* Stamp container */
-        .stamp-container {
-            position: relative;
-            margin-top: var(--space-4);
-            min-height: 80px;
-            display: none;
-        }
-
-        .stamp-container--visible {
-            display: block;
-        }
-
-        .stamp {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%) rotate(-8deg) scale(0);
-            padding: var(--space-3) var(--space-5);
-            border: 4px solid var(--danger);
-            border-radius: var(--r-sm);
-            background: white;
-            color: var(--danger);
-            font-family: var(--font-mono);
-            font-size: 18px;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-            white-space: nowrap;
-            opacity: 0;
-            transition: transform 0.3s var(--ease), opacity 0.2s var(--ease);
-        }
-
-        .stamp--visible {
-            transform: translate(-50%, -50%) rotate(-8deg) scale(1);
-            opacity: 1;
-        }
-
-        .error-message {
-            background: var(--surface);
-            border: 1px solid var(--border);
-            border-radius: var(--r-md);
-            padding: var(--space-4);
-            margin-top: var(--space-4);
-            display: none;
-        }
-
-        .error-message--visible {
-            display: block;
-        }
-
-        .error-message-label {
-            font-size: var(--text-label-size);
-            font-weight: var(--text-label-weight);
-            color: var(--danger);
-            text-transform: uppercase;
-            letter-spacing: var(--text-label-spacing);
-            margin-bottom: var(--space-2);
-        }
-
-        .error-message-text {
-            font-family: var(--font-mono);
-            font-size: 13px;
-            color: var(--ink);
-            word-break: break-word;
-        }
-
-        /* Selected borrower display */
-        .selected-borrower {
-            background: var(--primary-soft);
-            border: 1px solid var(--primary);
-            border-radius: var(--r-md);
-            padding: var(--space-3) var(--space-4);
-            margin-bottom: var(--space-4);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .selected-borrower-name {
-            font-weight: 600;
-            color: var(--primary);
-        }
-
-        .selected-borrower-clear {
-            background: none;
-            border: none;
-            color: var(--primary);
-            cursor: pointer;
-            padding: var(--space-1);
-            font-size: 18px;
-            line-height: 1;
-        }
-
-        /* DID display */
-        .did-display {
-            font-family: var(--font-mono);
-            font-size: 11px;
-            color: var(--ink-secondary);
-            background: var(--surface-sunk);
-            padding: var(--space-2);
-            border-radius: var(--r-sm);
-            margin-bottom: var(--space-3);
-            word-break: break-all;
-        }
-
-        /* Regulator page responsive */
-        @media (max-width: 1023px) {
-            .commitment-meta {
-                grid-template-columns: 1fr;
-            }
-
-            .query-footer {
-                flex-direction: column;
-                gap: var(--space-2);
-            }
-        }
-
-        @media (max-width: 767px) {
-            .badge-readonly {
-                font-size: 10px;
-                padding: var(--space-1) var(--space-2);
-            }
-
-            .commitment-section {
-                padding: var(--space-3);
-            }
-
-            .commitment-hash {
-                font-size: 12px;
-                padding: var(--space-2);
-            }
-
-            .commitment-meta-item {
-                flex-direction: column;
-                gap: var(--space-1);
-            }
-
-            .timeline {
-                padding-left: var(--space-5);
-            }
-
-            .timeline::before {
-                left: 5px;
-            }
-
-            .timeline-dot {
-                left: calc(-1 * var(--space-5));
-                width: 12px;
-                height: 12px;
-            }
-
-            .timeline-timestamp {
-                font-size: 11px;
-            }
-
-            .timeline-event {
-                font-size: 14px;
-            }
-
-            .timeline-meta {
-                font-size: 12px;
-            }
-
-            .blocked-demo {
-                padding: var(--space-4);
-            }
-
-            .blocked-demo h3 {
-                font-size: 16px;
-            }
-
-            .stamp {
-                font-size: 14px;
-                padding: var(--space-2) var(--space-4);
-            }
-
-            .selected-borrower {
-                flex-direction: column;
-                gap: var(--space-2);
-                text-align: center;
-            }
-
-            .did-display {
-                font-size: 11px;
-            }
-
-            .query-footer-item {
-                width: 100%;
-                justify-content: space-between;
-            }
-        }
-
-        @media (max-width: 479px) {
-            .commitment-section h3 {
-                font-size: 11px;
-            }
-
-            .commitment-hash {
-                font-size: 10px;
-            }
-
-            .timeline-section h3 {
-                font-size: 11px;
-            }
-
-            .blocked-demo p {
-                font-size: 13px;
-            }
-
-            .error-message-text {
-                font-size: 11px;
-            }
-        }
-    </style>
 </head>
 <body>
     <a href="#main-content" class="skip-link">Skip to main content</a>
 
+    <nav class="app-nav" aria-label="Main navigation">
+        <a class="app-nav-brand" href="/">Privacy-Preserving Credit Scoring</a>
+        <div class="app-nav-links">
+            <a href="/">Home</a>
+            <a href="/borrower">Borrower</a>
+            <a href="/lender">Lender</a>
+            <a href="/regulator" aria-current="page">Regulator</a>
+        </div>
+    </nav>
+
     <div class="page-wrapper">
         <header class="header">
-            <a href="/" class="back-link">← Home</a>
             <h1>Regulator View</h1>
-            <div class="layer-chips">
-                <span class="chip-layer chip-layer--l2">L2</span>
-                <span class="chip-layer" style="background: var(--l2-soft); color: var(--l2);">READ-ONLY</span>
-            </div>
+            <span class="chip-layer chip-layer--l2 chip-layer--lg">L2 · Ledger</span>
+            <span class="badge-readonly"><i data-icon="lock" data-size="13"></i>Read-only</span>
         </header>
 
         <main class="main-grid" id="main-content">
-            <section class="card" aria-labelledby="query-heading">
-                <div class="card-header">
-                    <h2 class="card-title" id="query-heading">Query Ledger</h2>
-                    <p class="card-subtitle">View commitments and loan history from the blockchain</p>
-                </div>
+            <div class="side-stack">
+                <!-- Step 01: query -->
+                <section class="card blueprint" aria-labelledby="query-heading">
+                    <i class="corner tl"></i><i class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i>
+                    <div class="card-header">
+                        <div class="card-kicker">Step 01 · Query</div>
+                        <h2 class="card-title" id="query-heading">Query Ledger</h2>
+                        <p class="card-subtitle">View commitments and loan history from the blockchain</p>
+                    </div>
 
-                <label for="borrower-search">Search Borrower</label>
-                <div class="combobox" role="combobox" aria-expanded="false" aria-haspopup="listbox">
-                    <input type="text"
-                           id="borrower-search"
-                           class="combobox-input"
-                           placeholder="Type to search borrowers..."
-                           autocomplete="off"
-                           aria-autocomplete="list"
-                           aria-controls="borrower-listbox">
-                    <div id="borrower-listbox" class="combobox-listbox" role="listbox"></div>
-                </div>
+                    <div class="field">
+                        <label for="borrower-search">Search Borrower</label>
+                        <div class="combobox" id="combobox">
+                            <div class="combobox-field">
+                                <i data-icon="search"></i>
+                                <input type="text" id="borrower-search" class="combobox-input"
+                                       role="combobox" aria-expanded="false" aria-controls="borrower-listbox"
+                                       aria-autocomplete="list" autocomplete="off"
+                                       placeholder="Type to search borrowers...">
+                            </div>
+                            <div id="borrower-listbox" class="combobox-listbox" role="listbox" aria-label="Borrowers"></div>
+                        </div>
+                        <div id="selected-display" class="selected-borrower hidden">
+                            <i data-icon="user-round"></i>
+                            <div class="selected-borrower-text">
+                                <span class="selected-borrower-name" id="selected-name"></span>
+                                <span class="selected-borrower-did" id="selected-did"></span>
+                            </div>
+                            <button class="selected-borrower-clear" id="clear-selection" aria-label="Clear selection"><i data-icon="x"></i></button>
+                        </div>
+                    </div>
 
-                <div id="selected-display" class="selected-borrower hidden">
-                    <span class="selected-borrower-name" id="selected-name"></span>
-                    <button class="selected-borrower-clear" id="clear-selection" aria-label="Clear selection">&times;</button>
-                </div>
-
-                <button id="query-btn" class="btn btn-primary btn-block" disabled>
-                    View Records
-                </button>
-
-                <div id="status" class="status hidden" role="status" aria-live="polite"></div>
-
-                <div class="info-panel">
-                    <h4>What you can access:</h4>
-                    <ol>
-                        <li>Cryptographic commitments (not actual scores)</li>
-                        <li>Loan event timestamps</li>
-                        <li>Transaction metadata</li>
-                        <li>All data in real-time <span class="chip-layer chip-layer--l2">L2</span></li>
-                    </ol>
-                </div>
-
-                <!-- Blocked Write Demo -->
-                <div class="blocked-demo">
-                    <h3>Write Access Blocked</h3>
-                    <p>Regulators observe the system without participating in transactions. This separation ensures audit integrity.</p>
-
-                    <button id="attempt-write-btn" class="btn btn-attempt-write">
-                        Attempt Write (Demonstration)
+                    <button id="query-btn" class="btn btn-primary btn-block blueprint" disabled>
+                        <i class="corner tl"></i><i class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i>
+                        <i data-icon="scan-search"></i><span class="btn-label">View Records</span>
                     </button>
 
+                    <div id="status" class="status hidden" role="status" aria-live="polite"></div>
+
+                    <div class="info-panel">
+                        <h4>What you can access:</h4>
+                        <ol>
+                            <li><span>Cryptographic commitments (not actual scores)</span><span></span></li>
+                            <li><span>Loan event timestamps</span><span></span></li>
+                            <li><span>Transaction metadata</span><span></span></li>
+                            <li><span>All data in real-time</span><span class="chip-layer chip-layer--l2 chip-layer--sm">L2</span></li>
+                        </ol>
+                    </div>
+                </section>
+
+                <section class="blocked-demo" aria-labelledby="blocked-heading">
+                    <div class="blocked-demo-head">
+                        <i data-icon="lock" data-size="20"></i>
+                        <h3 id="blocked-heading">Write Access Blocked</h3>
+                        <span class="blocked-badge">BLOCKED</span>
+                    </div>
+                    <p>Regulators observe the system without participating in transactions. This separation ensures audit integrity.</p>
+                    <button id="attempt-write-btn" class="btn btn-attempt-write">
+                        <i data-icon="pen-off"></i><span class="btn-label">Attempt Write (Demonstration)</span>
+                    </button>
                     <div class="stamp-container" id="stamp-container" aria-live="assertive">
                         <div class="stamp" id="stamp" role="alert">REJECTED</div>
                     </div>
-
                     <div class="error-message" id="error-message">
-                        <div class="error-message-label">Chaincode Error</div>
+                        <div class="error-message-label" id="error-label">Chaincode Error</div>
                         <div class="error-message-text" id="error-text"></div>
                     </div>
-                </div>
+                </section>
             </div>
-            </section>
 
-            <!-- Right Panel: Results -->
-            <section class="card results-panel" id="results-panel" aria-labelledby="records-heading" aria-live="polite">
+            <!-- Step 02: records -->
+            <section class="card blueprint results-panel" id="results-panel" aria-labelledby="records-heading" aria-live="polite">
+                <i class="corner tl"></i><i class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i>
                 <div class="card-header">
+                    <div class="card-kicker">Step 02 · Records</div>
                     <h2 class="card-title" id="records-heading">Ledger Records</h2>
                 </div>
 
-                <!-- DID -->
-                <div class="did-display" id="did-value">Select a borrower to view records</div>
+                <div class="stack-sm">
+                    <span class="data-label">Borrower DID</span>
+                    <div class="did-display" id="did-value">Select a borrower to view records</div>
+                </div>
 
-                <!-- Commitment Section -->
                 <div class="commitment-section">
-                    <h3>Current Commitment</h3>
-                    <div class="commitment-hash" id="commitment-value">---</div>
+                    <div class="commitment-hash stack-sm">
+                        <div class="data-label">Current Commitment</div>
+                        <div id="commitment-value">---</div>
+                    </div>
                     <div class="commitment-meta">
                         <div class="commitment-meta-item">
                             <span class="commitment-meta-label">Model Version</span>
@@ -550,248 +128,143 @@
                     </div>
                 </div>
 
-                <!-- Timeline -->
-                <div class="timeline-section" role="region" aria-labelledby="history-heading">
-                    <h3 id="history-heading">Transaction History</h3>
-                    <div class="timeline" id="timeline" role="list" aria-label="Transaction history events">
-                        <div class="timeline-empty">No history loaded</div>
-                    </div>
+                <div class="stack-md" role="region" aria-labelledby="history-heading">
+                    <div class="section-title" id="history-heading">Transaction History</div>
+                    <div id="timeline-wrap"><div class="timeline-empty">No history loaded</div></div>
                 </div>
 
-                <!-- Query Footer -->
                 <div class="query-footer">
-                    <div class="query-footer-item">
-                        <span class="query-footer-label">Query Time:</span>
-                        <span class="query-footer-value" id="query-time">---</span>
-                    </div>
-                    <div class="query-footer-item">
-                        <span class="query-footer-label">Access:</span>
-                        <span class="query-footer-value">READ-ONLY</span>
-                    </div>
-                    <div class="query-footer-item">
-                        <span class="query-footer-label">MSP:</span>
-                        <span class="query-footer-value">RegulatoryObserverMSP</span>
-                    </div>
+                    <span>Query Time: <span class="query-footer-value" id="query-time">---</span></span>
+                    <span>Access: <span class="query-footer-value">READ-ONLY</span></span>
+                    <span>MSP: <span class="query-footer-value">RegulatoryObserverMSP</span></span>
                 </div>
             </section>
         </main>
     </div>
 
-    <footer class="landing-footer" role="contentinfo">
-        MIT Dissertation Demo · University of Lagos · 2026
-    </footer>
+    <footer class="landing-footer" role="contentinfo">MIT Dissertation Demo · University of Lagos · 2026</footer>
 
+    <script src="/scripts/icons.js"></script>
+    <script src="/scripts/picker.js"></script>
     <script>
-        // DOM Elements
-        const searchInput = document.getElementById('borrower-search');
-        const listbox = document.getElementById('borrower-listbox');
-        const selectedDisplay = document.getElementById('selected-display');
-        const selectedName = document.getElementById('selected-name');
-        const clearBtn = document.getElementById('clear-selection');
-        const queryBtn = document.getElementById('query-btn');
-        const statusDiv = document.getElementById('status');
-        const resultsPanel = document.getElementById('results-panel');
-        const attemptWriteBtn = document.getElementById('attempt-write-btn');
+        const { $, sleep, setStatus, BorrowerPicker } = Demo;
+        const queryBtn = $('query-btn');
+        const queryLabel = queryBtn.querySelector('.btn-label');
+        const statusDiv = $('status');
+        const resultsPanel = $('results-panel');
+        const writeBtn = $('attempt-write-btn');
+        const writeLabel = writeBtn.querySelector('.btn-label');
 
-        let borrowers = [];
-        let selectedBorrower = null;
-        let highlightedIndex = -1;
+        let running = false;
+        let runId = 0;
+        let writing = false;
 
-        // Load borrowers
-        fetch('/api/borrowers')
-            .then(r => r.json())
-            .then(data => {
-                borrowers = data;
-            })
-            .catch(err => {
-                console.error('Failed to load borrowers:', err);
-            });
-
-        // Combobox functionality
-        searchInput.addEventListener('focus', () => showDropdown(borrowers));
-
-        searchInput.addEventListener('input', () => {
-            const query = searchInput.value.toLowerCase();
-            const filtered = borrowers.filter(b =>
-                b.label.toLowerCase().includes(query) ||
-                b.id.toLowerCase().includes(query)
-            );
-            showDropdown(filtered);
-        });
-
-        searchInput.addEventListener('keydown', (e) => {
-            const options = listbox.querySelectorAll('.combobox-option');
-            if (e.key === 'ArrowDown') {
-                e.preventDefault();
-                highlightedIndex = Math.min(highlightedIndex + 1, options.length - 1);
-                updateHighlight(options);
-            } else if (e.key === 'ArrowUp') {
-                e.preventDefault();
-                highlightedIndex = Math.max(highlightedIndex - 1, 0);
-                updateHighlight(options);
-            } else if (e.key === 'Enter' && highlightedIndex >= 0) {
-                e.preventDefault();
-                const option = options[highlightedIndex];
-                if (option) selectBorrower(option.dataset.id, option.dataset.label);
-            } else if (e.key === 'Escape') {
-                listbox.classList.remove('open');
-            }
-        });
-
-        document.addEventListener('click', (e) => {
-            if (!searchInput.contains(e.target) && !listbox.contains(e.target)) {
-                listbox.classList.remove('open');
-            }
-        });
-
-        function updateHighlight(options) {
-            options.forEach((opt, i) => {
-                opt.setAttribute('data-highlighted', i === highlightedIndex);
-            });
-            if (options[highlightedIndex]) {
-                options[highlightedIndex].scrollIntoView({ block: 'nearest' });
-            }
-        }
-
-        function showDropdown(items) {
-            highlightedIndex = -1;
-            listbox.innerHTML = items.map(b => `
-                <div class="combobox-option" role="option" data-id="${b.id}" data-label="${b.label}">
-                    <div class="combobox-option-label">${b.label}</div>
-                    <div class="combobox-option-meta">${b.id.substring(0, 24)}...</div>
-                </div>
-            `).join('');
-            listbox.classList.add('open');
-
-            listbox.querySelectorAll('.combobox-option').forEach(item => {
-                item.addEventListener('click', () => {
-                    selectBorrower(item.dataset.id, item.dataset.label);
-                });
-            });
-        }
-
-        function selectBorrower(id, label) {
-            selectedBorrower = borrowers.find(b => b.id === id);
-            searchInput.value = '';
-            selectedDisplay.classList.remove('hidden');
-            selectedName.textContent = label;
-            listbox.classList.remove('open');
-
-            resetResults();
-            updateButton();
-        }
-
-        clearBtn.addEventListener('click', () => {
-            selectedBorrower = null;
-            selectedDisplay.classList.add('hidden');
-            selectedName.textContent = '';
-            resetResults();
-            updateButton();
-        });
-
-        function resetResults() {
-            statusDiv.className = 'status hidden';
-            resultsPanel.classList.remove('results-panel--active');
-
-            document.getElementById('did-value').textContent = 'Select a borrower to view records';
-            document.getElementById('commitment-value').textContent = '---';
-            document.getElementById('model-version').textContent = '---';
-            document.getElementById('commitment-timestamp').textContent = '---';
-            document.getElementById('query-time').textContent = '---';
-            document.getElementById('timeline').innerHTML = '<div class="timeline-empty">No history loaded</div>';
-        }
+        const picker = BorrowerPicker({ onChange: () => { runId++; running = false; resetResults(); updateButton(); } });
 
         function updateButton() {
-            queryBtn.disabled = !selectedBorrower;
+            queryBtn.disabled = running || !picker.selected;
         }
 
-        // Query
-        queryBtn.addEventListener('click', async () => {
-            if (!selectedBorrower) return;
+        function resetResults() {
+            setStatus(statusDiv, null);
+            resultsPanel.classList.remove('results-panel--active');
+            $('did-value').textContent = 'Select a borrower to view records';
+            $('commitment-value').textContent = '---';
+            $('model-version').textContent = '---';
+            $('commitment-timestamp').textContent = '---';
+            $('query-time').textContent = '---';
+            $('timeline-wrap').innerHTML = '<div class="timeline-empty">No history loaded</div>';
+        }
 
-            queryBtn.disabled = true;
-            queryBtn.textContent = 'Querying...';
-            statusDiv.className = 'status hidden';
+        function renderTimeline(history) {
+            const wrap = $('timeline-wrap');
+            wrap.innerHTML = '';
+            if (!history || !history.length) {
+                wrap.innerHTML = '<div class="timeline-empty">No transaction history</div>';
+                return;
+            }
+            const list = document.createElement('div');
+            list.className = 'timeline';
+            list.setAttribute('role', 'list');
+            history.forEach((h) => {
+                const item = document.createElement('div');
+                const type = String(h.eventType || h.action || h.type || '');
+                item.className = 'timeline-item' + (/commit|anchor/i.test(type) ? ' timeline-item--commitment' : '');
+                item.setAttribute('role', 'listitem');
+                const dot = document.createElement('span');
+                dot.className = 'timeline-dot';
+                dot.setAttribute('aria-hidden', 'true');
+                const ts = document.createElement('span');
+                ts.className = 'timeline-timestamp';
+                ts.textContent = h.timestamp || 'Unknown time';
+                const ev = document.createElement('span');
+                ev.className = 'timeline-event';
+                ev.textContent = h.eventType || h.action || h.type || 'Event';
+                const meta = document.createElement('span');
+                meta.className = 'timeline-meta';
+                meta.textContent = [
+                    h.thresholdUsed ? `Threshold: ${h.thresholdUsed}+` : '',
+                    h.issuerMSP ? `Issuer: ${h.issuerMSP}` : ''
+                ].filter(Boolean).join(' · ');
+                item.append(dot, ts, ev, meta);
+                list.appendChild(item);
+            });
+            wrap.appendChild(list);
+        }
+
+        queryBtn.addEventListener('click', async () => {
+            const borrower = picker.selected;
+            if (!borrower || running) return;
+            const id = ++runId;
+            running = true;
+            updateButton();
+            queryLabel.textContent = 'Querying...';
+            setStatus(statusDiv, null);
 
             try {
                 const resp = await fetch('/api/regulator/history', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ borrowerId: selectedBorrower.id })
+                    body: JSON.stringify({ borrowerId: borrower.id })
                 });
                 const data = await resp.json();
-
-                if (data.error) {
-                    statusDiv.textContent = 'Error: ' + data.error;
-                    statusDiv.className = 'status status--error';
-                    return;
-                }
+                if (id !== runId) return;
+                if (data.error) throw new Error(data.error);
 
                 resultsPanel.classList.add('results-panel--active');
-
-                // DID
-                document.getElementById('did-value').textContent = data.did;
-
-                // Commitment
-                if (data.commitment) {
-                    document.getElementById('commitment-value').textContent =
-                        data.commitment.commitmentHash || data.commitment.commitment || 'N/A';
-                    document.getElementById('model-version').textContent =
-                        data.commitment.modelVersionHash || data.commitment.modelVersion || 'N/A';
-                    document.getElementById('commitment-timestamp').textContent =
-                        data.commitment.timestamp || 'N/A';
-                } else {
-                    document.getElementById('commitment-value').textContent =
-                        data.commitmentError || 'No commitment found';
-                    document.getElementById('model-version').textContent = '---';
-                    document.getElementById('commitment-timestamp').textContent = '---';
-                }
-
-                // Timeline
-                const timeline = document.getElementById('timeline');
-                if (data.history && data.history.length > 0) {
-                    timeline.innerHTML = data.history.map((h, i) => `
-                        <div class="timeline-item ${i === 0 ? 'timeline-item--commitment' : ''}" role="listitem">
-                            <div class="timeline-dot" aria-hidden="true"></div>
-                            <div class="timeline-timestamp">${h.timestamp || 'Unknown time'}</div>
-                            <div class="timeline-event">${h.eventType || h.action || h.type || 'Event'}</div>
-                            <div class="timeline-meta">
-                                ${h.thresholdUsed ? `Threshold: ${h.thresholdUsed}+` : ''}
-                                ${h.issuerMSP ? ` · Issuer: ${h.issuerMSP}` : ''}
-                            </div>
-                        </div>
-                    `).join('');
-                } else {
-                    timeline.innerHTML = '<div class="timeline-empty">No transaction history</div>';
-                }
-
-                // Query time
-                document.getElementById('query-time').textContent =
-                    data.queryTime ? data.queryTime.toFixed(1) + ' ms' : '---';
-
-                statusDiv.textContent = 'Records retrieved successfully';
-                statusDiv.className = 'status status--success';
-
+                $('did-value').textContent = data.did;
+                const c = data.commitment;
+                $('commitment-value').textContent = c ? (c.commitmentHash || c.commitment || 'N/A') : (data.commitmentError || 'No commitment found');
+                $('model-version').textContent = c ? (c.modelVersionHash || c.modelVersion || 'N/A') : '---';
+                $('commitment-timestamp').textContent = c ? (c.timestamp || 'N/A') : '---';
+                renderTimeline(data.history);
+                $('query-time').textContent = data.queryTime ? data.queryTime.toFixed(1) + ' ms' : '---';
+                setStatus(statusDiv, 'success', 'Records retrieved successfully');
             } catch (err) {
-                statusDiv.textContent = 'Connection error: ' + err.message;
-                statusDiv.className = 'status status--error';
+                if (id !== runId) return;
+                setStatus(statusDiv, 'error', 'Error: ' + err.message);
             } finally {
-                queryBtn.disabled = false;
-                queryBtn.textContent = 'View Records';
-                updateButton();
+                if (id === runId) {
+                    running = false;
+                    queryLabel.textContent = 'View Records';
+                    updateButton();
+                }
             }
         });
 
-        // Attempt write demo
-        attemptWriteBtn.addEventListener('click', async () => {
-            attemptWriteBtn.disabled = true;
-            attemptWriteBtn.textContent = 'Attempting...';
+        writeBtn.addEventListener('click', async () => {
+            if (writing) return;
+            writing = true;
+            writeBtn.disabled = true;
+            writeLabel.textContent = 'Attempting...';
+            $('stamp-container').classList.remove('stamp-container--visible');
+            $('stamp').classList.remove('stamp--visible');
+            $('error-message').classList.remove('error-message--visible');
+            $('error-text').textContent = '';
 
-            // Reset previous state
-            document.getElementById('stamp-container').classList.remove('stamp-container--visible');
-            document.getElementById('stamp').classList.remove('stamp--visible');
-            document.getElementById('error-message').classList.remove('error-message--visible');
-
+            let errorText;
+            let blocked = false;
+            let label = 'Error';
             try {
                 const resp = await fetch('/api/regulator/attemptWrite', {
                     method: 'POST',
@@ -799,42 +272,32 @@
                     body: JSON.stringify({})
                 });
                 const data = await resp.json();
-
-                // Shake animation
-                attemptWriteBtn.classList.add('btn--shaking');
-
-                setTimeout(() => {
-                    attemptWriteBtn.classList.remove('btn--shaking');
-
-                    // Show stamp
-                    document.getElementById('stamp-container').classList.add('stamp-container--visible');
-                    setTimeout(() => {
-                        document.getElementById('stamp').classList.add('stamp--visible');
-                    }, 100);
-
-                    // Show error message
-                    const errorText = data.error || data.reason ||
-                        'access denied: RegulatoryObserverMSP is not authorized to perform write operations';
-                    document.getElementById('error-text').textContent = errorText;
-                    document.getElementById('error-message').classList.add('error-message--visible');
-
-                }, 400);
-
+                blocked = data.status === 'BLOCKED';
+                label = !blocked ? 'Write Not Blocked' : data.rejectedBy === 'chaincode' ? 'Chaincode Error' : 'Fabric Error';
+                errorText = data.error + (data.peer ? ` (${data.peer})` : '');
             } catch (err) {
-                document.getElementById('error-text').textContent = 'Error: ' + err.message;
-                document.getElementById('error-message').classList.add('error-message--visible');
-            } finally {
-                setTimeout(() => {
-                    attemptWriteBtn.disabled = false;
-                    attemptWriteBtn.textContent = 'Attempt Write (Demonstration)';
-                }, 500);
+                errorText = 'Error: ' + err.message;
             }
-        });
 
-        // Demo clean mode
-        if (window.location.search.includes('demo=clean')) {
-            document.body.classList.add('demo-clean');
-        }
+            writeBtn.classList.add('btn--shaking');
+            await sleep(400);
+            writeBtn.classList.remove('btn--shaking');
+            if (blocked) {
+                $('stamp-container').classList.add('stamp-container--visible');
+                $('stamp').classList.add('stamp--visible');
+            }
+            $('error-label').textContent = label;
+            $('error-message').classList.add('error-message--visible');
+
+            for (let i = 2; i < errorText.length + 2; i += 2) {
+                $('error-text').textContent = errorText.slice(0, i);
+                await sleep(22);
+            }
+
+            writing = false;
+            writeBtn.disabled = false;
+            writeLabel.textContent = 'Attempt Write (Demonstration)';
+        });
     </script>
 </body>
 </html>

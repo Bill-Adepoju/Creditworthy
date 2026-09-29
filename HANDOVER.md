@@ -101,10 +101,24 @@ The Cycle 10 record was correct: `chain/caliper/throughput_t62.js` and `chain/ca
 ### Codebase state
 All reproducibility documentation is now complete. Ready for standby.
 
+### 2026-09-29 — Demo UI (`ui/server.js`) corrected; affects any demo screenshots or live-demo claims
+Measured results in `/results` are **not** affected (they come from `integration/` and `chain/caliper/`). Only the defence demo app was wrong:
+
+| Issue in the old demo | Now |
+|---|---|
+| Lender proof was **not bound to the ledger**: it proved over a fresh `Poseidon(band, random salt)`, never reading the on-chain commitment | Lender reads `GetCommitment` from Fabric and verifies the proof against public signals it assembles itself `[1, on-chain commitment, threshold]`. Checked: the proof fails against any other commitment or threshold; wrong salt → circuit refuses to prove. |
+| 20 of 25 demo borrowers were **fabricated** (IDs not in `features_processed.csv`); all 25 scores were hard-coded, not computed | 25 real customers from the canonical **test** split, at evenly spaced score quantiles; scores computed by the exported LR model (matches sklearn exactly on test rows) |
+| "Data used for your score" showed invented features | Shows the 32 actual model inputs (one-hot groups decoded) |
+| Regulator "write blocked" was a hard-coded string; regulator view actually queried as CommercialBankAMSP | Regulator view connects as `RegulatoryObserverMSP`; the write attempt is a real `submitTransaction`, rejected with `chaincode response 500, access denied…` |
+| `/api/borrowers` sent every score to every view (incl. lender) | Sends id + label only |
+
+**Caveat for the embedded-supervision claim (T43):** only `Admin@regulator` can query. The observer org's Writers policy is `admin`-only and Fabric requires Writers for *any* proposal, so `User1@regulator` (a client) is refused even for reads, at the channel policy, before chaincode. Writes from the admin *are* refused by the chaincode ACL, as T43 states. If the dissertation says "any regulator identity can read", it needs this qualification.
+
 ### Blockers
 None.
 
 ### Decisions needed from research side
+- Whether the regulator-client read restriction (above) should be fixed in `configtx.yaml` (e.g. `peer/Propose` ACL → Readers) or documented as-is.
 
 ---
 
