@@ -1,10 +1,10 @@
 {
   "name": "integration",
   "version": "1.0.0",
-  "description": "",
-  "main": "end_to_end_demo.js",
+  "description": "End-to-end pipeline run (Tables 4.6, 4.10)",
+  "main": "end_to_end_sdk_t61.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node end_to_end_sdk_t61.js"
   },
   "keywords": [],
   "author": "",

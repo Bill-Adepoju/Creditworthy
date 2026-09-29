@@ -1,11 +1,11 @@
 {
   "name": "fabric-benchmark",
   "version": "1.0.0",
-  "description": "T44: Concurrent throughput benchmarks using Fabric Gateway SDK",
-  "main": "concurrent_benchmark.js",
+  "description": "Fabric throughput and latency benchmarks (Tables 4.8, 4.9)",
+  "main": "throughput_t62.js",
   "scripts": {
-    "benchmark": "node concurrent_benchmark.js",
-    "sequential": "node comprehensive_benchmark.js"
+    "throughput": "node throughput_t62.js",
+    "latency": "node batch_config_sweep.js"
   },
   "dependencies": {
     "@grpc/grpc-js": "^1.9.0",
