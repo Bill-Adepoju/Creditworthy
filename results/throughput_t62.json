@@ -1,0 +1,119 @@
+{
+  "timestamp": "2026-08-27T19:15:05.805Z",
+  "task": "T62",
+  "title": "Corrected Throughput Analysis with Run-to-Run Variance",
+  "hardware": {
+    "cpu": "AMD Ryzen 7 4800H",
+    "cores": 8,
+    "threads": 16,
+    "ram_gb": 32,
+    "platform": "Windows 10 / Docker Desktop"
+  },
+  "methodology": {
+    "runs_per_config": 3,
+    "txns_per_run": 300,
+    "concurrency": 75,
+    "rationale": "T56 ran each config once; T53 vs T56 showed 16% variance for same config (143.5 vs 120.2 TPS). This test runs 3x per config to measure variance."
+  },
+  "configs_tested": [
+    {
+      "max_message_count": 10,
+      "runs": [
+        {
+          "run": 1,
+          "tps": 119.14,
+          "total_time_ms": 2518,
+          "txns_successful": 300,
+          "blocks_added": 31
+        },
+        {
+          "run": 2,
+          "tps": 125.02,
+          "total_time_ms": 2400,
+          "txns_successful": 300,
+          "blocks_added": 31
+        },
+        {
+          "run": 3,
+          "tps": 124.9,
+          "total_time_ms": 2402,
+          "txns_successful": 300,
+          "blocks_added": 31
+        }
+      ],
+      "statistics": {
+        "n": 3,
+        "mean_tps": 123.02,
+        "min_tps": 119.14,
+        "max_tps": 125.02,
+        "range_tps": 5.88,
+        "range_pct": 4.8
+      }
+    },
+    {
+      "max_message_count": 50,
+      "runs": [
+        {
+          "run": 1,
+          "tps": 128,
+          "total_time_ms": 2344,
+          "txns_successful": 300,
+          "blocks_added": 9
+        },
+        {
+          "run": 2,
+          "tps": 133.45,
+          "total_time_ms": 2248,
+          "txns_successful": 300,
+          "blocks_added": 10
+        },
+        {
+          "run": 3,
+          "tps": 128.5,
+          "total_time_ms": 2335,
+          "txns_successful": 300,
+          "blocks_added": 10
+        }
+      ],
+      "statistics": {
+        "n": 3,
+        "mean_tps": 129.98,
+        "min_tps": 128,
+        "max_tps": 133.45,
+        "range_tps": 5.45,
+        "range_pct": 4.2
+      }
+    }
+  ],
+  "starvation_reference": {
+    "mmc_100_tps": 33.73,
+    "mmc_500_tps": 33.71,
+    "cause": "Batch starvation: 75 concurrent txns never fill 100+ message blocks before 2s timeout",
+    "finding": "CONFIRMED: MMC >= 100 collapses throughput to ~34 TPS regardless of setting"
+  },
+  "corrected_conclusion": {
+    "throughput_ceiling": {
+      "low": 119,
+      "high": 133,
+      "statement": "This single-orderer deployment sustains ~119-133 TPS"
+    },
+    "mmc_tuning_effect": {
+      "mmc10_mean": 123.02,
+      "mmc50_mean": 129.98,
+      "difference_pct": 5.4,
+      "run_to_run_variance_pct": 4.5,
+      "ranges_overlap": false,
+      "t_test_p_approx": 0.06,
+      "conclusion": "MMC tuning shows a small effect (~5%), marginal at n=3. The ranges do not overlap (MMC=10 tops at 125.02, MMC=50 bottoms at 128.00), suggesting a real but modest improvement. The practical conclusion is unchanged: MaxMessageCount tuning buys roughly 5%, not an order of magnitude, and the single-orderer configuration is the binding constraint."
+    },
+    "starvation_finding": {
+      "confirmed": true,
+      "statement": "At MMC >= 100, throughput collapses to ~34 TPS due to batch starvation (blocks cut by timeout, not message count)"
+    },
+    "single_orderer_constraint": {
+      "statement": "The single-orderer configuration is the likely constraint. Raft requires minimum 3 orderers for fault-tolerant deployment; this test uses 1.",
+      "implication": "Production deployments should expect different scaling characteristics"
+    },
+    "t56_correction": "T56 claimed MMC=50 was optimal (131 TPS vs 120 TPS). With 3 runs per config, MMC=50 shows a small (~5%) improvement over MMC=10, marginal at n=3 (p~0.06). The practical conclusion: throughput ceiling is ~119-133 TPS; MMC tuning provides modest gains but the single-orderer configuration is the binding constraint."
+  }
+}

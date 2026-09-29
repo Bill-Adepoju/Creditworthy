@@ -1,0 +1,320 @@
+{
+  "timestamp": "2026-08-23T20:59:06.984422",
+  "table_coverage": {
+    "perf_total": 4368,
+    "prevloans_unique_customers": 4359,
+    "demographics_total": 4334,
+    "all_three": 3264,
+    "perf_and_prev_only": 1095,
+    "perf_and_demo_only": 5,
+    "perf_only_no_history": 4,
+    "perf_no_prev_history": 9
+  },
+  "loan_history_distribution": {
+    "total_customers": 4368,
+    "n_with_0_prior": 9,
+    "n_with_1_prior": 1393,
+    "n_with_2_prior": 669,
+    "n_with_3plus_prior": 2297,
+    "mean_prior_loans": 4.162774725274725,
+    "median_prior_loans": 3.0,
+    "max_prior_loans": 26,
+    "pct_with_0": 0.20604395604395606,
+    "pct_with_1": 31.89102564102564,
+    "pct_with_lt_2": 32.0970695970696,
+    "pct_with_gte_3": 52.586996336996336
+  },
+  "null_handling": {
+    "regularity_features": {
+      "repay_delay_mean": {
+        "null_count": 0,
+        "null_pct": 0.0
+      },
+      "repay_delay_std": {
+        "null_count": 0,
+        "null_pct": 0.0
+      },
+      "early_repay_ratio": {
+        "null_count": 0,
+        "null_pct": 0.0
+      },
+      "loan_count": {
+        "null_count": 0,
+        "null_pct": 0.0
+      },
+      "relationship_tenure_days": {
+        "null_count": 0,
+        "null_pct": 0.0
+      },
+      "interval_regularity": {
+        "null_count": 0,
+        "null_pct": 0.0
+      },
+      "interval_mean": {
+        "null_count": 0,
+        "null_pct": 0.0
+      },
+      "term_escalation": {
+        "null_count": 0,
+        "null_pct": 0.0
+      },
+      "age": {
+        "null_count": 0,
+        "null_pct": 0.0
+      },
+      "bank_account_type_Current": {
+        "null_count": 0,
+        "null_pct": 0.0
+      },
+      "bank_account_type_Other": {
+        "null_count": 0,
+        "null_pct": 0.0
+      },
+      "bank_account_type_Savings": {
+        "null_count": 0,
+        "null_pct": 0.0
+      },
+      "bank_account_type_Unknown": {
+        "null_count": 0,
+        "null_pct": 0.0
+      },
+      "employment_status_Contract": {
+        "null_count": 0,
+        "null_pct": 0.0
+      },
+      "employment_status_Permanent": {
+        "null_count": 0,
+        "null_pct": 0.0
+      },
+      "employment_status_Retired": {
+        "null_count": 0,
+        "null_pct": 0.0
+      },
+      "employment_status_Self-Employed": {
+        "null_count": 0,
+        "null_pct": 0.0
+      },
+      "employment_status_Student": {
+        "null_count": 0,
+        "null_pct": 0.0
+      },
+      "employment_status_Unemployed": {
+        "null_count": 0,
+        "null_pct": 0.0
+      },
+      "employment_status_Unknown": {
+        "null_count": 0,
+        "null_pct": 0.0
+      },
+      "region_lat_band_Middle": {
+        "null_count": 0,
+        "null_pct": 0.0
+      },
+      "region_lat_band_North": {
+        "null_count": 0,
+        "null_pct": 0.0
+      },
+      "region_lat_band_North-Central": {
+        "null_count": 0,
+        "null_pct": 0.0
+      },
+      "region_lat_band_South": {
+        "null_count": 0,
+        "null_pct": 0.0
+      },
+      "region_lat_band_Unknown": {
+        "null_count": 0,
+        "null_pct": 0.0
+      },
+      "region_lat_band_nan": {
+        "null_count": 0,
+        "null_pct": 0.0
+      }
+    },
+    "magnitude_features": {
+      "amount_mean": {
+        "null_count": 0,
+        "null_pct": 0.0
+      },
+      "amount_max": {
+        "null_count": 0,
+        "null_pct": 0.0
+      },
+      "amount_total": {
+        "null_count": 0,
+        "null_pct": 0.0
+      },
+      "amount_cv": {
+        "null_count": 0,
+        "null_pct": 0.0
+      },
+      "totaldue_mean": {
+        "null_count": 0,
+        "null_pct": 0.0
+      },
+      "term_mean": {
+        "null_count": 0,
+        "null_pct": 0.0
+      },
+      "age": {
+        "null_count": 0,
+        "null_pct": 0.0
+      },
+      "bank_account_type_Current": {
+        "null_count": 0,
+        "null_pct": 0.0
+      },
+      "bank_account_type_Other": {
+        "null_count": 0,
+        "null_pct": 0.0
+      },
+      "bank_account_type_Savings": {
+        "null_count": 0,
+        "null_pct": 0.0
+      },
+      "bank_account_type_Unknown": {
+        "null_count": 0,
+        "null_pct": 0.0
+      },
+      "employment_status_Contract": {
+        "null_count": 0,
+        "null_pct": 0.0
+      },
+      "employment_status_Permanent": {
+        "null_count": 0,
+        "null_pct": 0.0
+      },
+      "employment_status_Retired": {
+        "null_count": 0,
+        "null_pct": 0.0
+      },
+      "employment_status_Self-Employed": {
+        "null_count": 0,
+        "null_pct": 0.0
+      },
+      "employment_status_Student": {
+        "null_count": 0,
+        "null_pct": 0.0
+      },
+      "employment_status_Unemployed": {
+        "null_count": 0,
+        "null_pct": 0.0
+      },
+      "employment_status_Unknown": {
+        "null_count": 0,
+        "null_pct": 0.0
+      },
+      "region_lat_band_Middle": {
+        "null_count": 0,
+        "null_pct": 0.0
+      },
+      "region_lat_band_North": {
+        "null_count": 0,
+        "null_pct": 0.0
+      },
+      "region_lat_band_North-Central": {
+        "null_count": 0,
+        "null_pct": 0.0
+      },
+      "region_lat_band_South": {
+        "null_count": 0,
+        "null_pct": 0.0
+      },
+      "region_lat_band_Unknown": {
+        "null_count": 0,
+        "null_pct": 0.0
+      },
+      "region_lat_band_nan": {
+        "null_count": 0,
+        "null_pct": 0.0
+      }
+    },
+    "total_rows": 4376
+  },
+  "robustness_checks": {
+    "gte_3_loans": {
+      "min_prior_loans": 3,
+      "n_samples": 2299,
+      "positive_rate": 0.18442801217920834,
+      "regularity": {
+        "roc_auc_mean": 0.6621375910364146,
+        "roc_auc_std": 0.027200061555348366,
+        "pr_auc_mean": 0.3542914132555472,
+        "pr_auc_std": 0.009148146953576368,
+        "roc_folds": [
+          0.6849882352941177,
+          0.6560313725490196,
+          0.6205176470588236,
+          0.698007843137255,
+          0.651142857142857
+        ]
+      },
+      "magnitude": {
+        "roc_auc_mean": 0.5922594584500467,
+        "roc_auc_std": 0.013387786007915495,
+        "pr_auc_mean": 0.25915735785106886,
+        "pr_auc_std": 0.020278940085965706,
+        "roc_folds": [
+          0.6118745098039216,
+          0.6042196078431372,
+          0.5779450980392158,
+          0.586321568627451,
+          0.5809365079365079
+        ]
+      },
+      "statistical_test": {
+        "difference_roc": 0.06987813258636788,
+        "t_statistic": 5.873889577564061,
+        "p_value": 0.004196321350124911,
+        "significant_0.05": true
+      },
+      "finding_holds": true
+    },
+    "gte_2_loans": {
+      "min_prior_loans": 2,
+      "n_samples": 2969,
+      "positive_rate": 0.20276187268440551,
+      "regularity": {
+        "roc_auc_mean": 0.6916039264252625,
+        "roc_auc_std": 0.01992364176572831,
+        "pr_auc_mean": 0.4049706811939555,
+        "pr_auc_std": 0.024580988676879176,
+        "roc_folds": [
+          0.6727320675105486,
+          0.7280590717299578,
+          0.6971677179249733,
+          0.680656264742369,
+          0.6794045102184637
+        ]
+      },
+      "magnitude": {
+        "roc_auc_mean": 0.6120665509160705,
+        "roc_auc_std": 0.015532528105787794,
+        "pr_auc_mean": 0.2941684693115871,
+        "pr_auc_std": 0.01933153253261825,
+        "roc_folds": [
+          0.5994022503516174,
+          0.6041139240506329,
+          0.6028777104118253,
+          0.6119022242412594,
+          0.6420366455250176
+        ]
+      },
+      "statistical_test": {
+        "difference_roc": 0.07953737550919193,
+        "t_statistic": 5.539768152320824,
+        "p_value": 0.005191294843200882,
+        "significant_0.05": true
+      },
+      "finding_holds": true
+    }
+  },
+  "imputation_method": "imputed (likely with 0 or median)",
+  "conclusion": {
+    "pct_no_history": 0.20604395604395606,
+    "pct_insufficient_history": 32.0970695970696,
+    "imputation_used": true,
+    "finding_robust_gte3": true,
+    "finding_robust_gte2": true
+  }
+}

@@ -1,0 +1,370 @@
+{
+  "timestamp": "2026-08-24T02:19:25.744856",
+  "model": "LogisticRegression",
+  "model_rationale": "Selected per T23/T24: statistically indistinguishable from XGB but 7.5x smaller overfit gap",
+  "min_subgroup_size": 30,
+  "test_size": 898,
+  "roc_auc": 0.7244001028920001,
+  "sensitive_attributes": {
+    "region": {
+      "group_stats": {
+        "Unknown": {
+          "n": 225,
+          "n_positive": 51,
+          "pred_rate": 0.3377777777777778,
+          "tpr": 0.5882352941176471,
+          "fpr": 0.26436781609195403
+        },
+        "West": {
+          "n": 453,
+          "n_positive": 90,
+          "pred_rate": 0.3730684326710817,
+          "tpr": 0.6222222222222222,
+          "fpr": 0.31129476584022037
+        },
+        "South-West": {
+          "n": 201,
+          "n_positive": 49,
+          "pred_rate": 0.373134328358209,
+          "tpr": 0.673469387755102,
+          "fpr": 0.27631578947368424
+        },
+        "Central": {
+          "n": 17,
+          "n_positive": 3,
+          "pred_rate": 0.47058823529411764,
+          "tpr": 1.0,
+          "fpr": 0.35714285714285715
+        },
+        "North": {
+          "n": 2,
+          "n_positive": 0,
+          "pred_rate": 0.5,
+          "tpr": null,
+          "fpr": 0.5
+        }
+      },
+      "unfiltered": {
+        "dpd": 0.1269315673289183,
+        "eod": 0.37777777777777777,
+        "groups_included": [
+          "West",
+          "South-West",
+          "Central",
+          "North"
+        ],
+        "groups_excluded": [
+          "Unknown"
+        ],
+        "population_included": 673,
+        "population_excluded": 225
+      },
+      "filtered_n30": {
+        "dpd": 6.5895687127282e-05,
+        "eod": 0.05124716553287978,
+        "groups_included": [
+          "West",
+          "South-West"
+        ],
+        "groups_excluded": [
+          "Unknown",
+          "Central",
+          "North"
+        ],
+        "population_included": 654,
+        "population_excluded": 244
+      },
+      "filtered_n30_no_unknown": {
+        "dpd": 6.5895687127282e-05,
+        "eod": 0.05124716553287978,
+        "groups_included": [
+          "West",
+          "South-West"
+        ],
+        "groups_excluded": [
+          "Central",
+          "North"
+        ],
+        "population_included": 654,
+        "population_excluded": 19
+      },
+      "population_summary": {
+        "total": 898,
+        "in_unknown": 225,
+        "in_small_groups": 19,
+        "pct_unknown": 25.06,
+        "pct_small_groups": 2.12
+      }
+    },
+    "age_band": {
+      "group_stats": {
+        "Unknown": {
+          "n": 217,
+          "n_positive": 49,
+          "pred_rate": 0.31797235023041476,
+          "tpr": 0.5714285714285714,
+          "fpr": 0.24404761904761904
+        },
+        "26-35": {
+          "n": 379,
+          "n_positive": 86,
+          "pred_rate": 0.43799472295514513,
+          "tpr": 0.6976744186046512,
+          "fpr": 0.36177474402730375
+        },
+        "36-45": {
+          "n": 243,
+          "n_positive": 47,
+          "pred_rate": 0.3168724279835391,
+          "tpr": 0.5531914893617021,
+          "fpr": 0.2602040816326531
+        },
+        "18-25": {
+          "n": 23,
+          "n_positive": 6,
+          "pred_rate": 0.4782608695652174,
+          "tpr": 0.8333333333333334,
+          "fpr": 0.35294117647058826
+        },
+        "46-55": {
+          "n": 34,
+          "n_positive": 5,
+          "pred_rate": 0.17647058823529413,
+          "tpr": 0.6,
+          "fpr": 0.10344827586206896
+        },
+        "55+": {
+          "n": 2,
+          "n_positive": 0,
+          "pred_rate": 0.0,
+          "tpr": null,
+          "fpr": 0.0
+        }
+      },
+      "unfiltered": {
+        "dpd": 0.4782608695652174,
+        "eod": 0.2801418439716312,
+        "groups_included": [
+          "26-35",
+          "36-45",
+          "18-25",
+          "46-55",
+          "55+"
+        ],
+        "groups_excluded": [
+          "Unknown"
+        ],
+        "population_included": 681,
+        "population_excluded": 217
+      },
+      "filtered_n30": {
+        "dpd": 0.26152413471985103,
+        "eod": 0.14448292924294903,
+        "groups_included": [
+          "26-35",
+          "36-45",
+          "46-55"
+        ],
+        "groups_excluded": [
+          "Unknown",
+          "18-25",
+          "55+"
+        ],
+        "population_included": 656,
+        "population_excluded": 242
+      },
+      "filtered_n30_no_unknown": {
+        "dpd": 0.26152413471985103,
+        "eod": 0.14448292924294903,
+        "groups_included": [
+          "26-35",
+          "36-45",
+          "46-55"
+        ],
+        "groups_excluded": [
+          "18-25",
+          "55+"
+        ],
+        "population_included": 656,
+        "population_excluded": 25
+      },
+      "population_summary": {
+        "total": 898,
+        "in_unknown": 217,
+        "in_small_groups": 25,
+        "pct_unknown": 24.16,
+        "pct_small_groups": 2.78
+      }
+    },
+    "bank_account_type": {
+      "group_stats": {
+        "Unknown": {
+          "n": 217,
+          "n_positive": 49,
+          "pred_rate": 0.31797235023041476,
+          "tpr": 0.5714285714285714,
+          "fpr": 0.24404761904761904
+        },
+        "Savings": {
+          "n": 533,
+          "n_positive": 127,
+          "pred_rate": 0.44652908067542213,
+          "tpr": 0.7165354330708661,
+          "fpr": 0.3620689655172414
+        },
+        "Other": {
+          "n": 136,
+          "n_positive": 16,
+          "pred_rate": 0.14705882352941177,
+          "tpr": 0.125,
+          "fpr": 0.15
+        },
+        "Current": {
+          "n": 12,
+          "n_positive": 1,
+          "pred_rate": 0.16666666666666666,
+          "tpr": 1.0,
+          "fpr": 0.09090909090909091
+        }
+      },
+      "unfiltered": {
+        "dpd": 0.2994702571460104,
+        "eod": 0.875,
+        "groups_included": [
+          "Savings",
+          "Other",
+          "Current"
+        ],
+        "groups_excluded": [
+          "Unknown"
+        ],
+        "population_included": 681,
+        "population_excluded": 217
+      },
+      "filtered_n30": {
+        "dpd": 0.2994702571460104,
+        "eod": 0.5915354330708661,
+        "groups_included": [
+          "Savings",
+          "Other"
+        ],
+        "groups_excluded": [
+          "Unknown",
+          "Current"
+        ],
+        "population_included": 669,
+        "population_excluded": 229
+      },
+      "filtered_n30_no_unknown": {
+        "dpd": 0.2994702571460104,
+        "eod": 0.5915354330708661,
+        "groups_included": [
+          "Savings",
+          "Other"
+        ],
+        "groups_excluded": [
+          "Current"
+        ],
+        "population_included": 669,
+        "population_excluded": 12
+      },
+      "population_summary": {
+        "total": 898,
+        "in_unknown": 217,
+        "in_small_groups": 12,
+        "pct_unknown": 24.16,
+        "pct_small_groups": 1.34
+      }
+    },
+    "employment_status": {
+      "group_stats": {
+        "Unknown": {
+          "n": 315,
+          "n_positive": 75,
+          "pred_rate": 0.42857142857142855,
+          "tpr": 0.6666666666666666,
+          "fpr": 0.3541666666666667
+        },
+        "Permanent": {
+          "n": 491,
+          "n_positive": 100,
+          "pred_rate": 0.3380855397148676,
+          "tpr": 0.64,
+          "fpr": 0.2608695652173913
+        },
+        "Student": {
+          "n": 22,
+          "n_positive": 7,
+          "pred_rate": 0.5454545454545454,
+          "tpr": 0.5714285714285714,
+          "fpr": 0.5333333333333333
+        },
+        "Self-Employed": {
+          "n": 62,
+          "n_positive": 10,
+          "pred_rate": 0.20967741935483872,
+          "tpr": 0.4,
+          "fpr": 0.17307692307692307
+        },
+        "Unemployed": {
+          "n": 8,
+          "n_positive": 1,
+          "pred_rate": 0.375,
+          "tpr": 0.0,
+          "fpr": 0.42857142857142855
+        }
+      },
+      "unfiltered": {
+        "dpd": 0.33577712609970667,
+        "eod": 0.64,
+        "groups_included": [
+          "Permanent",
+          "Student",
+          "Self-Employed",
+          "Unemployed"
+        ],
+        "groups_excluded": [
+          "Unknown"
+        ],
+        "population_included": 583,
+        "population_excluded": 315
+      },
+      "filtered_n30": {
+        "dpd": 0.12840812036002888,
+        "eod": 0.24,
+        "groups_included": [
+          "Permanent",
+          "Self-Employed"
+        ],
+        "groups_excluded": [
+          "Unknown",
+          "Student",
+          "Unemployed"
+        ],
+        "population_included": 553,
+        "population_excluded": 345
+      },
+      "filtered_n30_no_unknown": {
+        "dpd": 0.12840812036002888,
+        "eod": 0.24,
+        "groups_included": [
+          "Permanent",
+          "Self-Employed"
+        ],
+        "groups_excluded": [
+          "Student",
+          "Unemployed"
+        ],
+        "population_included": 553,
+        "population_excluded": 30
+      },
+      "population_summary": {
+        "total": 898,
+        "in_unknown": 315,
+        "in_small_groups": 30,
+        "pct_unknown": 35.08,
+        "pct_small_groups": 3.34
+      }
+    }
+  }
+}

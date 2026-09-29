@@ -1,0 +1,115 @@
+{
+  "timestamp": "2026-08-24T16:15:54.620063",
+  "test_set": {
+    "n_savings": 517,
+    "n_other": 132
+  },
+  "threshold_analysis": [
+    {
+      "threshold": 0.1,
+      "savings_approval": 0.0019342359767891683,
+      "other_approval": 0.007575757575757576,
+      "disparity_ratio": 3.916666666666667
+    },
+    {
+      "threshold": 0.15000000000000002,
+      "savings_approval": 0.0019342359767891683,
+      "other_approval": 0.05303030303030303,
+      "disparity_ratio": 27.416666666666668
+    },
+    {
+      "threshold": 0.20000000000000004,
+      "savings_approval": 0.01160541586073501,
+      "other_approval": 0.15151515151515152,
+      "disparity_ratio": 13.055555555555555
+    },
+    {
+      "threshold": 0.25000000000000006,
+      "savings_approval": 0.0367504835589942,
+      "other_approval": 0.32575757575757575,
+      "disparity_ratio": 8.864035087719298
+    },
+    {
+      "threshold": 0.30000000000000004,
+      "savings_approval": 0.08123791102514506,
+      "other_approval": 0.4318181818181818,
+      "disparity_ratio": 5.315476190476191
+    },
+    {
+      "threshold": 0.3500000000000001,
+      "savings_approval": 0.17794970986460348,
+      "other_approval": 0.5454545454545454,
+      "disparity_ratio": 3.0652173913043477
+    },
+    {
+      "threshold": 0.40000000000000013,
+      "savings_approval": 0.3365570599613153,
+      "other_approval": 0.6515151515151515,
+      "disparity_ratio": 1.9358237547892718
+    },
+    {
+      "threshold": 0.45000000000000007,
+      "savings_approval": 0.47195357833655704,
+      "other_approval": 0.7575757575757576,
+      "disparity_ratio": 1.605191256830601
+    },
+    {
+      "threshold": 0.5000000000000001,
+      "savings_approval": 0.586073500967118,
+      "other_approval": 0.8409090909090909,
+      "disparity_ratio": 1.4348184818481848
+    },
+    {
+      "threshold": 0.5500000000000002,
+      "savings_approval": 0.6653771760154739,
+      "other_approval": 0.9090909090909091,
+      "disparity_ratio": 1.3662790697674418
+    },
+    {
+      "threshold": 0.6000000000000002,
+      "savings_approval": 0.7214700193423598,
+      "other_approval": 0.9621212121212122,
+      "disparity_ratio": 1.333556747095621
+    },
+    {
+      "threshold": 0.6500000000000001,
+      "savings_approval": 0.8027079303675049,
+      "other_approval": 0.9848484848484849,
+      "disparity_ratio": 1.2269076305220883
+    },
+    {
+      "threshold": 0.7000000000000002,
+      "savings_approval": 0.8665377176015474,
+      "other_approval": 1.0,
+      "disparity_ratio": 1.1540178571428572
+    },
+    {
+      "threshold": 0.7500000000000002,
+      "savings_approval": 0.9226305609284333,
+      "other_approval": 1.0,
+      "disparity_ratio": 1.0838574423480083
+    },
+    {
+      "threshold": 0.8000000000000002,
+      "savings_approval": 0.9555125725338491,
+      "other_approval": 1.0,
+      "disparity_ratio": 1.0465587044534412
+    },
+    {
+      "threshold": 0.8500000000000002,
+      "savings_approval": 0.9748549323017408,
+      "other_approval": 1.0,
+      "disparity_ratio": 1.0257936507936507
+    }
+  ],
+  "median_threshold": {
+    "threshold": 0.42527164760621294,
+    "savings_approval": 0.402321083172147,
+    "other_approval": 0.7121212121212122,
+    "disparity_ratio": 1.7700320512820513
+  },
+  "conclusion": {
+    "disparity_is_threshold_dependent": true,
+    "dissertation_recommendation": "Report disparity at a stated operating point, acknowledge threshold dependence"
+  }
+}

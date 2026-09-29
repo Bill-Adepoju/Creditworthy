@@ -1,0 +1,61 @@
+%%{init: {'theme': 'base'}}%%
+flowchart TB
+    subgraph External
+        B[Borrower]
+        L[Lender]
+        I[Issuing Institution]
+        R[Regulatory Observer]
+    end
+
+    subgraph "L1: ML Layer (Off-Chain)"
+        P1((1.0<br/>Feature<br/>Engineering))
+        P2((2.0<br/>ML<br/>Inference))
+        D1[(Feature<br/>Store)]
+    end
+
+    subgraph "L2: Blockchain Layer"
+        P3((3.0<br/>Commitment<br/>Anchoring))
+        P4((4.0<br/>Loan Event<br/>Recording))
+        D2[(Ledger<br/>World State)]
+    end
+
+    subgraph "L3: ZK Layer"
+        P5((5.0<br/>Proof<br/>Generation))
+        P6((6.0<br/>Proof<br/>Verification))
+    end
+
+    %% Data flows
+    I -->|"Raw Transaction<br/>Data"| P1
+    P1 -->|"Regularity +<br/>Magnitude Features"| D1
+    D1 --> P2
+    P2 -->|"Score (0-1000)"| B
+    P2 -->|"Score + Salt"| P5
+
+    B -->|Consent| P3
+    P2 -->|"Commitment Hash"| P3
+    P3 -->|"Write"| D2
+
+    D2 -->|"Read"| P4
+    P4 -->|"Loan Events"| D2
+
+    L -->|"DID, Threshold"| P5
+    P5 -->|"ZK Proof"| P6
+    P6 -->|"Valid/Invalid"| L
+
+    R -->|"Query"| D2
+    D2 -->|"History<br/>(Read-Only)"| R
+
+    %% Styling
+    style P1 fill:#1e5128,stroke:#4caf50,color:#fff
+    style P2 fill:#1e5128,stroke:#4caf50,color:#fff
+    style D1 fill:#0f3460,stroke:#4fc3f7,color:#fff
+    style P3 fill:#3d0c11,stroke:#ff5722,color:#fff
+    style P4 fill:#3d0c11,stroke:#ff5722,color:#fff
+    style D2 fill:#3d0c11,stroke:#ff5722,color:#fff
+    style P5 fill:#1b1464,stroke:#7c4dff,color:#fff
+    style P6 fill:#1b1464,stroke:#7c4dff,color:#fff
+    style R fill:#5c1a1a,stroke:#ff5722,color:#fff
+
+    %% Legend note
+    linkStyle 0 stroke:#4caf50,stroke-width:2px
+    linkStyle 12 stroke:#ff5722,stroke-width:2px,stroke-dasharray: 5 5

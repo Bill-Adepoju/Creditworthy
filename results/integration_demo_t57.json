@@ -1,0 +1,1634 @@
+{
+  "timestamp": "2026-08-27T08:20:50.511Z",
+  "task": "T57",
+  "title": "End-to-End Integration with Real ML Inference",
+  "configuration": {
+    "ml_model": "LogisticRegression (real coefficients)",
+    "n_features": 32,
+    "batch_timeout": "200ms (tuned per T56)",
+    "bands": [
+      400,
+      550,
+      700,
+      850
+    ],
+    "lender_threshold": 550,
+    "num_borrowers": 25,
+    "warmup_runs": 5
+  },
+  "flows": [
+    {
+      "borrower_id": "8a858e6e55c554c20155d574b4596645",
+      "stages": [
+        {
+          "name": "consent",
+          "latency_ms": 0.158,
+          "status": "complete"
+        },
+        {
+          "name": "feature_engineering",
+          "latency_ms": 0.0916,
+          "status": "complete"
+        },
+        {
+          "name": "ml_inference",
+          "latency_ms": 0.1533,
+          "score": 717,
+          "p_default": "0.283",
+          "status": "complete"
+        },
+        {
+          "name": "commitment",
+          "latency_ms": 0.5658,
+          "status": "complete"
+        },
+        {
+          "name": "ledger_anchor",
+          "latency_ms": 251.7655,
+          "status": "complete"
+        },
+        {
+          "name": "loan_query",
+          "latency_ms": 7.0036,
+          "status": "complete"
+        },
+        {
+          "name": "proof_generation",
+          "latency_ms": 480.9036,
+          "status": "success"
+        },
+        {
+          "name": "proof_verification",
+          "latency_ms": 11.9099,
+          "valid": true,
+          "status": "complete"
+        },
+        {
+          "name": "proof_generation",
+          "latency_ms": 9.0977,
+          "status": "failed",
+          "error": "10 ABORTED: failed to endorse transaction, see attached details for more info"
+        }
+      ],
+      "score": 717,
+      "p_default": 0.2825938911432787,
+      "band": 700,
+      "decision": "APPROVED",
+      "proof_valid": true,
+      "outcome": "proof_failed"
+    },
+    {
+      "borrower_id": "8a858e5856b7840c0156bbd64c3e3d2f",
+      "stages": [
+        {
+          "name": "consent",
+          "latency_ms": 0.0688,
+          "status": "complete"
+        },
+        {
+          "name": "feature_engineering",
+          "latency_ms": 0.0869,
+          "status": "complete"
+        },
+        {
+          "name": "ml_inference",
+          "latency_ms": 0.0288,
+          "score": 810,
+          "p_default": "0.190",
+          "status": "complete"
+        },
+        {
+          "name": "commitment",
+          "latency_ms": 0.3512,
+          "status": "complete"
+        },
+        {
+          "name": "ledger_anchor",
+          "latency_ms": 294.9798,
+          "status": "complete"
+        },
+        {
+          "name": "loan_query",
+          "latency_ms": 7.0491,
+          "status": "complete"
+        },
+        {
+          "name": "proof_generation",
+          "latency_ms": 110.2923,
+          "status": "success"
+        },
+        {
+          "name": "proof_verification",
+          "latency_ms": 13.0873,
+          "valid": true,
+          "status": "complete"
+        },
+        {
+          "name": "proof_generation",
+          "latency_ms": 8.5301,
+          "status": "failed",
+          "error": "10 ABORTED: failed to endorse transaction, see attached details for more info"
+        }
+      ],
+      "score": 810,
+      "p_default": 0.19006506119040706,
+      "band": 700,
+      "decision": "APPROVED",
+      "proof_valid": true,
+      "outcome": "proof_failed"
+    },
+    {
+      "borrower_id": "8a858fe95c88ee44015c88f55a2301aa",
+      "stages": [
+        {
+          "name": "consent",
+          "latency_ms": 0.0579,
+          "status": "complete"
+        },
+        {
+          "name": "feature_engineering",
+          "latency_ms": 0.0601,
+          "status": "complete"
+        },
+        {
+          "name": "ml_inference",
+          "latency_ms": 0.0173,
+          "score": 612,
+          "p_default": "0.388",
+          "status": "complete"
+        },
+        {
+          "name": "commitment",
+          "latency_ms": 0.248,
+          "status": "complete"
+        },
+        {
+          "name": "ledger_anchor",
+          "latency_ms": 294.4575,
+          "status": "complete"
+        },
+        {
+          "name": "loan_query",
+          "latency_ms": 7.7869,
+          "status": "complete"
+        },
+        {
+          "name": "proof_generation",
+          "latency_ms": 142.7369,
+          "status": "success"
+        },
+        {
+          "name": "proof_verification",
+          "latency_ms": 11.5207,
+          "valid": true,
+          "status": "complete"
+        },
+        {
+          "name": "proof_generation",
+          "latency_ms": 8.0797,
+          "status": "failed",
+          "error": "10 ABORTED: failed to endorse transaction, see attached details for more info"
+        }
+      ],
+      "score": 612,
+      "p_default": 0.3882672662289069,
+      "band": 550,
+      "decision": "APPROVED",
+      "proof_valid": true,
+      "outcome": "proof_failed"
+    },
+    {
+      "borrower_id": "8a858faf5679a838015679dda1481bfb",
+      "stages": [
+        {
+          "name": "consent",
+          "latency_ms": 0.0718,
+          "status": "complete"
+        },
+        {
+          "name": "feature_engineering",
+          "latency_ms": 0.1906,
+          "status": "complete"
+        },
+        {
+          "name": "ml_inference",
+          "latency_ms": 0.0135,
+          "score": 786,
+          "p_default": "0.214",
+          "status": "complete"
+        },
+        {
+          "name": "commitment",
+          "latency_ms": 0.1713,
+          "status": "complete"
+        },
+        {
+          "name": "ledger_anchor",
+          "latency_ms": 297.0723,
+          "status": "complete"
+        },
+        {
+          "name": "loan_query",
+          "latency_ms": 6.5019,
+          "status": "complete"
+        },
+        {
+          "name": "proof_generation",
+          "latency_ms": 115.6415,
+          "status": "success"
+        },
+        {
+          "name": "proof_verification",
+          "latency_ms": 13.013,
+          "valid": true,
+          "status": "complete"
+        },
+        {
+          "name": "proof_generation",
+          "latency_ms": 9.4739,
+          "status": "failed",
+          "error": "10 ABORTED: failed to endorse transaction, see attached details for more info"
+        }
+      ],
+      "score": 786,
+      "p_default": 0.21357220987906486,
+      "band": 700,
+      "decision": "APPROVED",
+      "proof_valid": true,
+      "outcome": "proof_failed"
+    },
+    {
+      "borrower_id": "8a8588dd54be35520154c05cbe9759e5",
+      "stages": [
+        {
+          "name": "consent",
+          "latency_ms": 0.0716,
+          "status": "complete"
+        },
+        {
+          "name": "feature_engineering",
+          "latency_ms": 0.1004,
+          "status": "complete"
+        },
+        {
+          "name": "ml_inference",
+          "latency_ms": 0.0118,
+          "score": 495,
+          "p_default": "0.505",
+          "status": "complete"
+        },
+        {
+          "name": "commitment",
+          "latency_ms": 0.1717,
+          "status": "complete"
+        },
+        {
+          "name": "ledger_anchor",
+          "latency_ms": 315.1456,
+          "status": "complete"
+        },
+        {
+          "name": "loan_query",
+          "latency_ms": 12.6593,
+          "status": "complete"
+        },
+        {
+          "name": "proof_generation",
+          "latency_ms": 127.9858,
+          "status": "success"
+        },
+        {
+          "name": "proof_verification",
+          "latency_ms": 14.4094,
+          "valid": true,
+          "status": "complete"
+        }
+      ],
+      "score": 495,
+      "p_default": 0.505440351722128,
+      "band": 400,
+      "decision": "REJECTED",
+      "proof_valid": true,
+      "outcome": "rejected_threshold"
+    },
+    {
+      "borrower_id": "8a858e6a5c829229015c8301076c4187",
+      "stages": [
+        {
+          "name": "consent",
+          "latency_ms": 0.1133,
+          "status": "complete"
+        },
+        {
+          "name": "feature_engineering",
+          "latency_ms": 0.0698,
+          "status": "complete"
+        },
+        {
+          "name": "ml_inference",
+          "latency_ms": 0.0123,
+          "score": 746,
+          "p_default": "0.254",
+          "status": "complete"
+        },
+        {
+          "name": "commitment",
+          "latency_ms": 0.1349,
+          "status": "complete"
+        },
+        {
+          "name": "ledger_anchor",
+          "latency_ms": 263.3194,
+          "status": "complete"
+        },
+        {
+          "name": "loan_query",
+          "latency_ms": 6.3941,
+          "status": "complete"
+        },
+        {
+          "name": "proof_generation",
+          "latency_ms": 124.7671,
+          "status": "success"
+        },
+        {
+          "name": "proof_verification",
+          "latency_ms": 10.0756,
+          "valid": true,
+          "status": "complete"
+        },
+        {
+          "name": "proof_generation",
+          "latency_ms": 8.6622,
+          "status": "failed",
+          "error": "10 ABORTED: failed to endorse transaction, see attached details for more info"
+        }
+      ],
+      "score": 746,
+      "p_default": 0.25377390577441683,
+      "band": 700,
+      "decision": "APPROVED",
+      "proof_valid": true,
+      "outcome": "proof_failed"
+    },
+    {
+      "borrower_id": "8a858fa3552ae1120155486928255fc1",
+      "stages": [
+        {
+          "name": "consent",
+          "latency_ms": 0.0984,
+          "status": "complete"
+        },
+        {
+          "name": "feature_engineering",
+          "latency_ms": 0.1046,
+          "status": "complete"
+        },
+        {
+          "name": "ml_inference",
+          "latency_ms": 0.011,
+          "score": 362,
+          "p_default": "0.638",
+          "status": "complete"
+        }
+      ],
+      "score": 362,
+      "p_default": 0.6382799880160815,
+      "band": null,
+      "outcome": "below_lowest_band",
+      "proof_possible": false
+    },
+    {
+      "borrower_id": "8a8588f853b1b2d40153bd9536925edb",
+      "stages": [
+        {
+          "name": "consent",
+          "latency_ms": 0.0539,
+          "status": "complete"
+        },
+        {
+          "name": "feature_engineering",
+          "latency_ms": 0.0461,
+          "status": "complete"
+        },
+        {
+          "name": "ml_inference",
+          "latency_ms": 0.0072,
+          "score": 756,
+          "p_default": "0.244",
+          "status": "complete"
+        },
+        {
+          "name": "commitment",
+          "latency_ms": 0.1363,
+          "status": "complete"
+        },
+        {
+          "name": "ledger_anchor",
+          "latency_ms": 281.6675,
+          "status": "complete"
+        },
+        {
+          "name": "loan_query",
+          "latency_ms": 6.736,
+          "status": "complete"
+        },
+        {
+          "name": "proof_generation",
+          "latency_ms": 113.3369,
+          "status": "success"
+        },
+        {
+          "name": "proof_verification",
+          "latency_ms": 12.8859,
+          "valid": true,
+          "status": "complete"
+        },
+        {
+          "name": "proof_generation",
+          "latency_ms": 9.1498,
+          "status": "failed",
+          "error": "10 ABORTED: failed to endorse transaction, see attached details for more info"
+        }
+      ],
+      "score": 756,
+      "p_default": 0.24446096294058295,
+      "band": 700,
+      "decision": "APPROVED",
+      "proof_valid": true,
+      "outcome": "proof_failed"
+    },
+    {
+      "borrower_id": "8a858ec75bfd77c4015bfda261b10b09",
+      "stages": [
+        {
+          "name": "consent",
+          "latency_ms": 0.0747,
+          "status": "complete"
+        },
+        {
+          "name": "feature_engineering",
+          "latency_ms": 0.0903,
+          "status": "complete"
+        },
+        {
+          "name": "ml_inference",
+          "latency_ms": 0.0137,
+          "score": 261,
+          "p_default": "0.739",
+          "status": "complete"
+        }
+      ],
+      "score": 261,
+      "p_default": 0.7389172524588122,
+      "band": null,
+      "outcome": "below_lowest_band",
+      "proof_possible": false
+    },
+    {
+      "borrower_id": "8a858fb45bb59c21015bc8d6712368ac",
+      "stages": [
+        {
+          "name": "consent",
+          "latency_ms": 0.0559,
+          "status": "complete"
+        },
+        {
+          "name": "feature_engineering",
+          "latency_ms": 0.0884,
+          "status": "complete"
+        },
+        {
+          "name": "ml_inference",
+          "latency_ms": 0.0072,
+          "score": 654,
+          "p_default": "0.346",
+          "status": "complete"
+        },
+        {
+          "name": "commitment",
+          "latency_ms": 0.1568,
+          "status": "complete"
+        },
+        {
+          "name": "ledger_anchor",
+          "latency_ms": 296.2254,
+          "status": "complete"
+        },
+        {
+          "name": "loan_query",
+          "latency_ms": 7.913,
+          "status": "complete"
+        },
+        {
+          "name": "proof_generation",
+          "latency_ms": 116.4889,
+          "status": "success"
+        },
+        {
+          "name": "proof_verification",
+          "latency_ms": 11.1728,
+          "valid": true,
+          "status": "complete"
+        },
+        {
+          "name": "proof_generation",
+          "latency_ms": 9.3796,
+          "status": "failed",
+          "error": "10 ABORTED: failed to endorse transaction, see attached details for more info"
+        }
+      ],
+      "score": 654,
+      "p_default": 0.3459761717999944,
+      "band": 550,
+      "decision": "APPROVED",
+      "proof_valid": true,
+      "outcome": "proof_failed"
+    },
+    {
+      "borrower_id": "8a858e0a5668e69c01567e19e7626d39",
+      "stages": [
+        {
+          "name": "consent",
+          "latency_ms": 0.0557,
+          "status": "complete"
+        },
+        {
+          "name": "feature_engineering",
+          "latency_ms": 0.1078,
+          "status": "complete"
+        },
+        {
+          "name": "ml_inference",
+          "latency_ms": 0.01,
+          "score": 178,
+          "p_default": "0.822",
+          "status": "complete"
+        }
+      ],
+      "score": 178,
+      "p_default": 0.8219850040671993,
+      "band": null,
+      "outcome": "below_lowest_band",
+      "proof_possible": false
+    },
+    {
+      "borrower_id": "8a858e005941690001596c6cde945968",
+      "stages": [
+        {
+          "name": "consent",
+          "latency_ms": 0.0303,
+          "status": "complete"
+        },
+        {
+          "name": "feature_engineering",
+          "latency_ms": 0.0683,
+          "status": "complete"
+        },
+        {
+          "name": "ml_inference",
+          "latency_ms": 0.0072,
+          "score": 653,
+          "p_default": "0.347",
+          "status": "complete"
+        },
+        {
+          "name": "commitment",
+          "latency_ms": 0.1408,
+          "status": "complete"
+        },
+        {
+          "name": "ledger_anchor",
+          "latency_ms": 299.0543,
+          "status": "complete"
+        },
+        {
+          "name": "loan_query",
+          "latency_ms": 6.626,
+          "status": "complete"
+        },
+        {
+          "name": "proof_generation",
+          "latency_ms": 131.5641,
+          "status": "success"
+        },
+        {
+          "name": "proof_verification",
+          "latency_ms": 11.9496,
+          "valid": true,
+          "status": "complete"
+        },
+        {
+          "name": "proof_generation",
+          "latency_ms": 8.9426,
+          "status": "failed",
+          "error": "10 ABORTED: failed to endorse transaction, see attached details for more info"
+        }
+      ],
+      "score": 653,
+      "p_default": 0.3465111504186298,
+      "band": 550,
+      "decision": "APPROVED",
+      "proof_valid": true,
+      "outcome": "proof_failed"
+    },
+    {
+      "borrower_id": "8a858f735aec46c4015af02a90835ac8",
+      "stages": [
+        {
+          "name": "consent",
+          "latency_ms": 0.0581,
+          "status": "complete"
+        },
+        {
+          "name": "feature_engineering",
+          "latency_ms": 0.0783,
+          "status": "complete"
+        },
+        {
+          "name": "ml_inference",
+          "latency_ms": 0.0102,
+          "score": 520,
+          "p_default": "0.480",
+          "status": "complete"
+        },
+        {
+          "name": "commitment",
+          "latency_ms": 0.1409,
+          "status": "complete"
+        },
+        {
+          "name": "ledger_anchor",
+          "latency_ms": 298.9333,
+          "status": "complete"
+        },
+        {
+          "name": "loan_query",
+          "latency_ms": 7.3596,
+          "status": "complete"
+        },
+        {
+          "name": "proof_generation",
+          "latency_ms": 114.0347,
+          "status": "success"
+        },
+        {
+          "name": "proof_verification",
+          "latency_ms": 10.277,
+          "valid": true,
+          "status": "complete"
+        }
+      ],
+      "score": 520,
+      "p_default": 0.4800079996095174,
+      "band": 400,
+      "decision": "REJECTED",
+      "proof_valid": true,
+      "outcome": "rejected_threshold"
+    },
+    {
+      "borrower_id": "8a858fba5cd5feee015ce3c294891874",
+      "stages": [
+        {
+          "name": "consent",
+          "latency_ms": 0.0886,
+          "status": "complete"
+        },
+        {
+          "name": "feature_engineering",
+          "latency_ms": 0.0538,
+          "status": "complete"
+        },
+        {
+          "name": "ml_inference",
+          "latency_ms": 0.0109,
+          "score": 355,
+          "p_default": "0.645",
+          "status": "complete"
+        }
+      ],
+      "score": 355,
+      "p_default": 0.6451443140307764,
+      "band": null,
+      "outcome": "below_lowest_band",
+      "proof_possible": false
+    },
+    {
+      "borrower_id": "8a858e885c87dee5015c881f237f214b",
+      "stages": [
+        {
+          "name": "consent",
+          "latency_ms": 0.0369,
+          "status": "complete"
+        },
+        {
+          "name": "feature_engineering",
+          "latency_ms": 0.0487,
+          "status": "complete"
+        },
+        {
+          "name": "ml_inference",
+          "latency_ms": 0.0074,
+          "score": 577,
+          "p_default": "0.423",
+          "status": "complete"
+        },
+        {
+          "name": "commitment",
+          "latency_ms": 0.1595,
+          "status": "complete"
+        },
+        {
+          "name": "ledger_anchor",
+          "latency_ms": 266.2735,
+          "status": "complete"
+        },
+        {
+          "name": "loan_query",
+          "latency_ms": 7.6829,
+          "status": "complete"
+        },
+        {
+          "name": "proof_generation",
+          "latency_ms": 110.7464,
+          "status": "success"
+        },
+        {
+          "name": "proof_verification",
+          "latency_ms": 12.6379,
+          "valid": true,
+          "status": "complete"
+        },
+        {
+          "name": "proof_generation",
+          "latency_ms": 8.9859,
+          "status": "failed",
+          "error": "10 ABORTED: failed to endorse transaction, see attached details for more info"
+        }
+      ],
+      "score": 577,
+      "p_default": 0.42324379851296107,
+      "band": 550,
+      "decision": "APPROVED",
+      "proof_valid": true,
+      "outcome": "proof_failed"
+    },
+    {
+      "borrower_id": "8a858ee25b34d796015b3562b4bb4ad4",
+      "stages": [
+        {
+          "name": "consent",
+          "latency_ms": 0.0612,
+          "status": "complete"
+        },
+        {
+          "name": "feature_engineering",
+          "latency_ms": 0.0731,
+          "status": "complete"
+        },
+        {
+          "name": "ml_inference",
+          "latency_ms": 0.0103,
+          "score": 638,
+          "p_default": "0.362",
+          "status": "complete"
+        },
+        {
+          "name": "commitment",
+          "latency_ms": 0.1245,
+          "status": "complete"
+        },
+        {
+          "name": "ledger_anchor",
+          "latency_ms": 297.4582,
+          "status": "complete"
+        },
+        {
+          "name": "loan_query",
+          "latency_ms": 7.1672,
+          "status": "complete"
+        },
+        {
+          "name": "proof_generation",
+          "latency_ms": 127.1529,
+          "status": "success"
+        },
+        {
+          "name": "proof_verification",
+          "latency_ms": 10.2187,
+          "valid": true,
+          "status": "complete"
+        },
+        {
+          "name": "proof_generation",
+          "latency_ms": 10.2543,
+          "status": "failed",
+          "error": "10 ABORTED: failed to endorse transaction, see attached details for more info"
+        }
+      ],
+      "score": 638,
+      "p_default": 0.3624467588359676,
+      "band": 550,
+      "decision": "APPROVED",
+      "proof_valid": true,
+      "outcome": "proof_failed"
+    },
+    {
+      "borrower_id": "8a858e495bf8527e015bf8e8db823e98",
+      "stages": [
+        {
+          "name": "consent",
+          "latency_ms": 0.0635,
+          "status": "complete"
+        },
+        {
+          "name": "feature_engineering",
+          "latency_ms": 0.0699,
+          "status": "complete"
+        },
+        {
+          "name": "ml_inference",
+          "latency_ms": 0.0124,
+          "score": 562,
+          "p_default": "0.438",
+          "status": "complete"
+        },
+        {
+          "name": "commitment",
+          "latency_ms": 0.1406,
+          "status": "complete"
+        },
+        {
+          "name": "ledger_anchor",
+          "latency_ms": 299.8188,
+          "status": "complete"
+        },
+        {
+          "name": "loan_query",
+          "latency_ms": 7.3087,
+          "status": "complete"
+        },
+        {
+          "name": "proof_generation",
+          "latency_ms": 112.4487,
+          "status": "success"
+        },
+        {
+          "name": "proof_verification",
+          "latency_ms": 10.2228,
+          "valid": true,
+          "status": "complete"
+        },
+        {
+          "name": "proof_generation",
+          "latency_ms": 8.7628,
+          "status": "failed",
+          "error": "10 ABORTED: failed to endorse transaction, see attached details for more info"
+        }
+      ],
+      "score": 562,
+      "p_default": 0.43829174527351167,
+      "band": 550,
+      "decision": "APPROVED",
+      "proof_valid": true,
+      "outcome": "proof_failed"
+    },
+    {
+      "borrower_id": "8a858e215ca77c7f015caa601f6e5976",
+      "stages": [
+        {
+          "name": "consent",
+          "latency_ms": 0.0618,
+          "status": "complete"
+        },
+        {
+          "name": "feature_engineering",
+          "latency_ms": 0.0575,
+          "status": "complete"
+        },
+        {
+          "name": "ml_inference",
+          "latency_ms": 0.011,
+          "score": 595,
+          "p_default": "0.405",
+          "status": "complete"
+        },
+        {
+          "name": "commitment",
+          "latency_ms": 0.1173,
+          "status": "complete"
+        },
+        {
+          "name": "ledger_anchor",
+          "latency_ms": 295.8194,
+          "status": "complete"
+        },
+        {
+          "name": "loan_query",
+          "latency_ms": 7.3506,
+          "status": "complete"
+        },
+        {
+          "name": "proof_generation",
+          "latency_ms": 110.3744,
+          "status": "success"
+        },
+        {
+          "name": "proof_verification",
+          "latency_ms": 12.6345,
+          "valid": true,
+          "status": "complete"
+        },
+        {
+          "name": "proof_generation",
+          "latency_ms": 10.4281,
+          "status": "failed",
+          "error": "10 ABORTED: failed to endorse transaction, see attached details for more info"
+        }
+      ],
+      "score": 595,
+      "p_default": 0.4048081476994468,
+      "band": 550,
+      "decision": "APPROVED",
+      "proof_valid": true,
+      "outcome": "proof_failed"
+    },
+    {
+      "borrower_id": "8a858e615c832be8015c83f6af853b59",
+      "stages": [
+        {
+          "name": "consent",
+          "latency_ms": 0.0678,
+          "status": "complete"
+        },
+        {
+          "name": "feature_engineering",
+          "latency_ms": 0.0532,
+          "status": "complete"
+        },
+        {
+          "name": "ml_inference",
+          "latency_ms": 0.0106,
+          "score": 330,
+          "p_default": "0.670",
+          "status": "complete"
+        }
+      ],
+      "score": 330,
+      "p_default": 0.6696555330462557,
+      "band": null,
+      "outcome": "below_lowest_band",
+      "proof_possible": false
+    },
+    {
+      "borrower_id": "8a858e1d5cd58f9e015cd91cdee408ca",
+      "stages": [
+        {
+          "name": "consent",
+          "latency_ms": 0.03,
+          "status": "complete"
+        },
+        {
+          "name": "feature_engineering",
+          "latency_ms": 0.0494,
+          "status": "complete"
+        },
+        {
+          "name": "ml_inference",
+          "latency_ms": 0.007,
+          "score": 798,
+          "p_default": "0.202",
+          "status": "complete"
+        },
+        {
+          "name": "commitment",
+          "latency_ms": 0.1144,
+          "status": "complete"
+        },
+        {
+          "name": "ledger_anchor",
+          "latency_ms": 337.3825,
+          "status": "complete"
+        },
+        {
+          "name": "loan_query",
+          "latency_ms": 6.3857,
+          "status": "complete"
+        },
+        {
+          "name": "proof_generation",
+          "latency_ms": 125.3319,
+          "status": "success"
+        },
+        {
+          "name": "proof_verification",
+          "latency_ms": 11.3901,
+          "valid": true,
+          "status": "complete"
+        },
+        {
+          "name": "proof_generation",
+          "latency_ms": 8.1591,
+          "status": "failed",
+          "error": "10 ABORTED: failed to endorse transaction, see attached details for more info"
+        }
+      ],
+      "score": 798,
+      "p_default": 0.20198979565485817,
+      "band": 700,
+      "decision": "APPROVED",
+      "proof_valid": true,
+      "outcome": "proof_failed"
+    },
+    {
+      "borrower_id": "8a858eff5b393484015b394ef3281e60",
+      "stages": [
+        {
+          "name": "consent",
+          "latency_ms": 0.0582,
+          "status": "complete"
+        },
+        {
+          "name": "feature_engineering",
+          "latency_ms": 0.0714,
+          "status": "complete"
+        },
+        {
+          "name": "ml_inference",
+          "latency_ms": 0.0092,
+          "score": 496,
+          "p_default": "0.504",
+          "status": "complete"
+        },
+        {
+          "name": "commitment",
+          "latency_ms": 0.1125,
+          "status": "complete"
+        },
+        {
+          "name": "ledger_anchor",
+          "latency_ms": 302.7227,
+          "status": "complete"
+        },
+        {
+          "name": "loan_query",
+          "latency_ms": 6.6878,
+          "status": "complete"
+        },
+        {
+          "name": "proof_generation",
+          "latency_ms": 120.0669,
+          "status": "success"
+        },
+        {
+          "name": "proof_verification",
+          "latency_ms": 10.4649,
+          "valid": true,
+          "status": "complete"
+        }
+      ],
+      "score": 496,
+      "p_default": 0.5036884177104052,
+      "band": 400,
+      "decision": "REJECTED",
+      "proof_valid": true,
+      "outcome": "rejected_threshold"
+    },
+    {
+      "borrower_id": "8a858e045b495c30015b49b40d522144",
+      "stages": [
+        {
+          "name": "consent",
+          "latency_ms": 0.1765,
+          "status": "complete"
+        },
+        {
+          "name": "feature_engineering",
+          "latency_ms": 0.0745,
+          "status": "complete"
+        },
+        {
+          "name": "ml_inference",
+          "latency_ms": 0.0108,
+          "score": 567,
+          "p_default": "0.433",
+          "status": "complete"
+        },
+        {
+          "name": "commitment",
+          "latency_ms": 0.1153,
+          "status": "complete"
+        },
+        {
+          "name": "ledger_anchor",
+          "latency_ms": 263.7791,
+          "status": "complete"
+        },
+        {
+          "name": "loan_query",
+          "latency_ms": 6.823,
+          "status": "complete"
+        },
+        {
+          "name": "proof_generation",
+          "latency_ms": 109.7628,
+          "status": "success"
+        },
+        {
+          "name": "proof_verification",
+          "latency_ms": 10.2323,
+          "valid": true,
+          "status": "complete"
+        },
+        {
+          "name": "proof_generation",
+          "latency_ms": 7.7324,
+          "status": "failed",
+          "error": "10 ABORTED: failed to endorse transaction, see attached details for more info"
+        }
+      ],
+      "score": 567,
+      "p_default": 0.43275206115863574,
+      "band": 550,
+      "decision": "APPROVED",
+      "proof_valid": true,
+      "outcome": "proof_failed"
+    },
+    {
+      "borrower_id": "8a85892854be331a0154c901e52e390a",
+      "stages": [
+        {
+          "name": "consent",
+          "latency_ms": 0.0614,
+          "status": "complete"
+        },
+        {
+          "name": "feature_engineering",
+          "latency_ms": 0.0875,
+          "status": "complete"
+        },
+        {
+          "name": "ml_inference",
+          "latency_ms": 0.0103,
+          "score": 674,
+          "p_default": "0.326",
+          "status": "complete"
+        },
+        {
+          "name": "commitment",
+          "latency_ms": 0.1158,
+          "status": "complete"
+        },
+        {
+          "name": "ledger_anchor",
+          "latency_ms": 298.8836,
+          "status": "complete"
+        },
+        {
+          "name": "loan_query",
+          "latency_ms": 6.6505,
+          "status": "complete"
+        },
+        {
+          "name": "proof_generation",
+          "latency_ms": 125.1706,
+          "status": "success"
+        },
+        {
+          "name": "proof_verification",
+          "latency_ms": 11.5561,
+          "valid": true,
+          "status": "complete"
+        },
+        {
+          "name": "proof_generation",
+          "latency_ms": 8.3018,
+          "status": "failed",
+          "error": "10 ABORTED: failed to endorse transaction, see attached details for more info"
+        }
+      ],
+      "score": 674,
+      "p_default": 0.3262531855618061,
+      "band": 550,
+      "decision": "APPROVED",
+      "proof_valid": true,
+      "outcome": "proof_failed"
+    },
+    {
+      "borrower_id": "8a858ea4582fcdc801583f1e99c55e55",
+      "stages": [
+        {
+          "name": "consent",
+          "latency_ms": 0.0595,
+          "status": "complete"
+        },
+        {
+          "name": "feature_engineering",
+          "latency_ms": 0.0801,
+          "status": "complete"
+        },
+        {
+          "name": "ml_inference",
+          "latency_ms": 0.0194,
+          "score": 601,
+          "p_default": "0.399",
+          "status": "complete"
+        },
+        {
+          "name": "commitment",
+          "latency_ms": 0.1255,
+          "status": "complete"
+        },
+        {
+          "name": "ledger_anchor",
+          "latency_ms": 308.7606,
+          "status": "complete"
+        },
+        {
+          "name": "loan_query",
+          "latency_ms": 8.0544,
+          "status": "complete"
+        },
+        {
+          "name": "proof_generation",
+          "latency_ms": 130.7136,
+          "status": "success"
+        },
+        {
+          "name": "proof_verification",
+          "latency_ms": 16.6214,
+          "valid": true,
+          "status": "complete"
+        },
+        {
+          "name": "proof_generation",
+          "latency_ms": 17.9723,
+          "status": "failed",
+          "error": "10 ABORTED: failed to endorse transaction, see attached details for more info"
+        }
+      ],
+      "score": 601,
+      "p_default": 0.3994511217760336,
+      "band": 550,
+      "decision": "APPROVED",
+      "proof_valid": true,
+      "outcome": "proof_failed"
+    },
+    {
+      "borrower_id": "8a858e5c56f98bad0156ff01cbd504af",
+      "stages": [
+        {
+          "name": "consent",
+          "latency_ms": 0.0749,
+          "status": "complete"
+        },
+        {
+          "name": "feature_engineering",
+          "latency_ms": 0.0938,
+          "status": "complete"
+        },
+        {
+          "name": "ml_inference",
+          "latency_ms": 0.012,
+          "score": 499,
+          "p_default": "0.501",
+          "status": "complete"
+        },
+        {
+          "name": "commitment",
+          "latency_ms": 0.1534,
+          "status": "complete"
+        },
+        {
+          "name": "ledger_anchor",
+          "latency_ms": 296.244,
+          "status": "complete"
+        },
+        {
+          "name": "loan_query",
+          "latency_ms": 6.9672,
+          "status": "complete"
+        },
+        {
+          "name": "proof_generation",
+          "latency_ms": 132.5432,
+          "status": "success"
+        },
+        {
+          "name": "proof_verification",
+          "latency_ms": 12.3784,
+          "valid": true,
+          "status": "complete"
+        }
+      ],
+      "score": 499,
+      "p_default": 0.5009382151715017,
+      "band": 400,
+      "decision": "REJECTED",
+      "proof_valid": true,
+      "outcome": "rejected_threshold"
+    }
+  ],
+  "stage_latencies": {
+    "consent": [
+      0.158,
+      0.0688,
+      0.0579,
+      0.0718,
+      0.0716,
+      0.1133,
+      0.0984,
+      0.0539,
+      0.0747,
+      0.0559,
+      0.0557,
+      0.0303,
+      0.0581,
+      0.0886,
+      0.0369,
+      0.0612,
+      0.0635,
+      0.0618,
+      0.0678,
+      0.03,
+      0.0582,
+      0.1765,
+      0.0614,
+      0.0595,
+      0.0749
+    ],
+    "feature_engineering": [
+      0.0916,
+      0.0869,
+      0.0601,
+      0.1906,
+      0.1004,
+      0.0698,
+      0.1046,
+      0.0461,
+      0.0903,
+      0.0884,
+      0.1078,
+      0.0683,
+      0.0783,
+      0.0538,
+      0.0487,
+      0.0731,
+      0.0699,
+      0.0575,
+      0.0532,
+      0.0494,
+      0.0714,
+      0.0745,
+      0.0875,
+      0.0801,
+      0.0938
+    ],
+    "ml_inference": [
+      0.1533,
+      0.0288,
+      0.0173,
+      0.0135,
+      0.0118,
+      0.0123,
+      0.011,
+      0.0072,
+      0.0137,
+      0.0072,
+      0.01,
+      0.0072,
+      0.0102,
+      0.0109,
+      0.0074,
+      0.0103,
+      0.0124,
+      0.011,
+      0.0106,
+      0.007,
+      0.0092,
+      0.0108,
+      0.0103,
+      0.0194,
+      0.012
+    ],
+    "commitment": [
+      0.5658,
+      0.3512,
+      0.248,
+      0.1713,
+      0.1717,
+      0.1349,
+      0.1363,
+      0.1568,
+      0.1408,
+      0.1409,
+      0.1595,
+      0.1245,
+      0.1406,
+      0.1173,
+      0.1144,
+      0.1125,
+      0.1153,
+      0.1158,
+      0.1255,
+      0.1534
+    ],
+    "ledger_anchor": [
+      251.7655,
+      294.9798,
+      294.4575,
+      297.0723,
+      315.1456,
+      263.3194,
+      281.6675,
+      296.2254,
+      299.0543,
+      298.9333,
+      266.2735,
+      297.4582,
+      299.8188,
+      295.8194,
+      337.3825,
+      302.7227,
+      263.7791,
+      298.8836,
+      308.7606,
+      296.244
+    ],
+    "loan_query": [
+      7.0036,
+      7.0491,
+      7.7869,
+      6.5019,
+      12.6593,
+      6.3941,
+      6.736,
+      7.913,
+      6.626,
+      7.3596,
+      7.6829,
+      7.1672,
+      7.3087,
+      7.3506,
+      6.3857,
+      6.6878,
+      6.823,
+      6.6505,
+      8.0544,
+      6.9672
+    ],
+    "proof_generation": [
+      480.9036,
+      110.2923,
+      142.7369,
+      115.6415,
+      127.9858,
+      124.7671,
+      113.3369,
+      116.4889,
+      131.5641,
+      114.0347,
+      110.7464,
+      127.1529,
+      112.4487,
+      110.3744,
+      125.3319,
+      120.0669,
+      109.7628,
+      125.1706,
+      130.7136,
+      132.5432
+    ],
+    "proof_verification": [
+      11.9099,
+      13.0873,
+      11.5207,
+      13.013,
+      14.4094,
+      10.0756,
+      12.8859,
+      11.1728,
+      11.9496,
+      10.277,
+      12.6379,
+      10.2187,
+      10.2228,
+      12.6345,
+      11.3901,
+      10.4649,
+      10.2323,
+      11.5561,
+      16.6214,
+      12.3784
+    ],
+    "repayment_record": []
+  },
+  "summary": {
+    "flows_processed": 25,
+    "below_lowest_band": 5,
+    "proofs_succeeded": 16,
+    "below_band_rate": "20.0%",
+    "stage_statistics": {
+      "consent": {
+        "n": 25,
+        "mean": 0,
+        "p50": 0,
+        "p95": 0,
+        "total": 2
+      },
+      "feature_engineering": {
+        "n": 25,
+        "mean": 0,
+        "p50": 0,
+        "p95": 0,
+        "total": 2
+      },
+      "ml_inference": {
+        "n": 25,
+        "mean": 0,
+        "p50": 0,
+        "p95": 0,
+        "total": 0
+      },
+      "commitment": {
+        "n": 20,
+        "mean": 0,
+        "p50": 0,
+        "p95": 1,
+        "total": 3
+      },
+      "ledger_anchor": {
+        "n": 20,
+        "mean": 293,
+        "p50": 297,
+        "p95": 337,
+        "total": 5860
+      },
+      "loan_query": {
+        "n": 20,
+        "mean": 7,
+        "p50": 7,
+        "p95": 13,
+        "total": 147
+      },
+      "proof_generation": {
+        "n": 20,
+        "mean": 139,
+        "p50": 125,
+        "p95": 481,
+        "total": 2782
+      },
+      "proof_verification": {
+        "n": 20,
+        "mean": 12,
+        "p50": 12,
+        "p95": 17,
+        "total": 239
+      },
+      "repayment_record": {
+        "n": 0,
+        "mean": 0,
+        "p50": 0,
+        "p95": 0,
+        "total": 0
+      }
+    },
+    "component_totals": {
+      "L1_ML_scoring": {
+        "total_ms": 8,
+        "pct_of_total": "0.1%",
+        "stages": [
+          "consent",
+          "feature_engineering",
+          "ml_inference",
+          "commitment"
+        ]
+      },
+      "L2_blockchain": {
+        "total_ms": 6007,
+        "pct_of_total": "66.5%",
+        "stages": [
+          "ledger_anchor",
+          "loan_query",
+          "repayment_record"
+        ]
+      },
+      "L3_ZK_proofs": {
+        "total_ms": 3021,
+        "pct_of_total": "33.4%",
+        "stages": [
+          "proof_generation",
+          "proof_verification"
+        ]
+      }
+    },
+    "grand_total_ms": 9035,
+    "key_finding": "L2 (Blockchain) dominates at 66.5%. ZK cryptographic privacy (L3) adds only 33.4% overhead. With BatchTimeout=200ms, single-decision write latency is ~256ms vs ~2051ms at default 2s.",
+    "corrected_prose": "L2 remains dominant. The SDK improves queries roughly 40x while leaving writes largely unchanged because they wait out BatchTimeout. Reducing BatchTimeout from 2s to 200ms cuts write latency 8x.",
+    "t52_corrections": [
+      "ML inference is REAL (LogisticRegression with exported coefficients), not simulated",
+      "consent and feature_engineering are measured stages, not omitted",
+      "L3 is NOT \"the primary latency component\" - L2 is dominant"
+    ]
+  }
+}

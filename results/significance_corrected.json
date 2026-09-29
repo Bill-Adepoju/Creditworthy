@@ -1,0 +1,91 @@
+{
+  "timestamp": "2026-08-24T15:30:35.139756",
+  "cv_config": {
+    "n_splits": 5,
+    "n_repeats": 10,
+    "n_train": 3501,
+    "n_test": 875,
+    "correction_factor": 0.26992859183090545
+  },
+  "model_comparisons": {
+    "XGBoost_Tuned_vs_LogisticRegression": {
+      "comparison": "XGBoost_Tuned vs LogisticRegression",
+      "mean_difference": 0.004057297314572141,
+      "naive_paired_ttest": {
+        "t_statistic": 2.0557197419972897,
+        "p_value": 0.045158019930146925,
+        "significant_0.05": true
+      },
+      "wilcoxon": {
+        "statistic": 444.0,
+        "p_value": 0.06207125225267518,
+        "significant_0.05": false
+      },
+      "nadeau_bengio_corrected": {
+        "t_statistic": 0.5595700478490049,
+        "p_value": 0.5783217673154321,
+        "ci_95": [
+          -0.010513611625920818,
+          0.018628206255065102
+        ],
+        "significant_0.05": false
+      },
+      "conclusion": "statistically_indistinguishable"
+    },
+    "RandomForest_Tuned_vs_LogisticRegression": {
+      "comparison": "RandomForest_Tuned vs LogisticRegression",
+      "mean_difference": 0.002351766845298875,
+      "naive_paired_ttest": {
+        "t_statistic": 1.1389562656005918,
+        "p_value": 0.2602590884432174,
+        "significant_0.05": false
+      },
+      "wilcoxon": {
+        "statistic": 547.0,
+        "p_value": 0.38817752503383396,
+        "significant_0.05": false
+      },
+      "nadeau_bengio_corrected": {
+        "t_statistic": 0.31002563190877175,
+        "p_value": 0.7578562216008965,
+        "ci_95": [
+          -0.01289230309406943,
+          0.01759583678466718
+        ],
+        "significant_0.05": false
+      },
+      "conclusion": "statistically_indistinguishable"
+    },
+    "XGBoost_Tuned_vs_RandomForest_Tuned": {
+      "comparison": "XGBoost_Tuned vs RandomForest_Tuned",
+      "mean_difference": 0.0017055304692732665,
+      "naive_paired_ttest": {
+        "t_statistic": 1.1989169304474405,
+        "p_value": 0.23632626844582613,
+        "significant_0.05": false
+      },
+      "wilcoxon": {
+        "statistic": 530.0,
+        "p_value": 0.3044806608698192,
+        "significant_0.05": false
+      },
+      "nadeau_bengio_corrected": {
+        "t_statistic": 0.3263470162939851,
+        "p_value": 0.7455516363471576,
+        "ci_95": [
+          -0.008796761955957461,
+          0.012207822894503994
+        ],
+        "significant_0.05": false
+      },
+      "conclusion": "statistically_indistinguishable"
+    }
+  },
+  "overall_conclusion": {
+    "models_indistinguishable": true,
+    "best_model": "LogisticRegression",
+    "recommendation": "Use LogisticRegression",
+    "rationale": "All models statistically indistinguishable under corrected test. LR recommended due to 7.5x smaller overfit gap (1.4% vs 10.6%) and regulatory interpretability requirements.",
+    "narrative": "LR and tuned tree models are statistically indistinguishable (Nadeau-Bengio corrected p>0.05). The accuracy-explainability trade-off is not detectable at this data scale."
+  }
+}

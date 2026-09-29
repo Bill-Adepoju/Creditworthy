@@ -1,0 +1,997 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lender View - Credit Scoring Demo</title>
+    <link rel="stylesheet" href="/styles/tokens.css">
+    <link rel="stylesheet" href="/styles/components.css">
+    <style>
+        /* Lender page specific styles */
+        .results-panel {
+            opacity: 0.5;
+            transition: opacity var(--dur-base) var(--ease);
+        }
+
+        .results-panel--active {
+            opacity: 1;
+        }
+
+        /* Segmented Threshold Selector */
+        .threshold-selector {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: var(--space-2);
+            margin-bottom: var(--space-3);
+        }
+
+        .threshold-btn {
+            padding: var(--space-3) var(--space-2);
+            background: var(--surface);
+            border: 2px solid var(--border);
+            border-radius: var(--r-md);
+            cursor: pointer;
+            text-align: center;
+            transition: all var(--dur-fast) var(--ease);
+        }
+
+        .threshold-btn:hover {
+            border-color: var(--border-strong);
+            background: var(--surface-sunk);
+        }
+
+        .threshold-btn:focus {
+            outline: 2px solid var(--primary);
+            outline-offset: 2px;
+        }
+
+        .threshold-btn[aria-checked="true"] {
+            border-color: var(--l3);
+            background: var(--l3-soft);
+        }
+
+        .threshold-btn-score {
+            display: block;
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--ink);
+        }
+
+        .threshold-btn-label {
+            display: block;
+            font-size: 11px;
+            color: var(--ink-muted);
+            margin-top: 2px;
+        }
+
+        .threshold-caption {
+            font-size: 13px;
+            color: var(--ink-muted);
+            font-style: italic;
+            margin-bottom: var(--space-4);
+        }
+
+        /* Verdict Display - compact */
+        .verdict {
+            display: flex;
+            align-items: center;
+            gap: var(--space-3);
+            padding: var(--space-3);
+            border-radius: var(--r-md);
+            margin-bottom: var(--space-3);
+        }
+
+        .verdict--eligible {
+            background: var(--success-soft);
+            border: 2px solid var(--success);
+        }
+
+        .verdict--ineligible {
+            background: var(--surface-sunk);
+            border: 2px solid var(--border);
+        }
+
+        .verdict-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .verdict--eligible .verdict-icon {
+            background: var(--success);
+            color: white;
+        }
+
+        .verdict--ineligible .verdict-icon {
+            background: var(--surface);
+            border: 2px solid var(--border);
+            color: var(--ink-muted);
+        }
+
+        .verdict-icon svg {
+            width: 20px;
+            height: 20px;
+        }
+
+        .verdict-content {
+            flex: 1;
+        }
+
+        .verdict-text {
+            font-size: 18px;
+            font-weight: 700;
+        }
+
+        .verdict--eligible .verdict-text {
+            color: var(--success);
+        }
+
+        .verdict--ineligible .verdict-text {
+            color: var(--ink-secondary);
+        }
+
+        .verdict-detail {
+            font-size: 13px;
+            color: var(--ink-secondary);
+        }
+
+        /* Proof Card - compact */
+        .proof-card {
+            background: var(--surface-sunk);
+            border-radius: var(--r-md);
+            padding: var(--space-3);
+            margin-bottom: var(--space-3);
+        }
+
+        .proof-card h3 {
+            font-size: 11px;
+            font-weight: 600;
+            color: var(--ink-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: var(--space-2);
+            display: flex;
+            align-items: center;
+            gap: var(--space-2);
+        }
+
+        .proof-stats {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: var(--space-2);
+        }
+
+        .proof-stat {
+            text-align: center;
+        }
+
+        .proof-stat-label {
+            color: var(--ink-muted);
+            font-size: 10px;
+        }
+
+        .proof-stat-value {
+            font-family: var(--font-mono);
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--ink);
+        }
+
+        /* DISCLOSURE TABLE - compact */
+        .disclosure-table {
+            background: var(--surface-sunk);
+            border-radius: var(--r-md);
+            padding: var(--space-3);
+            margin-bottom: var(--space-4);
+        }
+
+        .disclosure-table h3 {
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: var(--space-3);
+            text-align: center;
+        }
+
+        .disclosure-columns {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: var(--space-3);
+        }
+
+        .disclosure-column h4 {
+            font-size: 10px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            padding-bottom: var(--space-3);
+            border-bottom: 2px solid;
+            margin-bottom: var(--space-4);
+        }
+
+        .disclosure-column--received h4 {
+            color: var(--success);
+            border-color: var(--success);
+        }
+
+        .disclosure-column--withheld h4 {
+            color: var(--ink-muted);
+            border-color: var(--border);
+        }
+
+        .disclosure-list {
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-3);
+        }
+
+        .disclosure-item {
+            display: flex;
+            align-items: center;
+            gap: var(--space-3);
+            font-size: var(--text-body-size);
+        }
+
+        .disclosure-item--received {
+            color: var(--ink);
+        }
+
+        .disclosure-item--received::before {
+            content: '';
+            width: 20px;
+            height: 20px;
+            background: var(--success);
+            border-radius: 50%;
+            flex-shrink: 0;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='white'%3E%3Cpath fill-rule='evenodd' d='M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z' clip-rule='evenodd'/%3E%3C/svg%3E");
+            background-size: 14px;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+
+        .disclosure-item--withheld {
+            color: var(--ink-muted);
+        }
+
+        /* Redaction bars */
+        .redaction-bar {
+            display: inline-block;
+            background: var(--surface);
+            border-radius: 2px;
+            height: 12px;
+            vertical-align: middle;
+        }
+
+        .redaction-bar--sm { width: 40px; }
+        .redaction-bar--md { width: 60px; }
+        .redaction-bar--lg { width: 80px; }
+
+        /* Loan Approval Section - compact */
+        .loan-section {
+            background: var(--l1-soft);
+            border: 1px solid var(--l1);
+            border-radius: var(--r-md);
+            padding: var(--space-3);
+            margin-top: var(--space-3);
+        }
+
+        .loan-section h3 {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--l1);
+            margin-bottom: var(--space-2);
+        }
+
+        .loan-section p {
+            color: var(--ink-secondary);
+            font-size: 13px;
+            margin-bottom: var(--space-3);
+        }
+
+        .loan-max {
+            background: var(--surface);
+            border-radius: var(--r-sm);
+            padding: var(--space-2);
+            margin-bottom: var(--space-3);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .loan-max-label {
+            font-size: 10px;
+            color: var(--ink-muted);
+            text-transform: uppercase;
+        }
+
+        .loan-max-value {
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--l1);
+        }
+
+        .loan-input-row {
+            margin-bottom: var(--space-4);
+        }
+
+        .loan-input-row label {
+            margin-bottom: var(--space-2);
+        }
+
+        .loan-input-row input {
+            background: var(--surface);
+        }
+
+        .btn-approve {
+            background: var(--l1);
+            color: white;
+            width: 100%;
+        }
+
+        .btn-approve:hover:not(:disabled) {
+            background: #03674a;
+        }
+
+        /* Selected borrower display */
+        .selected-borrower {
+            background: var(--primary-soft);
+            border: 1px solid var(--primary);
+            border-radius: var(--r-md);
+            padding: var(--space-3) var(--space-4);
+            margin-bottom: var(--space-4);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .selected-borrower-name {
+            font-weight: 600;
+            color: var(--primary);
+        }
+
+        .selected-borrower-clear {
+            background: none;
+            border: none;
+            color: var(--primary);
+            cursor: pointer;
+            padding: var(--space-1);
+            font-size: 18px;
+            line-height: 1;
+        }
+
+        /* Lender page responsive */
+        @media (max-width: 1023px) {
+            .threshold-selector {
+                grid-template-columns: repeat(4, 1fr);
+            }
+
+            .threshold-btn-score {
+                font-size: 16px;
+            }
+
+            .verdict {
+                padding: var(--space-4);
+            }
+
+            .verdict-icon {
+                width: 48px;
+                height: 48px;
+            }
+
+            .verdict-text {
+                font-size: 20px;
+            }
+        }
+
+        @media (max-width: 767px) {
+            .threshold-selector {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .threshold-btn {
+                padding: var(--space-2);
+            }
+
+            .threshold-btn-score {
+                font-size: 15px;
+            }
+
+            .threshold-btn-label {
+                font-size: 10px;
+            }
+
+            .verdict {
+                flex-direction: column;
+                text-align: center;
+                gap: var(--space-3);
+            }
+
+            .verdict-icon {
+                width: 44px;
+                height: 44px;
+            }
+
+            .verdict-icon svg {
+                width: 22px;
+                height: 22px;
+            }
+
+            .verdict-text {
+                font-size: 18px;
+            }
+
+            .proof-stats {
+                grid-template-columns: 1fr;
+            }
+
+            .disclosure-columns {
+                grid-template-columns: 1fr;
+                gap: var(--space-4);
+            }
+
+            .disclosure-column--received {
+                padding-bottom: var(--space-4);
+                border-bottom: 1px solid var(--border);
+            }
+
+            .redaction-bar--lg { width: 80px; }
+            .redaction-bar--md { width: 60px; }
+
+            .loan-max {
+                flex-direction: column;
+                gap: var(--space-2);
+                text-align: center;
+            }
+
+            .selected-borrower {
+                flex-direction: column;
+                gap: var(--space-2);
+                text-align: center;
+            }
+        }
+
+        @media (max-width: 479px) {
+            .threshold-selector {
+                grid-template-columns: 1fr 1fr;
+                gap: var(--space-1);
+            }
+
+            .threshold-btn-score {
+                font-size: 14px;
+            }
+
+            .verdict-text {
+                font-size: 16px;
+            }
+
+            .disclosure-table {
+                padding: var(--space-4);
+            }
+
+            .disclosure-table h3 {
+                font-size: 16px;
+            }
+
+            .disclosure-item {
+                font-size: 13px;
+            }
+
+            .loan-section {
+                padding: var(--space-4);
+            }
+        }
+    </style>
+</head>
+<body>
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+
+    <div class="page-wrapper">
+        <header class="header">
+            <a href="/" class="back-link">← Home</a>
+            <h1>Lender View</h1>
+            <div class="layer-chips">
+                <span class="chip-layer chip-layer--l2">L2</span>
+                <span class="chip-layer chip-layer--l3">L3</span>
+            </div>
+        </header>
+
+        <main class="main-grid" id="main-content">
+            <section class="card" aria-labelledby="verify-heading">
+                <div class="card-header">
+                    <h2 class="card-title" id="verify-heading">Verify Eligibility</h2>
+                    <p class="card-subtitle">Check if a borrower meets your lending threshold</p>
+                </div>
+
+                <label for="borrower-search">Search Borrower</label>
+                <div class="combobox" role="combobox" aria-expanded="false" aria-haspopup="listbox">
+                    <input type="text"
+                           id="borrower-search"
+                           class="combobox-input"
+                           placeholder="Type to search borrowers..."
+                           autocomplete="off"
+                           aria-autocomplete="list"
+                           aria-controls="borrower-listbox">
+                    <div id="borrower-listbox" class="combobox-listbox" role="listbox"></div>
+                </div>
+
+                <div id="selected-display" class="selected-borrower hidden">
+                    <span class="selected-borrower-name" id="selected-name"></span>
+                    <button class="selected-borrower-clear" id="clear-selection" aria-label="Clear selection">&times;</button>
+                </div>
+
+                <label>Select Threshold</label>
+                <div class="threshold-selector" role="radiogroup" aria-label="Credit score threshold">
+                    <button class="threshold-btn" role="radio" aria-checked="false" data-threshold="400">
+                        <span class="threshold-btn-score">400+</span>
+                        <span class="threshold-btn-label">Basic</span>
+                    </button>
+                    <button class="threshold-btn" role="radio" aria-checked="false" data-threshold="550">
+                        <span class="threshold-btn-score">550+</span>
+                        <span class="threshold-btn-label">Standard</span>
+                    </button>
+                    <button class="threshold-btn" role="radio" aria-checked="false" data-threshold="700">
+                        <span class="threshold-btn-score">700+</span>
+                        <span class="threshold-btn-label">Good</span>
+                    </button>
+                    <button class="threshold-btn" role="radio" aria-checked="false" data-threshold="850">
+                        <span class="threshold-btn-score">850+</span>
+                        <span class="threshold-btn-label">Premium</span>
+                    </button>
+                </div>
+                <p class="threshold-caption">
+                    Thresholds are restricted to four fixed bands. Free selection would allow a lender to binary-search the exact score.
+                </p>
+
+                <button id="verify-btn" class="btn btn-primary btn-block" disabled>
+                    Check Eligibility
+                </button>
+
+                <div id="status" class="status hidden" role="status" aria-live="polite"></div>
+
+                <div class="info-panel">
+                    <h4>What happens when you verify:</h4>
+                    <ol>
+                        <li>Commitment retrieved from ledger <span class="chip-layer chip-layer--l2">L2</span></li>
+                        <li>ZK proof generated for threshold <span class="chip-layer chip-layer--l3">L3</span></li>
+                        <li>Proof verified locally <span class="chip-layer chip-layer--l3">L3</span></li>
+                        <li>You learn only: eligible or not</li>
+                    </ol>
+                </div>
+            </div>
+            </section>
+
+            <!-- Right Panel: Results -->
+            <section class="card results-panel" id="results-panel" aria-labelledby="results-heading" aria-live="polite">
+                <div class="card-header">
+                    <h2 class="card-title" id="results-heading">Verification Result</h2>
+                </div>
+
+                <!-- Verdict -->
+                <div class="verdict verdict--ineligible" id="verdict" role="status" aria-live="polite" aria-atomic="true">
+                    <div class="verdict-icon" aria-hidden="true">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="12" cy="12" r="10"/>
+                            <path d="M12 8v4M12 16h.01"/>
+                        </svg>
+                    </div>
+                    <div class="verdict-content">
+                        <div class="verdict-text" id="verdict-text">Awaiting Verification</div>
+                        <div class="verdict-detail" id="verdict-detail">Select a borrower and threshold to verify eligibility</div>
+                    </div>
+                </div>
+
+                <!-- Proof Card -->
+                <div class="proof-card">
+                    <h3>
+                        <span class="chip-layer chip-layer--l3">L3</span>
+                        ZK Proof Details
+                    </h3>
+                    <div class="proof-stats">
+                        <div class="proof-stat">
+                            <span class="proof-stat-label">Proof Valid</span>
+                            <span class="proof-stat-value" id="proof-valid">---</span>
+                        </div>
+                        <div class="proof-stat">
+                            <span class="proof-stat-label">Proof Size</span>
+                            <span class="proof-stat-value" id="proof-size">---</span>
+                        </div>
+                        <div class="proof-stat">
+                            <span class="proof-stat-label">Generation</span>
+                            <span class="proof-stat-value" id="proof-gen-time">---</span>
+                        </div>
+                        <div class="proof-stat">
+                            <span class="proof-stat-label">Verification</span>
+                            <span class="proof-stat-value" id="proof-verify-time">---</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- DISCLOSURE TABLE - Most important component -->
+                <div class="disclosure-table">
+                    <h3>Privacy Disclosure</h3>
+                    <div class="disclosure-columns">
+                        <div class="disclosure-column disclosure-column--received">
+                            <h4>Lender Receives</h4>
+                            <div class="disclosure-list">
+                                <div class="disclosure-item disclosure-item--received">Eligibility verdict (1 bit)</div>
+                                <div class="disclosure-item disclosure-item--received">Threshold tested</div>
+                                <div class="disclosure-item disclosure-item--received">Proof validity</div>
+                            </div>
+                        </div>
+                        <div class="disclosure-column disclosure-column--withheld">
+                            <h4>Lender Does Not Receive</h4>
+                            <div class="disclosure-list">
+                                <div class="disclosure-item disclosure-item--withheld">
+                                    Credit score <span class="redaction-bar redaction-bar--sm"></span>
+                                </div>
+                                <div class="disclosure-item disclosure-item--withheld">
+                                    Behavioural features <span class="redaction-bar redaction-bar--lg"></span>
+                                </div>
+                                <div class="disclosure-item disclosure-item--withheld">
+                                    Margin above threshold <span class="redaction-bar redaction-bar--md"></span>
+                                </div>
+                                <div class="disclosure-item disclosure-item--withheld">
+                                    Raw transaction data <span class="redaction-bar redaction-bar--lg"></span>
+                                </div>
+                                <div class="disclosure-item disclosure-item--withheld">
+                                    Model weights <span class="redaction-bar redaction-bar--md"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Loan Approval Section (hidden until eligible) -->
+                <div class="loan-section hidden" id="loan-section">
+                    <h3>Approve Loan</h3>
+                    <p>Borrower is eligible. Record loan approval on the blockchain.</p>
+
+                    <div class="loan-max">
+                        <span class="loan-max-label">Maximum for this band</span>
+                        <span class="loan-max-value" id="max-loan-display">---</span>
+                    </div>
+
+                    <div class="loan-input-row">
+                        <label for="loan-amount">Loan Amount (NGN)</label>
+                        <input type="number" id="loan-amount"
+                               placeholder="Enter loan amount..."
+                               min="10000" step="10000" value="100000">
+                    </div>
+
+                    <button id="approve-btn" class="btn btn-approve">
+                        Approve & Record on Ledger
+                    </button>
+
+                    <div id="approve-status" class="status hidden" style="margin-top: var(--space-4);"></div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <footer class="landing-footer" role="contentinfo">
+        MIT Dissertation Demo · University of Lagos · 2026
+    </footer>
+
+    <script>
+        // DOM Elements
+        const searchInput = document.getElementById('borrower-search');
+        const listbox = document.getElementById('borrower-listbox');
+        const selectedDisplay = document.getElementById('selected-display');
+        const selectedName = document.getElementById('selected-name');
+        const clearBtn = document.getElementById('clear-selection');
+        const thresholdBtns = document.querySelectorAll('.threshold-btn');
+        const verifyBtn = document.getElementById('verify-btn');
+        const statusDiv = document.getElementById('status');
+        const resultsPanel = document.getElementById('results-panel');
+
+        let borrowers = [];
+        let selectedBorrower = null;
+        let selectedThreshold = null;
+        let highlightedIndex = -1;
+
+        // Loan limits by threshold
+        const LOAN_LIMITS = {
+            400: { max: 100000, label: '₦100,000' },
+            550: { max: 500000, label: '₦500,000' },
+            700: { max: 2000000, label: '₦2,000,000' },
+            850: { max: 10000000, label: '₦10,000,000' }
+        };
+
+        // Load borrowers
+        fetch('/api/borrowers')
+            .then(r => r.json())
+            .then(data => {
+                borrowers = data;
+            })
+            .catch(err => {
+                console.error('Failed to load borrowers:', err);
+            });
+
+        // Combobox functionality
+        searchInput.addEventListener('focus', () => showDropdown(borrowers));
+
+        searchInput.addEventListener('input', () => {
+            const query = searchInput.value.toLowerCase();
+            const filtered = borrowers.filter(b =>
+                b.label.toLowerCase().includes(query) ||
+                b.id.toLowerCase().includes(query)
+            );
+            showDropdown(filtered);
+        });
+
+        searchInput.addEventListener('keydown', (e) => {
+            const options = listbox.querySelectorAll('.combobox-option');
+            if (e.key === 'ArrowDown') {
+                e.preventDefault();
+                highlightedIndex = Math.min(highlightedIndex + 1, options.length - 1);
+                updateHighlight(options);
+            } else if (e.key === 'ArrowUp') {
+                e.preventDefault();
+                highlightedIndex = Math.max(highlightedIndex - 1, 0);
+                updateHighlight(options);
+            } else if (e.key === 'Enter' && highlightedIndex >= 0) {
+                e.preventDefault();
+                const option = options[highlightedIndex];
+                if (option) selectBorrower(option.dataset.id, option.dataset.label);
+            } else if (e.key === 'Escape') {
+                listbox.classList.remove('open');
+            }
+        });
+
+        document.addEventListener('click', (e) => {
+            if (!searchInput.contains(e.target) && !listbox.contains(e.target)) {
+                listbox.classList.remove('open');
+            }
+        });
+
+        function updateHighlight(options) {
+            options.forEach((opt, i) => {
+                opt.setAttribute('data-highlighted', i === highlightedIndex);
+            });
+            if (options[highlightedIndex]) {
+                options[highlightedIndex].scrollIntoView({ block: 'nearest' });
+            }
+        }
+
+        function showDropdown(items) {
+            highlightedIndex = -1;
+            listbox.innerHTML = items.map(b => `
+                <div class="combobox-option" role="option" data-id="${b.id}" data-label="${b.label}">
+                    <div class="combobox-option-label">${b.label}</div>
+                    <div class="combobox-option-meta">${b.id.substring(0, 24)}...</div>
+                </div>
+            `).join('');
+            listbox.classList.add('open');
+
+            listbox.querySelectorAll('.combobox-option').forEach(item => {
+                item.addEventListener('click', () => {
+                    selectBorrower(item.dataset.id, item.dataset.label);
+                });
+            });
+        }
+
+        function selectBorrower(id, label) {
+            selectedBorrower = borrowers.find(b => b.id === id);
+            searchInput.value = '';
+            selectedDisplay.classList.remove('hidden');
+            selectedName.textContent = label;
+            listbox.classList.remove('open');
+
+            resetResults();
+            updateButton();
+        }
+
+        clearBtn.addEventListener('click', () => {
+            selectedBorrower = null;
+            selectedDisplay.classList.add('hidden');
+            selectedName.textContent = '';
+            resetResults();
+            updateButton();
+        });
+
+        // Threshold selection
+        thresholdBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                thresholdBtns.forEach(b => b.setAttribute('aria-checked', 'false'));
+                btn.setAttribute('aria-checked', 'true');
+                selectedThreshold = parseInt(btn.dataset.threshold);
+                resetResults();
+                updateButton();
+            });
+
+            // Keyboard navigation for radio group
+            btn.addEventListener('keydown', (e) => {
+                const btns = Array.from(thresholdBtns);
+                const idx = btns.indexOf(btn);
+                if (e.key === 'ArrowRight' || e.key === 'ArrowDown') {
+                    e.preventDefault();
+                    const next = btns[(idx + 1) % btns.length];
+                    next.focus();
+                    next.click();
+                } else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') {
+                    e.preventDefault();
+                    const prev = btns[(idx - 1 + btns.length) % btns.length];
+                    prev.focus();
+                    prev.click();
+                }
+            });
+        });
+
+        function resetResults() {
+            statusDiv.className = 'status hidden';
+            resultsPanel.classList.remove('results-panel--active');
+
+            const verdict = document.getElementById('verdict');
+            verdict.className = 'verdict verdict--ineligible';
+            document.getElementById('verdict-text').textContent = 'Awaiting Verification';
+            document.getElementById('verdict-detail').textContent = 'Select a borrower and threshold to verify eligibility';
+            verdict.querySelector('.verdict-icon').innerHTML = `
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="12" cy="12" r="10"/>
+                    <path d="M12 8v4M12 16h.01"/>
+                </svg>
+            `;
+
+            document.getElementById('proof-valid').textContent = '---';
+            document.getElementById('proof-size').textContent = '---';
+            document.getElementById('proof-gen-time').textContent = '---';
+            document.getElementById('proof-verify-time').textContent = '---';
+
+            document.getElementById('loan-section').classList.add('hidden');
+            document.getElementById('approve-status').className = 'status hidden';
+        }
+
+        function updateButton() {
+            verifyBtn.disabled = !(selectedBorrower && selectedThreshold);
+        }
+
+        // Verify
+        verifyBtn.addEventListener('click', async () => {
+            if (!selectedBorrower || !selectedThreshold) return;
+
+            verifyBtn.disabled = true;
+            verifyBtn.textContent = 'Verifying...';
+            statusDiv.className = 'status hidden';
+            resultsPanel.classList.add('results-panel--active');
+
+            try {
+                const resp = await fetch('/api/lender/verify', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        borrowerId: selectedBorrower.id,
+                        threshold: selectedThreshold
+                    })
+                });
+                const data = await resp.json();
+
+                if (data.error) {
+                    statusDiv.textContent = 'Error: ' + data.error;
+                    statusDiv.className = 'status status--error';
+                    return;
+                }
+
+                // Update verdict
+                const verdict = document.getElementById('verdict');
+                const verdictIcon = verdict.querySelector('.verdict-icon');
+
+                if (data.eligible) {
+                    verdict.className = 'verdict verdict--eligible';
+                    document.getElementById('verdict-text').textContent = 'ELIGIBLE';
+                    document.getElementById('verdict-detail').textContent = `Score meets or exceeds ${selectedThreshold}+ threshold`;
+                    verdictIcon.innerHTML = `
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                            <path d="M20 6L9 17l-5-5"/>
+                        </svg>
+                    `;
+
+                    // Show loan section
+                    const loanLimit = LOAN_LIMITS[selectedThreshold];
+                    document.getElementById('loan-section').classList.remove('hidden');
+                    document.getElementById('max-loan-display').textContent = loanLimit.label;
+                    document.getElementById('loan-amount').max = loanLimit.max;
+                    document.getElementById('loan-amount').value = Math.min(100000, loanLimit.max);
+
+                    statusDiv.textContent = 'Borrower is eligible for lending';
+                    statusDiv.className = 'status status--success';
+                } else {
+                    verdict.className = 'verdict verdict--ineligible';
+                    document.getElementById('verdict-text').textContent = 'NOT ELIGIBLE';
+                    document.getElementById('verdict-detail').textContent = `Score does not meet ${selectedThreshold}+ threshold`;
+                    verdictIcon.innerHTML = `
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                            <path d="M18 6L6 18M6 6l12 12"/>
+                        </svg>
+                    `;
+
+                    document.getElementById('loan-section').classList.add('hidden');
+
+                    statusDiv.textContent = 'Borrower does not meet threshold';
+                    statusDiv.className = 'status status--info';
+                }
+
+                // Update proof stats
+                document.getElementById('proof-valid').textContent = data.proofValid ? 'Yes' : 'No';
+                document.getElementById('proof-size').textContent = data.proofSize ? data.proofSize + ' bytes' : '---';
+                document.getElementById('proof-gen-time').textContent = data.timings?.proof_generation ?
+                    data.timings.proof_generation.toFixed(1) + ' ms' : '---';
+                document.getElementById('proof-verify-time').textContent = data.timings?.proof_verification ?
+                    data.timings.proof_verification.toFixed(1) + ' ms' : '---';
+
+            } catch (err) {
+                statusDiv.textContent = 'Network error: ' + err.message;
+                statusDiv.className = 'status status--error';
+            } finally {
+                verifyBtn.disabled = false;
+                verifyBtn.textContent = 'Check Eligibility';
+                updateButton();
+            }
+        });
+
+        // Approve loan
+        document.getElementById('approve-btn').addEventListener('click', async () => {
+            if (!selectedBorrower) return;
+
+            const approveBtn = document.getElementById('approve-btn');
+            const approveStatus = document.getElementById('approve-status');
+            const loanAmount = parseInt(document.getElementById('loan-amount').value);
+            const loanLimit = LOAN_LIMITS[selectedThreshold];
+
+            if (loanLimit && loanAmount > loanLimit.max) {
+                approveStatus.textContent = `Amount exceeds maximum ${loanLimit.label}`;
+                approveStatus.className = 'status status--error';
+                return;
+            }
+
+            approveBtn.disabled = true;
+            approveBtn.textContent = 'Recording on Ledger...';
+            approveStatus.className = 'status hidden';
+
+            try {
+                const resp = await fetch('/api/lender/approve', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        borrowerId: selectedBorrower.id,
+                        threshold: selectedThreshold,
+                        amount: loanAmount,
+                        proofHash: 'verified_proof'
+                    })
+                });
+                const data = await resp.json();
+
+                if (data.error) {
+                    approveStatus.textContent = 'Error: ' + data.error;
+                    approveStatus.className = 'status status--error';
+                } else if (data.recorded) {
+                    approveStatus.innerHTML = `
+                        <strong>Loan approved and recorded</strong><br>
+                        <span style="font-size: 13px; color: var(--ink-secondary);">
+                            Ledger time: ${data.timings.ledger_record.toFixed(1)} ms
+                        </span>
+                    `;
+                    approveStatus.className = 'status status--success';
+                } else {
+                    approveStatus.textContent = 'Failed to record on ledger';
+                    approveStatus.className = 'status status--error';
+                }
+
+            } catch (err) {
+                approveStatus.textContent = 'Connection error: ' + err.message;
+                approveStatus.className = 'status status--error';
+            } finally {
+                approveBtn.disabled = false;
+                approveBtn.textContent = 'Approve & Record on Ledger';
+            }
+        });
+
+        // Demo clean mode
+        if (window.location.search.includes('demo=clean')) {
+            document.body.classList.add('demo-clean');
+        }
+    </script>
+</body>
+</html>

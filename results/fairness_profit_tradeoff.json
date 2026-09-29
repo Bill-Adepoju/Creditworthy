@@ -1,0 +1,824 @@
+{
+  "timestamp": "2026-08-25T22:28:06.294726",
+  "task": "T47",
+  "title": "Fairness-Profit Exchange Rate",
+  "positive_class": "DEFAULT (target=1)",
+  "random_state": 42,
+  "profit_model": {
+    "revenue_per_performing": 1.0,
+    "loss_given_default": 3.0
+  },
+  "profit_optimal": {
+    "threshold": 0.53,
+    "profit": 294.0,
+    "profit_pct": 100.0,
+    "fpr_ratio": 2.68,
+    "n_approved": 602
+  },
+  "pareto_frontier": [
+    {
+      "threshold": 0.53,
+      "profit": 294.0,
+      "n_approved": 602,
+      "fpr_savings": 0.2727,
+      "fpr_other": 0.1017,
+      "fpr_ratio": 2.68,
+      "profit_pct": 100.0
+    },
+    {
+      "threshold": 0.5,
+      "profit": 285.0,
+      "n_approved": 569,
+      "fpr_savings": 0.3207,
+      "fpr_other": 0.1525,
+      "fpr_ratio": 2.1,
+      "profit_pct": 96.9
+    },
+    {
+      "threshold": 0.51,
+      "profit": 285.0,
+      "n_approved": 577,
+      "fpr_savings": 0.3106,
+      "fpr_other": 0.1356,
+      "fpr_ratio": 2.29,
+      "profit_pct": 96.9
+    },
+    {
+      "threshold": 0.47,
+      "profit": 273.0,
+      "n_approved": 521,
+      "fpr_savings": 0.3939,
+      "fpr_other": 0.1949,
+      "fpr_ratio": 2.02,
+      "profit_pct": 92.9
+    },
+    {
+      "threshold": 0.46,
+      "profit": 267.0,
+      "n_approved": 511,
+      "fpr_savings": 0.4116,
+      "fpr_other": 0.2119,
+      "fpr_ratio": 1.94,
+      "profit_pct": 90.8
+    },
+    {
+      "threshold": 0.45,
+      "profit": 263.0,
+      "n_approved": 491,
+      "fpr_savings": 0.4419,
+      "fpr_other": 0.2373,
+      "fpr_ratio": 1.86,
+      "profit_pct": 89.5
+    },
+    {
+      "threshold": 0.41,
+      "profit": 237.0,
+      "n_approved": 397,
+      "fpr_savings": 0.5631,
+      "fpr_other": 0.322,
+      "fpr_ratio": 1.75,
+      "profit_pct": 80.6
+    },
+    {
+      "threshold": 0.4,
+      "profit": 217.0,
+      "n_approved": 373,
+      "fpr_savings": 0.5909,
+      "fpr_other": 0.339,
+      "fpr_ratio": 1.74,
+      "profit_pct": 73.8
+    },
+    {
+      "threshold": 0.38,
+      "profit": 188.0,
+      "n_approved": 320,
+      "fpr_savings": 0.6641,
+      "fpr_other": 0.3814,
+      "fpr_ratio": 1.74,
+      "profit_pct": 63.9
+    },
+    {
+      "threshold": 0.37,
+      "profit": 173.0,
+      "n_approved": 293,
+      "fpr_savings": 0.6944,
+      "fpr_other": 0.3983,
+      "fpr_ratio": 1.74,
+      "profit_pct": 58.8
+    },
+    {
+      "threshold": 0.35,
+      "profit": 142.0,
+      "n_approved": 238,
+      "fpr_savings": 0.7803,
+      "fpr_other": 0.4492,
+      "fpr_ratio": 1.74,
+      "profit_pct": 48.3
+    },
+    {
+      "threshold": 0.32,
+      "profit": 102.0,
+      "n_approved": 170,
+      "fpr_savings": 0.8561,
+      "fpr_other": 0.5169,
+      "fpr_ratio": 1.66,
+      "profit_pct": 34.7
+    },
+    {
+      "threshold": 0.3,
+      "profit": 82.0,
+      "n_approved": 138,
+      "fpr_savings": 0.899,
+      "fpr_other": 0.5678,
+      "fpr_ratio": 1.58,
+      "profit_pct": 27.9
+    },
+    {
+      "threshold": 0.29,
+      "profit": 70.0,
+      "n_approved": 126,
+      "fpr_savings": 0.9192,
+      "fpr_other": 0.5847,
+      "fpr_ratio": 1.57,
+      "profit_pct": 23.8
+    },
+    {
+      "threshold": 0.28,
+      "profit": 57.0,
+      "n_approved": 113,
+      "fpr_savings": 0.9293,
+      "fpr_other": 0.6102,
+      "fpr_ratio": 1.52,
+      "profit_pct": 19.4
+    },
+    {
+      "threshold": 0.27,
+      "profit": 54.0,
+      "n_approved": 106,
+      "fpr_savings": 0.9343,
+      "fpr_other": 0.6356,
+      "fpr_ratio": 1.47,
+      "profit_pct": 18.4
+    },
+    {
+      "threshold": 0.26,
+      "profit": 42.0,
+      "n_approved": 94,
+      "fpr_savings": 0.9495,
+      "fpr_other": 0.6525,
+      "fpr_ratio": 1.46,
+      "profit_pct": 14.3
+    },
+    {
+      "threshold": 0.24,
+      "profit": 41.0,
+      "n_approved": 77,
+      "fpr_savings": 0.9621,
+      "fpr_other": 0.6949,
+      "fpr_ratio": 1.38,
+      "profit_pct": 13.9
+    },
+    {
+      "threshold": 0.23,
+      "profit": 36.0,
+      "n_approved": 64,
+      "fpr_savings": 0.9697,
+      "fpr_other": 0.7458,
+      "fpr_ratio": 1.3,
+      "profit_pct": 12.2
+    },
+    {
+      "threshold": 0.21,
+      "profit": 32.0,
+      "n_approved": 48,
+      "fpr_savings": 0.9848,
+      "fpr_other": 0.7881,
+      "fpr_ratio": 1.25,
+      "profit_pct": 10.9
+    },
+    {
+      "threshold": 0.2,
+      "profit": 25.0,
+      "n_approved": 37,
+      "fpr_savings": 0.9848,
+      "fpr_other": 0.839,
+      "fpr_ratio": 1.17,
+      "profit_pct": 8.5
+    },
+    {
+      "threshold": 0.19,
+      "profit": 19.0,
+      "n_approved": 31,
+      "fpr_savings": 0.9899,
+      "fpr_other": 0.8644,
+      "fpr_ratio": 1.15,
+      "profit_pct": 6.5
+    },
+    {
+      "threshold": 0.16,
+      "profit": 17.0,
+      "n_approved": 17,
+      "fpr_savings": 0.9975,
+      "fpr_other": 0.9237,
+      "fpr_ratio": 1.08,
+      "profit_pct": 5.8
+    },
+    {
+      "threshold": 0.15,
+      "profit": 15.0,
+      "n_approved": 15,
+      "fpr_savings": 0.9975,
+      "fpr_other": 0.9407,
+      "fpr_ratio": 1.06,
+      "profit_pct": 5.1
+    },
+    {
+      "threshold": 0.14,
+      "profit": 13.0,
+      "n_approved": 13,
+      "fpr_savings": 0.9975,
+      "fpr_other": 0.9576,
+      "fpr_ratio": 1.04,
+      "profit_pct": 4.4
+    },
+    {
+      "threshold": 0.13,
+      "profit": 10.0,
+      "n_approved": 10,
+      "fpr_savings": 0.9975,
+      "fpr_other": 0.9661,
+      "fpr_ratio": 1.03,
+      "profit_pct": 3.4
+    },
+    {
+      "threshold": 0.12,
+      "profit": 7.0,
+      "n_approved": 7,
+      "fpr_savings": 0.9975,
+      "fpr_other": 0.9831,
+      "fpr_ratio": 1.01,
+      "profit_pct": 2.4
+    },
+    {
+      "threshold": 0.11,
+      "profit": 6.0,
+      "n_approved": 6,
+      "fpr_savings": 0.9975,
+      "fpr_other": 0.9915,
+      "fpr_ratio": 1.01,
+      "profit_pct": 2.0
+    },
+    {
+      "threshold": 0.1,
+      "profit": 4.0,
+      "n_approved": 4,
+      "fpr_savings": 0.9975,
+      "fpr_other": 0.9915,
+      "fpr_ratio": 1.01,
+      "profit_pct": 1.4
+    }
+  ],
+  "n_pareto_points": 29,
+  "exchange_rate_analysis": {
+    "at_95pct_profit": {
+      "threshold": 0.5,
+      "profit_pct": 96.9,
+      "fpr_ratio": 2.1,
+      "profit_sacrifice": 3.1,
+      "ratio_improvement": 0.58
+    },
+    "at_90pct_profit": {
+      "threshold": 0.46,
+      "profit_pct": 90.8,
+      "fpr_ratio": 1.94,
+      "profit_sacrifice": 9.2,
+      "ratio_improvement": 0.74
+    },
+    "exchange_rate_profit_per_ratio": 36.5
+  },
+  "key_finding": "The profit surface is flat in the near-optimal region while the fairness surface is not. At profit-optimal threshold (0.53), FPR ratio is 2.68x. Sacrificing 9.2% profit (threshold 0.46) reduces the ratio to 1.94x \u2014 a 28% fairness improvement for <9% profit cost.",
+  "all_points": [
+    {
+      "threshold": 0.1,
+      "profit": 4.0,
+      "n_approved": 4,
+      "fpr_savings": 0.9975,
+      "fpr_other": 0.9915,
+      "fpr_ratio": 1.01,
+      "profit_pct": 1.4
+    },
+    {
+      "threshold": 0.11,
+      "profit": 6.0,
+      "n_approved": 6,
+      "fpr_savings": 0.9975,
+      "fpr_other": 0.9915,
+      "fpr_ratio": 1.01,
+      "profit_pct": 2.0
+    },
+    {
+      "threshold": 0.12,
+      "profit": 7.0,
+      "n_approved": 7,
+      "fpr_savings": 0.9975,
+      "fpr_other": 0.9831,
+      "fpr_ratio": 1.01,
+      "profit_pct": 2.4
+    },
+    {
+      "threshold": 0.13,
+      "profit": 10.0,
+      "n_approved": 10,
+      "fpr_savings": 0.9975,
+      "fpr_other": 0.9661,
+      "fpr_ratio": 1.03,
+      "profit_pct": 3.4
+    },
+    {
+      "threshold": 0.14,
+      "profit": 13.0,
+      "n_approved": 13,
+      "fpr_savings": 0.9975,
+      "fpr_other": 0.9576,
+      "fpr_ratio": 1.04,
+      "profit_pct": 4.4
+    },
+    {
+      "threshold": 0.15,
+      "profit": 15.0,
+      "n_approved": 15,
+      "fpr_savings": 0.9975,
+      "fpr_other": 0.9407,
+      "fpr_ratio": 1.06,
+      "profit_pct": 5.1
+    },
+    {
+      "threshold": 0.16,
+      "profit": 17.0,
+      "n_approved": 17,
+      "fpr_savings": 0.9975,
+      "fpr_other": 0.9237,
+      "fpr_ratio": 1.08,
+      "profit_pct": 5.8
+    },
+    {
+      "threshold": 0.17,
+      "profit": 16.0,
+      "n_approved": 20,
+      "fpr_savings": 0.9975,
+      "fpr_other": 0.9068,
+      "fpr_ratio": 1.1,
+      "profit_pct": 5.4
+    },
+    {
+      "threshold": 0.18,
+      "profit": 15.0,
+      "n_approved": 23,
+      "fpr_savings": 0.9975,
+      "fpr_other": 0.8898,
+      "fpr_ratio": 1.12,
+      "profit_pct": 5.1
+    },
+    {
+      "threshold": 0.19,
+      "profit": 19.0,
+      "n_approved": 31,
+      "fpr_savings": 0.9899,
+      "fpr_other": 0.8644,
+      "fpr_ratio": 1.15,
+      "profit_pct": 6.5
+    },
+    {
+      "threshold": 0.2,
+      "profit": 25.0,
+      "n_approved": 37,
+      "fpr_savings": 0.9848,
+      "fpr_other": 0.839,
+      "fpr_ratio": 1.17,
+      "profit_pct": 8.5
+    },
+    {
+      "threshold": 0.21,
+      "profit": 32.0,
+      "n_approved": 48,
+      "fpr_savings": 0.9848,
+      "fpr_other": 0.7881,
+      "fpr_ratio": 1.25,
+      "profit_pct": 10.9
+    },
+    {
+      "threshold": 0.22,
+      "profit": 31.0,
+      "n_approved": 55,
+      "fpr_savings": 0.9798,
+      "fpr_other": 0.7627,
+      "fpr_ratio": 1.28,
+      "profit_pct": 10.5
+    },
+    {
+      "threshold": 0.23,
+      "profit": 36.0,
+      "n_approved": 64,
+      "fpr_savings": 0.9697,
+      "fpr_other": 0.7458,
+      "fpr_ratio": 1.3,
+      "profit_pct": 12.2
+    },
+    {
+      "threshold": 0.24,
+      "profit": 41.0,
+      "n_approved": 77,
+      "fpr_savings": 0.9621,
+      "fpr_other": 0.6949,
+      "fpr_ratio": 1.38,
+      "profit_pct": 13.9
+    },
+    {
+      "threshold": 0.25,
+      "profit": 40.0,
+      "n_approved": 84,
+      "fpr_savings": 0.9545,
+      "fpr_other": 0.678,
+      "fpr_ratio": 1.41,
+      "profit_pct": 13.6
+    },
+    {
+      "threshold": 0.26,
+      "profit": 42.0,
+      "n_approved": 94,
+      "fpr_savings": 0.9495,
+      "fpr_other": 0.6525,
+      "fpr_ratio": 1.46,
+      "profit_pct": 14.3
+    },
+    {
+      "threshold": 0.27,
+      "profit": 54.0,
+      "n_approved": 106,
+      "fpr_savings": 0.9343,
+      "fpr_other": 0.6356,
+      "fpr_ratio": 1.47,
+      "profit_pct": 18.4
+    },
+    {
+      "threshold": 0.28,
+      "profit": 57.0,
+      "n_approved": 113,
+      "fpr_savings": 0.9293,
+      "fpr_other": 0.6102,
+      "fpr_ratio": 1.52,
+      "profit_pct": 19.4
+    },
+    {
+      "threshold": 0.29,
+      "profit": 70.0,
+      "n_approved": 126,
+      "fpr_savings": 0.9192,
+      "fpr_other": 0.5847,
+      "fpr_ratio": 1.57,
+      "profit_pct": 23.8
+    },
+    {
+      "threshold": 0.3,
+      "profit": 82.0,
+      "n_approved": 138,
+      "fpr_savings": 0.899,
+      "fpr_other": 0.5678,
+      "fpr_ratio": 1.58,
+      "profit_pct": 27.9
+    },
+    {
+      "threshold": 0.31,
+      "profit": 94.0,
+      "n_approved": 158,
+      "fpr_savings": 0.8813,
+      "fpr_other": 0.5169,
+      "fpr_ratio": 1.7,
+      "profit_pct": 32.0
+    },
+    {
+      "threshold": 0.32,
+      "profit": 102.0,
+      "n_approved": 170,
+      "fpr_savings": 0.8561,
+      "fpr_other": 0.5169,
+      "fpr_ratio": 1.66,
+      "profit_pct": 34.7
+    },
+    {
+      "threshold": 0.33,
+      "profit": 120.0,
+      "n_approved": 192,
+      "fpr_savings": 0.8359,
+      "fpr_other": 0.4746,
+      "fpr_ratio": 1.76,
+      "profit_pct": 40.8
+    },
+    {
+      "threshold": 0.34,
+      "profit": 133.0,
+      "n_approved": 213,
+      "fpr_savings": 0.8081,
+      "fpr_other": 0.4576,
+      "fpr_ratio": 1.77,
+      "profit_pct": 45.2
+    },
+    {
+      "threshold": 0.35,
+      "profit": 142.0,
+      "n_approved": 238,
+      "fpr_savings": 0.7803,
+      "fpr_other": 0.4492,
+      "fpr_ratio": 1.74,
+      "profit_pct": 48.3
+    },
+    {
+      "threshold": 0.36,
+      "profit": 159.0,
+      "n_approved": 259,
+      "fpr_savings": 0.7424,
+      "fpr_other": 0.4237,
+      "fpr_ratio": 1.75,
+      "profit_pct": 54.1
+    },
+    {
+      "threshold": 0.37,
+      "profit": 173.0,
+      "n_approved": 293,
+      "fpr_savings": 0.6944,
+      "fpr_other": 0.3983,
+      "fpr_ratio": 1.74,
+      "profit_pct": 58.8
+    },
+    {
+      "threshold": 0.38,
+      "profit": 188.0,
+      "n_approved": 320,
+      "fpr_savings": 0.6641,
+      "fpr_other": 0.3814,
+      "fpr_ratio": 1.74,
+      "profit_pct": 63.9
+    },
+    {
+      "threshold": 0.39,
+      "profit": 198.0,
+      "n_approved": 350,
+      "fpr_savings": 0.6263,
+      "fpr_other": 0.3475,
+      "fpr_ratio": 1.8,
+      "profit_pct": 67.3
+    },
+    {
+      "threshold": 0.4,
+      "profit": 217.0,
+      "n_approved": 373,
+      "fpr_savings": 0.5909,
+      "fpr_other": 0.339,
+      "fpr_ratio": 1.74,
+      "profit_pct": 73.8
+    },
+    {
+      "threshold": 0.41,
+      "profit": 237.0,
+      "n_approved": 397,
+      "fpr_savings": 0.5631,
+      "fpr_other": 0.322,
+      "fpr_ratio": 1.75,
+      "profit_pct": 80.6
+    },
+    {
+      "threshold": 0.42,
+      "profit": 245.0,
+      "n_approved": 421,
+      "fpr_savings": 0.5404,
+      "fpr_other": 0.2881,
+      "fpr_ratio": 1.88,
+      "profit_pct": 83.3
+    },
+    {
+      "threshold": 0.43,
+      "profit": 253.0,
+      "n_approved": 453,
+      "fpr_savings": 0.4949,
+      "fpr_other": 0.2627,
+      "fpr_ratio": 1.88,
+      "profit_pct": 86.1
+    },
+    {
+      "threshold": 0.44,
+      "profit": 259.0,
+      "n_approved": 471,
+      "fpr_savings": 0.4747,
+      "fpr_other": 0.2458,
+      "fpr_ratio": 1.93,
+      "profit_pct": 88.1
+    },
+    {
+      "threshold": 0.45,
+      "profit": 263.0,
+      "n_approved": 491,
+      "fpr_savings": 0.4419,
+      "fpr_other": 0.2373,
+      "fpr_ratio": 1.86,
+      "profit_pct": 89.5
+    },
+    {
+      "threshold": 0.46,
+      "profit": 267.0,
+      "n_approved": 511,
+      "fpr_savings": 0.4116,
+      "fpr_other": 0.2119,
+      "fpr_ratio": 1.94,
+      "profit_pct": 90.8
+    },
+    {
+      "threshold": 0.47,
+      "profit": 273.0,
+      "n_approved": 521,
+      "fpr_savings": 0.3939,
+      "fpr_other": 0.1949,
+      "fpr_ratio": 2.02,
+      "profit_pct": 92.9
+    },
+    {
+      "threshold": 0.48,
+      "profit": 278.0,
+      "n_approved": 534,
+      "fpr_savings": 0.3788,
+      "fpr_other": 0.161,
+      "fpr_ratio": 2.35,
+      "profit_pct": 94.6
+    },
+    {
+      "threshold": 0.49,
+      "profit": 276.0,
+      "n_approved": 548,
+      "fpr_savings": 0.3586,
+      "fpr_other": 0.1525,
+      "fpr_ratio": 2.35,
+      "profit_pct": 93.9
+    },
+    {
+      "threshold": 0.5,
+      "profit": 285.0,
+      "n_approved": 569,
+      "fpr_savings": 0.3207,
+      "fpr_other": 0.1525,
+      "fpr_ratio": 2.1,
+      "profit_pct": 96.9
+    },
+    {
+      "threshold": 0.51,
+      "profit": 285.0,
+      "n_approved": 577,
+      "fpr_savings": 0.3106,
+      "fpr_other": 0.1356,
+      "fpr_ratio": 2.29,
+      "profit_pct": 96.9
+    },
+    {
+      "threshold": 0.52,
+      "profit": 285.0,
+      "n_approved": 589,
+      "fpr_savings": 0.298,
+      "fpr_other": 0.1102,
+      "fpr_ratio": 2.7,
+      "profit_pct": 96.9
+    },
+    {
+      "threshold": 0.53,
+      "profit": 294.0,
+      "n_approved": 602,
+      "fpr_savings": 0.2727,
+      "fpr_other": 0.1017,
+      "fpr_ratio": 2.68,
+      "profit_pct": 100.0
+    },
+    {
+      "threshold": 0.54,
+      "profit": 284.0,
+      "n_approved": 616,
+      "fpr_savings": 0.2626,
+      "fpr_other": 0.0847,
+      "fpr_ratio": 3.1,
+      "profit_pct": 96.6
+    },
+    {
+      "threshold": 0.55,
+      "profit": 272.0,
+      "n_approved": 628,
+      "fpr_savings": 0.2525,
+      "fpr_other": 0.0763,
+      "fpr_ratio": 3.31,
+      "profit_pct": 92.5
+    },
+    {
+      "threshold": 0.56,
+      "profit": 274.0,
+      "n_approved": 638,
+      "fpr_savings": 0.2374,
+      "fpr_other": 0.0763,
+      "fpr_ratio": 3.11,
+      "profit_pct": 93.2
+    },
+    {
+      "threshold": 0.57,
+      "profit": 280.0,
+      "n_approved": 652,
+      "fpr_savings": 0.2222,
+      "fpr_other": 0.0593,
+      "fpr_ratio": 3.75,
+      "profit_pct": 95.2
+    },
+    {
+      "threshold": 0.58,
+      "profit": 280.0,
+      "n_approved": 660,
+      "fpr_savings": 0.2121,
+      "fpr_other": 0.0508,
+      "fpr_ratio": 4.17,
+      "profit_pct": 95.2
+    },
+    {
+      "threshold": 0.59,
+      "profit": 285.0,
+      "n_approved": 669,
+      "fpr_savings": 0.202,
+      "fpr_other": 0.0424,
+      "fpr_ratio": 4.77,
+      "profit_pct": 96.9
+    },
+    {
+      "threshold": 0.6,
+      "profit": 274.0,
+      "n_approved": 678,
+      "fpr_savings": 0.1944,
+      "fpr_other": 0.0339,
+      "fpr_ratio": 5.74,
+      "profit_pct": 93.2
+    },
+    {
+      "threshold": 0.61,
+      "profit": 269.0,
+      "n_approved": 689,
+      "fpr_savings": 0.1768,
+      "fpr_other": 0.0339,
+      "fpr_ratio": 5.21,
+      "profit_pct": 91.5
+    },
+    {
+      "threshold": 0.62,
+      "profit": 278.0,
+      "n_approved": 710,
+      "fpr_savings": 0.1641,
+      "fpr_other": 0.0254,
+      "fpr_ratio": 6.46,
+      "profit_pct": 94.6
+    },
+    {
+      "threshold": 0.63,
+      "profit": 262.0,
+      "n_approved": 722,
+      "fpr_savings": 0.154,
+      "fpr_other": 0.0254,
+      "fpr_ratio": 6.06,
+      "profit_pct": 89.1
+    },
+    {
+      "threshold": 0.64,
+      "profit": 255.0,
+      "n_approved": 735,
+      "fpr_savings": 0.1414,
+      "fpr_other": 0.0169,
+      "fpr_ratio": 8.34,
+      "profit_pct": 86.7
+    },
+    {
+      "threshold": 0.65,
+      "profit": 240.0,
+      "n_approved": 752,
+      "fpr_savings": 0.1313,
+      "fpr_other": 0.0169,
+      "fpr_ratio": 7.75,
+      "profit_pct": 81.6
+    },
+    {
+      "threshold": 0.66,
+      "profit": 241.0,
+      "n_approved": 761,
+      "fpr_savings": 0.1212,
+      "fpr_other": 0.0085,
+      "fpr_ratio": 14.3,
+      "profit_pct": 82.0
+    },
+    {
+      "threshold": 0.67,
+      "profit": 228.0,
+      "n_approved": 768,
+      "fpr_savings": 0.1162,
+      "fpr_other": 0.0085,
+      "fpr_ratio": 13.71,
+      "profit_pct": 77.6
+    }
+  ]
+}

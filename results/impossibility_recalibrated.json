@@ -1,0 +1,273 @@
+{
+  "timestamp": "2026-08-26T23:48:34.172163",
+  "task": "T51",
+  "title": "Recalibrated Impossibility Analysis",
+  "canonical_test_size": 876,
+  "random_state": 42,
+  "calibration_comparison": {
+    "uncalibrated": {
+      "brier_score": 0.2084,
+      "ece": 0.2358,
+      "bins": [
+        {
+          "bin": 0,
+          "predicted": 0.0695,
+          "observed": 0.0,
+          "count": 6,
+          "error": 0.0695
+        },
+        {
+          "bin": 1,
+          "predicted": 0.1595,
+          "observed": 0.075,
+          "count": 40,
+          "error": 0.0845
+        },
+        {
+          "bin": 2,
+          "predicted": 0.2551,
+          "observed": 0.1132,
+          "count": 106,
+          "error": 0.1419
+        },
+        {
+          "bin": 3,
+          "predicted": 0.3555,
+          "observed": 0.115,
+          "count": 226,
+          "error": 0.2405
+        },
+        {
+          "bin": 4,
+          "predicted": 0.4433,
+          "observed": 0.164,
+          "count": 189,
+          "error": 0.2793
+        },
+        {
+          "bin": 5,
+          "predicted": 0.5525,
+          "observed": 0.2845,
+          "count": 116,
+          "error": 0.2681
+        },
+        {
+          "bin": 6,
+          "predicted": 0.6473,
+          "observed": 0.3717,
+          "count": 113,
+          "error": 0.2756
+        },
+        {
+          "bin": 7,
+          "predicted": 0.7429,
+          "observed": 0.4423,
+          "count": 52,
+          "error": 0.3006
+        },
+        {
+          "bin": 8,
+          "predicted": 0.8376,
+          "observed": 0.76,
+          "count": 25,
+          "error": 0.0776
+        },
+        {
+          "bin": 9,
+          "predicted": 0.9319,
+          "observed": 0.6667,
+          "count": 3,
+          "error": 0.2652
+        }
+      ]
+    },
+    "isotonic": {
+      "brier_score": 0.1484,
+      "ece": 0.037,
+      "bins": [
+        {
+          "bin": 0,
+          "predicted": 0.0623,
+          "observed": 0.129,
+          "count": 93,
+          "error": 0.0668
+        },
+        {
+          "bin": 1,
+          "predicted": 0.1468,
+          "observed": 0.1178,
+          "count": 450,
+          "error": 0.029
+        },
+        {
+          "bin": 2,
+          "predicted": 0.2388,
+          "observed": 0.2642,
+          "count": 159,
+          "error": 0.0253
+        },
+        {
+          "bin": 3,
+          "predicted": 0.3487,
+          "observed": 0.4022,
+          "count": 92,
+          "error": 0.0534
+        },
+        {
+          "bin": 4,
+          "predicted": 0.4474,
+          "observed": 0.4773,
+          "count": 44,
+          "error": 0.0299
+        },
+        {
+          "bin": 5,
+          "predicted": 0.5632,
+          "observed": 0.5,
+          "count": 12,
+          "error": 0.0632
+        },
+        {
+          "bin": 6,
+          "predicted": 0.6743,
+          "observed": 0.7778,
+          "count": 18,
+          "error": 0.1035
+        },
+        {
+          "bin": 7,
+          "predicted": 0.7304,
+          "observed": 0.7143,
+          "count": 7,
+          "error": 0.0161
+        },
+        {
+          "bin": 8,
+          "predicted": 0.8455,
+          "observed": 1.0,
+          "count": 1,
+          "error": 0.1545
+        }
+      ]
+    },
+    "platt": {
+      "brier_score": 0.1495,
+      "ece": 0.0377,
+      "bins": [
+        {
+          "bin": 0,
+          "predicted": 0.0746,
+          "observed": 0.134,
+          "count": 97,
+          "error": 0.0594
+        },
+        {
+          "bin": 1,
+          "predicted": 0.1506,
+          "observed": 0.1169,
+          "count": 419,
+          "error": 0.0337
+        },
+        {
+          "bin": 2,
+          "predicted": 0.2432,
+          "observed": 0.2486,
+          "count": 173,
+          "error": 0.0054
+        },
+        {
+          "bin": 3,
+          "predicted": 0.3391,
+          "observed": 0.3866,
+          "count": 119,
+          "error": 0.0475
+        },
+        {
+          "bin": 4,
+          "predicted": 0.4432,
+          "observed": 0.4878,
+          "count": 41,
+          "error": 0.0446
+        },
+        {
+          "bin": 5,
+          "predicted": 0.5483,
+          "observed": 0.7647,
+          "count": 17,
+          "error": 0.2164
+        },
+        {
+          "bin": 6,
+          "predicted": 0.6317,
+          "observed": 0.7143,
+          "count": 7,
+          "error": 0.0826
+        },
+        {
+          "bin": 7,
+          "predicted": 0.712,
+          "observed": 0.5,
+          "count": 2,
+          "error": 0.212
+        },
+        {
+          "bin": 9,
+          "predicted": 0.9137,
+          "observed": 1.0,
+          "count": 1,
+          "error": 0.0863
+        }
+      ]
+    },
+    "best_method": "isotonic",
+    "best_ece": 0.037,
+    "calibration_threshold": 0.05,
+    "well_calibrated": true
+  },
+  "per_group_calibration": {
+    "savings_ece": 0.032,
+    "other_ece": 0.0278
+  },
+  "base_rates": {
+    "savings": {
+      "n": 517,
+      "default_rate": 0.2398
+    },
+    "other": {
+      "n": 132,
+      "default_rate": 0.1061
+    },
+    "ratio": 2.26
+  },
+  "impossibility_demonstration": {
+    "method": "empirical (FPR equalization test)",
+    "fpr_equalizing_thresholds": {
+      "thresh_savings": 0.4,
+      "thresh_other": 0.25,
+      "fpr_gap": 0.0001,
+      "fpr_savings": 0.0763,
+      "fpr_other": 0.0763
+    },
+    "fnr_at_equal_fpr": {
+      "savings": 0.6774,
+      "other": 0.7857,
+      "gap": 0.1083,
+      "other_ci_95": [
+        0.5241,
+        0.9243
+      ],
+      "other_n_defaulters": 14
+    },
+    "finding": "Equalizing FPR forces FNR gap to 10.8%"
+  },
+  "conclusion": {
+    "calibration_achieved": true,
+    "framing": "Full Chouldechova/Kleinberg framing available: when base rates differ, no calibrated classifier can simultaneously equalize FPR and FNR.",
+    "t46_contradiction_resolved": true,
+    "flags_and_prose_now_agree": true
+  },
+  "citations": [
+    "Chouldechova, A. (2017). Fair prediction with disparate impact. Big Data, 5(2), 153-163.",
+    "Kleinberg, J., Mullainathan, S. & Raghavan, M. (2017). Inherent trade-offs in fair risk scores. ITCS 2017."
+  ]
+}

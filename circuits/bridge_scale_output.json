@@ -1,0 +1,52 @@
+{
+  "summary": {
+    "total_attempts": 1000,
+    "proofs_generated": 374,
+    "proofs_verified": 374,
+    "correctly_rejected": 626,
+    "unexpected_failures": 0,
+    "timing": {
+      "total_seconds": 1174.642,
+      "proofs_per_second": 0.3183948811637929,
+      "gen_mean_ms": 883.0775401069519,
+      "gen_p50_ms": 119,
+      "gen_p95_ms": 2172,
+      "ver_mean_ms": 11.767379679144385,
+      "ver_p50_ms": 11,
+      "ver_p95_ms": 14
+    },
+    "accuracy": 100
+  },
+  "threshold_breakdown": {
+    "400": {
+      "attempts": 200,
+      "passed": 156,
+      "rejected": 44,
+      "unexpected": 0
+    },
+    "500": {
+      "attempts": 200,
+      "passed": 117,
+      "rejected": 83,
+      "unexpected": 0
+    },
+    "600": {
+      "attempts": 200,
+      "passed": 72,
+      "rejected": 128,
+      "unexpected": 0
+    },
+    "700": {
+      "attempts": 200,
+      "passed": 21,
+      "rejected": 179,
+      "unexpected": 0
+    },
+    "800": {
+      "attempts": 200,
+      "passed": 8,
+      "rejected": 192,
+      "unexpected": 0
+    }
+  }
+}

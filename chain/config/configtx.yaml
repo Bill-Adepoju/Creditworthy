@@ -1,0 +1,226 @@
+# Channel configuration for ZK Credit Scoring Consortium
+# T31a: Raft ordering, 3 endorsers + 1 read-only observer
+
+Organizations:
+  - &OrdererOrg
+    Name: OrdererOrg
+    ID: OrdererMSP
+    MSPDir: crypto-config/ordererOrganizations/orderer.credit.ng/msp
+    Policies:
+      Readers:
+        Type: Signature
+        Rule: "OR('OrdererMSP.member')"
+      Writers:
+        Type: Signature
+        Rule: "OR('OrdererMSP.member')"
+      Admins:
+        Type: Signature
+        Rule: "OR('OrdererMSP.admin')"
+
+  - &CommercialBankA
+    Name: CommercialBankAMSP
+    ID: CommercialBankAMSP
+    MSPDir: crypto-config/peerOrganizations/commercialbanka.credit.ng/msp
+    Policies:
+      Readers:
+        Type: Signature
+        Rule: "OR('CommercialBankAMSP.admin', 'CommercialBankAMSP.peer', 'CommercialBankAMSP.client')"
+      Writers:
+        Type: Signature
+        Rule: "OR('CommercialBankAMSP.admin', 'CommercialBankAMSP.client')"
+      Admins:
+        Type: Signature
+        Rule: "OR('CommercialBankAMSP.admin')"
+      Endorsement:
+        Type: Signature
+        Rule: "OR('CommercialBankAMSP.peer')"
+    AnchorPeers:
+      - Host: peer0.commercialbanka.credit.ng
+        Port: 7051
+
+  - &MicrofinanceB
+    Name: MicrofinanceBMSP
+    ID: MicrofinanceBMSP
+    MSPDir: crypto-config/peerOrganizations/microfinanceb.credit.ng/msp
+    Policies:
+      Readers:
+        Type: Signature
+        Rule: "OR('MicrofinanceBMSP.admin', 'MicrofinanceBMSP.peer', 'MicrofinanceBMSP.client')"
+      Writers:
+        Type: Signature
+        Rule: "OR('MicrofinanceBMSP.admin', 'MicrofinanceBMSP.client')"
+      Admins:
+        Type: Signature
+        Rule: "OR('MicrofinanceBMSP.admin')"
+      Endorsement:
+        Type: Signature
+        Rule: "OR('MicrofinanceBMSP.peer')"
+    AnchorPeers:
+      - Host: peer0.microfinanceb.credit.ng
+        Port: 8051
+
+  - &FintechC
+    Name: FintechCMSP
+    ID: FintechCMSP
+    MSPDir: crypto-config/peerOrganizations/fintechc.credit.ng/msp
+    Policies:
+      Readers:
+        Type: Signature
+        Rule: "OR('FintechCMSP.admin', 'FintechCMSP.peer', 'FintechCMSP.client')"
+      Writers:
+        Type: Signature
+        Rule: "OR('FintechCMSP.admin', 'FintechCMSP.client')"
+      Admins:
+        Type: Signature
+        Rule: "OR('FintechCMSP.admin')"
+      Endorsement:
+        Type: Signature
+        Rule: "OR('FintechCMSP.peer')"
+    AnchorPeers:
+      - Host: peer0.fintechc.credit.ng
+        Port: 9051
+
+  # Regulatory Observer - READ-ONLY
+  # Note: NO Endorsement policy - this org cannot endorse transactions
+  # Implements embedded supervision (Auer 2022) from seminar section 3.4.3
+  - &RegulatoryObserver
+    Name: RegulatoryObserverMSP
+    ID: RegulatoryObserverMSP
+    MSPDir: crypto-config/peerOrganizations/regulator.credit.ng/msp
+    Policies:
+      Readers:
+        Type: Signature
+        Rule: "OR('RegulatoryObserverMSP.admin', 'RegulatoryObserverMSP.peer', 'RegulatoryObserverMSP.client')"
+      # Writers restricted - can only read, not write
+      Writers:
+        Type: Signature
+        Rule: "OR('RegulatoryObserverMSP.admin')"
+      Admins:
+        Type: Signature
+        Rule: "OR('RegulatoryObserverMSP.admin')"
+      # NO Endorsement policy - observer cannot endorse
+    AnchorPeers:
+      - Host: peer0.regulator.credit.ng
+        Port: 10051
+
+Capabilities:
+  Channel: &ChannelCapabilities
+    V2_0: true
+  Orderer: &OrdererCapabilities
+    V2_0: true
+  Application: &ApplicationCapabilities
+    V2_0: true
+
+Application: &ApplicationDefaults
+  Organizations:
+  Policies:
+    Readers:
+      Type: ImplicitMeta
+      Rule: "ANY Readers"
+    Writers:
+      Type: ImplicitMeta
+      Rule: "ANY Writers"
+    Admins:
+      Type: ImplicitMeta
+      Rule: "MAJORITY Admins"
+    LifecycleEndorsement:
+      Type: ImplicitMeta
+      Rule: "MAJORITY Endorsement"
+    Endorsement:
+      Type: ImplicitMeta
+      Rule: "MAJORITY Endorsement"
+  Capabilities:
+    <<: *ApplicationCapabilities
+
+Orderer: &OrdererDefaults
+  OrdererType: etcdraft
+  Addresses:
+    - orderer.orderer.credit.ng:7050
+  BatchTimeout: 2s
+  BatchSize:
+    MaxMessageCount: 10
+    AbsoluteMaxBytes: 99 MB
+    PreferredMaxBytes: 512 KB
+  EtcdRaft:
+    Consenters:
+      - Host: orderer.orderer.credit.ng
+        Port: 7050
+        ClientTLSCert: crypto-config/ordererOrganizations/orderer.credit.ng/orderers/orderer.orderer.credit.ng/tls/server.crt
+        ServerTLSCert: crypto-config/ordererOrganizations/orderer.credit.ng/orderers/orderer.orderer.credit.ng/tls/server.crt
+  Organizations:
+  Policies:
+    Readers:
+      Type: ImplicitMeta
+      Rule: "ANY Readers"
+    Writers:
+      Type: ImplicitMeta
+      Rule: "ANY Writers"
+    Admins:
+      Type: ImplicitMeta
+      Rule: "MAJORITY Admins"
+    BlockValidation:
+      Type: ImplicitMeta
+      Rule: "ANY Writers"
+
+Channel: &ChannelDefaults
+  Policies:
+    Readers:
+      Type: ImplicitMeta
+      Rule: "ANY Readers"
+    Writers:
+      Type: ImplicitMeta
+      Rule: "ANY Writers"
+    Admins:
+      Type: ImplicitMeta
+      Rule: "MAJORITY Admins"
+  Capabilities:
+    <<: *ChannelCapabilities
+
+Profiles:
+  CreditConsortiumGenesis:
+    <<: *ChannelDefaults
+    Orderer:
+      <<: *OrdererDefaults
+      Organizations:
+        - *OrdererOrg
+      Capabilities:
+        <<: *OrdererCapabilities
+    Consortiums:
+      CreditConsortium:
+        Organizations:
+          - *CommercialBankA
+          - *MicrofinanceB
+          - *FintechC
+          - *RegulatoryObserver
+
+  CreditChannel:
+    Consortium: CreditConsortium
+    <<: *ChannelDefaults
+    Application:
+      <<: *ApplicationDefaults
+      Organizations:
+        - *CommercialBankA
+        - *MicrofinanceB
+        - *FintechC
+        - *RegulatoryObserver
+      Capabilities:
+        <<: *ApplicationCapabilities
+
+  # Profile for channel participation API (Fabric 2.5+)
+  CreditChannelGenesis:
+    <<: *ChannelDefaults
+    Orderer:
+      <<: *OrdererDefaults
+      Organizations:
+        - *OrdererOrg
+      Capabilities:
+        <<: *OrdererCapabilities
+    Application:
+      <<: *ApplicationDefaults
+      Organizations:
+        - *CommercialBankA
+        - *MicrofinanceB
+        - *FintechC
+        - *RegulatoryObserver
+      Capabilities:
+        <<: *ApplicationCapabilities

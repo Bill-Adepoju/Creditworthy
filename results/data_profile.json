@@ -1,0 +1,116 @@
+{
+  "timestamp": "2026-08-23T18:23:42.088703",
+  "files": {
+    "traindemographics": {
+      "rows": 4346,
+      "columns": 9,
+      "column_names": [
+        "customerid",
+        "birthdate",
+        "bank_account_type",
+        "longitude_gps",
+        "latitude_gps",
+        "bank_name_clients",
+        "bank_branch_clients",
+        "employment_status_clients",
+        "level_of_education_clients"
+      ]
+    },
+    "trainperf": {
+      "rows": 4368,
+      "columns": 10,
+      "column_names": [
+        "customerid",
+        "systemloanid",
+        "loannumber",
+        "approveddate",
+        "creationdate",
+        "loanamount",
+        "totaldue",
+        "termdays",
+        "referredby",
+        "good_bad_flag"
+      ]
+    },
+    "trainprevloans": {
+      "rows": 18183,
+      "columns": 12,
+      "column_names": [
+        "customerid",
+        "systemloanid",
+        "loannumber",
+        "approveddate",
+        "creationdate",
+        "loanamount",
+        "totaldue",
+        "termdays",
+        "closeddate",
+        "referredby",
+        "firstduedate",
+        "firstrepaiddate"
+      ]
+    }
+  },
+  "join_coverage": {
+    "unique_customers_demographics": 4334,
+    "unique_customers_perf": 4368,
+    "unique_customers_prevloans": 4359,
+    "customers_in_all_three": 3264,
+    "customers_in_demo_and_perf": 3269,
+    "first_time_borrowers": 9
+  },
+  "class_balance": {
+    "total": 4368,
+    "good": 3416,
+    "bad": 952,
+    "default_rate": 0.2179
+  },
+  "missingness": {
+    "demographics": {
+      "missing_count": {
+        "bank_branch_clients": 4295,
+        "level_of_education_clients": 3759,
+        "employment_status_clients": 648
+      },
+      "missing_pct": {
+        "bank_branch_clients": 98.83,
+        "level_of_education_clients": 86.49,
+        "employment_status_clients": 14.91
+      }
+    },
+    "perf": {
+      "missing_count": {
+        "referredby": 3781
+      },
+      "missing_pct": {
+        "referredby": 86.56
+      }
+    },
+    "prevloans": {
+      "missing_count": {
+        "referredby": 17157
+      },
+      "missing_pct": {
+        "referredby": 94.36
+      }
+    }
+  },
+  "date_fields": {
+    "required": [
+      "approveddate",
+      "creationdate",
+      "closeddate",
+      "firstduedate",
+      "firstrepaiddate"
+    ],
+    "found": [
+      "approveddate",
+      "creationdate",
+      "closeddate",
+      "firstduedate",
+      "firstrepaiddate"
+    ],
+    "missing": [],
+    "usable_for_regularity_features": true
+  }
+}

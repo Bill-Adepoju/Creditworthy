@@ -1,0 +1,117 @@
+{
+  "timestamp": "2026-08-25T05:00:00.000Z",
+  "task": "T40",
+  "title": "BFT/CFT Reconciliation",
+  "purpose": "Document the gap between seminar assumptions (PBFT) and implementation (Raft CFT), and justify the design decision",
+
+  "seminar_assumptions": {
+    "source": "Seminar §3.4.1, Table 4.2",
+    "claimed_consensus": "PBFT",
+    "fault_tolerance_bound": "≤⅓ malicious nodes (Byzantine)",
+    "institutional_argument": "§3.4.2 argues non-collusion based on BFT bound",
+    "cited_papers": ["Castro & Liskov 1999", "Cachin & Vukolić 2017"]
+  },
+
+  "actual_implementation": {
+    "ordering_service": "Raft (etcdraft)",
+    "fabric_version": "2.5",
+    "fault_tolerance_type": "Crash Fault Tolerant (CFT)",
+    "fault_tolerance_bound": "⌊(n-1)/2⌋ crash failures",
+    "current_deployment": {
+      "orderer_count": 1,
+      "fault_tolerance": "None (single point of failure)"
+    },
+    "minimum_cft_deployment": {
+      "orderer_count": 3,
+      "crash_tolerance": 1
+    }
+  },
+
+  "gap_analysis": {
+    "nature_of_gap": "Seminar assumes Byzantine fault tolerance; implementation provides only crash fault tolerance",
+    "what_raft_tolerates": [
+      "Node crashes (fail-stop)",
+      "Network partitions (with quorum)",
+      "Message delays",
+      "Node restarts"
+    ],
+    "what_raft_does_not_tolerate": [
+      "Malicious ordering nodes (lying about transactions)",
+      "Equivocation (sending different messages to different peers)",
+      "Arbitrary Byzantine behavior"
+    ],
+    "seminar_error": "Table 4.2 lists 'PBFT' for Fabric, which was factually incorrect - PBFT was removed in Fabric v1.0 (2017). Fabric has used Raft since v1.4 (2019)."
+  },
+
+  "migration_assessment": {
+    "bft_option": "SmartBFT (Fabric v3.x)",
+    "requirements": [
+      "Upgrade to Hyperledger Fabric v3.0+",
+      "Minimum 4 orderers (3f+1 where f=1)",
+      "Production recommendation: 7 orderers",
+      "Channel capability V3_0",
+      "Channel-by-channel configuration update"
+    ],
+    "current_gap_to_bft": {
+      "orderers_needed": "At least 3 more (currently 1, need 4 minimum)",
+      "complexity": "High - requires Fabric major version upgrade"
+    },
+    "recommendation": "Do not migrate"
+  },
+
+  "justification_for_raft": {
+    "decision": "Keep Raft CFT, revise threat model",
+    "rationale": [
+      "1. Consortium participants are identified institutions (licensed banks under CBN supervision)",
+      "2. Regulatory observer maintains real-time visibility of all transactions",
+      "3. Reputational exposure and regulatory sanction raise the cost of institutional collusion beyond technical capability",
+      "4. Byzantine tolerance protects against anonymous validators; consortium validators are accountable entities",
+      "5. Seminar §3.4.3 already argues institutional accountability - this argument does real work here"
+    ],
+    "threat_model_revision": {
+      "in_scope": [
+        "Crash failures (hardware, software, network)",
+        "External attacks on individual nodes",
+        "Network partitions"
+      ],
+      "out_of_scope": [
+        "Malicious orderer nodes forging transactions",
+        "Collusion between majority of orderers"
+      ],
+      "assumption": "Orderer operators are accountable institutions under regulatory supervision with strong reputational incentives against malicious behavior"
+    }
+  },
+
+  "endorsement_policy_analysis": {
+    "current_policy": "MAJORITY(CommercialBankAMSP, MicrofinanceBMSP, FintechCMSP, RegulatoryObserverMSP)",
+    "interpretation": "Requires 3 of 4 signatures",
+    "issue": "With non-endorsing RegulatoryObserver, this requires ALL 3 endorsers to sign",
+    "fault_tolerance_at_endorsement": "Zero - one endorser down halts commits",
+    "recommendation": "Consider MAJORITY over 3 endorsing orgs only (2 of 3) for fault tolerance at endorsement layer"
+  },
+
+  "chapter_corrections": {
+    "chapter_3": {
+      "§3.4.1": "Replace BFT assumption with CFT + institutional accountability argument",
+      "§3.4.2": "Strengthen institutional non-collusion argument as primary defense, not secondary"
+    },
+    "chapter_4": {
+      "Table_4.2": "Change 'PBFT' to 'Raft (CFT)' and document fault tolerance properties accurately"
+    },
+    "chapter_6": {
+      "limitations": "Explicitly state that Byzantine behavior by orderers is outside the threat model"
+    }
+  },
+
+  "summary": {
+    "ordering_service": "Raft (etcdraft)",
+    "fault_tolerance_type": "Crash Fault Tolerant (CFT)",
+    "fault_tolerance_guarantee": "Tolerates ⌊(n-1)/2⌋ crash failures with n orderers",
+    "current_node_count": 1,
+    "current_fault_tolerance": "None (dev configuration)",
+    "production_minimum": "3 orderers for CFT, 7 recommended",
+    "failure_modes_tolerated": "Crash, network partition (with quorum)",
+    "failure_modes_not_tolerated": "Byzantine/malicious orderer behavior",
+    "defense": "Institutional accountability, regulatory supervision, embedded observer"
+  }
+}

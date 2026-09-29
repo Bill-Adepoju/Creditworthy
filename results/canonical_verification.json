@@ -1,0 +1,43 @@
+{
+  "task": "T55",
+  "canonical_split": {
+    "random_state": 42,
+    "test_size": 0.2,
+    "train": 3500,
+    "test": 876
+  },
+  "files_checked": {
+    "impossibility_analysis.json": {
+      "exists": true,
+      "uses_canonical": false
+    },
+    "fairness_corrected_t50.json": {
+      "exists": true,
+      "uses_canonical": true
+    },
+    "impossibility_recalibrated.json": {
+      "exists": true,
+      "uses_canonical": true
+    },
+    "leakage_5way.json": {
+      "exists": true,
+      "uses_canonical": true
+    },
+    "fairness_profit_tradeoff.json": {
+      "exists": true,
+      "uses_canonical": true
+    },
+    "sub_band_analysis.json": {
+      "exists": true,
+      "uses_canonical": true
+    }
+  },
+  "issues": [
+    {
+      "file": "impossibility_analysis.json",
+      "found_size": 879,
+      "expected": 876
+    }
+  ],
+  "resolution": "Old impossibility_analysis.json (n=879) used a different split. It is superseded by impossibility_recalibrated.json (n=876) which uses the canonical split. All new analyses (T50, T51, T54) use canonical indices."
+}

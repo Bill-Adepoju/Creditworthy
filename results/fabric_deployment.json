@@ -1,0 +1,136 @@
+{
+  "timestamp": "2026-08-24T23:30:00Z",
+  "task": "T31c",
+  "description": "Hyperledger Fabric Layer 2 deployment and chaincode verification",
+
+  "network_configuration": {
+    "fabric_version": "2.5",
+    "ordering_service": "etcdraft",
+    "channel_name": "creditchannel",
+    "channel_creation_method": "osnadmin (Channel Participation API)",
+    "organizations": {
+      "orderer": {
+        "name": "OrdererOrg",
+        "msp_id": "OrdererMSP",
+        "nodes": ["orderer.orderer.credit.ng:7050"]
+      },
+      "endorsing_orgs": [
+        {
+          "name": "CommercialBankA",
+          "msp_id": "CommercialBankAMSP",
+          "peer": "peer0.commercialbanka.credit.ng:7051",
+          "role": "endorser"
+        },
+        {
+          "name": "MicrofinanceB",
+          "msp_id": "MicrofinanceBMSP",
+          "peer": "peer0.microfinanceb.credit.ng:8051",
+          "role": "endorser"
+        },
+        {
+          "name": "FintechC",
+          "msp_id": "FintechCMSP",
+          "peer": "peer0.fintechc.credit.ng:9051",
+          "role": "endorser"
+        }
+      ],
+      "observer_org": {
+        "name": "RegulatoryObserver",
+        "msp_id": "RegulatoryObserverMSP",
+        "peer": "peer0.regulator.credit.ng:10051",
+        "role": "read-only observer",
+        "endorsement_policy": "NONE - cannot endorse transactions",
+        "implements": "Embedded supervision (Auer 2022)"
+      }
+    }
+  },
+
+  "chaincode": {
+    "name": "credit",
+    "version": "1.0",
+    "sequence": 1,
+    "language": "golang",
+    "package_id": "credit_1.0:41772e78c5213ac540c7e1bae3b9e261700da81786c40269b3fe9bfb3cd0c76a",
+    "endorsement_policy": "MAJORITY Endorsement (3 of 4 orgs)",
+    "functions": [
+      "AnchorCommitment(commitmentHash, did, modelVersionHash)",
+      "GetCommitment(did)",
+      "RecordLoanEvent(did, eventType, proofHash, thresholdUsed)",
+      "GetCreditHistory(did)",
+      "RevokeCommitment(did)",
+      "CountVerifications(did)"
+    ]
+  },
+
+  "deployment_verification": {
+    "network_containers": 6,
+    "containers": [
+      "orderer.orderer.credit.ng",
+      "peer0.commercialbanka.credit.ng",
+      "peer0.microfinanceb.credit.ng",
+      "peer0.fintechc.credit.ng",
+      "peer0.regulator.credit.ng",
+      "cli"
+    ],
+    "channel_joined": ["all 4 peers"],
+    "chaincode_installed": ["all 4 peers"],
+    "chaincode_approved": ["CommercialBankAMSP", "MicrofinanceBMSP", "FintechCMSP", "RegulatoryObserverMSP"],
+    "chaincode_committed": true
+  },
+
+  "functional_tests": {
+    "AnchorCommitment": {
+      "status": "PASS",
+      "test_did": "did:credit:borrower003",
+      "test_commitment": "0x1122334455667788112233445566778811223344556677881122334455667788",
+      "endorsers_required": 3
+    },
+    "GetCommitment": {
+      "status": "PASS",
+      "query_successful": true
+    },
+    "RecordLoanEvent": {
+      "status": "PASS",
+      "event_type": "verification",
+      "threshold_used": 650
+    },
+    "GetCreditHistory": {
+      "status": "PASS",
+      "events_returned": 1
+    },
+    "regulatory_observer_read": {
+      "status": "PASS",
+      "can_query_commitments": true,
+      "can_query_history": true
+    },
+    "regulatory_observer_write_blocked": {
+      "status": "PASS",
+      "attempted_write": "AnchorCommitment",
+      "result": "Transaction rejected by endorsement policy",
+      "explanation": "Single endorsement from RegulatoryObserver fails MAJORITY policy"
+    }
+  },
+
+  "privacy_compliance": {
+    "on_chain_data": [
+      "Poseidon commitment hashes",
+      "DIDs (decentralized identifiers)",
+      "Model version hashes",
+      "Loan event metadata",
+      "ZK proof hashes"
+    ],
+    "never_on_chain": [
+      "Raw credit scores",
+      "Behavioural features",
+      "PII",
+      "Model weights"
+    ],
+    "audit_trail": "All loan events recorded with permanent audit trail"
+  },
+
+  "next_steps": [
+    "T31d: Caliper benchmarks (TPS, latency)",
+    "Integration tests with ZK circuits",
+    "End-to-end demo"
+  ]
+}

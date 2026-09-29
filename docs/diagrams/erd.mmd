@@ -1,0 +1,58 @@
+erDiagram
+    %% ON-CHAIN ENTITIES (Hyperledger Fabric World State)
+    %% Generated from chaincode: chain/chaincode/credit/credit.go
+
+    CREDIT_COMMITMENT {
+        string did PK "Borrower DID (key)"
+        string commitmentHash "Poseidon(score, salt)"
+        string modelVersionHash "Hash of ML model used"
+        string issuerMSP "Issuing organization MSP"
+        string timestamp "ISO8601 anchor time"
+        string status "active | revoked"
+        string txId "Fabric transaction ID"
+    }
+
+    LOAN_EVENT {
+        string eventId PK "event_{did}_{txId prefix}"
+        string did FK "Borrower DID"
+        string eventType "verification | approval | rejection | default | repayment"
+        string proofHash "Hash of ZK proof (if verification)"
+        int thresholdUsed "Band used: 400 | 550 | 700 | 850"
+        string issuerMSP "Recording organization MSP"
+        string timestamp "ISO8601 event time"
+        string txId "Fabric transaction ID"
+    }
+
+    CREDIT_COMMITMENT ||--o{ LOAN_EVENT : "has events"
+
+    %% OFF-CHAIN ENTITIES (Feature Store - never on ledger)
+    FEATURE_STORE {
+        string customer_id PK "Internal customer ID"
+        float repay_delay_mean "Regularity feature"
+        float repay_delay_std "Regularity feature"
+        float early_repay_ratio "Regularity feature"
+        int loan_count "Magnitude feature"
+        float amount_mean "Magnitude feature"
+        float interval_regularity "Regularity feature"
+        string bank_account_type "Demographic"
+        string employment_status "Demographic"
+    }
+
+    ML_MODEL {
+        string model_version_hash PK "SHA256 of model"
+        json coefficients "LR weights (32 features)"
+        float intercept "LR intercept"
+        json scaler_params "StandardScaler mean/scale"
+        string trained_at "Training timestamp"
+    }
+
+    %% DELIBERATELY ABSENT FROM ON-CHAIN
+    %% (Per constraint C-2: No raw data on-chain)
+    %%
+    %% NOT STORED:
+    %% - Raw credit scores (only Poseidon commitments)
+    %% - Loan amounts (privacy: lender learns only threshold eligibility)
+    %% - Behavioural features (raw transaction data)
+    %% - PII (names, addresses, account numbers)
+    %% - Model weights (only version hash for audit)
+    %% - Salt values (known only to borrower)

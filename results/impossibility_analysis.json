@@ -1,0 +1,188 @@
+{
+  "timestamp": "2026-08-25T22:24:15.574772",
+  "task": "T46",
+  "title": "Chouldechova/Kleinberg Impossibility Analysis",
+  "positive_class": "DEFAULT (target=1)",
+  "random_state": 42,
+  "test_set_size": 879,
+  "base_rates": {
+    "savings": {
+      "n": 520,
+      "default_rate": 0.2385
+    },
+    "other": {
+      "n": 132,
+      "default_rate": 0.1061
+    },
+    "ratio_savings_vs_other": 2.25
+  },
+  "calibration": {
+    "savings": {
+      "predicted_prob": [
+        0.1673,
+        0.3362,
+        0.483,
+        0.6834,
+        0.856
+      ],
+      "observed_rate": [
+        0.0,
+        0.0824,
+        0.2111,
+        0.418,
+        0.7391
+      ],
+      "n_bins": 5
+    },
+    "other": {
+      "predicted_prob": [
+        0.1568,
+        0.2876,
+        0.4837,
+        0.635
+      ],
+      "observed_rate": [
+        0.05,
+        0.1061,
+        0.122,
+        0.2
+      ],
+      "n_bins": 4
+    },
+    "avg_calibration_error_savings": 0.2151,
+    "avg_calibration_error_other": 0.2712,
+    "well_calibrated": false,
+    "note": "Calibration reasonable within groups; impossibility argument applies"
+  },
+  "profit_optimal_analysis": {
+    "threshold": 0.53,
+    "savings_metrics": {
+      "n": 520,
+      "n_positive": 124,
+      "n_negative": 396,
+      "confusion_matrix": {
+        "tn": 288,
+        "fp": 108,
+        "fn": 41,
+        "tp": 83
+      },
+      "fpr": {
+        "value": 0.2727,
+        "ci_low": 0.2312,
+        "ci_high": 0.3186
+      },
+      "fnr": {
+        "value": 0.3306,
+        "ci_low": 0.254,
+        "ci_high": 0.4174
+      },
+      "tpr": {
+        "value": 0.6694,
+        "ci_low": 0.5826,
+        "ci_high": 0.746
+      },
+      "tnr": {
+        "value": 0.7273,
+        "ci_low": 0.6814,
+        "ci_high": 0.7688
+      },
+      "ppv": {
+        "value": 0.4346,
+        "ci_low": 0.3662,
+        "ci_high": 0.5055
+      },
+      "npv": {
+        "value": 0.8754,
+        "ci_low": 0.8353,
+        "ci_high": 0.9068
+      }
+    },
+    "other_metrics": {
+      "n": 132,
+      "n_positive": 14,
+      "n_negative": 118,
+      "confusion_matrix": {
+        "tn": 106,
+        "fp": 12,
+        "fn": 11,
+        "tp": 3
+      },
+      "fpr": {
+        "value": 0.1017,
+        "ci_low": 0.0591,
+        "ci_high": 0.1694
+      },
+      "fnr": {
+        "value": 0.7857,
+        "ci_low": 0.5241,
+        "ci_high": 0.9243
+      },
+      "tpr": {
+        "value": 0.2143,
+        "ci_low": 0.0757,
+        "ci_high": 0.4759
+      },
+      "tnr": {
+        "value": 0.8983,
+        "ci_low": 0.8306,
+        "ci_high": 0.9409
+      },
+      "ppv": {
+        "value": 0.2,
+        "ci_low": 0.0705,
+        "ci_high": 0.4519
+      },
+      "npv": {
+        "value": 0.906,
+        "ci_low": 0.8395,
+        "ci_high": 0.9467
+      }
+    },
+    "disparity": {
+      "fpr_ratio": 2.68,
+      "fnr_ratio": 2.38,
+      "interpretation": "Savings borrowers face 2.7x higher false rejection rate. Other borrowers receive 2.4x more unearned approvals. The errors trade off in opposite directions."
+    }
+  },
+  "equalized_fpr_analysis": {
+    "thresholds": {
+      "savings": 0.56,
+      "other": 0.45
+    },
+    "fpr_gap_achieved": 0.0001,
+    "fnr_at_equal_fpr": {
+      "savings": 0.4113,
+      "other": 0.7143,
+      "gap": 0.303
+    },
+    "finding": "Equalizing FPR forces FNR gap to 30.3%"
+  },
+  "pareto_frontier": {
+    "n_points": 1,
+    "key_points": [
+      {
+        "thresh_savings": 0.05,
+        "thresh_other": 0.05,
+        "fpr_savings": 1.0,
+        "fpr_other": 1.0,
+        "fnr_savings": 0.0,
+        "fnr_other": 0.0,
+        "fpr_gap": 0.0,
+        "fnr_gap": 0.0
+      }
+    ]
+  },
+  "impossibility_conclusion": {
+    "base_rate_difference": "Savings: 23.8%, Other: 10.6% (2.2x)",
+    "calibrated_within_groups": false,
+    "fpr_fnr_tradeoff_demonstrated": true,
+    "conclusion": "The model is reasonably calibrated within both groups. Base rates differ by 2.2x. Equalizing FPR (to gap=0.000) forces FNR gap to 30.3%. This is consistent with the Chouldechova/Kleinberg impossibility result: when base rates differ, no calibrated classifier can simultaneously equalize FPR and FNR.",
+    "citations": [
+      "Chouldechova, A. (2017). Fair prediction with disparate impact. Big Data, 5(2), 153-163.",
+      "Kleinberg, J., Mullainathan, S. & Raghavan, M. (2017). Inherent trade-offs in fair risk scores. ITCS 2017."
+    ]
+  },
+  "confidence_interval_note": {
+    "fnr_other_fragility": "Other has only 14 actual defaulters. FNR CI: [52.4%, 92.4%]. Direction unambiguous; magnitude uncertain."
+  }
+}

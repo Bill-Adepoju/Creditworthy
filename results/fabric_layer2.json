@@ -1,0 +1,133 @@
+{
+  "task": "T31",
+  "description": "Fabric Layer 2 - Consortium network implementation",
+  "timestamp": "2026-08-24T16:15:00.000000",
+  "status": "code_complete",
+  "components": {
+    "T31a_network": {
+      "description": "3 endorsers + 1 read-only regulatory observer + Raft ordering",
+      "files_created": [
+        "chain/config/crypto-config.yaml",
+        "chain/config/configtx.yaml",
+        "chain/docker/docker-compose.yaml"
+      ],
+      "organizations": [
+        {
+          "name": "CommercialBankA",
+          "msp_id": "CommercialBankAMSP",
+          "role": "endorser",
+          "port": 7051
+        },
+        {
+          "name": "MicrofinanceB",
+          "msp_id": "MicrofinanceBMSP",
+          "role": "endorser",
+          "port": 8051
+        },
+        {
+          "name": "FintechC",
+          "msp_id": "FintechCMSP",
+          "role": "endorser",
+          "port": 9051
+        },
+        {
+          "name": "RegulatoryObserver",
+          "msp_id": "RegulatoryObserverMSP",
+          "role": "read-only",
+          "port": 10051,
+          "note": "Embedded supervision per Auer 2022 - can query but cannot endorse"
+        }
+      ],
+      "ordering": "etcdraft",
+      "fabric_version": "2.5"
+    },
+    "T31b_chaincode": {
+      "description": "Credit commitment chaincode - stores ONLY commitments, never raw scores",
+      "files_created": [
+        "chain/chaincode/credit/credit.go",
+        "chain/chaincode/credit/go.mod"
+      ],
+      "language": "golang",
+      "functions": {
+        "write": [
+          "AnchorCommitment(commitmentHash, did, modelVersionHash)",
+          "RecordLoanEvent(did, eventType, proofHash, thresholdUsed)",
+          "RevokeCommitment(did)"
+        ],
+        "read": [
+          "GetCommitment(did)",
+          "GetCreditHistory(did)",
+          "CountVerifications(did)"
+        ]
+      },
+      "data_model": {
+        "Commitment": {
+          "commitmentHash": "Poseidon(score, salt)",
+          "did": "borrower DID",
+          "modelVersionHash": "hash of ML model",
+          "issuerMSP": "issuing org",
+          "timestamp": "ISO8601",
+          "status": "active|revoked"
+        },
+        "LoanEvent": {
+          "eventId": "unique ID",
+          "did": "borrower DID",
+          "eventType": "verification|approval|rejection|default|repayment",
+          "proofHash": "hash of ZK proof",
+          "thresholdUsed": "integer threshold"
+        }
+      },
+      "privacy_guarantees": [
+        "Raw scores NEVER stored on-chain",
+        "Behavioural features NEVER stored on-chain",
+        "PII NEVER stored on-chain",
+        "Model weights NEVER stored on-chain",
+        "Only Poseidon commitments and hashes stored"
+      ]
+    },
+    "T31d_audit_trail": {
+      "description": "On-chain query accounting for detecting probing attacks",
+      "implementation": "RecordLoanEvent function with eventType='verification'",
+      "capabilities": [
+        "Count verifications per DID",
+        "Track which orgs performed verifications",
+        "Timestamps for rate limiting analysis",
+        "Proof hashes for ZK verification linkage"
+      ]
+    },
+    "scripts": {
+      "files_created": [
+        "chain/scripts/generate.sh",
+        "chain/scripts/start.sh",
+        "chain/scripts/create-channel.sh",
+        "chain/scripts/deploy-chaincode.sh",
+        "chain/scripts/test-chaincode.sh",
+        "chain/scripts/stop.sh",
+        "chain/scripts/setup-all.sh"
+      ]
+    }
+  },
+  "next_steps": {
+    "T31c_caliper": {
+      "description": "Hyperledger Caliper benchmarks for throughput/latency",
+      "status": "not_started",
+      "note": "Requires running Docker environment"
+    },
+    "integration": {
+      "description": "Connect to Layer 4 (ZK proofs) via commitment verification",
+      "status": "pending"
+    }
+  },
+  "chapter_4_artifacts": {
+    "code_listings": [
+      "credit.go (chaincode implementation)",
+      "configtx.yaml (endorsement policy)",
+      "crypto-config.yaml (org definitions)"
+    ],
+    "figures": [
+      "Network topology diagram",
+      "Data flow: commitment anchoring",
+      "Access control matrix"
+    ]
+  }
+}

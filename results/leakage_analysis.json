@@ -1,0 +1,165 @@
+{
+  "timestamp": "2026-08-24T00:52:52.004Z",
+  "bands": [
+    400,
+    550,
+    700,
+    850
+  ],
+  "tests": {
+    "unbanded_binary_search": [
+      {
+        "trueScore": 523,
+        "recoveredScore": 523,
+        "exact": true,
+        "queries": 10,
+        "bitsLeaked": 9.967226258835993
+      },
+      {
+        "trueScore": 700,
+        "recoveredScore": 700,
+        "exact": true,
+        "queries": 10,
+        "bitsLeaked": 9.967226258835993
+      },
+      {
+        "trueScore": 400,
+        "recoveredScore": 400,
+        "exact": true,
+        "queries": 10,
+        "bitsLeaked": 9.967226258835993
+      },
+      {
+        "trueScore": 850,
+        "recoveredScore": 850,
+        "exact": true,
+        "queries": 10,
+        "bitsLeaked": 9.967226258835993
+      },
+      {
+        "trueScore": 275,
+        "recoveredScore": 275,
+        "exact": true,
+        "queries": 10,
+        "bitsLeaked": 9.967226258835993
+      },
+      {
+        "trueScore": 999,
+        "recoveredScore": 999,
+        "exact": true,
+        "queries": 10,
+        "bitsLeaked": 9.967226258835993
+      }
+    ],
+    "banded_probing": [
+      {
+        "trueScore": 523,
+        "queries": 4,
+        "passingBands": [
+          400
+        ],
+        "bitsLeaked": 2,
+        "bandInterval": "[400, 1000]"
+      },
+      {
+        "trueScore": 700,
+        "queries": 4,
+        "passingBands": [
+          400,
+          550,
+          700
+        ],
+        "bitsLeaked": 2,
+        "bandInterval": "[400, 1000]"
+      },
+      {
+        "trueScore": 400,
+        "queries": 4,
+        "passingBands": [
+          400
+        ],
+        "bitsLeaked": 2,
+        "bandInterval": "[400, 1000]"
+      },
+      {
+        "trueScore": 850,
+        "queries": 4,
+        "passingBands": [
+          400,
+          550,
+          700,
+          850
+        ],
+        "bitsLeaked": 2,
+        "bandInterval": "[400, 1000]"
+      },
+      {
+        "trueScore": 275,
+        "queries": 4,
+        "passingBands": [],
+        "bitsLeaked": 2,
+        "bandInterval": "[0, 849]"
+      },
+      {
+        "trueScore": 999,
+        "queries": 4,
+        "passingBands": [
+          400,
+          550,
+          700,
+          850
+        ],
+        "bitsLeaked": 2,
+        "bandInterval": "[400, 1000]"
+      }
+    ],
+    "off_band_rejection": [
+      {
+        "threshold": 720,
+        "scoreSatisfies": true,
+        "proofSucceeded": false,
+        "correct": true
+      },
+      {
+        "threshold": 701,
+        "scoreSatisfies": true,
+        "proofSucceeded": false,
+        "correct": true
+      },
+      {
+        "threshold": 500,
+        "scoreSatisfies": true,
+        "proofSucceeded": false,
+        "correct": true
+      },
+      {
+        "threshold": 600,
+        "scoreSatisfies": true,
+        "proofSucceeded": false,
+        "correct": true
+      },
+      {
+        "threshold": 450,
+        "scoreSatisfies": true,
+        "proofSucceeded": false,
+        "correct": true
+      }
+    ]
+  },
+  "summary": {
+    "unbanded": {
+      "avg_queries": 10,
+      "all_exact_recovery": true,
+      "bits_leaked": 9.967226258835993
+    },
+    "banded": {
+      "queries": 4,
+      "bits_leaked": 2,
+      "reduction_factor": 4.983613129417996
+    },
+    "binding_test": {
+      "all_off_band_rejected": true,
+      "binding_holds": true
+    }
+  }
+}

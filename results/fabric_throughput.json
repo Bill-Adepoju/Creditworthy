@@ -1,0 +1,178 @@
+{
+  "timestamp": "2026-08-25T20:51:20.515Z",
+  "task": "T44",
+  "hardware": {
+    "cpu": "AMD Ryzen 7 4800H",
+    "cores": 8,
+    "threads": 16,
+    "ram_gb": 32,
+    "platform": "Windows 10 / Docker Desktop"
+  },
+  "network": {
+    "fabric_version": "2.5",
+    "ordering": "Raft (single orderer)",
+    "orderer_count": 1,
+    "endorsers": 3,
+    "batch_timeout": "2s (default)",
+    "channel": "creditchannel",
+    "chaincode": "credit"
+  },
+  "caveats": [
+    "SINGLE ORDERER - not fault-tolerant",
+    "Raft minimum for CFT is 3 orderers",
+    "Single-orderer throughput is not consortium throughput"
+  ],
+  "benchmark_config": {
+    "concurrency_levels": [
+      1,
+      5,
+      10,
+      20,
+      50
+    ],
+    "txns_per_level": 100,
+    "warmup_txns": 10
+  },
+  "benchmarks": [
+    {
+      "concurrency": 1,
+      "transactions": {
+        "attempted": 100,
+        "successful": 100,
+        "success_rate": "100.0%"
+      },
+      "throughput": {
+        "total_time_ms": 5553,
+        "tps": 18.01,
+        "note": "TPS = successful_txns / total_time"
+      },
+      "latency_ms": {
+        "n": 100,
+        "min": 841,
+        "max": 3228,
+        "mean": 1176,
+        "p50": 987,
+        "p95": 3144,
+        "p99": 3228
+      },
+      "batching": {
+        "blocks_added": 11,
+        "txns_per_block": "9.09",
+        "batching_engaged": true
+      }
+    },
+    {
+      "concurrency": 5,
+      "transactions": {
+        "attempted": 100,
+        "successful": 100,
+        "success_rate": "100.0%"
+      },
+      "throughput": {
+        "total_time_ms": 5468,
+        "tps": 18.29,
+        "note": "TPS = successful_txns / total_time"
+      },
+      "latency_ms": {
+        "n": 100,
+        "min": 767,
+        "max": 3209,
+        "mean": 1118,
+        "p50": 959,
+        "p95": 3075,
+        "p99": 3209
+      },
+      "batching": {
+        "blocks_added": 11,
+        "txns_per_block": "9.09",
+        "batching_engaged": true
+      }
+    },
+    {
+      "concurrency": 10,
+      "transactions": {
+        "attempted": 100,
+        "successful": 100,
+        "success_rate": "100.0%"
+      },
+      "throughput": {
+        "total_time_ms": 1068,
+        "tps": 93.61,
+        "note": "TPS = successful_txns / total_time"
+      },
+      "latency_ms": {
+        "n": 100,
+        "min": 154,
+        "max": 872,
+        "mean": 738,
+        "p50": 778,
+        "p95": 865,
+        "p99": 872
+      },
+      "batching": {
+        "blocks_added": 10,
+        "txns_per_block": "10.00",
+        "batching_engaged": true
+      }
+    },
+    {
+      "concurrency": 20,
+      "transactions": {
+        "attempted": 100,
+        "successful": 100,
+        "success_rate": "100.0%"
+      },
+      "throughput": {
+        "total_time_ms": 1070,
+        "tps": 93.43,
+        "note": "TPS = successful_txns / total_time"
+      },
+      "latency_ms": {
+        "n": 100,
+        "min": 191,
+        "max": 819,
+        "mean": 662,
+        "p50": 705,
+        "p95": 808,
+        "p99": 819
+      },
+      "batching": {
+        "blocks_added": 10,
+        "txns_per_block": "10.00",
+        "batching_engaged": true
+      }
+    },
+    {
+      "concurrency": 50,
+      "transactions": {
+        "attempted": 100,
+        "successful": 100,
+        "success_rate": "100.0%"
+      },
+      "throughput": {
+        "total_time_ms": 960,
+        "tps": 104.15,
+        "note": "TPS = successful_txns / total_time"
+      },
+      "latency_ms": {
+        "n": 100,
+        "min": 389,
+        "max": 858,
+        "mean": 542,
+        "p50": 506,
+        "p95": 819,
+        "p99": 858
+      },
+      "batching": {
+        "blocks_added": 10,
+        "txns_per_block": "10.00",
+        "batching_engaged": true
+      }
+    }
+  ],
+  "peak_throughput": {
+    "tps": 104.15,
+    "at_concurrency": 50,
+    "txns_per_block": "10.00"
+  }
+}

@@ -1,0 +1,50 @@
+# Caliper Network Configuration for ZK Credit Scoring Consortium
+# T31c: Benchmarks for RQ2 (throughput, latency)
+
+name: credit-network
+version: "1.0"
+caliper:
+  blockchain: fabric
+
+channels:
+  - channelName: creditchannel
+    contracts:
+      - id: credit
+        version: "1.0"
+
+organizations:
+  - mspid: CommercialBankAMSP
+    identities:
+      certificates:
+        - name: admin
+          clientPrivateKey:
+            path: '../config/crypto-config/peerOrganizations/commercialbanka.credit.ng/users/Admin@commercialbanka.credit.ng/msp/keystore/priv_sk'
+          clientSignedCert:
+            path: '../config/crypto-config/peerOrganizations/commercialbanka.credit.ng/users/Admin@commercialbanka.credit.ng/msp/signcerts/Admin@commercialbanka.credit.ng-cert.pem'
+    connectionProfile:
+      path: './connection-commercialbanka.yaml'
+      discover: true
+
+  - mspid: MicrofinanceBMSP
+    identities:
+      certificates:
+        - name: admin
+          clientPrivateKey:
+            path: '../config/crypto-config/peerOrganizations/microfinanceb.credit.ng/users/Admin@microfinanceb.credit.ng/msp/keystore/priv_sk'
+          clientSignedCert:
+            path: '../config/crypto-config/peerOrganizations/microfinanceb.credit.ng/users/Admin@microfinanceb.credit.ng/msp/signcerts/Admin@microfinanceb.credit.ng-cert.pem'
+    connectionProfile:
+      path: './connection-microfinanceb.yaml'
+      discover: true
+
+  - mspid: FintechCMSP
+    identities:
+      certificates:
+        - name: admin
+          clientPrivateKey:
+            path: '../config/crypto-config/peerOrganizations/fintechc.credit.ng/users/Admin@fintechc.credit.ng/msp/keystore/priv_sk'
+          clientSignedCert:
+            path: '../config/crypto-config/peerOrganizations/fintechc.credit.ng/users/Admin@fintechc.credit.ng/msp/signcerts/Admin@fintechc.credit.ng-cert.pem'
+    connectionProfile:
+      path: './connection-fintechc.yaml'
+      discover: true

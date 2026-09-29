@@ -1,0 +1,174 @@
+{
+  "timestamp": "2026-08-23T18:33:44.106867",
+  "model": "LogisticRegression",
+  "overall": {
+    "roc_auc": 0.7150647762448886,
+    "accuracy": 0.7180365296803652,
+    "n_test": 876
+  },
+  "sensitive_attributes": {
+    "region": {
+      "demographic_parity_difference": 0.32199413489736073,
+      "equalized_odds_difference": 0.6666666666666667,
+      "group_metrics": {
+        "selection_rate": {
+          "Middle": 0.4129032258064516,
+          "North": 0.09090909090909091,
+          "North-Central": 0.25757575757575757,
+          "South": 0.31220657276995306,
+          "nan": 0.3333333333333333
+        },
+        "accuracy": {
+          "Middle": 0.6838709677419355,
+          "North": 0.8181818181818182,
+          "North-Central": 0.7575757575757576,
+          "South": 0.7300469483568075,
+          "nan": 1.0
+        }
+      },
+      "n_samples": 661
+    },
+    "bank_account_type": {
+      "demographic_parity_difference": 0.17956157317859447,
+      "equalized_odds_difference": 0.21658986175115208,
+      "group_metrics": {
+        "selection_rate": {
+          "Current": 0.16666666666666666,
+          "Other": 0.26515151515151514,
+          "Savings": 0.34622823984526113
+        },
+        "accuracy": {
+          "Current": 0.8333333333333334,
+          "Other": 0.7196969696969697,
+          "Savings": 0.723404255319149
+        }
+      },
+      "n_samples": 661
+    },
+    "employment_status": {
+      "demographic_parity_difference": 0.13342932565394766,
+      "equalized_odds_difference": 0.75,
+      "group_metrics": {
+        "selection_rate": {
+          "Permanent": 0.31101511879049676,
+          "Self-Employed": 0.35,
+          "Student": 0.4444444444444444,
+          "Unemployed": 0.3333333333333333
+        },
+        "accuracy": {
+          "Permanent": 0.7278617710583153,
+          "Self-Employed": 0.6833333333333333,
+          "Student": 0.7037037037037037,
+          "Unemployed": 0.5555555555555556
+        }
+      },
+      "n_samples": 559
+    },
+    "age_band": {
+      "demographic_parity_difference": 0.30000000000000004,
+      "equalized_odds_difference": 0.3284823284823285,
+      "group_metrics": {
+        "selection_rate": {
+          "18-25": 0.4666666666666667,
+          "26-35": 0.34071550255536626,
+          "36-45": 0.2897196261682243,
+          "46+": 0.16666666666666666
+        },
+        "accuracy": {
+          "18-25": 0.6222222222222222,
+          "26-35": 0.7155025553662692,
+          "36-45": 0.719626168224299,
+          "46+": 0.9
+        }
+      },
+      "n_samples": 876
+    }
+  },
+  "tradeoff_curve": [
+    {
+      "threshold": 0.1,
+      "accuracy": 0.22031963470319635,
+      "dpd": 0.0046948356807511304
+    },
+    {
+      "threshold": 0.15000000000000002,
+      "accuracy": 0.22146118721461186,
+      "dpd": 0.09090909090909094
+    },
+    {
+      "threshold": 0.2,
+      "accuracy": 0.2363013698630137,
+      "dpd": 0.09090909090909094
+    },
+    {
+      "threshold": 0.25,
+      "accuracy": 0.2591324200913242,
+      "dpd": 0.18181818181818177
+    },
+    {
+      "threshold": 0.30000000000000004,
+      "accuracy": 0.3047945205479452,
+      "dpd": 0.2727272727272727
+    },
+    {
+      "threshold": 0.35,
+      "accuracy": 0.3995433789954338,
+      "dpd": 0.4545454545454546
+    },
+    {
+      "threshold": 0.4,
+      "accuracy": 0.5296803652968036,
+      "dpd": 0.3787878787878788
+    },
+    {
+      "threshold": 0.45000000000000007,
+      "accuracy": 0.66324200913242,
+      "dpd": 0.23049853372434015
+    },
+    {
+      "threshold": 0.5,
+      "accuracy": 0.7180365296803652,
+      "dpd": 0.32199413489736073
+    },
+    {
+      "threshold": 0.55,
+      "accuracy": 0.7397260273972602,
+      "dpd": 0.24457478005865105
+    },
+    {
+      "threshold": 0.6,
+      "accuracy": 0.7545662100456622,
+      "dpd": 0.2424242424242424
+    },
+    {
+      "threshold": 0.65,
+      "accuracy": 0.7842465753424658,
+      "dpd": 0.2424242424242424
+    },
+    {
+      "threshold": 0.7000000000000001,
+      "accuracy": 0.791095890410959,
+      "dpd": 0.2727272727272727
+    },
+    {
+      "threshold": 0.75,
+      "accuracy": 0.7990867579908676,
+      "dpd": 0.06451612903225806
+    },
+    {
+      "threshold": 0.8,
+      "accuracy": 0.791095890410959,
+      "dpd": 0.03870967741935484
+    },
+    {
+      "threshold": 0.85,
+      "accuracy": 0.7819634703196348,
+      "dpd": 0.01935483870967742
+    },
+    {
+      "threshold": 0.9,
+      "accuracy": 0.7831050228310502,
+      "dpd": 0.0064516129032258064
+    }
+  ]
+}

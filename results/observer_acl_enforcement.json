@@ -1,0 +1,71 @@
+{
+  "timestamp": "2026-08-25T14:03:00.000Z",
+  "task": "T43",
+  "title": "Observer ACL Enforcement",
+  "purpose": "Make RegulatoryObserver read-only by access control, not by endorsement arithmetic",
+
+  "before_fix": {
+    "chaincode_version": "1.2",
+    "endorsement_policy": "MAJORITY(4 orgs)",
+    "regulator_blocked_by": "Signature count (needed 3, had 1)",
+    "vulnerability": "Regulator could write by getting 2 endorsing peers to sign (demonstrated)",
+    "error_message": "ProposalResponsePayloads do not match (when trying with only regulator endorsement)"
+  },
+
+  "fix_implemented": {
+    "chaincode_version": "1.3",
+    "endorsement_policy": "OutOf(2, 'CommercialBankAMSP.member', 'MicrofinanceBMSP.member', 'FintechCMSP.member')",
+    "chaincode_acl": {
+      "check_function": "checkWriteAccess()",
+      "allowed_msps": ["CommercialBankAMSP", "MicrofinanceBMSP", "FintechCMSP"],
+      "blocked_msps": ["RegulatoryObserverMSP"],
+      "functions_protected": ["AnchorCommitment", "RecordLoanEvent", "RevokeCommitment"]
+    }
+  },
+
+  "verification_tests": {
+    "test1_anchor_commitment": {
+      "invoker": "RegulatoryObserverMSP",
+      "via_peers": ["CommercialBankAMSP", "MicrofinanceBMSP"],
+      "result": "BLOCKED",
+      "error_message": "access denied: RegulatoryObserverMSP is not authorized to perform write operations"
+    },
+    "test2_record_loan_event": {
+      "invoker": "RegulatoryObserverMSP",
+      "via_peers": ["CommercialBankAMSP", "MicrofinanceBMSP"],
+      "result": "BLOCKED",
+      "error_message": "access denied: RegulatoryObserverMSP is not authorized to perform write operations"
+    },
+    "test3_read_commitment": {
+      "invoker": "RegulatoryObserverMSP",
+      "result": "SUCCESS",
+      "note": "Regulator can still query all data"
+    }
+  },
+
+  "acl_configuration": {
+    "layer": "Chaincode (application level)",
+    "mechanism": "MSP ID check in checkWriteAccess() function",
+    "quotable_code": "if !endorsingMSPs[mspID] { return fmt.Errorf(\"access denied: %s is not authorized to perform write operations\", mspID) }",
+    "defense_depth": [
+      "1. Endorsement policy excludes RegulatoryObserver (policy level)",
+      "2. Chaincode ACL rejects RegulatoryObserver submissions (application level)"
+    ]
+  },
+
+  "embedded_supervision_compliance": {
+    "auer_2022_requirement": "Regulator has real-time visibility without transaction authority",
+    "implementation": {
+      "read_access": "Full (GetCommitment, GetCreditHistory, CountVerifications)",
+      "write_access": "None (blocked by chaincode ACL)",
+      "enforcement": "Application-level access control, not just policy arithmetic"
+    },
+    "quotable_for_chapter_4": true
+  },
+
+  "summary": {
+    "before": "Regulator blocked by signature count (could bypass with endorser cooperation)",
+    "after": "Regulator blocked by explicit ACL (cannot bypass regardless of endorsements)",
+    "error_type": "Authorization failure (not arithmetic failure)"
+  }
+}

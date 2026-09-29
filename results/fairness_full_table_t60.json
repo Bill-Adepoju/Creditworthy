@@ -1,0 +1,117 @@
+{
+  "timestamp": "2026-08-27T15:14:44.711199",
+  "task": "T60",
+  "title": "Full Fairness Table at Key Thresholds",
+  "thresholds_evaluated": [
+    0.53,
+    0.62
+  ],
+  "profit_model": {
+    "revenue_per_performing": 1.0,
+    "loss_given_default": 3.0
+  },
+  "base_rates": {
+    "savings": {
+      "n": 517,
+      "default_rate": 0.2398
+    },
+    "other": {
+      "n": 132,
+      "default_rate": 0.1061
+    }
+  },
+  "threshold_comparison": [
+    {
+      "threshold": 0.53,
+      "savings": {
+        "fpr": 0.2723,
+        "fnr": 0.3306,
+        "approval_rate": 0.6325,
+        "rejection_rate": 0.3675,
+        "profit": 163.0,
+        "n_approved": 327,
+        "confusion_matrix": {
+          "tn": 286,
+          "fp": 107,
+          "fn": 41,
+          "tp": 83
+        }
+      },
+      "other": {
+        "fpr": 0.1017,
+        "fnr": 0.7857,
+        "approval_rate": 0.8864,
+        "rejection_rate": 0.1136,
+        "profit": 73.0,
+        "n_approved": 117,
+        "confusion_matrix": {
+          "tn": 106,
+          "fp": 12,
+          "fn": 11,
+          "tp": 3
+        }
+      },
+      "overall": {
+        "fpr": 0.2365,
+        "fnr": 0.4031,
+        "approval_rate": 0.6849,
+        "rejection_rate": 0.3151,
+        "profit": 292.0,
+        "n_approved": 600
+      }
+    },
+    {
+      "threshold": 0.62,
+      "savings": {
+        "fpr": 0.1628,
+        "fnr": 0.4677,
+        "approval_rate": 0.7485,
+        "rejection_rate": 0.2515,
+        "profit": 155.0,
+        "n_approved": 387,
+        "confusion_matrix": {
+          "tn": 329,
+          "fp": 64,
+          "fn": 58,
+          "tp": 66
+        }
+      },
+      "other": {
+        "fpr": 0.0254,
+        "fnr": 1.0,
+        "approval_rate": 0.9773,
+        "rejection_rate": 0.0227,
+        "profit": 73.0,
+        "n_approved": 129,
+        "confusion_matrix": {
+          "tn": 115,
+          "fp": 3,
+          "fn": 14,
+          "tp": 0
+        }
+      },
+      "overall": {
+        "fpr": 0.1241,
+        "fnr": 0.5654,
+        "approval_rate": 0.8082,
+        "rejection_rate": 0.1918,
+        "profit": 276.0,
+        "n_approved": 708
+      }
+    }
+  ],
+  "findings": {
+    "fnr_other_at_062": 1.0,
+    "fnr_other_critical": true,
+    "fnr_other_explanation": "At threshold 0.62, FNR_Other = 100% means every Other defaulter is approved. This is a consequence of the fairness optimization.",
+    "profit_cost": {
+      "absolute": 16.0,
+      "percentage": 5.5
+    },
+    "fnr_changes": {
+      "savings_053_to_062": 0.1371,
+      "other_053_to_062": 0.2143
+    },
+    "defensibility": "This trade is defensible under a financial-inclusion objective where wrongly rejecting creditworthy borrowers (high FPR) is the harm being minimized. However, the high FNR for Other borrowers increases default exposure."
+  }
+}

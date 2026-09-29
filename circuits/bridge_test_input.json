@@ -1,0 +1,40 @@
+{
+  "test_cases": [
+    {
+      "score": 18,
+      "salt": 1608637543,
+      "p_default": 0.982147861951991,
+      "actual_default": 1
+    },
+    {
+      "score": 949,
+      "salt": 1273642420,
+      "p_default": 0.050536970051827466,
+      "actual_default": 0
+    },
+    {
+      "score": 500,
+      "salt": 1935803229,
+      "p_default": 0.49983659777919465,
+      "actual_default": 1
+    },
+    {
+      "score": 600,
+      "salt": 787846415,
+      "p_default": 0.3999042942191092,
+      "actual_default": 0
+    },
+    {
+      "score": 700,
+      "salt": 996406379,
+      "p_default": 0.2998023616244627,
+      "actual_default": 0
+    }
+  ],
+  "thresholds": [
+    500,
+    600,
+    700,
+    800
+  ]
+}

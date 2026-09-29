@@ -1,0 +1,523 @@
+{
+  "timestamp": "2026-08-24T23:36:12.245311",
+  "min_band_population": 5,
+  "profit_model": {
+    "revenue_per_performing": 1.0,
+    "loss_given_default": 3.0
+  },
+  "equidistant_points": [
+    {
+      "B": 2,
+      "stated_bits": 1.0,
+      "measured_leakage": 0.012804404487326337,
+      "profit_loss": 180.0,
+      "profit_loss_pct": 61.64383561643836,
+      "effective_bands": 1
+    },
+    {
+      "B": 3,
+      "stated_bits": 1.584962500721156,
+      "measured_leakage": 0.9281375931973699,
+      "profit_loss": 10.0,
+      "profit_loss_pct": 3.4246575342465753,
+      "effective_bands": 2
+    },
+    {
+      "B": 4,
+      "stated_bits": 2.0,
+      "measured_leakage": 1.3701945803493984,
+      "profit_loss": 65.0,
+      "profit_loss_pct": 22.26027397260274,
+      "effective_bands": 3
+    },
+    {
+      "B": 5,
+      "stated_bits": 2.321928094887362,
+      "measured_leakage": 1.6343297426179282,
+      "profit_loss": 10.0,
+      "profit_loss_pct": 3.4246575342465753,
+      "effective_bands": 4
+    },
+    {
+      "B": 6,
+      "stated_bits": 2.584962500721156,
+      "measured_leakage": 1.9718467029471904,
+      "profit_loss": 24.0,
+      "profit_loss_pct": 8.21917808219178,
+      "effective_bands": 5
+    },
+    {
+      "B": 8,
+      "stated_bits": 3.0,
+      "measured_leakage": 2.344850756682847,
+      "profit_loss": 14.0,
+      "profit_loss_pct": 4.794520547945205,
+      "effective_bands": 7
+    },
+    {
+      "B": 10,
+      "stated_bits": 3.321928094887362,
+      "measured_leakage": 2.722767685945895,
+      "profit_loss": 18.0,
+      "profit_loss_pct": 6.164383561643835,
+      "effective_bands": 9
+    },
+    {
+      "B": 15,
+      "stated_bits": 3.9068905956085187,
+      "measured_leakage": 3.3185504263770147,
+      "profit_loss": 10.0,
+      "profit_loss_pct": 3.4246575342465753,
+      "effective_bands": 13
+    },
+    {
+      "B": 20,
+      "stated_bits": 4.321928094887363,
+      "measured_leakage": 3.753084461389008,
+      "profit_loss": 8.0,
+      "profit_loss_pct": 2.73972602739726,
+      "effective_bands": 16
+    }
+  ],
+  "quantile_points": [
+    {
+      "B": 2,
+      "stated_bits": 1.0,
+      "measured_leakage": 0.012804404487326337,
+      "profit_loss": 180.0,
+      "profit_loss_pct": 61.64383561643836,
+      "effective_bands": 1
+    },
+    {
+      "B": 3,
+      "stated_bits": 1.584962500721156,
+      "measured_leakage": 1.0116619108830491,
+      "profit_loss": 45.0,
+      "profit_loss_pct": 15.41095890410959,
+      "effective_bands": 2
+    },
+    {
+      "B": 4,
+      "stated_bits": 2.0,
+      "measured_leakage": 1.5959444047575468,
+      "profit_loss": 10.0,
+      "profit_loss_pct": 3.4246575342465753,
+      "effective_bands": 3
+    },
+    {
+      "B": 5,
+      "stated_bits": 2.321928094887362,
+      "measured_leakage": 2.010518474031149,
+      "profit_loss": 15.0,
+      "profit_loss_pct": 5.136986301369863,
+      "effective_bands": 4
+    },
+    {
+      "B": 6,
+      "stated_bits": 2.584962500721156,
+      "measured_leakage": 2.3319877830608977,
+      "profit_loss": 18.0,
+      "profit_loss_pct": 6.164383561643835,
+      "effective_bands": 5
+    },
+    {
+      "B": 8,
+      "stated_bits": 3.0,
+      "measured_leakage": 2.8168491766081747,
+      "profit_loss": 22.0,
+      "profit_loss_pct": 7.534246575342466,
+      "effective_bands": 7
+    },
+    {
+      "B": 10,
+      "stated_bits": 3.321928094887362,
+      "measured_leakage": 3.1789444461014833,
+      "profit_loss": 10.0,
+      "profit_loss_pct": 3.4246575342465753,
+      "effective_bands": 9
+    },
+    {
+      "B": 15,
+      "stated_bits": 3.9068905956085187,
+      "measured_leakage": 3.815297408015992,
+      "profit_loss": 4.0,
+      "profit_loss_pct": 1.36986301369863,
+      "effective_bands": 14
+    },
+    {
+      "B": 20,
+      "stated_bits": 4.321928094887363,
+      "measured_leakage": 4.254941347186912,
+      "profit_loss": 0.0,
+      "profit_loss_pct": 0.0,
+      "effective_bands": 19
+    }
+  ],
+  "degenerate_band_analysis": {
+    "2": {
+      "equidistant": {
+        "stated_bands": 2,
+        "effective_bands": 1,
+        "degenerate_bands": 1,
+        "degenerate_details": [
+          {
+            "band": 949,
+            "count": 1
+          }
+        ]
+      },
+      "quantile": {
+        "stated_bands": 2,
+        "effective_bands": 1,
+        "degenerate_bands": 1,
+        "degenerate_details": [
+          {
+            "band": 949,
+            "count": 1
+          }
+        ]
+      }
+    },
+    "3": {
+      "equidistant": {
+        "stated_bands": 3,
+        "effective_bands": 2,
+        "degenerate_bands": 1,
+        "degenerate_details": [
+          {
+            "band": 949,
+            "count": 1
+          }
+        ]
+      },
+      "quantile": {
+        "stated_bands": 3,
+        "effective_bands": 2,
+        "degenerate_bands": 1,
+        "degenerate_details": [
+          {
+            "band": 949,
+            "count": 1
+          }
+        ]
+      }
+    },
+    "4": {
+      "equidistant": {
+        "stated_bands": 4,
+        "effective_bands": 3,
+        "degenerate_bands": 1,
+        "degenerate_details": [
+          {
+            "band": 949,
+            "count": 1
+          }
+        ]
+      },
+      "quantile": {
+        "stated_bands": 4,
+        "effective_bands": 3,
+        "degenerate_bands": 1,
+        "degenerate_details": [
+          {
+            "band": 949,
+            "count": 1
+          }
+        ]
+      }
+    },
+    "5": {
+      "equidistant": {
+        "stated_bands": 5,
+        "effective_bands": 4,
+        "degenerate_bands": 1,
+        "degenerate_details": [
+          {
+            "band": 949,
+            "count": 1
+          }
+        ]
+      },
+      "quantile": {
+        "stated_bands": 5,
+        "effective_bands": 4,
+        "degenerate_bands": 1,
+        "degenerate_details": [
+          {
+            "band": 949,
+            "count": 1
+          }
+        ]
+      }
+    },
+    "6": {
+      "equidistant": {
+        "stated_bands": 6,
+        "effective_bands": 5,
+        "degenerate_bands": 1,
+        "degenerate_details": [
+          {
+            "band": 949,
+            "count": 1
+          }
+        ]
+      },
+      "quantile": {
+        "stated_bands": 6,
+        "effective_bands": 5,
+        "degenerate_bands": 1,
+        "degenerate_details": [
+          {
+            "band": 949,
+            "count": 1
+          }
+        ]
+      }
+    },
+    "8": {
+      "equidistant": {
+        "stated_bands": 8,
+        "effective_bands": 7,
+        "degenerate_bands": 1,
+        "degenerate_details": [
+          {
+            "band": 949,
+            "count": 1
+          }
+        ]
+      },
+      "quantile": {
+        "stated_bands": 8,
+        "effective_bands": 7,
+        "degenerate_bands": 1,
+        "degenerate_details": [
+          {
+            "band": 949,
+            "count": 1
+          }
+        ]
+      }
+    },
+    "10": {
+      "equidistant": {
+        "stated_bands": 10,
+        "effective_bands": 9,
+        "degenerate_bands": 1,
+        "degenerate_details": [
+          {
+            "band": 949,
+            "count": 1
+          }
+        ]
+      },
+      "quantile": {
+        "stated_bands": 10,
+        "effective_bands": 9,
+        "degenerate_bands": 1,
+        "degenerate_details": [
+          {
+            "band": 949,
+            "count": 1
+          }
+        ]
+      }
+    },
+    "15": {
+      "equidistant": {
+        "stated_bands": 15,
+        "effective_bands": 13,
+        "degenerate_bands": 2,
+        "degenerate_details": [
+          {
+            "band": 18,
+            "count": 2
+          },
+          {
+            "band": 949,
+            "count": 1
+          }
+        ]
+      },
+      "quantile": {
+        "stated_bands": 15,
+        "effective_bands": 14,
+        "degenerate_bands": 1,
+        "degenerate_details": [
+          {
+            "band": 949,
+            "count": 1
+          }
+        ]
+      }
+    },
+    "20": {
+      "equidistant": {
+        "stated_bands": 20,
+        "effective_bands": 16,
+        "degenerate_bands": 4,
+        "degenerate_details": [
+          {
+            "band": 18,
+            "count": 1
+          },
+          {
+            "band": 67,
+            "count": 3
+          },
+          {
+            "band": 900,
+            "count": 3
+          },
+          {
+            "band": 949,
+            "count": 1
+          }
+        ]
+      },
+      "quantile": {
+        "stated_bands": 20,
+        "effective_bands": 19,
+        "degenerate_bands": 1,
+        "degenerate_details": [
+          {
+            "band": 949,
+            "count": 1
+          }
+        ]
+      }
+    }
+  },
+  "comparison": {
+    "pareto_frontier": [
+      {
+        "type": "equidistant",
+        "B": 2,
+        "stated_bits": 1.0,
+        "measured_leakage": 0.012804404487326337,
+        "profit_loss": 180.0,
+        "profit_loss_pct": 61.64383561643836,
+        "effective_bands": 1
+      },
+      {
+        "type": "quantile",
+        "B": 2,
+        "stated_bits": 1.0,
+        "measured_leakage": 0.012804404487326337,
+        "profit_loss": 180.0,
+        "profit_loss_pct": 61.64383561643836,
+        "effective_bands": 1
+      },
+      {
+        "type": "equidistant",
+        "B": 3,
+        "stated_bits": 1.584962500721156,
+        "measured_leakage": 0.9281375931973699,
+        "profit_loss": 10.0,
+        "profit_loss_pct": 3.4246575342465753,
+        "effective_bands": 2
+      },
+      {
+        "type": "equidistant",
+        "B": 20,
+        "stated_bits": 4.321928094887363,
+        "measured_leakage": 3.753084461389008,
+        "profit_loss": 8.0,
+        "profit_loss_pct": 2.73972602739726,
+        "effective_bands": 16
+      },
+      {
+        "type": "quantile",
+        "B": 15,
+        "stated_bits": 3.9068905956085187,
+        "measured_leakage": 3.815297408015992,
+        "profit_loss": 4.0,
+        "profit_loss_pct": 1.36986301369863,
+        "effective_bands": 14
+      },
+      {
+        "type": "quantile",
+        "B": 20,
+        "stated_bits": 4.321928094887363,
+        "measured_leakage": 4.254941347186912,
+        "profit_loss": 0.0,
+        "profit_loss_pct": 0.0,
+        "effective_bands": 19
+      }
+    ],
+    "conclusion": "quantile_better_at_equal_leakage",
+    "similar_leakage_comparisons": [
+      {
+        "equi_B": 2,
+        "quant_B": 2,
+        "avg_leakage": 0.012804404487326337,
+        "equi_loss": 180.0,
+        "quant_loss": 180.0,
+        "winner": "quantile"
+      },
+      {
+        "equi_B": 3,
+        "quant_B": 3,
+        "avg_leakage": 0.9698997520402095,
+        "equi_loss": 10.0,
+        "quant_loss": 45.0,
+        "winner": "equidistant"
+      },
+      {
+        "equi_B": 4,
+        "quant_B": 4,
+        "avg_leakage": 1.4830694925534726,
+        "equi_loss": 65.0,
+        "quant_loss": 10.0,
+        "winner": "quantile"
+      },
+      {
+        "equi_B": 5,
+        "quant_B": 4,
+        "avg_leakage": 1.6151370736877375,
+        "equi_loss": 10.0,
+        "quant_loss": 10.0,
+        "winner": "quantile"
+      },
+      {
+        "equi_B": 6,
+        "quant_B": 5,
+        "avg_leakage": 1.9911825884891696,
+        "equi_loss": 24.0,
+        "quant_loss": 15.0,
+        "winner": "quantile"
+      },
+      {
+        "equi_B": 8,
+        "quant_B": 6,
+        "avg_leakage": 2.3384192698718724,
+        "equi_loss": 14.0,
+        "quant_loss": 18.0,
+        "winner": "equidistant"
+      },
+      {
+        "equi_B": 10,
+        "quant_B": 8,
+        "avg_leakage": 2.769808431277035,
+        "equi_loss": 18.0,
+        "quant_loss": 22.0,
+        "winner": "equidistant"
+      },
+      {
+        "equi_B": 15,
+        "quant_B": 10,
+        "avg_leakage": 3.248747436239249,
+        "equi_loss": 10.0,
+        "quant_loss": 10.0,
+        "winner": "quantile"
+      },
+      {
+        "equi_B": 20,
+        "quant_B": 15,
+        "avg_leakage": 3.7841909347025,
+        "equi_loss": 8.0,
+        "quant_loss": 4.0,
+        "winner": "quantile"
+      }
+    ]
+  }
+}

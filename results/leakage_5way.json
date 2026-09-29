@@ -1,0 +1,62 @@
+{
+  "timestamp": "2026-08-26T23:41:58.617236",
+  "task": "T54",
+  "title": "5-Way Partition Leakage Analysis",
+  "canonical_test_size": 876,
+  "random_state": 42,
+  "bands": [
+    400,
+    550,
+    700,
+    850
+  ],
+  "partition_distribution": {
+    "partitions": {
+      "400-550": 186,
+      "550-700": 352,
+      "700-850": 123,
+      "<400": 200,
+      ">=850": 15
+    },
+    "shares": {
+      "400-550": 0.2123,
+      "550-700": 0.4018,
+      "700-850": 0.1404,
+      "<400": 0.2283,
+      ">=850": 0.0171
+    },
+    "total": 876
+  },
+  "entropy_analysis": {
+    "H_5way": 1.9879,
+    "H_5way_max": 2.3219,
+    "H_4way_normalized": 1.5717,
+    "understatement_bits": 0.4162,
+    "understatement_pct": 26.5
+  },
+  "two_leakage_quantities": {
+    "binary_proof_signal": {
+      "description": "Whether a proof is submitted (yes/no)",
+      "can_prove_share": 0.7717,
+      "cannot_prove_share": 0.2283,
+      "entropy_bits": 0.7751,
+      "note": "This is what T49 called '1 bit' but actual entropy depends on distribution"
+    },
+    "full_band_membership": {
+      "description": "Which of 5 partitions the borrower falls into",
+      "partitions": 5,
+      "entropy_bits": 1.9879,
+      "note": "Full information revealed by band-based verification"
+    }
+  },
+  "conditional_analysis": {
+    "if_no_proof": "Score < 400 (certain, 0 bits remaining)",
+    "if_proof": "One of 4 upper bands (H = 1.5717 bits)",
+    "decomposition": "H(5-way) = H(binary) + P(proof)*H(upper|proof) = 1.9879"
+  },
+  "corrections_to_prior_analyses": {
+    "t29_t36": "Assumed 4 bands, excluded <400 partition. Understated leakage by 0.42 bits (26.5%).",
+    "t49": "Reported '1 bit' but conflated binary signal with full partition. Binary signal is ~0.78 bits; full partition is ~1.99 bits."
+  },
+  "chapter_5_update": "With 4 threshold bands {400, 550, 700, 850}, borrowers are partitioned into 5 groups (including <400). Full band membership reveals H = 1.99 bits of information. The proof/no-proof binary signal alone reveals H = 0.78 bits, dominated by the 22.8% of borrowers who cannot generate any proof."
+}

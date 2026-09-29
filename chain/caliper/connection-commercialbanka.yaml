@@ -1,0 +1,86 @@
+# Connection Profile for CommercialBankA
+# T31c: Caliper benchmarks
+
+name: credit-network-commercialbanka
+version: "1.0"
+client:
+  organization: CommercialBankAMSP
+  connection:
+    timeout:
+      peer:
+        endorser: '300'
+      orderer: '300'
+
+organizations:
+  CommercialBankAMSP:
+    mspid: CommercialBankAMSP
+    peers:
+      - peer0.commercialbanka.credit.ng
+    certificateAuthorities: []
+
+  MicrofinanceBMSP:
+    mspid: MicrofinanceBMSP
+    peers:
+      - peer0.microfinanceb.credit.ng
+    certificateAuthorities: []
+
+  FintechCMSP:
+    mspid: FintechCMSP
+    peers:
+      - peer0.fintechc.credit.ng
+    certificateAuthorities: []
+
+orderers:
+  orderer.orderer.credit.ng:
+    url: grpcs://localhost:7050
+    tlsCACerts:
+      path: '../config/crypto-config/ordererOrganizations/orderer.credit.ng/orderers/orderer.orderer.credit.ng/msp/tlscacerts/tlsca.orderer.credit.ng-cert.pem'
+    grpcOptions:
+      ssl-target-name-override: orderer.orderer.credit.ng
+      hostnameOverride: orderer.orderer.credit.ng
+
+peers:
+  peer0.commercialbanka.credit.ng:
+    url: grpcs://localhost:7051
+    tlsCACerts:
+      path: '../config/crypto-config/peerOrganizations/commercialbanka.credit.ng/peers/peer0.commercialbanka.credit.ng/tls/ca.crt'
+    grpcOptions:
+      ssl-target-name-override: peer0.commercialbanka.credit.ng
+      hostnameOverride: peer0.commercialbanka.credit.ng
+
+  peer0.microfinanceb.credit.ng:
+    url: grpcs://localhost:8051
+    tlsCACerts:
+      path: '../config/crypto-config/peerOrganizations/microfinanceb.credit.ng/peers/peer0.microfinanceb.credit.ng/tls/ca.crt'
+    grpcOptions:
+      ssl-target-name-override: peer0.microfinanceb.credit.ng
+      hostnameOverride: peer0.microfinanceb.credit.ng
+
+  peer0.fintechc.credit.ng:
+    url: grpcs://localhost:9051
+    tlsCACerts:
+      path: '../config/crypto-config/peerOrganizations/fintechc.credit.ng/peers/peer0.fintechc.credit.ng/tls/ca.crt'
+    grpcOptions:
+      ssl-target-name-override: peer0.fintechc.credit.ng
+      hostnameOverride: peer0.fintechc.credit.ng
+
+channels:
+  creditchannel:
+    orderers:
+      - orderer.orderer.credit.ng
+    peers:
+      peer0.commercialbanka.credit.ng:
+        endorsingPeer: true
+        chaincodeQuery: true
+        ledgerQuery: true
+        eventSource: true
+      peer0.microfinanceb.credit.ng:
+        endorsingPeer: true
+        chaincodeQuery: true
+        ledgerQuery: true
+        eventSource: true
+      peer0.fintechc.credit.ng:
+        endorsingPeer: true
+        chaincodeQuery: true
+        ledgerQuery: true
+        eventSource: true

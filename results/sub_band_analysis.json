@@ -1,0 +1,48 @@
+{
+  "timestamp": "2026-08-25T22:31:43.881306",
+  "task": "T49",
+  "title": "Sub-Lowest-Band Borrower Analysis",
+  "bands": [
+    400,
+    550,
+    700,
+    850
+  ],
+  "lowest_band": 400,
+  "random_state": 42,
+  "test_set": {
+    "total": 876,
+    "score_min": 18,
+    "score_max": 949
+  },
+  "sub_lowest_band": {
+    "count": 200,
+    "percentage": 22.8,
+    "score_min": 18,
+    "score_max": 399,
+    "actual_default_rate": 0.45
+  },
+  "band_distribution": {
+    "<400": 200,
+    "400-550": 186,
+    "550-700": 352,
+    "700-850": 123,
+    ">=850": 15
+  },
+  "information_leak": {
+    "bits_leaked": 1,
+    "description": "A borrower below the lowest band cannot generate ANY proof. The lender cannot distinguish 'below lowest band' from 'refused to prove'. This is a 1-bit information leak unavoidable in threshold schemes.",
+    "implications": [
+      "If proof is submitted: score >= lowest_band is revealed",
+      "If no proof: ambiguous (below band OR refusal)",
+      "Binary outcome (proof/no-proof) inherently leaks 1 bit"
+    ],
+    "chapter_3_note": "This should be stated in the threat model: a borrower below the lowest band cannot generate any proof, revealing at minimum that their score does not meet even the lowest threshold. This 1-bit leak is inherent to the threshold scheme."
+  },
+  "handling_recommendation": {
+    "circuit_behavior": "CORRECT - assertion fails because no band is satisfiable",
+    "demo_behavior": "Should treat as EXPECTED OUTCOME, not exception",
+    "api_response": "Return 'no_valid_band' status instead of error",
+    "lender_interpretation": "Lender sees: 'borrower did not submit proof'. Could mean: (a) score below all bands, or (b) borrower declined. Risk-averse lenders may treat absence of proof as rejection."
+  }
+}

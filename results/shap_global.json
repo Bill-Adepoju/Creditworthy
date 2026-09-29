@@ -1,0 +1,224 @@
+{
+  "timestamp": "2026-08-23T18:42:52.786370",
+  "model": "LogisticRegression",
+  "n_features": 32,
+  "n_test_samples": 876,
+  "global_importance": [
+    {
+      "feature": "amount_mean",
+      "mean_abs_shap": 0.5409156322525628
+    },
+    {
+      "feature": "totaldue_mean",
+      "mean_abs_shap": 0.3357735291625262
+    },
+    {
+      "feature": "amount_cv",
+      "mean_abs_shap": 0.3060332132701754
+    },
+    {
+      "feature": "relationship_tenure_days",
+      "mean_abs_shap": 0.30105123421769087
+    },
+    {
+      "feature": "early_repay_ratio",
+      "mean_abs_shap": 0.26375526517780185
+    },
+    {
+      "feature": "amount_total",
+      "mean_abs_shap": 0.23531756892606673
+    },
+    {
+      "feature": "repay_delay_mean",
+      "mean_abs_shap": 0.2112966814939445
+    },
+    {
+      "feature": "repay_delay_std",
+      "mean_abs_shap": 0.1664002961694161
+    },
+    {
+      "feature": "loan_count",
+      "mean_abs_shap": 0.13586240983005696
+    },
+    {
+      "feature": "amount_max",
+      "mean_abs_shap": 0.13437498184138819
+    },
+    {
+      "feature": "bank_account_type_Savings",
+      "mean_abs_shap": 0.13358338660943556
+    },
+    {
+      "feature": "employment_status_Unknown",
+      "mean_abs_shap": 0.11817139755795489
+    },
+    {
+      "feature": "employment_status_Permanent",
+      "mean_abs_shap": 0.101770348549754
+    },
+    {
+      "feature": "bank_account_type_Other",
+      "mean_abs_shap": 0.06928600285584509
+    },
+    {
+      "feature": "age",
+      "mean_abs_shap": 0.06732641295979
+    },
+    {
+      "feature": "interval_regularity",
+      "mean_abs_shap": 0.06645784073909453
+    },
+    {
+      "feature": "term_escalation",
+      "mean_abs_shap": 0.06591304691002894
+    },
+    {
+      "feature": "interval_mean",
+      "mean_abs_shap": 0.06183985381233465
+    },
+    {
+      "feature": "region_lat_band_Unknown",
+      "mean_abs_shap": 0.040584875116006024
+    },
+    {
+      "feature": "bank_account_type_Unknown",
+      "mean_abs_shap": 0.040584875116006024
+    },
+    {
+      "feature": "region_lat_band_Middle",
+      "mean_abs_shap": 0.03447223270580375
+    },
+    {
+      "feature": "region_lat_band_South",
+      "mean_abs_shap": 0.0268129951072399
+    },
+    {
+      "feature": "region_lat_band_North",
+      "mean_abs_shap": 0.0260086406284856
+    },
+    {
+      "feature": "bank_account_type_Current",
+      "mean_abs_shap": 0.023056199901034656
+    },
+    {
+      "feature": "employment_status_Student",
+      "mean_abs_shap": 0.013787905581883583
+    },
+    {
+      "feature": "employment_status_Self-Employed",
+      "mean_abs_shap": 0.00887266587481982
+    },
+    {
+      "feature": "employment_status_Unemployed",
+      "mean_abs_shap": 0.00658470296174982
+    },
+    {
+      "feature": "region_lat_band_nan",
+      "mean_abs_shap": 0.0021005116817754722
+    },
+    {
+      "feature": "term_mean",
+      "mean_abs_shap": 0.0013021493603536942
+    },
+    {
+      "feature": "region_lat_band_North-Central",
+      "mean_abs_shap": 0.00012607109059203532
+    },
+    {
+      "feature": "employment_status_Retired",
+      "mean_abs_shap": 8.177485993703578e-18
+    },
+    {
+      "feature": "employment_status_Contract",
+      "mean_abs_shap": 1.0834804087034772e-18
+    }
+  ],
+  "category_importance": {
+    "regularity_total": 1.2725766283503683,
+    "magnitude_total": 1.5537170748130729,
+    "ratio": 0.8190529981164503
+  },
+  "local_explanations": [
+    {
+      "name": "Default case",
+      "actual": 1,
+      "probability": 0.24266345849352436,
+      "top_features": [
+        {
+          "feature": "amount_mean",
+          "shap_value": 0.4248510399828891
+        },
+        {
+          "feature": "repay_delay_mean",
+          "shap_value": -0.3995171552295588
+        },
+        {
+          "feature": "totaldue_mean",
+          "shap_value": -0.3317453791749208
+        },
+        {
+          "feature": "relationship_tenure_days",
+          "shap_value": 0.29808181352720287
+        },
+        {
+          "feature": "amount_cv",
+          "shap_value": 0.26948668102484846
+        }
+      ]
+    },
+    {
+      "name": "Non-default case",
+      "actual": 0,
+      "probability": 0.17839966115780934,
+      "top_features": [
+        {
+          "feature": "amount_mean",
+          "shap_value": -0.6851644803159676
+        },
+        {
+          "feature": "amount_cv",
+          "shap_value": -0.44003420693747153
+        },
+        {
+          "feature": "totaldue_mean",
+          "shap_value": 0.414193249209219
+        },
+        {
+          "feature": "employment_status_Unemployed",
+          "shap_value": -0.3248303638536926
+        },
+        {
+          "feature": "relationship_tenure_days",
+          "shap_value": -0.3207287391479276
+        }
+      ]
+    },
+    {
+      "name": "Borderline case",
+      "actual": 1,
+      "probability": 0.49983659777919465,
+      "top_features": [
+        {
+          "feature": "amount_mean",
+          "shap_value": 0.4248510399828891
+        },
+        {
+          "feature": "totaldue_mean",
+          "shap_value": -0.3317453791749208
+        },
+        {
+          "feature": "amount_cv",
+          "shap_value": 0.26948668102484846
+        },
+        {
+          "feature": "bank_account_type_Savings",
+          "shap_value": -0.18713067164690655
+        },
+        {
+          "feature": "employment_status_Unknown",
+          "shap_value": 0.18599255899008704
+        }
+      ]
+    }
+  ]
+}

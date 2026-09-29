@@ -1,0 +1,17 @@
+{
+  "name": "zkcredit-dissertation",
+  "version": "1.0.0",
+  "description": "AI-Powered Decentralized Credit Scoring - MIT Dissertation, University of Lagos",
+  "scripts": {
+    "zk:setup": "cd circuits && node setup.js",
+    "zk:bench": "cd circuits && node bench.js"
+  },
+  "keywords": ["zk-snark", "credit-scoring", "poseidon", "groth16"],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "circomlib": "^2.0.5",
+    "circomlibjs": "^0.1.7",
+    "snarkjs": "^0.7.6"
+  }
+}

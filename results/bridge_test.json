@@ -1,0 +1,273 @@
+{
+  "timestamp": "2026-08-23T18:47:21.316763",
+  "model": "LogisticRegression",
+  "score_stats": {
+    "min": 18,
+    "max": 949,
+    "mean": 542.7625570776256,
+    "median": 575.0
+  },
+  "test_cases": [
+    {
+      "score": 18,
+      "salt": 1608637543,
+      "p_default": 0.982147861951991,
+      "actual_default": 1
+    },
+    {
+      "score": 949,
+      "salt": 1273642420,
+      "p_default": 0.050536970051827466,
+      "actual_default": 0
+    },
+    {
+      "score": 500,
+      "salt": 1935803229,
+      "p_default": 0.49983659777919465,
+      "actual_default": 1
+    },
+    {
+      "score": 600,
+      "salt": 787846415,
+      "p_default": 0.3999042942191092,
+      "actual_default": 0
+    },
+    {
+      "score": 700,
+      "salt": 996406379,
+      "p_default": 0.2998023616244627,
+      "actual_default": 0
+    }
+  ],
+  "zk_verification": {
+    "test_cases": [
+      {
+        "score": 18,
+        "salt": 1608637543,
+        "commitment": "15791566506830665071343284822921185224816091747438087111566199669732122736087",
+        "actual_default": 1,
+        "threshold_tests": [
+          {
+            "threshold": 500,
+            "should_pass": false,
+            "proof_generated": false,
+            "proof_verified": false,
+            "gen_time_ms": null,
+            "ver_time_ms": null,
+            "result": "correct"
+          },
+          {
+            "threshold": 600,
+            "should_pass": false,
+            "proof_generated": false,
+            "proof_verified": false,
+            "gen_time_ms": null,
+            "ver_time_ms": null,
+            "result": "correct"
+          },
+          {
+            "threshold": 700,
+            "should_pass": false,
+            "proof_generated": false,
+            "proof_verified": false,
+            "gen_time_ms": null,
+            "ver_time_ms": null,
+            "result": "correct"
+          },
+          {
+            "threshold": 800,
+            "should_pass": false,
+            "proof_generated": false,
+            "proof_verified": false,
+            "gen_time_ms": null,
+            "ver_time_ms": null,
+            "result": "correct"
+          }
+        ]
+      },
+      {
+        "score": 949,
+        "salt": 1273642420,
+        "commitment": "5457918418178699273611119242467414395449305140486197824603786777840668185163",
+        "actual_default": 0,
+        "threshold_tests": [
+          {
+            "threshold": 500,
+            "should_pass": true,
+            "proof_generated": true,
+            "proof_verified": true,
+            "gen_time_ms": 615,
+            "ver_time_ms": 21,
+            "result": "correct"
+          },
+          {
+            "threshold": 600,
+            "should_pass": true,
+            "proof_generated": true,
+            "proof_verified": true,
+            "gen_time_ms": 413,
+            "ver_time_ms": 19,
+            "result": "correct"
+          },
+          {
+            "threshold": 700,
+            "should_pass": true,
+            "proof_generated": true,
+            "proof_verified": true,
+            "gen_time_ms": 372,
+            "ver_time_ms": 17,
+            "result": "correct"
+          },
+          {
+            "threshold": 800,
+            "should_pass": true,
+            "proof_generated": true,
+            "proof_verified": true,
+            "gen_time_ms": 344,
+            "ver_time_ms": 14,
+            "result": "correct"
+          }
+        ]
+      },
+      {
+        "score": 500,
+        "salt": 1935803229,
+        "commitment": "124589486587970328011770127064108136310747790076864460259609794446716972305",
+        "actual_default": 1,
+        "threshold_tests": [
+          {
+            "threshold": 500,
+            "should_pass": true,
+            "proof_generated": true,
+            "proof_verified": true,
+            "gen_time_ms": 352,
+            "ver_time_ms": 14,
+            "result": "correct"
+          },
+          {
+            "threshold": 600,
+            "should_pass": false,
+            "proof_generated": false,
+            "proof_verified": false,
+            "gen_time_ms": null,
+            "ver_time_ms": null,
+            "result": "correct"
+          },
+          {
+            "threshold": 700,
+            "should_pass": false,
+            "proof_generated": false,
+            "proof_verified": false,
+            "gen_time_ms": null,
+            "ver_time_ms": null,
+            "result": "correct"
+          },
+          {
+            "threshold": 800,
+            "should_pass": false,
+            "proof_generated": false,
+            "proof_verified": false,
+            "gen_time_ms": null,
+            "ver_time_ms": null,
+            "result": "correct"
+          }
+        ]
+      },
+      {
+        "score": 600,
+        "salt": 787846415,
+        "commitment": "12015025973329021728848511842825775653697301571738464969870183991096720509266",
+        "actual_default": 0,
+        "threshold_tests": [
+          {
+            "threshold": 500,
+            "should_pass": true,
+            "proof_generated": true,
+            "proof_verified": true,
+            "gen_time_ms": 347,
+            "ver_time_ms": 14,
+            "result": "correct"
+          },
+          {
+            "threshold": 600,
+            "should_pass": true,
+            "proof_generated": true,
+            "proof_verified": true,
+            "gen_time_ms": 376,
+            "ver_time_ms": 19,
+            "result": "correct"
+          },
+          {
+            "threshold": 700,
+            "should_pass": false,
+            "proof_generated": false,
+            "proof_verified": false,
+            "gen_time_ms": null,
+            "ver_time_ms": null,
+            "result": "correct"
+          },
+          {
+            "threshold": 800,
+            "should_pass": false,
+            "proof_generated": false,
+            "proof_verified": false,
+            "gen_time_ms": null,
+            "ver_time_ms": null,
+            "result": "correct"
+          }
+        ]
+      },
+      {
+        "score": 700,
+        "salt": 996406379,
+        "commitment": "2520944161632545988000261296320699301349275669831231483233485020805000897",
+        "actual_default": 0,
+        "threshold_tests": [
+          {
+            "threshold": 500,
+            "should_pass": true,
+            "proof_generated": true,
+            "proof_verified": true,
+            "gen_time_ms": 397,
+            "ver_time_ms": 12,
+            "result": "correct"
+          },
+          {
+            "threshold": 600,
+            "should_pass": true,
+            "proof_generated": true,
+            "proof_verified": true,
+            "gen_time_ms": 356,
+            "ver_time_ms": 14,
+            "result": "correct"
+          },
+          {
+            "threshold": 700,
+            "should_pass": true,
+            "proof_generated": true,
+            "proof_verified": true,
+            "gen_time_ms": 353,
+            "ver_time_ms": 13,
+            "result": "correct"
+          },
+          {
+            "threshold": 800,
+            "should_pass": false,
+            "proof_generated": false,
+            "proof_verified": false,
+            "gen_time_ms": null,
+            "ver_time_ms": null,
+            "result": "correct"
+          }
+        ]
+      }
+    ],
+    "summary": {
+      "total_proofs_attempted": 20,
+      "proofs_generated": 10,
+      "proofs_verified": 10,
+      "correctly_rejected": 10,
+      "bridge_accuracy": 100
+    }
+  }
+}

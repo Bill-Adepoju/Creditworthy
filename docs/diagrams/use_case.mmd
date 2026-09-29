@@ -1,0 +1,43 @@
+%%{init: {'theme': 'base', 'themeVariables': { 'primaryColor': '#1a1a2e'}}}%%
+graph TB
+    subgraph Actors
+        B[Borrower]
+        L[Lender]
+        I[Issuing Institution]
+        R[Regulatory Observer]
+    end
+
+    subgraph "Privacy-Preserving Credit Scoring System"
+        UC1[Provide Consent]
+        UC2[View Credit Score]
+        UC3[View Commitment]
+        UC4[Request Loan Eligibility]
+        UC5[Verify ZK Proof]
+        UC6[Select Threshold Band]
+        UC7[Ingest Transaction Data]
+        UC8[Anchor Commitment]
+        UC9[Record Loan Event]
+        UC10[Query Ledger History]
+        UC11["Read-Only Access (Write Blocked)"]
+    end
+
+    B --> UC1
+    B --> UC2
+    B --> UC3
+
+    L --> UC4
+    L --> UC5
+    L --> UC6
+
+    I --> UC7
+    I --> UC8
+    I --> UC9
+
+    R --> UC10
+    R --> UC11
+
+    UC1 -.->|includes| UC2
+    UC4 -.->|includes| UC5
+    UC4 -.->|includes| UC6
+
+    style UC11 stroke:#ff5722,stroke-width:2px

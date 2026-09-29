@@ -1,0 +1,3047 @@
+{
+  "timestamp": "2026-08-27T05:54:47.706Z",
+  "task": "T52",
+  "title": "End-to-End Integration Demo with SDK Path",
+  "hardware": {
+    "cpu": "AMD Ryzen 7 4800H",
+    "cores": 8,
+    "threads": 16,
+    "ram_gb": 32,
+    "platform": "Windows 10 / Docker Desktop"
+  },
+  "components": {
+    "ml_model": "Simulated LogisticRegression",
+    "blockchain": "Hyperledger Fabric 2.5",
+    "zk_circuit": "Groth16 (credit_threshold_banded, 576 constraints)",
+    "bands": [
+      400,
+      550,
+      700,
+      850
+    ],
+    "lender_threshold": 550
+  },
+  "sdk_available": true,
+  "flows": [
+    {
+      "borrower_index": 140,
+      "customer_id": "8a858e6e55c554c20155d574b4596645",
+      "actual_default": 1,
+      "sdk_stages": [
+        {
+          "name": "consent",
+          "latency_ms": 0,
+          "status": "complete"
+        },
+        {
+          "name": "feature_engineering",
+          "latency_ms": 0,
+          "status": "complete"
+        },
+        {
+          "name": "ml_inference",
+          "latency_ms": 0,
+          "score": 546,
+          "band": 400,
+          "status": "complete"
+        },
+        {
+          "name": "commitment_computation",
+          "latency_ms": 1,
+          "status": "complete"
+        },
+        {
+          "name": "ledger_anchor",
+          "latency_ms": 2150,
+          "status": "complete"
+        },
+        {
+          "name": "loan_application",
+          "latency_ms": 8,
+          "status": "complete"
+        },
+        {
+          "name": "proof_generation",
+          "latency_ms": 518,
+          "band": 400,
+          "status": "complete"
+        },
+        {
+          "name": "proof_verification",
+          "latency_ms": 15,
+          "verified": true,
+          "status": "complete"
+        },
+        {
+          "name": "decision",
+          "latency_ms": 0,
+          "approved": false,
+          "status": "complete"
+        },
+        {
+          "name": "repayment_record",
+          "latency_ms": 2086,
+          "event_type": "rejection",
+          "status": "complete"
+        }
+      ],
+      "cli_stages": [
+        {
+          "name": "consent",
+          "latency_ms": 0,
+          "status": "complete"
+        },
+        {
+          "name": "feature_engineering",
+          "latency_ms": 0,
+          "status": "complete"
+        },
+        {
+          "name": "ml_inference",
+          "latency_ms": 0,
+          "score": 546,
+          "band": 400,
+          "status": "complete"
+        },
+        {
+          "name": "commitment_computation",
+          "latency_ms": 1,
+          "status": "complete"
+        },
+        {
+          "name": "ledger_anchor",
+          "latency_ms": 2396,
+          "status": "complete"
+        },
+        {
+          "name": "loan_application",
+          "latency_ms": 326,
+          "status": "complete"
+        },
+        {
+          "name": "proof_generation",
+          "latency_ms": 518,
+          "band": 400,
+          "status": "complete"
+        },
+        {
+          "name": "proof_verification",
+          "latency_ms": 15,
+          "verified": true,
+          "status": "complete"
+        },
+        {
+          "name": "decision",
+          "latency_ms": 0,
+          "approved": false,
+          "status": "complete"
+        },
+        {
+          "name": "repayment_record",
+          "latency_ms": 2453,
+          "event_type": "rejection",
+          "status": "complete"
+        }
+      ],
+      "sdk_total_ms": 4778,
+      "cli_total_ms": 5709,
+      "score": 546,
+      "band": 400,
+      "loan_approved": false
+    },
+    {
+      "borrower_index": 1926,
+      "customer_id": "8a858e5856b7840c0156bbd64c3e3d2f",
+      "actual_default": 0,
+      "sdk_stages": [
+        {
+          "name": "consent",
+          "latency_ms": 0,
+          "status": "complete"
+        },
+        {
+          "name": "feature_engineering",
+          "latency_ms": 0,
+          "status": "complete"
+        },
+        {
+          "name": "ml_inference",
+          "latency_ms": 0,
+          "score": 552,
+          "band": 550,
+          "status": "complete"
+        },
+        {
+          "name": "commitment_computation",
+          "latency_ms": 0,
+          "status": "complete"
+        },
+        {
+          "name": "ledger_anchor",
+          "latency_ms": 2057,
+          "status": "complete"
+        },
+        {
+          "name": "loan_application",
+          "latency_ms": 14,
+          "status": "complete"
+        },
+        {
+          "name": "proof_generation",
+          "latency_ms": 127,
+          "band": 550,
+          "status": "complete"
+        },
+        {
+          "name": "proof_verification",
+          "latency_ms": 13,
+          "verified": true,
+          "status": "complete"
+        },
+        {
+          "name": "decision",
+          "latency_ms": 0,
+          "approved": true,
+          "status": "complete"
+        },
+        {
+          "name": "repayment_record",
+          "latency_ms": 2102,
+          "event_type": "approval",
+          "status": "complete"
+        }
+      ],
+      "cli_stages": [
+        {
+          "name": "consent",
+          "latency_ms": 0,
+          "status": "complete"
+        },
+        {
+          "name": "feature_engineering",
+          "latency_ms": 0,
+          "status": "complete"
+        },
+        {
+          "name": "ml_inference",
+          "latency_ms": 0,
+          "score": 552,
+          "band": 550,
+          "status": "complete"
+        },
+        {
+          "name": "commitment_computation",
+          "latency_ms": 0,
+          "status": "complete"
+        },
+        {
+          "name": "ledger_anchor",
+          "latency_ms": 2502,
+          "status": "complete"
+        },
+        {
+          "name": "loan_application",
+          "latency_ms": 454,
+          "status": "complete"
+        },
+        {
+          "name": "proof_generation",
+          "latency_ms": 127,
+          "band": 550,
+          "status": "complete"
+        },
+        {
+          "name": "proof_verification",
+          "latency_ms": 13,
+          "verified": true,
+          "status": "complete"
+        },
+        {
+          "name": "decision",
+          "latency_ms": 0,
+          "approved": true,
+          "status": "complete"
+        },
+        {
+          "name": "repayment_record",
+          "latency_ms": 2524,
+          "event_type": "approval",
+          "status": "complete"
+        }
+      ],
+      "sdk_total_ms": 4313,
+      "cli_total_ms": 5620,
+      "score": 552,
+      "band": 550,
+      "loan_approved": true
+    },
+    {
+      "borrower_index": 1046,
+      "customer_id": "8a858fe95c88ee44015c88f55a2301aa",
+      "actual_default": 0,
+      "sdk_stages": [
+        {
+          "name": "consent",
+          "latency_ms": 0,
+          "status": "complete"
+        },
+        {
+          "name": "feature_engineering",
+          "latency_ms": 0,
+          "status": "complete"
+        },
+        {
+          "name": "ml_inference",
+          "latency_ms": 0,
+          "score": 679,
+          "band": 550,
+          "status": "complete"
+        },
+        {
+          "name": "commitment_computation",
+          "latency_ms": 0,
+          "status": "complete"
+        },
+        {
+          "name": "ledger_anchor",
+          "latency_ms": 2058,
+          "status": "complete"
+        },
+        {
+          "name": "loan_application",
+          "latency_ms": 9,
+          "status": "complete"
+        },
+        {
+          "name": "proof_generation",
+          "latency_ms": 140,
+          "band": 550,
+          "status": "complete"
+        },
+        {
+          "name": "proof_verification",
+          "latency_ms": 17,
+          "verified": true,
+          "status": "complete"
+        },
+        {
+          "name": "decision",
+          "latency_ms": 0,
+          "approved": true,
+          "status": "complete"
+        },
+        {
+          "name": "repayment_record",
+          "latency_ms": 2067,
+          "event_type": "approval",
+          "status": "complete"
+        }
+      ],
+      "cli_stages": [
+        {
+          "name": "consent",
+          "latency_ms": 0,
+          "status": "complete"
+        },
+        {
+          "name": "feature_engineering",
+          "latency_ms": 0,
+          "status": "complete"
+        },
+        {
+          "name": "ml_inference",
+          "latency_ms": 0,
+          "score": 679,
+          "band": 550,
+          "status": "complete"
+        },
+        {
+          "name": "commitment_computation",
+          "latency_ms": 0,
+          "status": "complete"
+        },
+        {
+          "name": "ledger_anchor",
+          "latency_ms": 2439,
+          "status": "complete"
+        },
+        {
+          "name": "loan_application",
+          "latency_ms": 424,
+          "status": "complete"
+        },
+        {
+          "name": "proof_generation",
+          "latency_ms": 140,
+          "band": 550,
+          "status": "complete"
+        },
+        {
+          "name": "proof_verification",
+          "latency_ms": 17,
+          "verified": true,
+          "status": "complete"
+        },
+        {
+          "name": "decision",
+          "latency_ms": 0,
+          "approved": true,
+          "status": "complete"
+        },
+        {
+          "name": "repayment_record",
+          "latency_ms": 2455,
+          "event_type": "approval",
+          "status": "complete"
+        }
+      ],
+      "sdk_total_ms": 4291,
+      "cli_total_ms": 5475,
+      "score": 679,
+      "band": 550,
+      "loan_approved": true
+    },
+    {
+      "borrower_index": 399,
+      "customer_id": "8a858faf5679a838015679dda1481bfb",
+      "actual_default": 0,
+      "sdk_stages": [
+        {
+          "name": "consent",
+          "latency_ms": 0,
+          "status": "complete"
+        },
+        {
+          "name": "feature_engineering",
+          "latency_ms": 0,
+          "status": "complete"
+        },
+        {
+          "name": "ml_inference",
+          "latency_ms": 0,
+          "score": 375,
+          "band": 0,
+          "status": "complete"
+        },
+        {
+          "name": "commitment_computation",
+          "latency_ms": 0,
+          "status": "complete"
+        },
+        {
+          "name": "ledger_anchor",
+          "latency_ms": 2101,
+          "status": "complete"
+        },
+        {
+          "name": "loan_application",
+          "latency_ms": 7,
+          "status": "complete"
+        }
+      ],
+      "cli_stages": [
+        {
+          "name": "consent",
+          "latency_ms": 0,
+          "status": "complete"
+        },
+        {
+          "name": "feature_engineering",
+          "latency_ms": 0,
+          "status": "complete"
+        },
+        {
+          "name": "ml_inference",
+          "latency_ms": 0,
+          "score": 375,
+          "band": 0,
+          "status": "complete"
+        },
+        {
+          "name": "commitment_computation",
+          "latency_ms": 0,
+          "status": "complete"
+        },
+        {
+          "name": "ledger_anchor",
+          "latency_ms": 2436,
+          "status": "complete"
+        },
+        {
+          "name": "loan_application",
+          "latency_ms": 330,
+          "status": "complete"
+        }
+      ],
+      "sdk_total_ms": 2108,
+      "cli_total_ms": 2766,
+      "score": 375,
+      "band": 0
+    },
+    {
+      "borrower_index": 3354,
+      "customer_id": "8a8588dd54be35520154c05cbe9759e5",
+      "actual_default": 0,
+      "sdk_stages": [
+        {
+          "name": "consent",
+          "latency_ms": 0,
+          "status": "complete"
+        },
+        {
+          "name": "feature_engineering",
+          "latency_ms": 0,
+          "status": "complete"
+        },
+        {
+          "name": "ml_inference",
+          "latency_ms": 0,
+          "score": 544,
+          "band": 400,
+          "status": "complete"
+        },
+        {
+          "name": "commitment_computation",
+          "latency_ms": 0,
+          "status": "complete"
+        },
+        {
+          "name": "ledger_anchor",
+          "latency_ms": 2093,
+          "status": "complete"
+        },
+        {
+          "name": "loan_application",
+          "latency_ms": 7,
+          "status": "complete"
+        },
+        {
+          "name": "proof_generation",
+          "latency_ms": 125,
+          "band": 400,
+          "status": "complete"
+        },
+        {
+          "name": "proof_verification",
+          "latency_ms": 13,
+          "verified": true,
+          "status": "complete"
+        },
+        {
+          "name": "decision",
+          "latency_ms": 0,
+          "approved": false,
+          "status": "complete"
+        },
+        {
+          "name": "repayment_record",
+          "latency_ms": 2064,
+          "event_type": "rejection",
+          "status": "complete"
+        }
+      ],
+      "cli_stages": [
+        {
+          "name": "consent",
+          "latency_ms": 0,
+          "status": "complete"
+        },
+        {
+          "name": "feature_engineering",
+          "latency_ms": 0,
+          "status": "complete"
+        },
+        {
+          "name": "ml_inference",
+          "latency_ms": 0,
+          "score": 544,
+          "band": 400,
+          "status": "complete"
+        },
+        {
+          "name": "commitment_computation",
+          "latency_ms": 0,
+          "status": "complete"
+        },
+        {
+          "name": "ledger_anchor",
+          "latency_ms": 2411,
+          "status": "complete"
+        },
+        {
+          "name": "loan_application",
+          "latency_ms": 342,
+          "status": "complete"
+        },
+        {
+          "name": "proof_generation",
+          "latency_ms": 125,
+          "band": 400,
+          "status": "complete"
+        },
+        {
+          "name": "proof_verification",
+          "latency_ms": 13,
+          "verified": true,
+          "status": "complete"
+        },
+        {
+          "name": "decision",
+          "latency_ms": 0,
+          "approved": false,
+          "status": "complete"
+        },
+        {
+          "name": "repayment_record",
+          "latency_ms": 2399,
+          "event_type": "rejection",
+          "status": "complete"
+        }
+      ],
+      "sdk_total_ms": 4302,
+      "cli_total_ms": 5290,
+      "score": 544,
+      "band": 400,
+      "loan_approved": false
+    },
+    {
+      "borrower_index": 1893,
+      "customer_id": "8a858e6a5c829229015c8301076c4187",
+      "actual_default": 0,
+      "sdk_stages": [
+        {
+          "name": "consent",
+          "latency_ms": 0,
+          "status": "complete"
+        },
+        {
+          "name": "feature_engineering",
+          "latency_ms": 0,
+          "status": "complete"
+        },
+        {
+          "name": "ml_inference",
+          "latency_ms": 0,
+          "score": 762,
+          "band": 700,
+          "status": "complete"
+        },
+        {
+          "name": "commitment_computation",
+          "latency_ms": 0,
+          "status": "complete"
+        },
+        {
+          "name": "ledger_anchor",
+          "latency_ms": 2054,
+          "status": "complete"
+        },
+        {
+          "name": "loan_application",
+          "latency_ms": 7,
+          "status": "complete"
+        },
+        {
+          "name": "proof_generation",
+          "latency_ms": 118,
+          "band": 700,
+          "status": "complete"
+        },
+        {
+          "name": "proof_verification",
+          "latency_ms": 16,
+          "verified": true,
+          "status": "complete"
+        },
+        {
+          "name": "decision",
+          "latency_ms": 0,
+          "approved": true,
+          "status": "complete"
+        },
+        {
+          "name": "repayment_record",
+          "latency_ms": 2042,
+          "event_type": "approval",
+          "status": "complete"
+        }
+      ],
+      "cli_stages": [
+        {
+          "name": "consent",
+          "latency_ms": 0,
+          "status": "complete"
+        },
+        {
+          "name": "feature_engineering",
+          "latency_ms": 0,
+          "status": "complete"
+        },
+        {
+          "name": "ml_inference",
+          "latency_ms": 0,
+          "score": 762,
+          "band": 700,
+          "status": "complete"
+        },
+        {
+          "name": "commitment_computation",
+          "latency_ms": 0,
+          "status": "complete"
+        },
+        {
+          "name": "ledger_anchor",
+          "latency_ms": 2404,
+          "status": "complete"
+        },
+        {
+          "name": "loan_application",
+          "latency_ms": 345,
+          "status": "complete"
+        },
+        {
+          "name": "proof_generation",
+          "latency_ms": 118,
+          "band": 700,
+          "status": "complete"
+        },
+        {
+          "name": "proof_verification",
+          "latency_ms": 16,
+          "verified": true,
+          "status": "complete"
+        },
+        {
+          "name": "decision",
+          "latency_ms": 0,
+          "approved": true,
+          "status": "complete"
+        },
+        {
+          "name": "repayment_record",
+          "latency_ms": 2397,
+          "event_type": "approval",
+          "status": "complete"
+        }
+      ],
+      "sdk_total_ms": 4237,
+      "cli_total_ms": 5280,
+      "score": 762,
+      "band": 700,
+      "loan_approved": true
+    },
+    {
+      "borrower_index": 2947,
+      "customer_id": "8a858fa3552ae1120155486928255fc1",
+      "actual_default": 0,
+      "sdk_stages": [
+        {
+          "name": "consent",
+          "latency_ms": 0,
+          "status": "complete"
+        },
+        {
+          "name": "feature_engineering",
+          "latency_ms": 0,
+          "status": "complete"
+        },
+        {
+          "name": "ml_inference",
+          "latency_ms": 0,
+          "score": 628,
+          "band": 550,
+          "status": "complete"
+        },
+        {
+          "name": "commitment_computation",
+          "latency_ms": 0,
+          "status": "complete"
+        },
+        {
+          "name": "ledger_anchor",
+          "latency_ms": 2056,
+          "status": "complete"
+        },
+        {
+          "name": "loan_application",
+          "latency_ms": 10,
+          "status": "complete"
+        },
+        {
+          "name": "proof_generation",
+          "latency_ms": 151,
+          "band": 550,
+          "status": "complete"
+        },
+        {
+          "name": "proof_verification",
+          "latency_ms": 11,
+          "verified": true,
+          "status": "complete"
+        },
+        {
+          "name": "decision",
+          "latency_ms": 0,
+          "approved": true,
+          "status": "complete"
+        },
+        {
+          "name": "repayment_record",
+          "latency_ms": 2064,
+          "event_type": "approval",
+          "status": "complete"
+        }
+      ],
+      "cli_stages": [
+        {
+          "name": "consent",
+          "latency_ms": 0,
+          "status": "complete"
+        },
+        {
+          "name": "feature_engineering",
+          "latency_ms": 0,
+          "status": "complete"
+        },
+        {
+          "name": "ml_inference",
+          "latency_ms": 0,
+          "score": 628,
+          "band": 550,
+          "status": "complete"
+        },
+        {
+          "name": "commitment_computation",
+          "latency_ms": 0,
+          "status": "complete"
+        },
+        {
+          "name": "ledger_anchor",
+          "latency_ms": 2428,
+          "status": "complete"
+        },
+        {
+          "name": "loan_application",
+          "latency_ms": 306,
+          "status": "complete"
+        },
+        {
+          "name": "proof_generation",
+          "latency_ms": 151,
+          "band": 550,
+          "status": "complete"
+        },
+        {
+          "name": "proof_verification",
+          "latency_ms": 11,
+          "verified": true,
+          "status": "complete"
+        },
+        {
+          "name": "decision",
+          "latency_ms": 0,
+          "approved": true,
+          "status": "complete"
+        },
+        {
+          "name": "repayment_record",
+          "latency_ms": 2471,
+          "event_type": "approval",
+          "status": "complete"
+        }
+      ],
+      "sdk_total_ms": 4292,
+      "cli_total_ms": 5367,
+      "score": 628,
+      "band": 550,
+      "loan_approved": true
+    },
+    {
+      "borrower_index": 3308,
+      "customer_id": "8a8588f853b1b2d40153bd9536925edb",
+      "actual_default": 0,
+      "sdk_stages": [
+        {
+          "name": "consent",
+          "latency_ms": 0,
+          "status": "complete"
+        },
+        {
+          "name": "feature_engineering",
+          "latency_ms": 0,
+          "status": "complete"
+        },
+        {
+          "name": "ml_inference",
+          "latency_ms": 0,
+          "score": 495,
+          "band": 400,
+          "status": "complete"
+        },
+        {
+          "name": "commitment_computation",
+          "latency_ms": 0,
+          "status": "complete"
+        },
+        {
+          "name": "ledger_anchor",
+          "latency_ms": 2098,
+          "status": "complete"
+        },
+        {
+          "name": "loan_application",
+          "latency_ms": 9,
+          "status": "complete"
+        },
+        {
+          "name": "proof_generation",
+          "latency_ms": 170,
+          "band": 400,
+          "status": "complete"
+        },
+        {
+          "name": "proof_verification",
+          "latency_ms": 13,
+          "verified": true,
+          "status": "complete"
+        },
+        {
+          "name": "decision",
+          "latency_ms": 0,
+          "approved": false,
+          "status": "complete"
+        },
+        {
+          "name": "repayment_record",
+          "latency_ms": 2067,
+          "event_type": "rejection",
+          "status": "complete"
+        }
+      ],
+      "cli_stages": [
+        {
+          "name": "consent",
+          "latency_ms": 0,
+          "status": "complete"
+        },
+        {
+          "name": "feature_engineering",
+          "latency_ms": 0,
+          "status": "complete"
+        },
+        {
+          "name": "ml_inference",
+          "latency_ms": 0,
+          "score": 495,
+          "band": 400,
+          "status": "complete"
+        },
+        {
+          "name": "commitment_computation",
+          "latency_ms": 0,
+          "status": "complete"
+        },
+        {
+          "name": "ledger_anchor",
+          "latency_ms": 2459,
+          "status": "complete"
+        },
+        {
+          "name": "loan_application",
+          "latency_ms": 446,
+          "status": "complete"
+        },
+        {
+          "name": "proof_generation",
+          "latency_ms": 170,
+          "band": 400,
+          "status": "complete"
+        },
+        {
+          "name": "proof_verification",
+          "latency_ms": 13,
+          "verified": true,
+          "status": "complete"
+        },
+        {
+          "name": "decision",
+          "latency_ms": 0,
+          "approved": false,
+          "status": "complete"
+        },
+        {
+          "name": "repayment_record",
+          "latency_ms": 2495,
+          "event_type": "rejection",
+          "status": "complete"
+        }
+      ],
+      "sdk_total_ms": 4357,
+      "cli_total_ms": 5583,
+      "score": 495,
+      "band": 400,
+      "loan_approved": false
+    },
+    {
+      "borrower_index": 2565,
+      "customer_id": "8a858ec75bfd77c4015bfda261b10b09",
+      "actual_default": 1,
+      "sdk_stages": [
+        {
+          "name": "consent",
+          "latency_ms": 0,
+          "status": "complete"
+        },
+        {
+          "name": "feature_engineering",
+          "latency_ms": 0,
+          "status": "complete"
+        },
+        {
+          "name": "ml_inference",
+          "latency_ms": 0,
+          "score": 685,
+          "band": 550,
+          "status": "complete"
+        },
+        {
+          "name": "commitment_computation",
+          "latency_ms": 0,
+          "status": "complete"
+        },
+        {
+          "name": "ledger_anchor",
+          "latency_ms": 2068,
+          "status": "complete"
+        },
+        {
+          "name": "loan_application",
+          "latency_ms": 9,
+          "status": "complete"
+        },
+        {
+          "name": "proof_generation",
+          "latency_ms": 144,
+          "band": 550,
+          "status": "complete"
+        },
+        {
+          "name": "proof_verification",
+          "latency_ms": 15,
+          "verified": true,
+          "status": "complete"
+        },
+        {
+          "name": "decision",
+          "latency_ms": 0,
+          "approved": true,
+          "status": "complete"
+        },
+        {
+          "name": "repayment_record",
+          "latency_ms": 2066,
+          "event_type": "approval",
+          "status": "complete"
+        }
+      ],
+      "cli_stages": [
+        {
+          "name": "consent",
+          "latency_ms": 0,
+          "status": "complete"
+        },
+        {
+          "name": "feature_engineering",
+          "latency_ms": 0,
+          "status": "complete"
+        },
+        {
+          "name": "ml_inference",
+          "latency_ms": 0,
+          "score": 685,
+          "band": 550,
+          "status": "complete"
+        },
+        {
+          "name": "commitment_computation",
+          "latency_ms": 0,
+          "status": "complete"
+        },
+        {
+          "name": "ledger_anchor",
+          "latency_ms": 2434,
+          "status": "complete"
+        },
+        {
+          "name": "loan_application",
+          "latency_ms": 369,
+          "status": "complete"
+        },
+        {
+          "name": "proof_generation",
+          "latency_ms": 144,
+          "band": 550,
+          "status": "complete"
+        },
+        {
+          "name": "proof_verification",
+          "latency_ms": 15,
+          "verified": true,
+          "status": "complete"
+        },
+        {
+          "name": "decision",
+          "latency_ms": 0,
+          "approved": true,
+          "status": "complete"
+        },
+        {
+          "name": "repayment_record",
+          "latency_ms": 2480,
+          "event_type": "approval",
+          "status": "complete"
+        }
+      ],
+      "sdk_total_ms": 4302,
+      "cli_total_ms": 5442,
+      "score": 685,
+      "band": 550,
+      "loan_approved": true
+    },
+    {
+      "borrower_index": 853,
+      "customer_id": "8a858fb45bb59c21015bc8d6712368ac",
+      "actual_default": 0,
+      "sdk_stages": [
+        {
+          "name": "consent",
+          "latency_ms": 0,
+          "status": "complete"
+        },
+        {
+          "name": "feature_engineering",
+          "latency_ms": 0,
+          "status": "complete"
+        },
+        {
+          "name": "ml_inference",
+          "latency_ms": 0,
+          "score": 361,
+          "band": 0,
+          "status": "complete"
+        },
+        {
+          "name": "commitment_computation",
+          "latency_ms": 0,
+          "status": "complete"
+        },
+        {
+          "name": "ledger_anchor",
+          "latency_ms": 2064,
+          "status": "complete"
+        },
+        {
+          "name": "loan_application",
+          "latency_ms": 9,
+          "status": "complete"
+        }
+      ],
+      "cli_stages": [
+        {
+          "name": "consent",
+          "latency_ms": 0,
+          "status": "complete"
+        },
+        {
+          "name": "feature_engineering",
+          "latency_ms": 0,
+          "status": "complete"
+        },
+        {
+          "name": "ml_inference",
+          "latency_ms": 0,
+          "score": 361,
+          "band": 0,
+          "status": "complete"
+        },
+        {
+          "name": "commitment_computation",
+          "latency_ms": 0,
+          "status": "complete"
+        },
+        {
+          "name": "ledger_anchor",
+          "latency_ms": 2470,
+          "status": "complete"
+        },
+        {
+          "name": "loan_application",
+          "latency_ms": 357,
+          "status": "complete"
+        }
+      ],
+      "sdk_total_ms": 2073,
+      "cli_total_ms": 2827,
+      "score": 361,
+      "band": 0
+    },
+    {
+      "borrower_index": 2763,
+      "customer_id": "8a858e0a5668e69c01567e19e7626d39",
+      "actual_default": 1,
+      "sdk_stages": [
+        {
+          "name": "consent",
+          "latency_ms": 0,
+          "status": "complete"
+        },
+        {
+          "name": "feature_engineering",
+          "latency_ms": 0,
+          "status": "complete"
+        },
+        {
+          "name": "ml_inference",
+          "latency_ms": 0,
+          "score": 654,
+          "band": 550,
+          "status": "complete"
+        },
+        {
+          "name": "commitment_computation",
+          "latency_ms": 0,
+          "status": "complete"
+        },
+        {
+          "name": "ledger_anchor",
+          "latency_ms": 2090,
+          "status": "complete"
+        },
+        {
+          "name": "loan_application",
+          "latency_ms": 9,
+          "status": "complete"
+        },
+        {
+          "name": "proof_generation",
+          "latency_ms": 151,
+          "band": 550,
+          "status": "complete"
+        },
+        {
+          "name": "proof_verification",
+          "latency_ms": 16,
+          "verified": true,
+          "status": "complete"
+        },
+        {
+          "name": "decision",
+          "latency_ms": 0,
+          "approved": true,
+          "status": "complete"
+        },
+        {
+          "name": "repayment_record",
+          "latency_ms": 2069,
+          "event_type": "approval",
+          "status": "complete"
+        }
+      ],
+      "cli_stages": [
+        {
+          "name": "consent",
+          "latency_ms": 0,
+          "status": "complete"
+        },
+        {
+          "name": "feature_engineering",
+          "latency_ms": 0,
+          "status": "complete"
+        },
+        {
+          "name": "ml_inference",
+          "latency_ms": 0,
+          "score": 654,
+          "band": 550,
+          "status": "complete"
+        },
+        {
+          "name": "commitment_computation",
+          "latency_ms": 0,
+          "status": "complete"
+        },
+        {
+          "name": "ledger_anchor",
+          "latency_ms": 2465,
+          "status": "complete"
+        },
+        {
+          "name": "loan_application",
+          "latency_ms": 386,
+          "status": "complete"
+        },
+        {
+          "name": "proof_generation",
+          "latency_ms": 151,
+          "band": 550,
+          "status": "complete"
+        },
+        {
+          "name": "proof_verification",
+          "latency_ms": 16,
+          "verified": true,
+          "status": "complete"
+        },
+        {
+          "name": "decision",
+          "latency_ms": 0,
+          "approved": true,
+          "status": "complete"
+        },
+        {
+          "name": "repayment_record",
+          "latency_ms": 2454,
+          "event_type": "approval",
+          "status": "complete"
+        }
+      ],
+      "sdk_total_ms": 4335,
+      "cli_total_ms": 5472,
+      "score": 654,
+      "band": 550,
+      "loan_approved": true
+    },
+    {
+      "borrower_index": 3719,
+      "customer_id": "8a858e005941690001596c6cde945968",
+      "actual_default": 0,
+      "sdk_stages": [
+        {
+          "name": "consent",
+          "latency_ms": 0,
+          "status": "complete"
+        },
+        {
+          "name": "feature_engineering",
+          "latency_ms": 0,
+          "status": "complete"
+        },
+        {
+          "name": "ml_inference",
+          "latency_ms": 0,
+          "score": 816,
+          "band": 700,
+          "status": "complete"
+        },
+        {
+          "name": "commitment_computation",
+          "latency_ms": 0,
+          "status": "complete"
+        },
+        {
+          "name": "ledger_anchor",
+          "latency_ms": 2100,
+          "status": "complete"
+        },
+        {
+          "name": "loan_application",
+          "latency_ms": 10,
+          "status": "complete"
+        },
+        {
+          "name": "proof_generation",
+          "latency_ms": 140,
+          "band": 700,
+          "status": "complete"
+        },
+        {
+          "name": "proof_verification",
+          "latency_ms": 17,
+          "verified": true,
+          "status": "complete"
+        },
+        {
+          "name": "decision",
+          "latency_ms": 0,
+          "approved": true,
+          "status": "complete"
+        },
+        {
+          "name": "repayment_record",
+          "latency_ms": 2109,
+          "event_type": "approval",
+          "status": "complete"
+        }
+      ],
+      "cli_stages": [
+        {
+          "name": "consent",
+          "latency_ms": 0,
+          "status": "complete"
+        },
+        {
+          "name": "feature_engineering",
+          "latency_ms": 0,
+          "status": "complete"
+        },
+        {
+          "name": "ml_inference",
+          "latency_ms": 0,
+          "score": 816,
+          "band": 700,
+          "status": "complete"
+        },
+        {
+          "name": "commitment_computation",
+          "latency_ms": 0,
+          "status": "complete"
+        },
+        {
+          "name": "ledger_anchor",
+          "latency_ms": 2466,
+          "status": "complete"
+        },
+        {
+          "name": "loan_application",
+          "latency_ms": 355,
+          "status": "complete"
+        },
+        {
+          "name": "proof_generation",
+          "latency_ms": 140,
+          "band": 700,
+          "status": "complete"
+        },
+        {
+          "name": "proof_verification",
+          "latency_ms": 17,
+          "verified": true,
+          "status": "complete"
+        },
+        {
+          "name": "decision",
+          "latency_ms": 0,
+          "approved": true,
+          "status": "complete"
+        },
+        {
+          "name": "repayment_record",
+          "latency_ms": 2488,
+          "event_type": "approval",
+          "status": "complete"
+        }
+      ],
+      "sdk_total_ms": 4376,
+      "cli_total_ms": 5466,
+      "score": 816,
+      "band": 700,
+      "loan_approved": true
+    },
+    {
+      "borrower_index": 471,
+      "customer_id": "8a858f735aec46c4015af02a90835ac8",
+      "actual_default": 0,
+      "sdk_stages": [
+        {
+          "name": "consent",
+          "latency_ms": 0,
+          "status": "complete"
+        },
+        {
+          "name": "feature_engineering",
+          "latency_ms": 0,
+          "status": "complete"
+        },
+        {
+          "name": "ml_inference",
+          "latency_ms": 0,
+          "score": 447,
+          "band": 400,
+          "status": "complete"
+        },
+        {
+          "name": "commitment_computation",
+          "latency_ms": 0,
+          "status": "complete"
+        },
+        {
+          "name": "ledger_anchor",
+          "latency_ms": 2063,
+          "status": "complete"
+        },
+        {
+          "name": "loan_application",
+          "latency_ms": 8,
+          "status": "complete"
+        },
+        {
+          "name": "proof_generation",
+          "latency_ms": 138,
+          "band": 400,
+          "status": "complete"
+        },
+        {
+          "name": "proof_verification",
+          "latency_ms": 13,
+          "verified": true,
+          "status": "complete"
+        },
+        {
+          "name": "decision",
+          "latency_ms": 0,
+          "approved": false,
+          "status": "complete"
+        },
+        {
+          "name": "repayment_record",
+          "latency_ms": 2065,
+          "event_type": "rejection",
+          "status": "complete"
+        }
+      ],
+      "cli_stages": [
+        {
+          "name": "consent",
+          "latency_ms": 0,
+          "status": "complete"
+        },
+        {
+          "name": "feature_engineering",
+          "latency_ms": 0,
+          "status": "complete"
+        },
+        {
+          "name": "ml_inference",
+          "latency_ms": 0,
+          "score": 447,
+          "band": 400,
+          "status": "complete"
+        },
+        {
+          "name": "commitment_computation",
+          "latency_ms": 0,
+          "status": "complete"
+        },
+        {
+          "name": "ledger_anchor",
+          "latency_ms": 2446,
+          "status": "complete"
+        },
+        {
+          "name": "loan_application",
+          "latency_ms": 363,
+          "status": "complete"
+        },
+        {
+          "name": "proof_generation",
+          "latency_ms": 138,
+          "band": 400,
+          "status": "complete"
+        },
+        {
+          "name": "proof_verification",
+          "latency_ms": 13,
+          "verified": true,
+          "status": "complete"
+        },
+        {
+          "name": "decision",
+          "latency_ms": 0,
+          "approved": false,
+          "status": "complete"
+        },
+        {
+          "name": "repayment_record",
+          "latency_ms": 2451,
+          "event_type": "rejection",
+          "status": "complete"
+        }
+      ],
+      "sdk_total_ms": 4287,
+      "cli_total_ms": 5411,
+      "score": 447,
+      "band": 400,
+      "loan_approved": false
+    },
+    {
+      "borrower_index": 4040,
+      "customer_id": "8a858fba5cd5feee015ce3c294891874",
+      "actual_default": 0,
+      "sdk_stages": [
+        {
+          "name": "consent",
+          "latency_ms": 0,
+          "status": "complete"
+        },
+        {
+          "name": "feature_engineering",
+          "latency_ms": 0,
+          "status": "complete"
+        },
+        {
+          "name": "ml_inference",
+          "latency_ms": 0,
+          "score": 842,
+          "band": 700,
+          "status": "complete"
+        },
+        {
+          "name": "commitment_computation",
+          "latency_ms": 0,
+          "status": "complete"
+        },
+        {
+          "name": "ledger_anchor",
+          "latency_ms": 2060,
+          "status": "complete"
+        },
+        {
+          "name": "loan_application",
+          "latency_ms": 10,
+          "status": "complete"
+        },
+        {
+          "name": "proof_generation",
+          "latency_ms": 130,
+          "band": 700,
+          "status": "complete"
+        },
+        {
+          "name": "proof_verification",
+          "latency_ms": 12,
+          "verified": true,
+          "status": "complete"
+        },
+        {
+          "name": "decision",
+          "latency_ms": 0,
+          "approved": true,
+          "status": "complete"
+        },
+        {
+          "name": "repayment_record",
+          "latency_ms": 2065,
+          "event_type": "approval",
+          "status": "complete"
+        }
+      ],
+      "cli_stages": [
+        {
+          "name": "consent",
+          "latency_ms": 0,
+          "status": "complete"
+        },
+        {
+          "name": "feature_engineering",
+          "latency_ms": 0,
+          "status": "complete"
+        },
+        {
+          "name": "ml_inference",
+          "latency_ms": 0,
+          "score": 842,
+          "band": 700,
+          "status": "complete"
+        },
+        {
+          "name": "commitment_computation",
+          "latency_ms": 0,
+          "status": "complete"
+        },
+        {
+          "name": "ledger_anchor",
+          "latency_ms": 2478,
+          "status": "complete"
+        },
+        {
+          "name": "loan_application",
+          "latency_ms": 383,
+          "status": "complete"
+        },
+        {
+          "name": "proof_generation",
+          "latency_ms": 130,
+          "band": 700,
+          "status": "complete"
+        },
+        {
+          "name": "proof_verification",
+          "latency_ms": 12,
+          "verified": true,
+          "status": "complete"
+        },
+        {
+          "name": "decision",
+          "latency_ms": 0,
+          "approved": true,
+          "status": "complete"
+        },
+        {
+          "name": "repayment_record",
+          "latency_ms": 2475,
+          "event_type": "approval",
+          "status": "complete"
+        }
+      ],
+      "sdk_total_ms": 4277,
+      "cli_total_ms": 5478,
+      "score": 842,
+      "band": 700,
+      "loan_approved": true
+    },
+    {
+      "borrower_index": 2790,
+      "customer_id": "8a858e885c87dee5015c881f237f214b",
+      "actual_default": 0,
+      "sdk_stages": [
+        {
+          "name": "consent",
+          "latency_ms": 0,
+          "status": "complete"
+        },
+        {
+          "name": "feature_engineering",
+          "latency_ms": 0,
+          "status": "complete"
+        },
+        {
+          "name": "ml_inference",
+          "latency_ms": 0,
+          "score": 746,
+          "band": 700,
+          "status": "complete"
+        },
+        {
+          "name": "commitment_computation",
+          "latency_ms": 0,
+          "status": "complete"
+        },
+        {
+          "name": "ledger_anchor",
+          "latency_ms": 2063,
+          "status": "complete"
+        },
+        {
+          "name": "loan_application",
+          "latency_ms": 11,
+          "status": "complete"
+        },
+        {
+          "name": "proof_generation",
+          "latency_ms": 137,
+          "band": 700,
+          "status": "complete"
+        },
+        {
+          "name": "proof_verification",
+          "latency_ms": 13,
+          "verified": true,
+          "status": "complete"
+        },
+        {
+          "name": "decision",
+          "latency_ms": 0,
+          "approved": true,
+          "status": "complete"
+        },
+        {
+          "name": "repayment_record",
+          "latency_ms": 2110,
+          "event_type": "approval",
+          "status": "complete"
+        }
+      ],
+      "cli_stages": [
+        {
+          "name": "consent",
+          "latency_ms": 0,
+          "status": "complete"
+        },
+        {
+          "name": "feature_engineering",
+          "latency_ms": 0,
+          "status": "complete"
+        },
+        {
+          "name": "ml_inference",
+          "latency_ms": 0,
+          "score": 746,
+          "band": 700,
+          "status": "complete"
+        },
+        {
+          "name": "commitment_computation",
+          "latency_ms": 0,
+          "status": "complete"
+        },
+        {
+          "name": "ledger_anchor",
+          "latency_ms": 2524,
+          "status": "complete"
+        },
+        {
+          "name": "loan_application",
+          "latency_ms": 400,
+          "status": "complete"
+        },
+        {
+          "name": "proof_generation",
+          "latency_ms": 137,
+          "band": 700,
+          "status": "complete"
+        },
+        {
+          "name": "proof_verification",
+          "latency_ms": 13,
+          "verified": true,
+          "status": "complete"
+        },
+        {
+          "name": "decision",
+          "latency_ms": 0,
+          "approved": true,
+          "status": "complete"
+        },
+        {
+          "name": "repayment_record",
+          "latency_ms": 2480,
+          "event_type": "approval",
+          "status": "complete"
+        }
+      ],
+      "sdk_total_ms": 4334,
+      "cli_total_ms": 5554,
+      "score": 746,
+      "band": 700,
+      "loan_approved": true
+    },
+    {
+      "borrower_index": 1631,
+      "customer_id": "8a858ee25b34d796015b3562b4bb4ad4",
+      "actual_default": 0,
+      "sdk_stages": [
+        {
+          "name": "consent",
+          "latency_ms": 0,
+          "status": "complete"
+        },
+        {
+          "name": "feature_engineering",
+          "latency_ms": 0,
+          "status": "complete"
+        },
+        {
+          "name": "ml_inference",
+          "latency_ms": 0,
+          "score": 691,
+          "band": 550,
+          "status": "complete"
+        },
+        {
+          "name": "commitment_computation",
+          "latency_ms": 0,
+          "status": "complete"
+        },
+        {
+          "name": "ledger_anchor",
+          "latency_ms": 2041,
+          "status": "complete"
+        },
+        {
+          "name": "loan_application",
+          "latency_ms": 10,
+          "status": "complete"
+        },
+        {
+          "name": "proof_generation",
+          "latency_ms": 149,
+          "band": 550,
+          "status": "complete"
+        },
+        {
+          "name": "proof_verification",
+          "latency_ms": 17,
+          "verified": true,
+          "status": "complete"
+        },
+        {
+          "name": "decision",
+          "latency_ms": 0,
+          "approved": true,
+          "status": "complete"
+        },
+        {
+          "name": "repayment_record",
+          "latency_ms": 2075,
+          "event_type": "approval",
+          "status": "complete"
+        }
+      ],
+      "cli_stages": [
+        {
+          "name": "consent",
+          "latency_ms": 0,
+          "status": "complete"
+        },
+        {
+          "name": "feature_engineering",
+          "latency_ms": 0,
+          "status": "complete"
+        },
+        {
+          "name": "ml_inference",
+          "latency_ms": 0,
+          "score": 691,
+          "band": 550,
+          "status": "complete"
+        },
+        {
+          "name": "commitment_computation",
+          "latency_ms": 0,
+          "status": "complete"
+        },
+        {
+          "name": "ledger_anchor",
+          "latency_ms": 2455,
+          "status": "complete"
+        },
+        {
+          "name": "loan_application",
+          "latency_ms": 435,
+          "status": "complete"
+        },
+        {
+          "name": "proof_generation",
+          "latency_ms": 149,
+          "band": 550,
+          "status": "complete"
+        },
+        {
+          "name": "proof_verification",
+          "latency_ms": 17,
+          "verified": true,
+          "status": "complete"
+        },
+        {
+          "name": "decision",
+          "latency_ms": 0,
+          "approved": true,
+          "status": "complete"
+        },
+        {
+          "name": "repayment_record",
+          "latency_ms": 2443,
+          "event_type": "approval",
+          "status": "complete"
+        }
+      ],
+      "sdk_total_ms": 4292,
+      "cli_total_ms": 5499,
+      "score": 691,
+      "band": 550,
+      "loan_approved": true
+    },
+    {
+      "borrower_index": 4250,
+      "customer_id": "8a858e495bf8527e015bf8e8db823e98",
+      "actual_default": 0,
+      "sdk_stages": [
+        {
+          "name": "consent",
+          "latency_ms": 0,
+          "status": "complete"
+        },
+        {
+          "name": "feature_engineering",
+          "latency_ms": 0,
+          "status": "complete"
+        },
+        {
+          "name": "ml_inference",
+          "latency_ms": 0,
+          "score": 454,
+          "band": 400,
+          "status": "complete"
+        },
+        {
+          "name": "commitment_computation",
+          "latency_ms": 0,
+          "status": "complete"
+        },
+        {
+          "name": "ledger_anchor",
+          "latency_ms": 2064,
+          "status": "complete"
+        },
+        {
+          "name": "loan_application",
+          "latency_ms": 10,
+          "status": "complete"
+        },
+        {
+          "name": "proof_generation",
+          "latency_ms": 150,
+          "band": 400,
+          "status": "complete"
+        },
+        {
+          "name": "proof_verification",
+          "latency_ms": 13,
+          "verified": true,
+          "status": "complete"
+        },
+        {
+          "name": "decision",
+          "latency_ms": 0,
+          "approved": false,
+          "status": "complete"
+        },
+        {
+          "name": "repayment_record",
+          "latency_ms": 2069,
+          "event_type": "rejection",
+          "status": "complete"
+        }
+      ],
+      "cli_stages": [
+        {
+          "name": "consent",
+          "latency_ms": 0,
+          "status": "complete"
+        },
+        {
+          "name": "feature_engineering",
+          "latency_ms": 0,
+          "status": "complete"
+        },
+        {
+          "name": "ml_inference",
+          "latency_ms": 0,
+          "score": 454,
+          "band": 400,
+          "status": "complete"
+        },
+        {
+          "name": "commitment_computation",
+          "latency_ms": 0,
+          "status": "complete"
+        },
+        {
+          "name": "ledger_anchor",
+          "latency_ms": 2465,
+          "status": "complete"
+        },
+        {
+          "name": "loan_application",
+          "latency_ms": 348,
+          "status": "complete"
+        },
+        {
+          "name": "proof_generation",
+          "latency_ms": 150,
+          "band": 400,
+          "status": "complete"
+        },
+        {
+          "name": "proof_verification",
+          "latency_ms": 13,
+          "verified": true,
+          "status": "complete"
+        },
+        {
+          "name": "decision",
+          "latency_ms": 0,
+          "approved": false,
+          "status": "complete"
+        },
+        {
+          "name": "repayment_record",
+          "latency_ms": 2451,
+          "event_type": "rejection",
+          "status": "complete"
+        }
+      ],
+      "sdk_total_ms": 4306,
+      "cli_total_ms": 5427,
+      "score": 454,
+      "band": 400,
+      "loan_approved": false
+    },
+    {
+      "borrower_index": 1920,
+      "customer_id": "8a858e215ca77c7f015caa601f6e5976",
+      "actual_default": 0,
+      "sdk_stages": [
+        {
+          "name": "consent",
+          "latency_ms": 0,
+          "status": "complete"
+        },
+        {
+          "name": "feature_engineering",
+          "latency_ms": 0,
+          "status": "complete"
+        },
+        {
+          "name": "ml_inference",
+          "latency_ms": 0,
+          "score": 532,
+          "band": 400,
+          "status": "complete"
+        },
+        {
+          "name": "commitment_computation",
+          "latency_ms": 0,
+          "status": "complete"
+        },
+        {
+          "name": "ledger_anchor",
+          "latency_ms": 2054,
+          "status": "complete"
+        },
+        {
+          "name": "loan_application",
+          "latency_ms": 9,
+          "status": "complete"
+        },
+        {
+          "name": "proof_generation",
+          "latency_ms": 137,
+          "band": 400,
+          "status": "complete"
+        },
+        {
+          "name": "proof_verification",
+          "latency_ms": 13,
+          "verified": true,
+          "status": "complete"
+        },
+        {
+          "name": "decision",
+          "latency_ms": 0,
+          "approved": false,
+          "status": "complete"
+        },
+        {
+          "name": "repayment_record",
+          "latency_ms": 2067,
+          "event_type": "rejection",
+          "status": "complete"
+        }
+      ],
+      "cli_stages": [
+        {
+          "name": "consent",
+          "latency_ms": 0,
+          "status": "complete"
+        },
+        {
+          "name": "feature_engineering",
+          "latency_ms": 0,
+          "status": "complete"
+        },
+        {
+          "name": "ml_inference",
+          "latency_ms": 0,
+          "score": 532,
+          "band": 400,
+          "status": "complete"
+        },
+        {
+          "name": "commitment_computation",
+          "latency_ms": 0,
+          "status": "complete"
+        },
+        {
+          "name": "ledger_anchor",
+          "latency_ms": 2476,
+          "status": "complete"
+        },
+        {
+          "name": "loan_application",
+          "latency_ms": 384,
+          "status": "complete"
+        },
+        {
+          "name": "proof_generation",
+          "latency_ms": 137,
+          "band": 400,
+          "status": "complete"
+        },
+        {
+          "name": "proof_verification",
+          "latency_ms": 13,
+          "verified": true,
+          "status": "complete"
+        },
+        {
+          "name": "decision",
+          "latency_ms": 0,
+          "approved": false,
+          "status": "complete"
+        },
+        {
+          "name": "repayment_record",
+          "latency_ms": 2471,
+          "event_type": "rejection",
+          "status": "complete"
+        }
+      ],
+      "sdk_total_ms": 4280,
+      "cli_total_ms": 5481,
+      "score": 532,
+      "band": 400,
+      "loan_approved": false
+    },
+    {
+      "borrower_index": 3577,
+      "customer_id": "8a858e615c832be8015c83f6af853b59",
+      "actual_default": 0,
+      "sdk_stages": [
+        {
+          "name": "consent",
+          "latency_ms": 0,
+          "status": "complete"
+        },
+        {
+          "name": "feature_engineering",
+          "latency_ms": 0,
+          "status": "complete"
+        },
+        {
+          "name": "ml_inference",
+          "latency_ms": 0,
+          "score": 442,
+          "band": 400,
+          "status": "complete"
+        },
+        {
+          "name": "commitment_computation",
+          "latency_ms": 0,
+          "status": "complete"
+        },
+        {
+          "name": "ledger_anchor",
+          "latency_ms": 2100,
+          "status": "complete"
+        },
+        {
+          "name": "loan_application",
+          "latency_ms": 9,
+          "status": "complete"
+        },
+        {
+          "name": "proof_generation",
+          "latency_ms": 143,
+          "band": 400,
+          "status": "complete"
+        },
+        {
+          "name": "proof_verification",
+          "latency_ms": 13,
+          "verified": true,
+          "status": "complete"
+        },
+        {
+          "name": "decision",
+          "latency_ms": 0,
+          "approved": false,
+          "status": "complete"
+        },
+        {
+          "name": "repayment_record",
+          "latency_ms": 2061,
+          "event_type": "rejection",
+          "status": "complete"
+        }
+      ],
+      "cli_stages": [
+        {
+          "name": "consent",
+          "latency_ms": 0,
+          "status": "complete"
+        },
+        {
+          "name": "feature_engineering",
+          "latency_ms": 0,
+          "status": "complete"
+        },
+        {
+          "name": "ml_inference",
+          "latency_ms": 0,
+          "score": 442,
+          "band": 400,
+          "status": "complete"
+        },
+        {
+          "name": "commitment_computation",
+          "latency_ms": 0,
+          "status": "complete"
+        },
+        {
+          "name": "ledger_anchor",
+          "latency_ms": 2429,
+          "status": "complete"
+        },
+        {
+          "name": "loan_application",
+          "latency_ms": 355,
+          "status": "complete"
+        },
+        {
+          "name": "proof_generation",
+          "latency_ms": 143,
+          "band": 400,
+          "status": "complete"
+        },
+        {
+          "name": "proof_verification",
+          "latency_ms": 13,
+          "verified": true,
+          "status": "complete"
+        },
+        {
+          "name": "decision",
+          "latency_ms": 0,
+          "approved": false,
+          "status": "complete"
+        },
+        {
+          "name": "repayment_record",
+          "latency_ms": 2442,
+          "event_type": "rejection",
+          "status": "complete"
+        }
+      ],
+      "sdk_total_ms": 4326,
+      "cli_total_ms": 5382,
+      "score": 442,
+      "band": 400,
+      "loan_approved": false
+    },
+    {
+      "borrower_index": 2277,
+      "customer_id": "8a858e1d5cd58f9e015cd91cdee408ca",
+      "actual_default": 0,
+      "sdk_stages": [
+        {
+          "name": "consent",
+          "latency_ms": 0,
+          "status": "complete"
+        },
+        {
+          "name": "feature_engineering",
+          "latency_ms": 0,
+          "status": "complete"
+        },
+        {
+          "name": "ml_inference",
+          "latency_ms": 0,
+          "score": 468,
+          "band": 400,
+          "status": "complete"
+        },
+        {
+          "name": "commitment_computation",
+          "latency_ms": 0,
+          "status": "complete"
+        },
+        {
+          "name": "ledger_anchor",
+          "latency_ms": 2055,
+          "status": "complete"
+        },
+        {
+          "name": "loan_application",
+          "latency_ms": 11,
+          "status": "complete"
+        },
+        {
+          "name": "proof_generation",
+          "latency_ms": 136,
+          "band": 400,
+          "status": "complete"
+        },
+        {
+          "name": "proof_verification",
+          "latency_ms": 13,
+          "verified": true,
+          "status": "complete"
+        },
+        {
+          "name": "decision",
+          "latency_ms": 0,
+          "approved": false,
+          "status": "complete"
+        },
+        {
+          "name": "repayment_record",
+          "latency_ms": 2061,
+          "event_type": "rejection",
+          "status": "complete"
+        }
+      ],
+      "cli_stages": [
+        {
+          "name": "consent",
+          "latency_ms": 0,
+          "status": "complete"
+        },
+        {
+          "name": "feature_engineering",
+          "latency_ms": 0,
+          "status": "complete"
+        },
+        {
+          "name": "ml_inference",
+          "latency_ms": 0,
+          "score": 468,
+          "band": 400,
+          "status": "complete"
+        },
+        {
+          "name": "commitment_computation",
+          "latency_ms": 0,
+          "status": "complete"
+        },
+        {
+          "name": "ledger_anchor",
+          "latency_ms": 2462,
+          "status": "complete"
+        },
+        {
+          "name": "loan_application",
+          "latency_ms": 387,
+          "status": "complete"
+        },
+        {
+          "name": "proof_generation",
+          "latency_ms": 136,
+          "band": 400,
+          "status": "complete"
+        },
+        {
+          "name": "proof_verification",
+          "latency_ms": 13,
+          "verified": true,
+          "status": "complete"
+        },
+        {
+          "name": "decision",
+          "latency_ms": 0,
+          "approved": false,
+          "status": "complete"
+        },
+        {
+          "name": "repayment_record",
+          "latency_ms": 2443,
+          "event_type": "rejection",
+          "status": "complete"
+        }
+      ],
+      "sdk_total_ms": 4276,
+      "cli_total_ms": 5441,
+      "score": 468,
+      "band": 400,
+      "loan_approved": false
+    },
+    {
+      "borrower_index": 2158,
+      "customer_id": "8a858eff5b393484015b394ef3281e60",
+      "actual_default": 1,
+      "sdk_stages": [
+        {
+          "name": "consent",
+          "latency_ms": 0,
+          "status": "complete"
+        },
+        {
+          "name": "feature_engineering",
+          "latency_ms": 0,
+          "status": "complete"
+        },
+        {
+          "name": "ml_inference",
+          "latency_ms": 0,
+          "score": 309,
+          "band": 0,
+          "status": "complete"
+        },
+        {
+          "name": "commitment_computation",
+          "latency_ms": 0,
+          "status": "complete"
+        },
+        {
+          "name": "ledger_anchor",
+          "latency_ms": 2057,
+          "status": "complete"
+        },
+        {
+          "name": "loan_application",
+          "latency_ms": 11,
+          "status": "complete"
+        }
+      ],
+      "cli_stages": [
+        {
+          "name": "consent",
+          "latency_ms": 0,
+          "status": "complete"
+        },
+        {
+          "name": "feature_engineering",
+          "latency_ms": 0,
+          "status": "complete"
+        },
+        {
+          "name": "ml_inference",
+          "latency_ms": 0,
+          "score": 309,
+          "band": 0,
+          "status": "complete"
+        },
+        {
+          "name": "commitment_computation",
+          "latency_ms": 0,
+          "status": "complete"
+        },
+        {
+          "name": "ledger_anchor",
+          "latency_ms": 2471,
+          "status": "complete"
+        },
+        {
+          "name": "loan_application",
+          "latency_ms": 427,
+          "status": "complete"
+        }
+      ],
+      "sdk_total_ms": 2068,
+      "cli_total_ms": 2898,
+      "score": 309,
+      "band": 0
+    },
+    {
+      "borrower_index": 3568,
+      "customer_id": "8a858e045b495c30015b49b40d522144",
+      "actual_default": 0,
+      "sdk_stages": [
+        {
+          "name": "consent",
+          "latency_ms": 0,
+          "status": "complete"
+        },
+        {
+          "name": "feature_engineering",
+          "latency_ms": 0,
+          "status": "complete"
+        },
+        {
+          "name": "ml_inference",
+          "latency_ms": 0,
+          "score": 597,
+          "band": 550,
+          "status": "complete"
+        },
+        {
+          "name": "commitment_computation",
+          "latency_ms": 0,
+          "status": "complete"
+        },
+        {
+          "name": "ledger_anchor",
+          "latency_ms": 2106,
+          "status": "complete"
+        },
+        {
+          "name": "loan_application",
+          "latency_ms": 7,
+          "status": "complete"
+        },
+        {
+          "name": "proof_generation",
+          "latency_ms": 127,
+          "band": 550,
+          "status": "complete"
+        },
+        {
+          "name": "proof_verification",
+          "latency_ms": 13,
+          "verified": true,
+          "status": "complete"
+        },
+        {
+          "name": "decision",
+          "latency_ms": 0,
+          "approved": true,
+          "status": "complete"
+        },
+        {
+          "name": "repayment_record",
+          "latency_ms": 2059,
+          "event_type": "approval",
+          "status": "complete"
+        }
+      ],
+      "cli_stages": [
+        {
+          "name": "consent",
+          "latency_ms": 0,
+          "status": "complete"
+        },
+        {
+          "name": "feature_engineering",
+          "latency_ms": 0,
+          "status": "complete"
+        },
+        {
+          "name": "ml_inference",
+          "latency_ms": 0,
+          "score": 597,
+          "band": 550,
+          "status": "complete"
+        },
+        {
+          "name": "commitment_computation",
+          "latency_ms": 0,
+          "status": "complete"
+        },
+        {
+          "name": "ledger_anchor",
+          "latency_ms": 2493,
+          "status": "complete"
+        },
+        {
+          "name": "loan_application",
+          "latency_ms": 348,
+          "status": "complete"
+        },
+        {
+          "name": "proof_generation",
+          "latency_ms": 127,
+          "band": 550,
+          "status": "complete"
+        },
+        {
+          "name": "proof_verification",
+          "latency_ms": 13,
+          "verified": true,
+          "status": "complete"
+        },
+        {
+          "name": "decision",
+          "latency_ms": 0,
+          "approved": true,
+          "status": "complete"
+        },
+        {
+          "name": "repayment_record",
+          "latency_ms": 2442,
+          "event_type": "approval",
+          "status": "complete"
+        }
+      ],
+      "sdk_total_ms": 4312,
+      "cli_total_ms": 5423,
+      "score": 597,
+      "band": 550,
+      "loan_approved": true
+    },
+    {
+      "borrower_index": 3152,
+      "customer_id": "8a85892854be331a0154c901e52e390a",
+      "actual_default": 0,
+      "sdk_stages": [
+        {
+          "name": "consent",
+          "latency_ms": 0,
+          "status": "complete"
+        },
+        {
+          "name": "feature_engineering",
+          "latency_ms": 0,
+          "status": "complete"
+        },
+        {
+          "name": "ml_inference",
+          "latency_ms": 0,
+          "score": 327,
+          "band": 0,
+          "status": "complete"
+        },
+        {
+          "name": "commitment_computation",
+          "latency_ms": 0,
+          "status": "complete"
+        },
+        {
+          "name": "ledger_anchor",
+          "latency_ms": 2114,
+          "status": "complete"
+        },
+        {
+          "name": "loan_application",
+          "latency_ms": 8,
+          "status": "complete"
+        }
+      ],
+      "cli_stages": [
+        {
+          "name": "consent",
+          "latency_ms": 0,
+          "status": "complete"
+        },
+        {
+          "name": "feature_engineering",
+          "latency_ms": 0,
+          "status": "complete"
+        },
+        {
+          "name": "ml_inference",
+          "latency_ms": 0,
+          "score": 327,
+          "band": 0,
+          "status": "complete"
+        },
+        {
+          "name": "commitment_computation",
+          "latency_ms": 0,
+          "status": "complete"
+        },
+        {
+          "name": "ledger_anchor",
+          "latency_ms": 2450,
+          "status": "complete"
+        },
+        {
+          "name": "loan_application",
+          "latency_ms": 330,
+          "status": "complete"
+        }
+      ],
+      "sdk_total_ms": 2122,
+      "cli_total_ms": 2780,
+      "score": 327,
+      "band": 0
+    },
+    {
+      "borrower_index": 1204,
+      "customer_id": "8a858ea4582fcdc801583f1e99c55e55",
+      "actual_default": 0,
+      "sdk_stages": [
+        {
+          "name": "consent",
+          "latency_ms": 0,
+          "status": "complete"
+        },
+        {
+          "name": "feature_engineering",
+          "latency_ms": 0,
+          "status": "complete"
+        },
+        {
+          "name": "ml_inference",
+          "latency_ms": 0,
+          "score": 308,
+          "band": 0,
+          "status": "complete"
+        },
+        {
+          "name": "commitment_computation",
+          "latency_ms": 0,
+          "status": "complete"
+        },
+        {
+          "name": "ledger_anchor",
+          "latency_ms": 2091,
+          "status": "complete"
+        },
+        {
+          "name": "loan_application",
+          "latency_ms": 8,
+          "status": "complete"
+        }
+      ],
+      "cli_stages": [
+        {
+          "name": "consent",
+          "latency_ms": 0,
+          "status": "complete"
+        },
+        {
+          "name": "feature_engineering",
+          "latency_ms": 0,
+          "status": "complete"
+        },
+        {
+          "name": "ml_inference",
+          "latency_ms": 0,
+          "score": 308,
+          "band": 0,
+          "status": "complete"
+        },
+        {
+          "name": "commitment_computation",
+          "latency_ms": 0,
+          "status": "complete"
+        },
+        {
+          "name": "ledger_anchor",
+          "latency_ms": 2425,
+          "status": "complete"
+        },
+        {
+          "name": "loan_application",
+          "latency_ms": 342,
+          "status": "complete"
+        }
+      ],
+      "sdk_total_ms": 2099,
+      "cli_total_ms": 2767,
+      "score": 308,
+      "band": 0
+    },
+    {
+      "borrower_index": 3642,
+      "customer_id": "8a858e5c56f98bad0156ff01cbd504af",
+      "actual_default": 1,
+      "sdk_stages": [
+        {
+          "name": "consent",
+          "latency_ms": 0,
+          "status": "complete"
+        },
+        {
+          "name": "feature_engineering",
+          "latency_ms": 0,
+          "status": "complete"
+        },
+        {
+          "name": "ml_inference",
+          "latency_ms": 0,
+          "score": 776,
+          "band": 700,
+          "status": "complete"
+        },
+        {
+          "name": "commitment_computation",
+          "latency_ms": 0,
+          "status": "complete"
+        },
+        {
+          "name": "ledger_anchor",
+          "latency_ms": 2101,
+          "status": "complete"
+        },
+        {
+          "name": "loan_application",
+          "latency_ms": 11,
+          "status": "complete"
+        },
+        {
+          "name": "proof_generation",
+          "latency_ms": 119,
+          "band": 700,
+          "status": "complete"
+        },
+        {
+          "name": "proof_verification",
+          "latency_ms": 13,
+          "verified": true,
+          "status": "complete"
+        },
+        {
+          "name": "decision",
+          "latency_ms": 0,
+          "approved": true,
+          "status": "complete"
+        },
+        {
+          "name": "repayment_record",
+          "latency_ms": 2072,
+          "event_type": "approval",
+          "status": "complete"
+        }
+      ],
+      "cli_stages": [
+        {
+          "name": "consent",
+          "latency_ms": 0,
+          "status": "complete"
+        },
+        {
+          "name": "feature_engineering",
+          "latency_ms": 0,
+          "status": "complete"
+        },
+        {
+          "name": "ml_inference",
+          "latency_ms": 0,
+          "score": 776,
+          "band": 700,
+          "status": "complete"
+        },
+        {
+          "name": "commitment_computation",
+          "latency_ms": 0,
+          "status": "complete"
+        },
+        {
+          "name": "ledger_anchor",
+          "latency_ms": 2475,
+          "status": "complete"
+        },
+        {
+          "name": "loan_application",
+          "latency_ms": 377,
+          "status": "complete"
+        },
+        {
+          "name": "proof_generation",
+          "latency_ms": 119,
+          "band": 700,
+          "status": "complete"
+        },
+        {
+          "name": "proof_verification",
+          "latency_ms": 13,
+          "verified": true,
+          "status": "complete"
+        },
+        {
+          "name": "decision",
+          "latency_ms": 0,
+          "approved": true,
+          "status": "complete"
+        },
+        {
+          "name": "repayment_record",
+          "latency_ms": 2443,
+          "event_type": "approval",
+          "status": "complete"
+        }
+      ],
+      "sdk_total_ms": 4316,
+      "cli_total_ms": 5427,
+      "score": 776,
+      "band": 700,
+      "loan_approved": true
+    }
+  ],
+  "sdk_stage_latencies": {
+    "consent": {
+      "n": 25,
+      "mean_ms": 0
+    },
+    "feature_engineering": {
+      "n": 25,
+      "mean_ms": 0
+    },
+    "ml_inference": {
+      "n": 25,
+      "mean_ms": 0
+    },
+    "commitment_computation": {
+      "n": 25,
+      "mean_ms": 0
+    },
+    "ledger_anchor": {
+      "n": 25,
+      "mean_ms": 2078
+    },
+    "loan_application": {
+      "n": 25,
+      "mean_ms": 9
+    },
+    "proof_generation": {
+      "n": 20,
+      "mean_ms": 158
+    },
+    "proof_verification": {
+      "n": 20,
+      "mean_ms": 14
+    },
+    "decision": {
+      "n": 20,
+      "mean_ms": 0
+    },
+    "repayment_record": {
+      "n": 20,
+      "mean_ms": 2072
+    }
+  },
+  "cli_stage_latencies": {
+    "consent": {
+      "n": 25,
+      "mean_ms": 0
+    },
+    "feature_engineering": {
+      "n": 25,
+      "mean_ms": 0
+    },
+    "ml_inference": {
+      "n": 25,
+      "mean_ms": 0
+    },
+    "commitment_computation": {
+      "n": 25,
+      "mean_ms": 0
+    },
+    "ledger_anchor": {
+      "n": 25,
+      "mean_ms": 2454
+    },
+    "loan_application": {
+      "n": 25,
+      "mean_ms": 373
+    },
+    "proof_generation": {
+      "n": 20,
+      "mean_ms": 158
+    },
+    "proof_verification": {
+      "n": 20,
+      "mean_ms": 14
+    },
+    "decision": {
+      "n": 20,
+      "mean_ms": 0
+    },
+    "repayment_record": {
+      "n": 20,
+      "mean_ms": 2458
+    }
+  },
+  "summary": {
+    "total_flows": 25,
+    "below_lowest_band": 5,
+    "proof_success": 20,
+    "proof_failure": 0,
+    "proof_success_rate": 1,
+    "sdk_path": {
+      "total_latency_mean_ms": 4331,
+      "l1_ms": 0,
+      "l2_ms": 4160,
+      "l3_ms": 172,
+      "l1_pct": 0,
+      "l2_pct": 96,
+      "l3_pct": 4
+    },
+    "cli_path": {
+      "total_latency_mean_ms": 5457,
+      "l1_ms": 0,
+      "l2_ms": 5285,
+      "l3_ms": 172,
+      "l1_pct": 0,
+      "l2_pct": 97,
+      "l3_pct": 3
+    },
+    "speedup": {
+      "overall": 1.26,
+      "l2_blockchain": 1.27,
+      "note": "CLI path includes docker exec overhead (~500ms per call)"
+    },
+    "finding": "The apparent dominance of L2 (blockchain) in CLI path (97%) is substantially an artifact of client tooling. With SDK path, L2 drops to 96% and L3 (ZK proofs) becomes the primary latency component."
+  }
+}

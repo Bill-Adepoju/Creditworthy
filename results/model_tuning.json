@@ -1,0 +1,123 @@
+{
+  "timestamp": "2026-08-23T20:45:33.949498",
+  "dataset": {
+    "n_samples": 4376,
+    "n_features": 32,
+    "positive_rate": 0.21777879341864717
+  },
+  "cycle01_params": {
+    "LogisticRegression": {
+      "class_weight": "balanced",
+      "max_iter": 1000,
+      "C": 1.0,
+      "penalty": "l2",
+      "solver": "lbfgs"
+    },
+    "RandomForest": {
+      "n_estimators": 100,
+      "max_depth": null,
+      "min_samples_split": 2,
+      "min_samples_leaf": 1,
+      "class_weight": "balanced"
+    },
+    "XGBoost": {
+      "n_estimators": 100,
+      "max_depth": 6,
+      "learning_rate": 0.3,
+      "min_child_weight": 1,
+      "subsample": 1.0,
+      "colsample_bytree": 1.0,
+      "reg_alpha": 0,
+      "reg_lambda": 1,
+      "scale_pos_weight": 3.5
+    }
+  },
+  "cycle01_diagnosis": {
+    "LogisticRegression": {
+      "train_auc_mean": 0.709603306723965,
+      "train_auc_std": 0.005761610483461276,
+      "val_auc_mean": 0.6930459884632155,
+      "val_auc_std": 0.021569726789968387,
+      "overfit_gap": 0.016557318260749465
+    },
+    "RandomForest_C01": {
+      "train_auc_mean": 0.9957034952612055,
+      "train_auc_std": 0.0007284585412264292,
+      "val_auc_mean": 0.6678302240869878,
+      "val_auc_std": 0.017820996168329283,
+      "overfit_gap": 0.3278732711742177
+    },
+    "XGBoost_C01": {
+      "train_auc_mean": 0.9903100456028012,
+      "train_auc_std": 0.0008716771519923461,
+      "val_auc_mean": 0.6599281169063217,
+      "val_auc_std": 0.019797449258336357,
+      "overfit_gap": 0.33038192869647953
+    }
+  },
+  "tuned_models": {
+    "RandomForest": {
+      "best_params": {
+        "n_estimators": 50,
+        "min_samples_split": 20,
+        "min_samples_leaf": 5,
+        "max_features": 0.5,
+        "max_depth": 8
+      },
+      "best_cv_score": NaN
+    },
+    "XGBoost": {
+      "best_params": {
+        "subsample": 0.9,
+        "reg_lambda": 5.0,
+        "reg_alpha": 0.1,
+        "n_estimators": 50,
+        "min_child_weight": 3,
+        "max_depth": 2,
+        "learning_rate": 0.2,
+        "colsample_bytree": 1.0
+      },
+      "best_cv_score": NaN
+    }
+  },
+  "comparison": {
+    "LogisticRegression": {
+      "train_auc_mean": 0.709603306723965,
+      "train_auc_std": 0.005761610483461276,
+      "val_auc_mean": 0.6930459884632155,
+      "val_auc_std": 0.021569726789968387,
+      "overfit_gap": 0.016557318260749465
+    },
+    "RandomForest_Tuned": {
+      "train_auc_mean": 0.8774581998811881,
+      "train_auc_std": 0.0018709575067200133,
+      "val_auc_mean": 0.6941616998062602,
+      "val_auc_std": 0.02454445283744517,
+      "overfit_gap": 0.18329650007492793
+    },
+    "XGBoost_Tuned": {
+      "train_auc_mean": 0.7714085728533093,
+      "train_auc_std": 0.004226330790443849,
+      "val_auc_mean": 0.6946361653231817,
+      "val_auc_std": 0.02026393800156028,
+      "overfit_gap": 0.0767724075301276
+    },
+    "RandomForest_C01": {
+      "train_auc_mean": 0.9957034952612055,
+      "train_auc_std": 0.0007284585412264292,
+      "val_auc_mean": 0.6678302240869878,
+      "val_auc_std": 0.017820996168329283,
+      "overfit_gap": 0.3278732711742177
+    },
+    "XGBoost_C01": {
+      "train_auc_mean": 0.9903100456028012,
+      "train_auc_std": 0.0008716771519923461,
+      "val_auc_mean": 0.6599281169063217,
+      "val_auc_std": 0.019797449258336357,
+      "overfit_gap": 0.33038192869647953
+    }
+  },
+  "winner": "XGBoost_Tuned",
+  "lr_still_wins": false,
+  "conclusion": "XGBoost_Tuned wins after tuning. Cycle 01 issue was overfitting due to unlimited depth/weak regularization."
+}

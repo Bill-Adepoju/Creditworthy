@@ -1,0 +1,47 @@
+# Crypto configuration for ZK Credit Scoring Consortium
+# T31a: Three endorsing orgs + one read-only regulatory observer
+
+OrdererOrgs:
+  - Name: Orderer
+    Domain: orderer.credit.ng
+    EnableNodeOUs: true
+    Specs:
+      - Hostname: orderer
+
+PeerOrgs:
+  # Commercial Bank A - Primary endorser
+  - Name: CommercialBankA
+    Domain: commercialbanka.credit.ng
+    EnableNodeOUs: true
+    Template:
+      Count: 1
+    Users:
+      Count: 1
+
+  # Microfinance Institution B - Endorser
+  - Name: MicrofinanceB
+    Domain: microfinanceb.credit.ng
+    EnableNodeOUs: true
+    Template:
+      Count: 1
+    Users:
+      Count: 1
+
+  # Fintech Lender C - Endorser
+  - Name: FintechC
+    Domain: fintechc.credit.ng
+    EnableNodeOUs: true
+    Template:
+      Count: 1
+    Users:
+      Count: 1
+
+  # Regulatory Observer - READ-ONLY (embedded supervision per Auer 2022)
+  # This org can query but NOT endorse transactions
+  - Name: RegulatoryObserver
+    Domain: regulator.credit.ng
+    EnableNodeOUs: true
+    Template:
+      Count: 1
+    Users:
+      Count: 1

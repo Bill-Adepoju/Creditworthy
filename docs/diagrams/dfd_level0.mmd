@@ -1,0 +1,25 @@
+%%{init: {'theme': 'base'}}%%
+flowchart TB
+    subgraph External Entities
+        B[Borrower]
+        L[Lender]
+        I[Issuing Institution]
+        R[Regulatory Observer]
+    end
+
+    SYSTEM((Privacy-Preserving<br/>Credit Scoring<br/>System))
+
+    B -->|Consent, DID| SYSTEM
+    SYSTEM -->|Score, Commitment| B
+
+    I -->|Transaction Data| SYSTEM
+    SYSTEM -->|Anchor Confirmation| I
+
+    L -->|Verification Request,<br/>Threshold| SYSTEM
+    SYSTEM -->|Eligibility Result,<br/>ZK Proof| L
+
+    R -->|Query Request| SYSTEM
+    SYSTEM -->|Ledger History<br/>(Read-Only)| R
+
+    style SYSTEM fill:#16213e,stroke:#4fc3f7,stroke-width:3px,color:#fff
+    style R fill:#3d0c11,stroke:#ff5722,color:#fff

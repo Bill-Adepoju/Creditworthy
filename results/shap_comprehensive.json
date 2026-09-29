@@ -1,0 +1,542 @@
+{
+  "timestamp": "2026-08-23T21:07:03.810580",
+  "analysis_by_feature_set": {
+    "regularity": {
+      "feature_set": "regularity",
+      "n_features": 26,
+      "ranked_features": [
+        {
+          "rank": 1,
+          "feature": "relationship_tenure_days",
+          "mean_abs_shap": 0.3041141659460655,
+          "category": "regularity"
+        },
+        {
+          "rank": 2,
+          "feature": "early_repay_ratio",
+          "mean_abs_shap": 0.28230087750502575,
+          "category": "regularity"
+        },
+        {
+          "rank": 3,
+          "feature": "repay_delay_mean",
+          "mean_abs_shap": 0.210045877625056,
+          "category": "regularity"
+        },
+        {
+          "rank": 4,
+          "feature": "repay_delay_std",
+          "mean_abs_shap": 0.1730688972138947,
+          "category": "regularity"
+        },
+        {
+          "rank": 5,
+          "feature": "loan_count",
+          "mean_abs_shap": 0.12872137468649678,
+          "category": "regularity"
+        },
+        {
+          "rank": 6,
+          "feature": "bank_account_type_Savings",
+          "mean_abs_shap": 0.1236921916220039,
+          "category": "shared"
+        },
+        {
+          "rank": 7,
+          "feature": "employment_status_Unknown",
+          "mean_abs_shap": 0.10859340217240386,
+          "category": "shared"
+        },
+        {
+          "rank": 8,
+          "feature": "employment_status_Permanent",
+          "mean_abs_shap": 0.09807543234756642,
+          "category": "shared"
+        },
+        {
+          "rank": 9,
+          "feature": "term_escalation",
+          "mean_abs_shap": 0.09691173543205142,
+          "category": "regularity"
+        },
+        {
+          "rank": 10,
+          "feature": "age",
+          "mean_abs_shap": 0.07067902375423941,
+          "category": "shared"
+        },
+        {
+          "rank": 11,
+          "feature": "bank_account_type_Other",
+          "mean_abs_shap": 0.06281739734887612,
+          "category": "shared"
+        },
+        {
+          "rank": 12,
+          "feature": "interval_mean",
+          "mean_abs_shap": 0.05630992110873816,
+          "category": "regularity"
+        },
+        {
+          "rank": 13,
+          "feature": "bank_account_type_Unknown",
+          "mean_abs_shap": 0.037297572690988795,
+          "category": "shared"
+        },
+        {
+          "rank": 14,
+          "feature": "region_lat_band_Unknown",
+          "mean_abs_shap": 0.037297572690988635,
+          "category": "shared"
+        },
+        {
+          "rank": 15,
+          "feature": "region_lat_band_Middle",
+          "mean_abs_shap": 0.028289947839805384,
+          "category": "shared"
+        },
+        {
+          "rank": 16,
+          "feature": "region_lat_band_South",
+          "mean_abs_shap": 0.026421181883831774,
+          "category": "shared"
+        },
+        {
+          "rank": 17,
+          "feature": "region_lat_band_North",
+          "mean_abs_shap": 0.025938185644091352,
+          "category": "shared"
+        },
+        {
+          "rank": 18,
+          "feature": "interval_regularity",
+          "mean_abs_shap": 0.02478309078806186,
+          "category": "regularity"
+        },
+        {
+          "rank": 19,
+          "feature": "bank_account_type_Current",
+          "mean_abs_shap": 0.023477714617948394,
+          "category": "shared"
+        },
+        {
+          "rank": 20,
+          "feature": "employment_status_Student",
+          "mean_abs_shap": 0.01323194908779105,
+          "category": "shared"
+        },
+        {
+          "rank": 21,
+          "feature": "employment_status_Self-Employed",
+          "mean_abs_shap": 0.006611080367529268,
+          "category": "shared"
+        },
+        {
+          "rank": 22,
+          "feature": "employment_status_Unemployed",
+          "mean_abs_shap": 0.006501516245239804,
+          "category": "shared"
+        },
+        {
+          "rank": 23,
+          "feature": "region_lat_band_nan",
+          "mean_abs_shap": 0.0023668538886000194,
+          "category": "shared"
+        },
+        {
+          "rank": 24,
+          "feature": "region_lat_band_North-Central",
+          "mean_abs_shap": 0.0014811823308617537,
+          "category": "shared"
+        },
+        {
+          "rank": 25,
+          "feature": "employment_status_Retired",
+          "mean_abs_shap": 8.353027571505763e-18,
+          "category": "shared"
+        },
+        {
+          "rank": 26,
+          "feature": "employment_status_Contract",
+          "mean_abs_shap": 0.0,
+          "category": "shared"
+        }
+      ],
+      "shap_values_shape": [
+        876,
+        26
+      ]
+    },
+    "magnitude": {
+      "feature_set": "magnitude",
+      "n_features": 24,
+      "ranked_features": [
+        {
+          "rank": 1,
+          "feature": "amount_mean",
+          "mean_abs_shap": 0.8036006054668495,
+          "category": "magnitude"
+        },
+        {
+          "rank": 2,
+          "feature": "totaldue_mean",
+          "mean_abs_shap": 0.4800804553375551,
+          "category": "magnitude"
+        },
+        {
+          "rank": 3,
+          "feature": "amount_cv",
+          "mean_abs_shap": 0.41636576371237843,
+          "category": "magnitude"
+        },
+        {
+          "rank": 4,
+          "feature": "amount_total",
+          "mean_abs_shap": 0.28582767036646595,
+          "category": "magnitude"
+        },
+        {
+          "rank": 5,
+          "feature": "amount_max",
+          "mean_abs_shap": 0.19617871247439997,
+          "category": "magnitude"
+        },
+        {
+          "rank": 6,
+          "feature": "bank_account_type_Savings",
+          "mean_abs_shap": 0.11470872355899456,
+          "category": "shared"
+        },
+        {
+          "rank": 7,
+          "feature": "employment_status_Unknown",
+          "mean_abs_shap": 0.11047362337940919,
+          "category": "shared"
+        },
+        {
+          "rank": 8,
+          "feature": "employment_status_Permanent",
+          "mean_abs_shap": 0.09735204056397422,
+          "category": "shared"
+        },
+        {
+          "rank": 9,
+          "feature": "age",
+          "mean_abs_shap": 0.0757919120158705,
+          "category": "shared"
+        },
+        {
+          "rank": 10,
+          "feature": "bank_account_type_Other",
+          "mean_abs_shap": 0.054811819337882345,
+          "category": "shared"
+        },
+        {
+          "rank": 11,
+          "feature": "region_lat_band_Middle",
+          "mean_abs_shap": 0.05097491294097535,
+          "category": "shared"
+        },
+        {
+          "rank": 12,
+          "feature": "bank_account_type_Unknown",
+          "mean_abs_shap": 0.04054586088631257,
+          "category": "shared"
+        },
+        {
+          "rank": 13,
+          "feature": "region_lat_band_Unknown",
+          "mean_abs_shap": 0.04054586088631257,
+          "category": "shared"
+        },
+        {
+          "rank": 14,
+          "feature": "region_lat_band_South",
+          "mean_abs_shap": 0.02775955087584671,
+          "category": "shared"
+        },
+        {
+          "rank": 15,
+          "feature": "term_mean",
+          "mean_abs_shap": 0.01954733084347522,
+          "category": "magnitude"
+        },
+        {
+          "rank": 16,
+          "feature": "bank_account_type_Current",
+          "mean_abs_shap": 0.01853057022242985,
+          "category": "shared"
+        },
+        {
+          "rank": 17,
+          "feature": "region_lat_band_North",
+          "mean_abs_shap": 0.017046396336188055,
+          "category": "shared"
+        },
+        {
+          "rank": 18,
+          "feature": "employment_status_Student",
+          "mean_abs_shap": 0.01236526505298675,
+          "category": "shared"
+        },
+        {
+          "rank": 19,
+          "feature": "employment_status_Unemployed",
+          "mean_abs_shap": 0.006706459090717443,
+          "category": "shared"
+        },
+        {
+          "rank": 20,
+          "feature": "region_lat_band_North-Central",
+          "mean_abs_shap": 0.005842560824609614,
+          "category": "shared"
+        },
+        {
+          "rank": 21,
+          "feature": "region_lat_band_nan",
+          "mean_abs_shap": 0.0022240060873315193,
+          "category": "shared"
+        },
+        {
+          "rank": 22,
+          "feature": "employment_status_Self-Employed",
+          "mean_abs_shap": 0.00011955548801019213,
+          "category": "shared"
+        },
+        {
+          "rank": 23,
+          "feature": "employment_status_Retired",
+          "mean_abs_shap": 1.3156577557116606e-17,
+          "category": "shared"
+        },
+        {
+          "rank": 24,
+          "feature": "employment_status_Contract",
+          "mean_abs_shap": 0.0,
+          "category": "shared"
+        }
+      ],
+      "shap_values_shape": [
+        876,
+        24
+      ]
+    },
+    "full": {
+      "feature_set": "full",
+      "n_features": 32,
+      "ranked_features": [
+        {
+          "rank": 1,
+          "feature": "amount_mean",
+          "mean_abs_shap": 0.5409156323146699,
+          "category": "magnitude"
+        },
+        {
+          "rank": 2,
+          "feature": "totaldue_mean",
+          "mean_abs_shap": 0.3357735292342893,
+          "category": "magnitude"
+        },
+        {
+          "rank": 3,
+          "feature": "amount_cv",
+          "mean_abs_shap": 0.30603321326085475,
+          "category": "magnitude"
+        },
+        {
+          "rank": 4,
+          "feature": "relationship_tenure_days",
+          "mean_abs_shap": 0.3010512342177717,
+          "category": "regularity"
+        },
+        {
+          "rank": 5,
+          "feature": "early_repay_ratio",
+          "mean_abs_shap": 0.26375526517940795,
+          "category": "regularity"
+        },
+        {
+          "rank": 6,
+          "feature": "amount_total",
+          "mean_abs_shap": 0.23531756896220382,
+          "category": "magnitude"
+        },
+        {
+          "rank": 7,
+          "feature": "repay_delay_mean",
+          "mean_abs_shap": 0.21129668149947325,
+          "category": "regularity"
+        },
+        {
+          "rank": 8,
+          "feature": "repay_delay_std",
+          "mean_abs_shap": 0.16640029616891752,
+          "category": "regularity"
+        },
+        {
+          "rank": 9,
+          "feature": "loan_count",
+          "mean_abs_shap": 0.13586240980369613,
+          "category": "regularity"
+        },
+        {
+          "rank": 10,
+          "feature": "amount_max",
+          "mean_abs_shap": 0.13437498181877727,
+          "category": "magnitude"
+        },
+        {
+          "rank": 11,
+          "feature": "bank_account_type_Savings",
+          "mean_abs_shap": 0.13358338661202473,
+          "category": "shared"
+        },
+        {
+          "rank": 12,
+          "feature": "employment_status_Unknown",
+          "mean_abs_shap": 0.11817139753912602,
+          "category": "shared"
+        },
+        {
+          "rank": 13,
+          "feature": "employment_status_Permanent",
+          "mean_abs_shap": 0.101770348536778,
+          "category": "shared"
+        },
+        {
+          "rank": 14,
+          "feature": "bank_account_type_Other",
+          "mean_abs_shap": 0.06928600286253508,
+          "category": "shared"
+        },
+        {
+          "rank": 15,
+          "feature": "age",
+          "mean_abs_shap": 0.06732641296067064,
+          "category": "shared"
+        },
+        {
+          "rank": 16,
+          "feature": "interval_regularity",
+          "mean_abs_shap": 0.06645784073932316,
+          "category": "regularity"
+        },
+        {
+          "rank": 17,
+          "feature": "term_escalation",
+          "mean_abs_shap": 0.06591304690499218,
+          "category": "regularity"
+        },
+        {
+          "rank": 18,
+          "feature": "interval_mean",
+          "mean_abs_shap": 0.06183985381307642,
+          "category": "regularity"
+        },
+        {
+          "rank": 19,
+          "feature": "bank_account_type_Unknown",
+          "mean_abs_shap": 0.040584875111221365,
+          "category": "shared"
+        },
+        {
+          "rank": 20,
+          "feature": "region_lat_band_Unknown",
+          "mean_abs_shap": 0.040584875111221365,
+          "category": "shared"
+        },
+        {
+          "rank": 21,
+          "feature": "region_lat_band_Middle",
+          "mean_abs_shap": 0.034472232705892024,
+          "category": "shared"
+        },
+        {
+          "rank": 22,
+          "feature": "region_lat_band_South",
+          "mean_abs_shap": 0.02681299511323613,
+          "category": "shared"
+        },
+        {
+          "rank": 23,
+          "feature": "region_lat_band_North",
+          "mean_abs_shap": 0.026008640629546238,
+          "category": "shared"
+        },
+        {
+          "rank": 24,
+          "feature": "bank_account_type_Current",
+          "mean_abs_shap": 0.023056199901702015,
+          "category": "shared"
+        },
+        {
+          "rank": 25,
+          "feature": "employment_status_Student",
+          "mean_abs_shap": 0.013787905585482148,
+          "category": "shared"
+        },
+        {
+          "rank": 26,
+          "feature": "employment_status_Self-Employed",
+          "mean_abs_shap": 0.008872665872484772,
+          "category": "shared"
+        },
+        {
+          "rank": 27,
+          "feature": "employment_status_Unemployed",
+          "mean_abs_shap": 0.006584702961441588,
+          "category": "shared"
+        },
+        {
+          "rank": 28,
+          "feature": "region_lat_band_nan",
+          "mean_abs_shap": 0.0021005116817849165,
+          "category": "shared"
+        },
+        {
+          "rank": 29,
+          "feature": "term_mean",
+          "mean_abs_shap": 0.0013021493508561983,
+          "category": "magnitude"
+        },
+        {
+          "rank": 30,
+          "feature": "region_lat_band_North-Central",
+          "mean_abs_shap": 0.0001260710901304107,
+          "category": "shared"
+        },
+        {
+          "rank": 31,
+          "feature": "employment_status_Retired",
+          "mean_abs_shap": 1.0903314657495406e-17,
+          "category": "shared"
+        },
+        {
+          "rank": 32,
+          "feature": "employment_status_Contract",
+          "mean_abs_shap": 0.0,
+          "category": "shared"
+        }
+      ],
+      "shap_values_shape": [
+        876,
+        32
+      ]
+    }
+  },
+  "category_aggregates": {
+    "full": {
+      "magnitude": 1.5537170749416511,
+      "regularity": 1.2725766283266584,
+      "shared": 0.7131292242752774
+    },
+    "regularity_magnitude_ratio": 0.8190529980334091
+  },
+  "reconciliation": {
+    "top_10_full_regularity_count": 5,
+    "top_10_full_magnitude_count": 5,
+    "regularity_category_total": 1.2725766283266584,
+    "magnitude_category_total": 1.5537170749416511,
+    "explanation": "Individual magnitude features (amount_mean, totaldue_mean) show high SHAP importance because they have strong marginal contributions. However, magnitude features are highly correlated with each other (all based on loan amounts), so their collective contribution to discrimination is limited by redundancy. Regularity features (relationship_tenure, early_repay_ratio, repay_delay patterns) are more orthogonal to each other, so their combined predictive power exceeds magnitude despite lower individual SHAP values. This explains why FS_regularity outperforms FS_magnitude in cross-validation despite magnitude features dominating SHAP rankings on FS_full."
+  }
+}

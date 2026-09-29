@@ -1,0 +1,731 @@
+{
+  "timestamp": "2026-08-24T15:34:52.901671",
+  "model": "LogisticRegression",
+  "profit_model": {
+    "revenue_per_performing": 1.0,
+    "loss_given_default": 3.0
+  },
+  "score_range": [
+    18,
+    949
+  ],
+  "score_mean": 542.7625570776256,
+  "score_std": 168.0139107766554,
+  "test_size": 876,
+  "baseline_default_rate": 0.2180365296803653,
+  "unrestricted_optimum": {
+    "threshold": 470,
+    "n_approved": 600,
+    "approval_rate": 0.684931506849315,
+    "default_rate": 0.12833333333333333,
+    "n_defaults": 77,
+    "profit": 292.0
+  },
+  "equidistant_bands": {
+    "2": {
+      "bands": [
+        18,
+        949
+      ],
+      "reachable_bands": [
+        18,
+        949
+      ],
+      "stated_bits": 1.0,
+      "effective_bits": 1.0,
+      "constrained_optimum": {
+        "best_band": 18,
+        "threshold": 18,
+        "n_approved": 876,
+        "approval_rate": 1.0,
+        "default_rate": 0.2180365296803653,
+        "n_defaults": 191,
+        "profit": 112.0
+      },
+      "excess_default_rate_bps": 897.0319634703197,
+      "profit_loss": 180.0,
+      "profit_loss_pct": 61.64383561643836
+    },
+    "3": {
+      "bands": [
+        18,
+        484,
+        949
+      ],
+      "reachable_bands": [
+        18,
+        484,
+        949
+      ],
+      "stated_bits": 1.584962500721156,
+      "effective_bits": 1.584962500721156,
+      "constrained_optimum": {
+        "best_band": 484,
+        "threshold": 484,
+        "n_approved": 582,
+        "approval_rate": 0.6643835616438356,
+        "default_rate": 0.12886597938144329,
+        "n_defaults": 75,
+        "profit": 282.0
+      },
+      "excess_default_rate_bps": 5.326460481099582,
+      "profit_loss": 10.0,
+      "profit_loss_pct": 3.4246575342465753
+    },
+    "4": {
+      "bands": [
+        18,
+        328,
+        639,
+        949
+      ],
+      "reachable_bands": [
+        18,
+        328,
+        639,
+        949
+      ],
+      "stated_bits": 2.0,
+      "effective_bits": 2.0,
+      "constrained_optimum": {
+        "best_band": 328,
+        "threshold": 328,
+        "n_approved": 767,
+        "approval_rate": 0.8755707762557078,
+        "default_rate": 0.1760104302477184,
+        "n_defaults": 135,
+        "profit": 227.0
+      },
+      "excess_default_rate_bps": 476.7709691438507,
+      "profit_loss": 65.0,
+      "profit_loss_pct": 22.26027397260274
+    },
+    "5": {
+      "bands": [
+        18,
+        251,
+        484,
+        716,
+        949
+      ],
+      "reachable_bands": [
+        18,
+        251,
+        484,
+        716,
+        949
+      ],
+      "stated_bits": 2.321928094887362,
+      "effective_bits": 2.321928094887362,
+      "constrained_optimum": {
+        "best_band": 484,
+        "threshold": 484,
+        "n_approved": 582,
+        "approval_rate": 0.6643835616438356,
+        "default_rate": 0.12886597938144329,
+        "n_defaults": 75,
+        "profit": 282.0
+      },
+      "excess_default_rate_bps": 5.326460481099582,
+      "profit_loss": 10.0,
+      "profit_loss_pct": 3.4246575342465753
+    },
+    "6": {
+      "bands": [
+        18,
+        204,
+        390,
+        577,
+        763,
+        949
+      ],
+      "reachable_bands": [
+        18,
+        204,
+        390,
+        577,
+        763,
+        949
+      ],
+      "stated_bits": 2.584962500721156,
+      "effective_bits": 2.584962500721156,
+      "constrained_optimum": {
+        "best_band": 390,
+        "threshold": 390,
+        "n_approved": 688,
+        "approval_rate": 0.7853881278538812,
+        "default_rate": 0.15261627906976744,
+        "n_defaults": 105,
+        "profit": 268.0
+      },
+      "excess_default_rate_bps": 242.8294573643411,
+      "profit_loss": 24.0,
+      "profit_loss_pct": 8.21917808219178
+    },
+    "8": {
+      "bands": [
+        18,
+        151,
+        284,
+        417,
+        550,
+        683,
+        816,
+        949
+      ],
+      "reachable_bands": [
+        18,
+        151,
+        284,
+        417,
+        550,
+        683,
+        816,
+        949
+      ],
+      "stated_bits": 3.0,
+      "effective_bits": 3.0,
+      "constrained_optimum": {
+        "best_band": 417,
+        "threshold": 417,
+        "n_approved": 662,
+        "approval_rate": 0.7557077625570776,
+        "default_rate": 0.14501510574018128,
+        "n_defaults": 96,
+        "profit": 278.0
+      },
+      "excess_default_rate_bps": 166.81772406847955,
+      "profit_loss": 14.0,
+      "profit_loss_pct": 4.794520547945205
+    },
+    "10": {
+      "bands": [
+        18,
+        121,
+        225,
+        328,
+        432,
+        535,
+        639,
+        742,
+        846,
+        949
+      ],
+      "reachable_bands": [
+        18,
+        121,
+        225,
+        328,
+        432,
+        535,
+        639,
+        742,
+        846,
+        949
+      ],
+      "stated_bits": 3.321928094887362,
+      "effective_bits": 3.321928094887362,
+      "constrained_optimum": {
+        "best_band": 432,
+        "threshold": 432,
+        "n_approved": 646,
+        "approval_rate": 0.7374429223744292,
+        "default_rate": 0.14396284829721362,
+        "n_defaults": 93,
+        "profit": 274.0
+      },
+      "excess_default_rate_bps": 156.2951496388029,
+      "profit_loss": 18.0,
+      "profit_loss_pct": 6.164383561643835
+    },
+    "15": {
+      "bands": [
+        18,
+        84,
+        151,
+        218,
+        284,
+        350,
+        417,
+        484,
+        550,
+        616,
+        683,
+        750,
+        816,
+        882,
+        949
+      ],
+      "reachable_bands": [
+        18,
+        84,
+        151,
+        218,
+        284,
+        350,
+        417,
+        484,
+        550,
+        616,
+        683,
+        750,
+        816,
+        882,
+        949
+      ],
+      "stated_bits": 3.9068905956085187,
+      "effective_bits": 3.9068905956085187,
+      "constrained_optimum": {
+        "best_band": 484,
+        "threshold": 484,
+        "n_approved": 582,
+        "approval_rate": 0.6643835616438356,
+        "default_rate": 0.12886597938144329,
+        "n_defaults": 75,
+        "profit": 282.0
+      },
+      "excess_default_rate_bps": 5.326460481099582,
+      "profit_loss": 10.0,
+      "profit_loss_pct": 3.4246575342465753
+    },
+    "20": {
+      "bands": [
+        18,
+        67,
+        116,
+        165,
+        214,
+        263,
+        312,
+        361,
+        410,
+        459,
+        508,
+        557,
+        606,
+        655,
+        704,
+        753,
+        802,
+        851,
+        900,
+        949
+      ],
+      "reachable_bands": [
+        18,
+        67,
+        116,
+        165,
+        214,
+        263,
+        312,
+        361,
+        410,
+        459,
+        508,
+        557,
+        606,
+        655,
+        704,
+        753,
+        802,
+        851,
+        900,
+        949
+      ],
+      "stated_bits": 4.321928094887363,
+      "effective_bits": 4.321928094887363,
+      "constrained_optimum": {
+        "best_band": 410,
+        "threshold": 410,
+        "n_approved": 668,
+        "approval_rate": 0.7625570776255708,
+        "default_rate": 0.1437125748502994,
+        "n_defaults": 96,
+        "profit": 284.0
+      },
+      "excess_default_rate_bps": 153.7924151696607,
+      "profit_loss": 8.0,
+      "profit_loss_pct": 2.73972602739726
+    }
+  },
+  "quantile_bands": {
+    "2": {
+      "bands": [
+        18,
+        949
+      ],
+      "reachable_bands": [
+        18,
+        949
+      ],
+      "stated_bits": 1.0,
+      "effective_bits": 1.0,
+      "constrained_optimum": {
+        "best_band": 18,
+        "threshold": 18,
+        "n_approved": 876,
+        "approval_rate": 1.0,
+        "default_rate": 0.2180365296803653,
+        "n_defaults": 191,
+        "profit": 112.0
+      },
+      "excess_default_rate_bps": 897.0319634703197,
+      "profit_loss": 180.0,
+      "profit_loss_pct": 61.64383561643836
+    },
+    "3": {
+      "bands": [
+        18,
+        575,
+        949
+      ],
+      "reachable_bands": [
+        18,
+        575,
+        949
+      ],
+      "stated_bits": 1.584962500721156,
+      "effective_bits": 1.584962500721156,
+      "constrained_optimum": {
+        "best_band": 575,
+        "threshold": 575,
+        "n_approved": 439,
+        "approval_rate": 0.5011415525114156,
+        "default_rate": 0.10933940774487472,
+        "n_defaults": 48,
+        "profit": 247.0
+      },
+      "excess_default_rate_bps": -189.9392558845861,
+      "profit_loss": 45.0,
+      "profit_loss_pct": 15.41095890410959
+    },
+    "4": {
+      "bands": [
+        18,
+        483,
+        630,
+        949
+      ],
+      "reachable_bands": [
+        18,
+        483,
+        630,
+        949
+      ],
+      "stated_bits": 2.0,
+      "effective_bits": 2.0,
+      "constrained_optimum": {
+        "best_band": 483,
+        "threshold": 483,
+        "n_approved": 586,
+        "approval_rate": 0.6689497716894978,
+        "default_rate": 0.1296928327645051,
+        "n_defaults": 76,
+        "profit": 282.0
+      },
+      "excess_default_rate_bps": 13.59499431171779,
+      "profit_loss": 10.0,
+      "profit_loss_pct": 3.4246575342465753
+    },
+    "5": {
+      "bands": [
+        18,
+        423,
+        575,
+        658,
+        949
+      ],
+      "reachable_bands": [
+        18,
+        423,
+        575,
+        658,
+        949
+      ],
+      "stated_bits": 2.321928094887362,
+      "effective_bits": 2.321928094887362,
+      "constrained_optimum": {
+        "best_band": 423,
+        "threshold": 423,
+        "n_approved": 657,
+        "approval_rate": 0.75,
+        "default_rate": 0.1445966514459665,
+        "n_defaults": 95,
+        "profit": 277.0
+      },
+      "excess_default_rate_bps": 162.6331811263318,
+      "profit_loss": 15.0,
+      "profit_loss_pct": 5.136986301369863
+    },
+    "6": {
+      "bands": [
+        18,
+        385,
+        526,
+        609,
+        677,
+        949
+      ],
+      "reachable_bands": [
+        18,
+        385,
+        526,
+        609,
+        677,
+        949
+      ],
+      "stated_bits": 2.584962500721156,
+      "effective_bits": 2.584962500721156,
+      "constrained_optimum": {
+        "best_band": 385,
+        "threshold": 385,
+        "n_approved": 702,
+        "approval_rate": 0.8013698630136986,
+        "default_rate": 0.15242165242165243,
+        "n_defaults": 107,
+        "profit": 274.0
+      },
+      "excess_default_rate_bps": 240.883190883191,
+      "profit_loss": 18.0,
+      "profit_loss_pct": 6.164383561643835
+    },
+    "8": {
+      "bands": [
+        18,
+        348,
+        451,
+        544,
+        599,
+        642,
+        711,
+        949
+      ],
+      "reachable_bands": [
+        18,
+        348,
+        451,
+        544,
+        599,
+        642,
+        711,
+        949
+      ],
+      "stated_bits": 3.0,
+      "effective_bits": 3.0,
+      "constrained_optimum": {
+        "best_band": 451,
+        "threshold": 451,
+        "n_approved": 626,
+        "approval_rate": 0.7146118721461188,
+        "default_rate": 0.14217252396166133,
+        "n_defaults": 89,
+        "profit": 270.0
+      },
+      "excess_default_rate_bps": 138.39190628328,
+      "profit_loss": 22.0,
+      "profit_loss_pct": 7.534246575342466
+    },
+    "10": {
+      "bands": [
+        18,
+        319,
+        395,
+        483,
+        552,
+        595,
+        630,
+        669,
+        735,
+        949
+      ],
+      "reachable_bands": [
+        18,
+        319,
+        395,
+        483,
+        552,
+        595,
+        630,
+        669,
+        735,
+        949
+      ],
+      "stated_bits": 3.321928094887362,
+      "effective_bits": 3.321928094887362,
+      "constrained_optimum": {
+        "best_band": 483,
+        "threshold": 483,
+        "n_approved": 586,
+        "approval_rate": 0.6689497716894978,
+        "default_rate": 0.1296928327645051,
+        "n_defaults": 76,
+        "profit": 282.0
+      },
+      "excess_default_rate_bps": 13.59499431171779,
+      "profit_loss": 10.0,
+      "profit_loss_pct": 3.4246575342465753
+    },
+    "15": {
+      "bands": [
+        18,
+        276,
+        348,
+        389,
+        451,
+        501,
+        544,
+        575,
+        599,
+        622,
+        642,
+        670,
+        711,
+        770,
+        949
+      ],
+      "reachable_bands": [
+        18,
+        276,
+        348,
+        389,
+        451,
+        501,
+        544,
+        575,
+        599,
+        622,
+        642,
+        670,
+        711,
+        770,
+        949
+      ],
+      "stated_bits": 3.9068905956085187,
+      "effective_bits": 3.9068905956085187,
+      "constrained_optimum": {
+        "best_band": 501,
+        "threshold": 501,
+        "n_approved": 564,
+        "approval_rate": 0.6438356164383562,
+        "default_rate": 0.12234042553191489,
+        "n_defaults": 69,
+        "profit": 288.0
+      },
+      "excess_default_rate_bps": -59.92907801418437,
+      "profit_loss": 4.0,
+      "profit_loss_pct": 1.36986301369863
+    },
+    "20": {
+      "bands": [
+        18,
+        243,
+        314,
+        357,
+        386,
+        432,
+        471,
+        505,
+        541,
+        562,
+        581,
+        601,
+        618,
+        636,
+        653,
+        671,
+        698,
+        742,
+        791,
+        949
+      ],
+      "reachable_bands": [
+        18,
+        243,
+        314,
+        357,
+        386,
+        432,
+        471,
+        505,
+        541,
+        562,
+        581,
+        601,
+        618,
+        636,
+        653,
+        671,
+        698,
+        742,
+        791,
+        949
+      ],
+      "stated_bits": 4.321928094887363,
+      "effective_bits": 4.321928094887363,
+      "constrained_optimum": {
+        "best_band": 471,
+        "threshold": 471,
+        "n_approved": 600,
+        "approval_rate": 0.684931506849315,
+        "default_rate": 0.12833333333333333,
+        "n_defaults": 77,
+        "profit": 292.0
+      },
+      "excess_default_rate_bps": 0.0,
+      "profit_loss": 0.0,
+      "profit_loss_pct": 0.0
+    }
+  },
+  "comparison": {
+    "2": {
+      "equidistant_excess_dr_bps": 897.0319634703197,
+      "quantile_excess_dr_bps": 897.0319634703197,
+      "winner": "Tie"
+    },
+    "3": {
+      "equidistant_excess_dr_bps": 5.326460481099582,
+      "quantile_excess_dr_bps": -189.9392558845861,
+      "winner": "Quantile"
+    },
+    "4": {
+      "equidistant_excess_dr_bps": 476.7709691438507,
+      "quantile_excess_dr_bps": 13.59499431171779,
+      "winner": "Quantile"
+    },
+    "5": {
+      "equidistant_excess_dr_bps": 5.326460481099582,
+      "quantile_excess_dr_bps": 162.6331811263318,
+      "winner": "Equidist"
+    },
+    "6": {
+      "equidistant_excess_dr_bps": 242.8294573643411,
+      "quantile_excess_dr_bps": 240.883190883191,
+      "winner": "Quantile"
+    },
+    "8": {
+      "equidistant_excess_dr_bps": 166.81772406847955,
+      "quantile_excess_dr_bps": 138.39190628328,
+      "winner": "Quantile"
+    },
+    "10": {
+      "equidistant_excess_dr_bps": 156.2951496388029,
+      "quantile_excess_dr_bps": 13.59499431171779,
+      "winner": "Quantile"
+    },
+    "15": {
+      "equidistant_excess_dr_bps": 5.326460481099582,
+      "quantile_excess_dr_bps": -59.92907801418437,
+      "winner": "Quantile"
+    },
+    "20": {
+      "equidistant_excess_dr_bps": 153.7924151696607,
+      "quantile_excess_dr_bps": 0.0,
+      "winner": "Quantile"
+    }
+  },
+  "method_comparison": {
+    "floor_quantisation": "INVALID - systematically too lenient",
+    "constrained_optimum": "CORRECT - lender picks best available band"
+  }
+}

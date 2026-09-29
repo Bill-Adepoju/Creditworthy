@@ -1,0 +1,128 @@
+/* ============================================
+   DESIGN TOKENS
+   Privacy-Preserving Credit Scoring Demo
+
+   Light mode only - optimized for print/dissertation figures.
+   ============================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
+
+:root {
+  /* ----------------------------------------
+     BASE — warm neutral, prints cleanly
+     ---------------------------------------- */
+  --bg:            #F8F7F4;
+  --surface:       #FFFFFF;
+  --surface-sunk:  #F0EFEB;
+  --border:        #E5E3DC;
+  --border-strong: #D0CEC5;
+
+  /* ----------------------------------------
+     INK — text colors
+     ---------------------------------------- */
+  --ink:           #1A1A1A;
+  --ink-secondary: #5C5C5C;
+  --ink-muted:     #8C8C8C;
+
+  /* ----------------------------------------
+     PRIMARY ACTION — deep indigo
+     ---------------------------------------- */
+  --primary:       #3D3A8C;
+  --primary-hover: #4E4AA3;
+  --primary-soft:  #EBEBF5;
+
+  /* ----------------------------------------
+     ARCHITECTURE LAYERS — semantic colors
+     ---------------------------------------- */
+  --l1:            #047857;   /* ML (green)              */
+  --l1-soft:       #ECFDF5;
+  --l2:            #B45309;   /* Ledger (amber, NOT red) */
+  --l2-soft:       #FEF3C7;
+  --l3:            #6D28D9;   /* ZK proofs (purple)      */
+  --l3-soft:       #EDE9FE;
+
+  /* ----------------------------------------
+     STATE — success/danger
+     ---------------------------------------- */
+  --success:       #047857;
+  --success-soft:  #ECFDF5;
+  --danger:        #B91C1C;
+  --danger-soft:   #FEF2F2;
+
+  /* ----------------------------------------
+     TYPOGRAPHY
+     ---------------------------------------- */
+  --font-sans: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, monospace;
+
+  /* Type scale */
+  --text-h1-size: 24px;
+  --text-h1-lh: 1.2;
+  --text-h1-weight: 700;
+
+  --text-h2-size: 16px;
+  --text-h2-lh: 1.3;
+  --text-h2-weight: 600;
+
+  --text-body-size: 15px;
+  --text-body-lh: 1.55;
+  --text-body-weight: 400;
+
+  --text-label-size: 11px;
+  --text-label-lh: 1.4;
+  --text-label-weight: 600;
+  --text-label-spacing: 0.04em;
+
+  --text-mono-size: 13px;
+  --text-mono-lh: 1.5;
+  --text-mono-weight: 400;
+
+  /* ----------------------------------------
+     SPACING — 8px scale
+     ---------------------------------------- */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 24px;
+  --space-6: 32px;
+  --space-7: 48px;
+  --space-8: 64px;
+
+  /* ----------------------------------------
+     RADIUS
+     ---------------------------------------- */
+  --r-sm: 4px;
+  --r-md: 8px;
+  --r-lg: 12px;
+  --r-full: 999px;
+
+  /* ----------------------------------------
+     SHADOWS — light, print-friendly
+     ---------------------------------------- */
+  --shadow-1: 0 1px 2px rgba(0,0,0,.04), 0 1px 3px rgba(0,0,0,.03);
+  --shadow-2: 0 4px 12px rgba(0,0,0,.08), 0 2px 4px rgba(0,0,0,.04);
+
+  /* ----------------------------------------
+     MOTION
+     ---------------------------------------- */
+  --ease: cubic-bezier(.22,.61,.36,1);
+  --dur-fast: 120ms;
+  --dur-base: 200ms;
+  --dur-slow: 400ms;
+
+  /* ----------------------------------------
+     LAYOUT
+     ---------------------------------------- */
+  --sidebar-width: 380px;
+  --max-content-width: 1200px;
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --dur-fast: 0ms;
+    --dur-base: 0ms;
+    --dur-slow: 0ms;
+  }
+}

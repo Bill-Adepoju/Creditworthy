@@ -1,0 +1,114 @@
+{
+  "timestamp": "2026-08-25T02:59:19.590Z",
+  "task": "T31c",
+  "hardware": {
+    "cpu": "AMD Ryzen 7 4800H",
+    "cores": 8,
+    "threads": 16,
+    "ram_gb": 32,
+    "platform": "Windows 10 / Docker Desktop"
+  },
+  "network": {
+    "fabric_version": "2.5",
+    "ordering": "Raft (single orderer)",
+    "orderer_count": 1,
+    "endorsers": 3,
+    "endorsement_policy": "MAJORITY (3 of 4)",
+    "channel": "creditchannel",
+    "chaincode_version": "1.1"
+  },
+  "caveat": "SINGLE ORDERER - not fault-tolerant. Sequential execution - latency includes Docker exec overhead (~500ms).",
+  "operations": {
+    "AnchorCommitment": {
+      "type": "write (endorsement + ordering + commit)",
+      "attempted": 30,
+      "successful": 30,
+      "success_rate": "100.0%",
+      "latency_ms": {
+        "n": 30,
+        "min": 2984,
+        "max": 3404,
+        "mean": 3059,
+        "p50": 3044,
+        "p95": 3262,
+        "p99": 3404
+      },
+      "sequential_tps": "0.33"
+    },
+    "RecordLoanEvent": {
+      "type": "write (endorsement + ordering + commit)",
+      "attempted": 30,
+      "successful": 30,
+      "success_rate": "100.0%",
+      "latency_ms": {
+        "n": 30,
+        "min": 2972,
+        "max": 3301,
+        "mean": 3051,
+        "p50": 3032,
+        "p95": 3278,
+        "p99": 3301
+      },
+      "sequential_tps": "0.33"
+    },
+    "GetCommitment": {
+      "type": "read (query single peer)",
+      "attempted": 50,
+      "successful": 50,
+      "success_rate": "100.0%",
+      "latency_ms": {
+        "n": 50,
+        "min": 809,
+        "max": 977,
+        "mean": 866,
+        "p50": 854,
+        "p95": 942,
+        "p99": 977
+      },
+      "sequential_qps": "1.15"
+    },
+    "GetCreditHistory": {
+      "type": "read (range query)",
+      "attempted": 20,
+      "successful": 20,
+      "success_rate": "100.0%",
+      "latency_ms": {
+        "n": 20,
+        "min": 819,
+        "max": 973,
+        "mean": 869,
+        "p50": 880,
+        "p95": 973,
+        "p99": 973
+      },
+      "sequential_qps": "1.15"
+    }
+  },
+  "initial_height": 37,
+  "final_height": 97,
+  "blocks_added": 60,
+  "txns_per_block": "1.00",
+  "summary": {
+    "AnchorCommitment": {
+      "mean_ms": 3059,
+      "p95_ms": 3262,
+      "sequential_tps": "0.33"
+    },
+    "RecordLoanEvent": {
+      "mean_ms": 3051,
+      "p95_ms": 3278,
+      "sequential_tps": "0.33"
+    },
+    "GetCommitment": {
+      "mean_ms": 866,
+      "p95_ms": 942,
+      "sequential_qps": "1.15"
+    },
+    "GetCreditHistory": {
+      "mean_ms": 869,
+      "p95_ms": 973,
+      "sequential_qps": "1.15"
+    },
+    "measurement_type": "sequential (not concurrent)"
+  }
+}

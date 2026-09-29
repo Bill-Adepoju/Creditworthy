@@ -1,0 +1,287 @@
+{
+  "timestamp": "2026-08-27T15:10:27.378267",
+  "task": "T58",
+  "title": "Calibration Methodology and FNR-Gap Curve",
+  "methodology_clarification": {
+    "question": "Where was isotonic regression fitted?",
+    "answer": "Via internal 5-fold cross-validation on train+validation set. ECE evaluated on held-out test set.",
+    "leakage": false,
+    "explanation": "CalibratedClassifierCV with cv=5 uses internal cross-validation: the base model is trained on 80% of train data per fold, and isotonic calibration is fitted on the held-out 20%. Final calibrator averages predictions from all folds. ECE is then computed on the TEST set which was never used during fitting. This is NOT fitting on test set."
+  },
+  "data_split": {
+    "train": 2800,
+    "validation": 700,
+    "test": 876,
+    "note": "Train+val used for fitting (via internal CV), test for evaluation only"
+  },
+  "calibration": {
+    "method": "isotonic",
+    "cv_folds": 5,
+    "ece_on_test": 0.037,
+    "brier_on_test": 0.1484,
+    "well_calibrated": true,
+    "threshold": 0.05
+  },
+  "base_rate_reconciliation": {
+    "savings_n": 517,
+    "other_n": 132,
+    "savings_default_rate": 0.2398,
+    "other_default_rate": 0.1061,
+    "base_rate_ratio": 2.26,
+    "canonical_520_vs_517": {
+      "reason": "3 duplicate records in source data",
+      "details": "canonical_split.json computed 520 Savings without deduplicating demographics. With deduplication: 517 Savings rows (516 unique customers). Difference: 2 customers have duplicate Savings records in demographics + 1 customer appears twice in features_processed.",
+      "verified": true
+    }
+  },
+  "fnr_resolution_caveat": {
+    "other_defaulters": 14,
+    "fnr_step_size": 0.0714,
+    "fnr_step_size_pp": "7.14 pp",
+    "interpretation": "Other has only 14 actual defaulters, so FNR_Other can only take values k/14. The minimum observed FNR gap of 9.2% is ~1.3 steps. The FNR gap curve cannot detect gaps smaller than ~7 pp due to quantization.",
+    "fpr_resolution": {
+      "other_non_defaulters": 118,
+      "fpr_step_size": 0.0085,
+      "fpr_step_size_pp": "0.85 pp",
+      "note": "FPR is computed on 118 non-defaulters and is far better resolved (0.85 pp steps), which strengthens the equalisation half of the argument."
+    },
+    "theorem_validity": "The Chouldechova/Kleinberg impossibility theorem is mathematically sound. This dataset demonstrates it but cannot resolve FNR gaps below ~7 pp."
+  },
+  "fnr_gap_curve": {
+    "description": "FNR gap at each target FPR level",
+    "finding": "FNR gap is NON-ZERO at every FPR level tested",
+    "min_fnr_gap": 0.0922,
+    "max_fnr_gap": 0.3675,
+    "min_gap_at_fpr": 0.074,
+    "interpretation": "The curve shows the impossibility result visually: as we sweep across all FPR levels, the FNR gap never reaches zero. This is because the groups have different base rates (Savings 2.25x higher), and no threshold adjustment can equalize both error rates simultaneously.",
+    "curve_data": [
+      {
+        "target_fpr": 0.05,
+        "thresh_savings": 0.424,
+        "thresh_other": 0.261,
+        "fpr_savings": 0.0509,
+        "fpr_other": 0.0508,
+        "fpr_gap": 0.0,
+        "fnr_savings": 0.7339,
+        "fnr_other": 0.8571,
+        "fnr_gap": 0.1233
+      },
+      {
+        "target_fpr": 0.074,
+        "thresh_savings": 0.404,
+        "thresh_other": 0.246,
+        "fpr_savings": 0.0738,
+        "fpr_other": 0.0763,
+        "fpr_gap": 0.0025,
+        "fnr_savings": 0.6935,
+        "fnr_other": 0.7857,
+        "fnr_gap": 0.0922
+      },
+      {
+        "target_fpr": 0.097,
+        "thresh_savings": 0.384,
+        "thresh_other": 0.222,
+        "fpr_savings": 0.0941,
+        "fpr_other": 0.0932,
+        "fpr_gap": 0.0009,
+        "fnr_savings": 0.6532,
+        "fnr_other": 0.7857,
+        "fnr_gap": 0.1325
+      },
+      {
+        "target_fpr": 0.121,
+        "thresh_savings": 0.345,
+        "thresh_other": 0.212,
+        "fpr_savings": 0.1221,
+        "fpr_other": 0.1271,
+        "fpr_gap": 0.005,
+        "fnr_savings": 0.6048,
+        "fnr_other": 0.7857,
+        "fnr_gap": 0.1809
+      },
+      {
+        "target_fpr": 0.145,
+        "thresh_savings": 0.33,
+        "thresh_other": 0.197,
+        "fpr_savings": 0.1425,
+        "fpr_other": 0.1525,
+        "fpr_gap": 0.01,
+        "fnr_savings": 0.5645,
+        "fnr_other": 0.7857,
+        "fnr_gap": 0.2212
+      },
+      {
+        "target_fpr": 0.168,
+        "thresh_savings": 0.296,
+        "thresh_other": 0.192,
+        "fpr_savings": 0.1705,
+        "fpr_other": 0.1695,
+        "fpr_gap": 0.001,
+        "fnr_savings": 0.4597,
+        "fnr_other": 0.7143,
+        "fnr_gap": 0.2546
+      },
+      {
+        "target_fpr": 0.192,
+        "thresh_savings": 0.276,
+        "thresh_other": 0.187,
+        "fpr_savings": 0.1883,
+        "fpr_other": 0.2119,
+        "fpr_gap": 0.0236,
+        "fnr_savings": 0.4435,
+        "fnr_other": 0.7143,
+        "fnr_gap": 0.2707
+      },
+      {
+        "target_fpr": 0.216,
+        "thresh_savings": 0.266,
+        "thresh_other": 0.187,
+        "fpr_savings": 0.2163,
+        "fpr_other": 0.2119,
+        "fpr_gap": 0.0044,
+        "fnr_savings": 0.4274,
+        "fnr_other": 0.7143,
+        "fnr_gap": 0.2869
+      },
+      {
+        "target_fpr": 0.239,
+        "thresh_savings": 0.241,
+        "thresh_other": 0.182,
+        "fpr_savings": 0.2417,
+        "fpr_other": 0.2458,
+        "fpr_gap": 0.004,
+        "fnr_savings": 0.3871,
+        "fnr_other": 0.7143,
+        "fnr_gap": 0.3272
+      },
+      {
+        "target_fpr": 0.263,
+        "thresh_savings": 0.232,
+        "thresh_other": 0.173,
+        "fpr_savings": 0.2595,
+        "fpr_other": 0.2627,
+        "fpr_gap": 0.0032,
+        "fnr_savings": 0.379,
+        "fnr_other": 0.7143,
+        "fnr_gap": 0.3353
+      },
+      {
+        "target_fpr": 0.287,
+        "thresh_savings": 0.217,
+        "thresh_other": 0.168,
+        "fpr_savings": 0.2774,
+        "fpr_other": 0.2966,
+        "fpr_gap": 0.0193,
+        "fnr_savings": 0.3468,
+        "fnr_other": 0.7143,
+        "fnr_gap": 0.3675
+      },
+      {
+        "target_fpr": 0.311,
+        "thresh_savings": 0.212,
+        "thresh_other": 0.163,
+        "fpr_savings": 0.3003,
+        "fpr_other": 0.3051,
+        "fpr_gap": 0.0048,
+        "fnr_savings": 0.3145,
+        "fnr_other": 0.6429,
+        "fnr_gap": 0.3283
+      },
+      {
+        "target_fpr": 0.334,
+        "thresh_savings": 0.207,
+        "thresh_other": 0.158,
+        "fpr_savings": 0.3333,
+        "fpr_other": 0.322,
+        "fpr_gap": 0.0113,
+        "fnr_savings": 0.2823,
+        "fnr_other": 0.6429,
+        "fnr_gap": 0.3606
+      },
+      {
+        "target_fpr": 0.358,
+        "thresh_savings": 0.197,
+        "thresh_other": 0.153,
+        "fpr_savings": 0.3639,
+        "fpr_other": 0.3475,
+        "fpr_gap": 0.0164,
+        "fnr_savings": 0.2581,
+        "fnr_other": 0.5714,
+        "fnr_gap": 0.3134
+      },
+      {
+        "target_fpr": 0.382,
+        "thresh_savings": 0.192,
+        "thresh_other": 0.148,
+        "fpr_savings": 0.3893,
+        "fpr_other": 0.3983,
+        "fpr_gap": 0.009,
+        "fnr_savings": 0.25,
+        "fnr_other": 0.5714,
+        "fnr_gap": 0.3214
+      },
+      {
+        "target_fpr": 0.405,
+        "thresh_savings": 0.187,
+        "thresh_other": 0.143,
+        "fpr_savings": 0.3944,
+        "fpr_other": 0.4068,
+        "fpr_gap": 0.0124,
+        "fnr_savings": 0.2419,
+        "fnr_other": 0.5,
+        "fnr_gap": 0.2581
+      },
+      {
+        "target_fpr": 0.429,
+        "thresh_savings": 0.182,
+        "thresh_other": 0.138,
+        "fpr_savings": 0.4173,
+        "fpr_other": 0.4322,
+        "fpr_gap": 0.0149,
+        "fnr_savings": 0.2016,
+        "fnr_other": 0.5,
+        "fnr_gap": 0.2984
+      },
+      {
+        "target_fpr": 0.453,
+        "thresh_savings": 0.177,
+        "thresh_other": 0.133,
+        "fpr_savings": 0.4733,
+        "fpr_other": 0.4407,
+        "fpr_gap": 0.0326,
+        "fnr_savings": 0.1855,
+        "fnr_other": 0.5,
+        "fnr_gap": 0.3145
+      },
+      {
+        "target_fpr": 0.476,
+        "thresh_savings": 0.177,
+        "thresh_other": 0.123,
+        "fpr_savings": 0.4733,
+        "fpr_other": 0.4661,
+        "fpr_gap": 0.0072,
+        "fnr_savings": 0.1855,
+        "fnr_other": 0.4286,
+        "fnr_gap": 0.2431
+      },
+      {
+        "target_fpr": 0.5,
+        "thresh_savings": 0.173,
+        "thresh_other": 0.118,
+        "fpr_savings": 0.5038,
+        "fpr_other": 0.4915,
+        "fpr_gap": 0.0123,
+        "fnr_savings": 0.1855,
+        "fnr_other": 0.4286,
+        "fnr_gap": 0.2431
+      }
+    ]
+  },
+  "impossibility_conclusion": {
+    "statement": "When base rates differ, no calibrated classifier can simultaneously equalize FPR and FNR. The FNR gap curve demonstrates this empirically across the full range of operating points.",
+    "citations": [
+      "Chouldechova, A. (2017). Fair prediction with disparate impact. Big Data, 5(2), 153-163.",
+      "Kleinberg, J., Mullainathan, S. & Raghavan, M. (2017). Inherent trade-offs in fair risk scores. ITCS 2017."
+    ]
+  }
+}

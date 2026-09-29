@@ -1,0 +1,38 @@
+{
+  "timestamp": "2026-08-24T16:13:01.500798",
+  "positive_class": {
+    "encoding": "target=1 means DEFAULT (Bad)",
+    "confirmed": true,
+    "implications": "pred_rate and selection_rate are REJECTION rates, not approval rates"
+  },
+  "bank_account_type_corrected": {
+    "Savings": {
+      "n": 533,
+      "pred_default_rate": 0.44652908067542213,
+      "approval_rate": 0.5534709193245779,
+      "actual_default_rate": 0.23827392120075047
+    },
+    "Other": {
+      "n": 136,
+      "pred_default_rate": 0.14705882352941177,
+      "approval_rate": 0.8529411764705882,
+      "actual_default_rate": 0.11764705882352941
+    }
+  },
+  "disparity": {
+    "disadvantaged_group": "Savings",
+    "favored_group": "Other",
+    "approval_rate_ratio_other_vs_savings": 1.5410767696909269,
+    "rejection_rate_ratio_savings_vs_other": 3.0363977485928704
+  },
+  "explanation": {
+    "why_savings_disadvantaged": "Shorter tenure, fewer loans, smaller amounts = thinner credit file = higher predicted risk",
+    "is_this_discrimination": "No - it tracks borrowing history depth, which is a legitimate risk signal",
+    "chapter_6_implication": "Reframe from 'discrimination against excluded' to 'model penalizes thin files'"
+  },
+  "cycle_03_error": {
+    "stated": "Savings approved at 44.7%, Other at 14.7%",
+    "actual": "Savings REJECTED at 44.7%, Other REJECTED at 14.7%",
+    "correct_approval_rates": "Savings 55.3%, Other 85.3%"
+  }
+}

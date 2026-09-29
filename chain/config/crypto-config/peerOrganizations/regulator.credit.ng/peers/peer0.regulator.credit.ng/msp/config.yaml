@@ -1,0 +1,14 @@
+NodeOUs:
+  Enable: true
+  ClientOUIdentifier:
+    Certificate: cacerts/ca.regulator.credit.ng-cert.pem
+    OrganizationalUnitIdentifier: client
+  PeerOUIdentifier:
+    Certificate: cacerts/ca.regulator.credit.ng-cert.pem
+    OrganizationalUnitIdentifier: peer
+  AdminOUIdentifier:
+    Certificate: cacerts/ca.regulator.credit.ng-cert.pem
+    OrganizationalUnitIdentifier: admin
+  OrdererOUIdentifier:
+    Certificate: cacerts/ca.regulator.credit.ng-cert.pem
+    OrganizationalUnitIdentifier: orderer

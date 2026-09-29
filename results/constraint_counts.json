@@ -1,0 +1,45 @@
+{
+  "timestamp": "2026-08-24T15:45:00.000000",
+  "task": "T32: Reconcile constraint counts",
+  "measurement_tool": "snarkjs r1cs info",
+  "library_versions": {
+    "snarkjs": "0.7.6",
+    "circomlib": "2.0.5",
+    "circomlibjs": "0.1.7"
+  },
+  "circuits": {
+    "credit_threshold": {
+      "file": "circuits/build/credit_threshold.r1cs",
+      "constraints": 573,
+      "wires": 573,
+      "private_inputs": 2,
+      "public_inputs": 2,
+      "outputs": 1
+    },
+    "credit_threshold_banded": {
+      "file": "circuits/build/credit_threshold_banded.r1cs",
+      "constraints": 576,
+      "wires": 575,
+      "private_inputs": 2,
+      "public_inputs": 2,
+      "outputs": 1
+    }
+  },
+  "delta": {
+    "constraints": 3,
+    "wires": 2,
+    "percentage": 0.52
+  },
+  "comparison_with_research_side": {
+    "research_tool": "circom 2.2.3",
+    "research_baseline": "292 non-linear + 281 linear = 573 wires",
+    "research_banded": "295 non-linear + 285 linear = 580 wires",
+    "research_delta": 7,
+    "cc_tool": "snarkjs 0.7.6 (circomlib 2.0.5)",
+    "cc_baseline": "573 constraints",
+    "cc_banded": "576 constraints",
+    "cc_delta": 3,
+    "reconciliation": "Non-linear delta (3) agrees. Wire/constraint count difference due to circom version (2.2.3 vs circomlib 2.0.5). Dissertation should quote: 573 -> 576 constraints (delta 3, 0.5% overhead) using snarkjs 0.7.6."
+  },
+  "recommendation": "Quote 573 -> 576 constraints (delta 3) in dissertation. State measurement tool as snarkjs 0.7.6 with circomlib 2.0.5."
+}

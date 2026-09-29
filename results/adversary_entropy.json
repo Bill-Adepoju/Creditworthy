@@ -1,0 +1,1712 @@
+{
+  "timestamp": "2026-08-24T16:14:35.536730",
+  "n_samples": 876,
+  "score_range": [
+    18,
+    949
+  ],
+  "unique_scores": 458,
+  "equidistant_analysis": {
+    "2": {
+      "bands": [
+        18,
+        949
+      ],
+      "prior_entropy_bits": 8.57553447817604,
+      "expected_posterior_entropy_bits": 8.562730073688714,
+      "information_leakage_bits": 0.012804404487326337,
+      "log2_B_bound": 1.0,
+      "leakage_exceeds_bound": false,
+      "effective_bands": 2,
+      "band_details": [
+        {
+          "band": 18,
+          "count": 875,
+          "probability": 0.9988584474885844,
+          "unique_scores": 457,
+          "entropy": 8.572516050915787,
+          "min_score": 18,
+          "max_score": 942
+        },
+        {
+          "band": 949,
+          "count": 1,
+          "probability": 0.001141552511415525,
+          "unique_scores": 1,
+          "entropy": -0.0,
+          "min_score": 949,
+          "max_score": 949
+        }
+      ]
+    },
+    "3": {
+      "bands": [
+        18,
+        483,
+        949
+      ],
+      "prior_entropy_bits": 8.57553447817604,
+      "expected_posterior_entropy_bits": 7.64739688497867,
+      "information_leakage_bits": 0.9281375931973699,
+      "log2_B_bound": 1.584962500721156,
+      "leakage_exceeds_bound": false,
+      "effective_bands": 3,
+      "band_details": [
+        {
+          "band": 18,
+          "count": 290,
+          "probability": 0.3310502283105023,
+          "unique_scores": 180,
+          "entropy": 7.264610998735947,
+          "min_score": 18,
+          "max_score": 482
+        },
+        {
+          "band": 483,
+          "count": 585,
+          "probability": 0.6678082191780822,
+          "unique_scores": 277,
+          "entropy": 7.850226464286991,
+          "min_score": 483,
+          "max_score": 942
+        },
+        {
+          "band": 949,
+          "count": 1,
+          "probability": 0.001141552511415525,
+          "unique_scores": 1,
+          "entropy": -0.0,
+          "min_score": 949,
+          "max_score": 949
+        }
+      ]
+    },
+    "4": {
+      "bands": [
+        18,
+        328,
+        638,
+        949
+      ],
+      "prior_entropy_bits": 8.57553447817604,
+      "expected_posterior_entropy_bits": 7.205339897826642,
+      "information_leakage_bits": 1.3701945803493984,
+      "log2_B_bound": 2.0,
+      "leakage_exceeds_bound": false,
+      "effective_bands": 4,
+      "band_details": [
+        {
+          "band": 18,
+          "count": 109,
+          "probability": 0.12442922374429223,
+          "unique_scores": 80,
+          "entropy": 6.183097742108879,
+          "min_score": 18,
+          "max_score": 327
+        },
+        {
+          "band": 328,
+          "count": 499,
+          "probability": 0.569634703196347,
+          "unique_scores": 230,
+          "entropy": 7.5727178383567155,
+          "min_score": 329,
+          "max_score": 637
+        },
+        {
+          "band": 638,
+          "count": 267,
+          "probability": 0.3047945205479452,
+          "unique_scores": 147,
+          "entropy": 6.963048296877417,
+          "min_score": 638,
+          "max_score": 942
+        },
+        {
+          "band": 949,
+          "count": 1,
+          "probability": 0.001141552511415525,
+          "unique_scores": 1,
+          "entropy": -0.0,
+          "min_score": 949,
+          "max_score": 949
+        }
+      ]
+    },
+    "5": {
+      "bands": [
+        18,
+        250,
+        483,
+        716,
+        949
+      ],
+      "prior_entropy_bits": 8.57553447817604,
+      "expected_posterior_entropy_bits": 6.941204735558112,
+      "information_leakage_bits": 1.6343297426179282,
+      "log2_B_bound": 2.321928094887362,
+      "leakage_exceeds_bound": false,
+      "effective_bands": 5,
+      "band_details": [
+        {
+          "band": 18,
+          "count": 50,
+          "probability": 0.05707762557077625,
+          "unique_scores": 40,
+          "entropy": 5.228758439731456,
+          "min_score": 18,
+          "max_score": 248
+        },
+        {
+          "band": 250,
+          "count": 240,
+          "probability": 0.273972602739726,
+          "unique_scores": 140,
+          "entropy": 6.8873840999054226,
+          "min_score": 251,
+          "max_score": 482
+        },
+        {
+          "band": 483,
+          "count": 466,
+          "probability": 0.5319634703196348,
+          "unique_scores": 194,
+          "entropy": 7.3522129904814735,
+          "min_score": 483,
+          "max_score": 715
+        },
+        {
+          "band": 716,
+          "count": 119,
+          "probability": 0.1358447488584475,
+          "unique_scores": 83,
+          "entropy": 6.218100746392138,
+          "min_score": 716,
+          "max_score": 942
+        },
+        {
+          "band": 949,
+          "count": 1,
+          "probability": 0.001141552511415525,
+          "unique_scores": 1,
+          "entropy": -0.0,
+          "min_score": 949,
+          "max_score": 949
+        }
+      ]
+    },
+    "6": {
+      "bands": [
+        18,
+        204,
+        390,
+        576,
+        762,
+        949
+      ],
+      "prior_entropy_bits": 8.57553447817604,
+      "expected_posterior_entropy_bits": 6.60368777522885,
+      "information_leakage_bits": 1.9718467029471904,
+      "log2_B_bound": 2.584962500721156,
+      "leakage_exceeds_bound": false,
+      "effective_bands": 6,
+      "band_details": [
+        {
+          "band": 18,
+          "count": 29,
+          "probability": 0.033105022831050226,
+          "unique_scores": 24,
+          "entropy": 4.487122805397797,
+          "min_score": 18,
+          "max_score": 203
+        },
+        {
+          "band": 204,
+          "count": 159,
+          "probability": 0.1815068493150685,
+          "unique_scores": 95,
+          "entropy": 6.314341093834615,
+          "min_score": 204,
+          "max_score": 388
+        },
+        {
+          "band": 390,
+          "count": 253,
+          "probability": 0.2888127853881279,
+          "unique_scores": 137,
+          "entropy": 6.902611831608157,
+          "min_score": 390,
+          "max_score": 575
+        },
+        {
+          "band": 576,
+          "count": 358,
+          "probability": 0.408675799086758,
+          "unique_scores": 146,
+          "entropy": 6.91560076511773,
+          "min_score": 576,
+          "max_score": 757
+        },
+        {
+          "band": 762,
+          "count": 76,
+          "probability": 0.0867579908675799,
+          "unique_scores": 55,
+          "entropy": 5.63918195414766,
+          "min_score": 762,
+          "max_score": 942
+        },
+        {
+          "band": 949,
+          "count": 1,
+          "probability": 0.001141552511415525,
+          "unique_scores": 1,
+          "entropy": -0.0,
+          "min_score": 949,
+          "max_score": 949
+        }
+      ]
+    },
+    "8": {
+      "bands": [
+        18,
+        151,
+        284,
+        417,
+        550,
+        683,
+        816,
+        949
+      ],
+      "prior_entropy_bits": 8.57553447817604,
+      "expected_posterior_entropy_bits": 6.230683721493193,
+      "information_leakage_bits": 2.344850756682847,
+      "log2_B_bound": 3.0,
+      "leakage_exceeds_bound": false,
+      "effective_bands": 8,
+      "band_details": [
+        {
+          "band": 18,
+          "count": 14,
+          "probability": 0.01598173515981735,
+          "unique_scores": 12,
+          "entropy": 3.521640636343319,
+          "min_score": 18,
+          "max_score": 148
+        },
+        {
+          "band": 151,
+          "count": 54,
+          "probability": 0.06164383561643835,
+          "unique_scores": 42,
+          "entropy": 5.282484261342598,
+          "min_score": 158,
+          "max_score": 281
+        },
+        {
+          "band": 284,
+          "count": 146,
+          "probability": 0.16666666666666666,
+          "unique_scores": 84,
+          "entropy": 6.1212405282749165,
+          "min_score": 284,
+          "max_score": 416
+        },
+        {
+          "band": 417,
+          "count": 172,
+          "probability": 0.1963470319634703,
+          "unique_scores": 94,
+          "entropy": 6.3822988041789595,
+          "min_score": 418,
+          "max_score": 549
+        },
+        {
+          "band": 550,
+          "count": 325,
+          "probability": 0.3710045662100457,
+          "unique_scores": 119,
+          "entropy": 6.641462140689795,
+          "min_score": 550,
+          "max_score": 682
+        },
+        {
+          "band": 683,
+          "count": 139,
+          "probability": 0.158675799086758,
+          "unique_scores": 83,
+          "entropy": 6.197796468282446,
+          "min_score": 683,
+          "max_score": 814
+        },
+        {
+          "band": 816,
+          "count": 25,
+          "probability": 0.028538812785388126,
+          "unique_scores": 23,
+          "entropy": 4.483856189774723,
+          "min_score": 816,
+          "max_score": 942
+        },
+        {
+          "band": 949,
+          "count": 1,
+          "probability": 0.001141552511415525,
+          "unique_scores": 1,
+          "entropy": -0.0,
+          "min_score": 949,
+          "max_score": 949
+        }
+      ]
+    },
+    "10": {
+      "bands": [
+        18,
+        121,
+        224,
+        328,
+        431,
+        535,
+        638,
+        742,
+        845,
+        949
+      ],
+      "prior_entropy_bits": 8.57553447817604,
+      "expected_posterior_entropy_bits": 5.852766792230145,
+      "information_leakage_bits": 2.722767685945895,
+      "log2_B_bound": 3.321928094887362,
+      "leakage_exceeds_bound": false,
+      "effective_bands": 10,
+      "band_details": [
+        {
+          "band": 18,
+          "count": 6,
+          "probability": 0.00684931506849315,
+          "unique_scores": 6,
+          "entropy": 2.584962500721156,
+          "min_score": 18,
+          "max_score": 120
+        },
+        {
+          "band": 121,
+          "count": 30,
+          "probability": 0.03424657534246575,
+          "unique_scores": 23,
+          "entropy": 4.415061012203069,
+          "min_score": 125,
+          "max_score": 223
+        },
+        {
+          "band": 224,
+          "count": 73,
+          "probability": 0.08333333333333333,
+          "unique_scores": 51,
+          "entropy": 5.518323873829965,
+          "min_score": 229,
+          "max_score": 327
+        },
+        {
+          "band": 328,
+          "count": 118,
+          "probability": 0.13470319634703196,
+          "unique_scores": 66,
+          "entropy": 5.753334736089117,
+          "min_score": 329,
+          "max_score": 430
+        },
+        {
+          "band": 431,
+          "count": 135,
+          "probability": 0.1541095890410959,
+          "unique_scores": 74,
+          "entropy": 6.042090852539332,
+          "min_score": 431,
+          "max_score": 534
+        },
+        {
+          "band": 535,
+          "count": 246,
+          "probability": 0.2808219178082192,
+          "unique_scores": 90,
+          "entropy": 6.2321377417292485,
+          "min_score": 537,
+          "max_score": 637
+        },
+        {
+          "band": 638,
+          "count": 174,
+          "probability": 0.19863013698630136,
+          "unique_scores": 82,
+          "entropy": 6.113647628127526,
+          "min_score": 638,
+          "max_score": 740
+        },
+        {
+          "band": 742,
+          "count": 77,
+          "probability": 0.08789954337899543,
+          "unique_scores": 50,
+          "entropy": 5.490495144450521,
+          "min_score": 742,
+          "max_score": 838
+        },
+        {
+          "band": 845,
+          "count": 16,
+          "probability": 0.0182648401826484,
+          "unique_scores": 15,
+          "entropy": 3.875,
+          "min_score": 845,
+          "max_score": 942
+        },
+        {
+          "band": 949,
+          "count": 1,
+          "probability": 0.001141552511415525,
+          "unique_scores": 1,
+          "entropy": -0.0,
+          "min_score": 949,
+          "max_score": 949
+        }
+      ]
+    },
+    "15": {
+      "bands": [
+        18,
+        84,
+        151,
+        217,
+        284,
+        350,
+        417,
+        483,
+        550,
+        616,
+        683,
+        749,
+        816,
+        882,
+        949
+      ],
+      "prior_entropy_bits": 8.57553447817604,
+      "expected_posterior_entropy_bits": 5.256984051799026,
+      "information_leakage_bits": 3.3185504263770147,
+      "log2_B_bound": 3.9068905956085187,
+      "leakage_exceeds_bound": false,
+      "effective_bands": 15,
+      "band_details": [
+        {
+          "band": 18,
+          "count": 2,
+          "probability": 0.00228310502283105,
+          "unique_scores": 2,
+          "entropy": 1.0,
+          "min_score": 18,
+          "max_score": 82
+        },
+        {
+          "band": 84,
+          "count": 12,
+          "probability": 0.0136986301369863,
+          "unique_scores": 10,
+          "entropy": 3.2516291673878226,
+          "min_score": 88,
+          "max_score": 148
+        },
+        {
+          "band": 151,
+          "count": 19,
+          "probability": 0.021689497716894976,
+          "unique_scores": 15,
+          "entropy": 3.7871439606981383,
+          "min_score": 158,
+          "max_score": 210
+        },
+        {
+          "band": 217,
+          "count": 35,
+          "probability": 0.03995433789954338,
+          "unique_scores": 27,
+          "entropy": 4.650571945454581,
+          "min_score": 222,
+          "max_score": 281
+        },
+        {
+          "band": 284,
+          "count": 59,
+          "probability": 0.06735159817351598,
+          "unique_scores": 39,
+          "entropy": 5.119599828876181,
+          "min_score": 284,
+          "max_score": 349
+        },
+        {
+          "band": 350,
+          "count": 87,
+          "probability": 0.09931506849315068,
+          "unique_scores": 45,
+          "entropy": 5.167153628495957,
+          "min_score": 350,
+          "max_score": 416
+        },
+        {
+          "band": 417,
+          "count": 76,
+          "probability": 0.0867579908675799,
+          "unique_scores": 42,
+          "entropy": 5.1964353687299685,
+          "min_score": 418,
+          "max_score": 482
+        },
+        {
+          "band": 483,
+          "count": 96,
+          "probability": 0.1095890410958904,
+          "unique_scores": 52,
+          "entropy": 5.546954787265483,
+          "min_score": 483,
+          "max_score": 549
+        },
+        {
+          "band": 550,
+          "count": 157,
+          "probability": 0.17922374429223745,
+          "unique_scores": 58,
+          "entropy": 5.596648178836638,
+          "min_score": 550,
+          "max_score": 615
+        },
+        {
+          "band": 616,
+          "count": 168,
+          "probability": 0.1917808219178082,
+          "unique_scores": 61,
+          "entropy": 5.684940751053625,
+          "min_score": 616,
+          "max_score": 682
+        },
+        {
+          "band": 683,
+          "count": 79,
+          "probability": 0.09018264840182648,
+          "unique_scores": 46,
+          "entropy": 5.328849735409335,
+          "min_score": 683,
+          "max_score": 748
+        },
+        {
+          "band": 749,
+          "count": 60,
+          "probability": 0.0684931506849315,
+          "unique_scores": 37,
+          "entropy": 5.056564762130954,
+          "min_score": 750,
+          "max_score": 814
+        },
+        {
+          "band": 816,
+          "count": 19,
+          "probability": 0.021689497716894976,
+          "unique_scores": 17,
+          "entropy": 4.037401197654112,
+          "min_score": 816,
+          "max_score": 877
+        },
+        {
+          "band": 882,
+          "count": 6,
+          "probability": 0.00684931506849315,
+          "unique_scores": 6,
+          "entropy": 2.584962500721156,
+          "min_score": 887,
+          "max_score": 942
+        },
+        {
+          "band": 949,
+          "count": 1,
+          "probability": 0.001141552511415525,
+          "unique_scores": 1,
+          "entropy": -0.0,
+          "min_score": 949,
+          "max_score": 949
+        }
+      ]
+    },
+    "20": {
+      "bands": [
+        18,
+        67,
+        116,
+        165,
+        214,
+        263,
+        312,
+        361,
+        410,
+        459,
+        508,
+        557,
+        606,
+        655,
+        704,
+        753,
+        802,
+        851,
+        900,
+        949
+      ],
+      "prior_entropy_bits": 8.57553447817604,
+      "expected_posterior_entropy_bits": 4.822450016787032,
+      "information_leakage_bits": 3.753084461389008,
+      "log2_B_bound": 4.321928094887363,
+      "leakage_exceeds_bound": false,
+      "effective_bands": 20,
+      "band_details": [
+        {
+          "band": 18,
+          "count": 1,
+          "probability": 0.001141552511415525,
+          "unique_scores": 1,
+          "entropy": -0.0,
+          "min_score": 18,
+          "max_score": 18
+        },
+        {
+          "band": 67,
+          "count": 3,
+          "probability": 0.003424657534246575,
+          "unique_scores": 3,
+          "entropy": 1.584962500721156,
+          "min_score": 82,
+          "max_score": 103
+        },
+        {
+          "band": 116,
+          "count": 13,
+          "probability": 0.014840182648401826,
+          "unique_scores": 10,
+          "entropy": 3.238901256602631,
+          "min_score": 119,
+          "max_score": 163
+        },
+        {
+          "band": 165,
+          "count": 16,
+          "probability": 0.0182648401826484,
+          "unique_scores": 13,
+          "entropy": 3.577819531114783,
+          "min_score": 167,
+          "max_score": 210
+        },
+        {
+          "band": 214,
+          "count": 22,
+          "probability": 0.02511415525114155,
+          "unique_scores": 16,
+          "entropy": 3.879664004902594,
+          "min_score": 222,
+          "max_score": 255
+        },
+        {
+          "band": 263,
+          "count": 37,
+          "probability": 0.04223744292237443,
+          "unique_scores": 29,
+          "entropy": 4.756618568273183,
+          "min_score": 263,
+          "max_score": 308
+        },
+        {
+          "band": 312,
+          "count": 52,
+          "probability": 0.0593607305936073,
+          "unique_scores": 28,
+          "entropy": 4.57487577558377,
+          "min_score": 314,
+          "max_score": 357
+        },
+        {
+          "band": 361,
+          "count": 64,
+          "probability": 0.0730593607305936,
+          "unique_scores": 33,
+          "entropy": 4.7073585007312415,
+          "min_score": 362,
+          "max_score": 409
+        },
+        {
+          "band": 410,
+          "count": 50,
+          "probability": 0.05707762557077625,
+          "unique_scores": 31,
+          "entropy": 4.79326968951511,
+          "min_score": 410,
+          "max_score": 455
+        },
+        {
+          "band": 459,
+          "count": 68,
+          "probability": 0.0776255707762557,
+          "unique_scores": 35,
+          "entropy": 4.945569598724685,
+          "min_score": 459,
+          "max_score": 507
+        },
+        {
+          "band": 508,
+          "count": 72,
+          "probability": 0.0821917808219178,
+          "unique_scores": 40,
+          "entropy": 5.15070169609156,
+          "min_score": 508,
+          "max_score": 556
+        },
+        {
+          "band": 557,
+          "count": 119,
+          "probability": 0.1358447488584475,
+          "unique_scores": 44,
+          "entropy": 5.19467464572691,
+          "min_score": 557,
+          "max_score": 605
+        },
+        {
+          "band": 606,
+          "count": 133,
+          "probability": 0.15182648401826485,
+          "unique_scores": 42,
+          "entropy": 5.178928538247966,
+          "min_score": 606,
+          "max_score": 654
+        },
+        {
+          "band": 655,
+          "count": 93,
+          "probability": 0.10616438356164383,
+          "unique_scores": 41,
+          "entropy": 5.138043085045685,
+          "min_score": 655,
+          "max_score": 703
+        },
+        {
+          "band": 704,
+          "count": 50,
+          "probability": 0.05707762557077625,
+          "unique_scores": 33,
+          "entropy": 4.878562939644916,
+          "min_score": 704,
+          "max_score": 751
+        },
+        {
+          "band": 753,
+          "count": 48,
+          "probability": 0.0547945205479452,
+          "unique_scores": 28,
+          "entropy": 4.647055208874201,
+          "min_score": 754,
+          "max_score": 801
+        },
+        {
+          "band": 802,
+          "count": 20,
+          "probability": 0.0228310502283105,
+          "unique_scores": 17,
+          "entropy": 4.021928094887363,
+          "min_score": 803,
+          "max_score": 848
+        },
+        {
+          "band": 851,
+          "count": 11,
+          "probability": 0.012557077625570776,
+          "unique_scores": 10,
+          "entropy": 3.2776134368191157,
+          "min_score": 857,
+          "max_score": 897
+        },
+        {
+          "band": 900,
+          "count": 3,
+          "probability": 0.003424657534246575,
+          "unique_scores": 3,
+          "entropy": 1.584962500721156,
+          "min_score": 924,
+          "max_score": 942
+        },
+        {
+          "band": 949,
+          "count": 1,
+          "probability": 0.001141552511415525,
+          "unique_scores": 1,
+          "entropy": -0.0,
+          "min_score": 949,
+          "max_score": 949
+        }
+      ]
+    }
+  },
+  "quantile_analysis": {
+    "2": {
+      "requested_B": 2,
+      "actual_B": 2,
+      "bands": [
+        18,
+        949
+      ],
+      "prior_entropy_bits": 8.57553447817604,
+      "expected_posterior_entropy_bits": 8.562730073688714,
+      "information_leakage_bits": 0.012804404487326337,
+      "log2_B_bound": 1.0,
+      "leakage_exceeds_bound": false,
+      "effective_bands": 2,
+      "band_details": [
+        {
+          "band": 18,
+          "count": 875,
+          "probability": 0.9988584474885844,
+          "unique_scores": 457,
+          "entropy": 8.572516050915787,
+          "min_score": 18,
+          "max_score": 942
+        },
+        {
+          "band": 949,
+          "count": 1,
+          "probability": 0.001141552511415525,
+          "unique_scores": 1,
+          "entropy": -0.0,
+          "min_score": 949,
+          "max_score": 949
+        }
+      ]
+    },
+    "3": {
+      "requested_B": 3,
+      "actual_B": 3,
+      "bands": [
+        18,
+        575,
+        949
+      ],
+      "prior_entropy_bits": 8.57553447817604,
+      "expected_posterior_entropy_bits": 7.563872567292991,
+      "information_leakage_bits": 1.0116619108830491,
+      "log2_B_bound": 1.584962500721156,
+      "leakage_exceeds_bound": false,
+      "effective_bands": 3,
+      "band_details": [
+        {
+          "band": 18,
+          "count": 437,
+          "probability": 0.4988584474885845,
+          "unique_scores": 255,
+          "entropy": 7.77638735400067,
+          "min_score": 18,
+          "max_score": 574
+        },
+        {
+          "band": 575,
+          "count": 438,
+          "probability": 0.5,
+          "unique_scores": 202,
+          "entropy": 7.36911208961271,
+          "min_score": 575,
+          "max_score": 942
+        },
+        {
+          "band": 949,
+          "count": 1,
+          "probability": 0.001141552511415525,
+          "unique_scores": 1,
+          "entropy": -0.0,
+          "min_score": 949,
+          "max_score": 949
+        }
+      ]
+    },
+    "4": {
+      "requested_B": 4,
+      "actual_B": 4,
+      "bands": [
+        18,
+        483,
+        630,
+        949
+      ],
+      "prior_entropy_bits": 8.57553447817604,
+      "expected_posterior_entropy_bits": 6.9795900734184935,
+      "information_leakage_bits": 1.5959444047575468,
+      "log2_B_bound": 2.0,
+      "leakage_exceeds_bound": false,
+      "effective_bands": 4,
+      "band_details": [
+        {
+          "band": 18,
+          "count": 290,
+          "probability": 0.3310502283105023,
+          "unique_scores": 180,
+          "entropy": 7.264610998735947,
+          "min_score": 18,
+          "max_score": 482
+        },
+        {
+          "band": 483,
+          "count": 292,
+          "probability": 0.3333333333333333,
+          "unique_scores": 123,
+          "entropy": 6.69933088610581,
+          "min_score": 483,
+          "max_score": 628
+        },
+        {
+          "band": 630,
+          "count": 293,
+          "probability": 0.3344748858447489,
+          "unique_scores": 154,
+          "entropy": 7.000611248936105,
+          "min_score": 630,
+          "max_score": 942
+        },
+        {
+          "band": 949,
+          "count": 1,
+          "probability": 0.001141552511415525,
+          "unique_scores": 1,
+          "entropy": -0.0,
+          "min_score": 949,
+          "max_score": 949
+        }
+      ]
+    },
+    "5": {
+      "requested_B": 5,
+      "actual_B": 5,
+      "bands": [
+        18,
+        423,
+        575,
+        658,
+        949
+      ],
+      "prior_entropy_bits": 8.57553447817604,
+      "expected_posterior_entropy_bits": 6.5650160041448915,
+      "information_leakage_bits": 2.010518474031149,
+      "log2_B_bound": 2.321928094887362,
+      "leakage_exceeds_bound": false,
+      "effective_bands": 5,
+      "band_details": [
+        {
+          "band": 18,
+          "count": 219,
+          "probability": 0.25,
+          "unique_scores": 141,
+          "entropy": 6.905938059716081,
+          "min_score": 18,
+          "max_score": 421
+        },
+        {
+          "band": 423,
+          "count": 218,
+          "probability": 0.24885844748858446,
+          "unique_scores": 114,
+          "entropy": 6.646249950929985,
+          "min_score": 424,
+          "max_score": 574
+        },
+        {
+          "band": 575,
+          "count": 219,
+          "probability": 0.25,
+          "unique_scores": 73,
+          "entropy": 5.938724676879692,
+          "min_score": 575,
+          "max_score": 657
+        },
+        {
+          "band": 658,
+          "count": 219,
+          "probability": 0.25,
+          "unique_scores": 129,
+          "entropy": 6.7994995023457285,
+          "min_score": 658,
+          "max_score": 942
+        },
+        {
+          "band": 949,
+          "count": 1,
+          "probability": 0.001141552511415525,
+          "unique_scores": 1,
+          "entropy": -0.0,
+          "min_score": 949,
+          "max_score": 949
+        }
+      ]
+    },
+    "6": {
+      "requested_B": 6,
+      "actual_B": 6,
+      "bands": [
+        18,
+        385,
+        526,
+        609,
+        677,
+        949
+      ],
+      "prior_entropy_bits": 8.57553447817604,
+      "expected_posterior_entropy_bits": 6.243546695115143,
+      "information_leakage_bits": 2.3319877830608977,
+      "log2_B_bound": 2.584962500721156,
+      "leakage_exceeds_bound": false,
+      "effective_bands": 6,
+      "band_details": [
+        {
+          "band": 18,
+          "count": 174,
+          "probability": 0.19863013698630136,
+          "unique_scores": 116,
+          "entropy": 6.682577044562532,
+          "min_score": 18,
+          "max_score": 383
+        },
+        {
+          "band": 385,
+          "count": 176,
+          "probability": 0.2009132420091324,
+          "unique_scores": 96,
+          "entropy": 6.34771565863679,
+          "min_score": 385,
+          "max_score": 524
+        },
+        {
+          "band": 526,
+          "count": 172,
+          "probability": 0.1963470319634703,
+          "unique_scores": 73,
+          "entropy": 5.917913321731709,
+          "min_score": 526,
+          "max_score": 607
+        },
+        {
+          "band": 609,
+          "count": 178,
+          "probability": 0.20319634703196346,
+          "unique_scores": 60,
+          "entropy": 5.676019634032969,
+          "min_score": 609,
+          "max_score": 676
+        },
+        {
+          "band": 677,
+          "count": 175,
+          "probability": 0.1997716894977169,
+          "unique_scores": 112,
+          "entropy": 6.635245468863921,
+          "min_score": 677,
+          "max_score": 942
+        },
+        {
+          "band": 949,
+          "count": 1,
+          "probability": 0.001141552511415525,
+          "unique_scores": 1,
+          "entropy": -0.0,
+          "min_score": 949,
+          "max_score": 949
+        }
+      ]
+    },
+    "8": {
+      "requested_B": 8,
+      "actual_B": 8,
+      "bands": [
+        18,
+        348,
+        451,
+        544,
+        599,
+        642,
+        711,
+        949
+      ],
+      "prior_entropy_bits": 8.57553447817604,
+      "expected_posterior_entropy_bits": 5.758685301567866,
+      "information_leakage_bits": 2.8168491766081747,
+      "log2_B_bound": 3.0,
+      "leakage_exceeds_bound": false,
+      "effective_bands": 8,
+      "band_details": [
+        {
+          "band": 18,
+          "count": 125,
+          "probability": 0.14269406392694065,
+          "unique_scores": 91,
+          "entropy": 6.369549684558241,
+          "min_score": 18,
+          "max_score": 347
+        },
+        {
+          "band": 348,
+          "count": 125,
+          "probability": 0.14269406392694065,
+          "unique_scores": 68,
+          "entropy": 5.8076390368980215,
+          "min_score": 348,
+          "max_score": 449
+        },
+        {
+          "band": 451,
+          "count": 123,
+          "probability": 0.1404109589041096,
+          "unique_scores": 68,
+          "entropy": 5.922813871172069,
+          "min_score": 451,
+          "max_score": 543
+        },
+        {
+          "band": 544,
+          "count": 127,
+          "probability": 0.1449771689497717,
+          "unique_scores": 49,
+          "entropy": 5.335718769712482,
+          "min_score": 544,
+          "max_score": 598
+        },
+        {
+          "band": 599,
+          "count": 123,
+          "probability": 0.1404109589041096,
+          "unique_scores": 37,
+          "entropy": 5.007998831678735,
+          "min_score": 599,
+          "max_score": 640
+        },
+        {
+          "band": 642,
+          "count": 127,
+          "probability": 0.1449771689497717,
+          "unique_scores": 57,
+          "entropy": 5.623147852106324,
+          "min_score": 642,
+          "max_score": 709
+        },
+        {
+          "band": 711,
+          "count": 125,
+          "probability": 0.14269406392694065,
+          "unique_scores": 87,
+          "entropy": 6.289549684558242,
+          "min_score": 711,
+          "max_score": 942
+        },
+        {
+          "band": 949,
+          "count": 1,
+          "probability": 0.001141552511415525,
+          "unique_scores": 1,
+          "entropy": -0.0,
+          "min_score": 949,
+          "max_score": 949
+        }
+      ]
+    },
+    "10": {
+      "requested_B": 10,
+      "actual_B": 10,
+      "bands": [
+        18,
+        319,
+        395,
+        483,
+        552,
+        595,
+        630,
+        669,
+        735,
+        949
+      ],
+      "prior_entropy_bits": 8.57553447817604,
+      "expected_posterior_entropy_bits": 5.396590032074557,
+      "information_leakage_bits": 3.1789444461014833,
+      "log2_B_bound": 3.321928094887362,
+      "leakage_exceeds_bound": false,
+      "effective_bands": 10,
+      "band_details": [
+        {
+          "band": 18,
+          "count": 97,
+          "probability": 0.11073059360730593,
+          "unique_scores": 75,
+          "entropy": 6.122957558615062,
+          "min_score": 18,
+          "max_score": 317
+        },
+        {
+          "band": 319,
+          "count": 94,
+          "probability": 0.10730593607305935,
+          "unique_scores": 46,
+          "entropy": 5.222052883952302,
+          "min_score": 319,
+          "max_score": 394
+        },
+        {
+          "band": 395,
+          "count": 99,
+          "probability": 0.11301369863013698,
+          "unique_scores": 59,
+          "entropy": 5.680736387774207,
+          "min_score": 395,
+          "max_score": 482
+        },
+        {
+          "band": 483,
+          "count": 98,
+          "probability": 0.11187214611872145,
+          "unique_scores": 54,
+          "entropy": 5.597885961546389,
+          "min_score": 483,
+          "max_score": 551
+        },
+        {
+          "band": 552,
+          "count": 97,
+          "probability": 0.11073059360730593,
+          "unique_scores": 38,
+          "entropy": 5.00941870842594,
+          "min_score": 552,
+          "max_score": 594
+        },
+        {
+          "band": 595,
+          "count": 97,
+          "probability": 0.11073059360730593,
+          "unique_scores": 31,
+          "entropy": 4.730866646481056,
+          "min_score": 595,
+          "max_score": 628
+        },
+        {
+          "band": 630,
+          "count": 98,
+          "probability": 0.11187214611872145,
+          "unique_scores": 35,
+          "entropy": 4.886993136185094,
+          "min_score": 630,
+          "max_score": 668
+        },
+        {
+          "band": 669,
+          "count": 96,
+          "probability": 0.1095890410958904,
+          "unique_scores": 50,
+          "entropy": 5.397055208874201,
+          "min_score": 669,
+          "max_score": 734
+        },
+        {
+          "band": 735,
+          "count": 99,
+          "probability": 0.11301369863013698,
+          "unique_scores": 69,
+          "entropy": 5.957343236110108,
+          "min_score": 735,
+          "max_score": 942
+        },
+        {
+          "band": 949,
+          "count": 1,
+          "probability": 0.001141552511415525,
+          "unique_scores": 1,
+          "entropy": -0.0,
+          "min_score": 949,
+          "max_score": 949
+        }
+      ]
+    },
+    "15": {
+      "requested_B": 15,
+      "actual_B": 15,
+      "bands": [
+        18,
+        276,
+        348,
+        389,
+        451,
+        501,
+        544,
+        575,
+        599,
+        622,
+        642,
+        670,
+        711,
+        770,
+        949
+      ],
+      "prior_entropy_bits": 8.57553447817604,
+      "expected_posterior_entropy_bits": 4.7602370701600485,
+      "information_leakage_bits": 3.815297408015992,
+      "log2_B_bound": 3.9068905956085187,
+      "leakage_exceeds_bound": false,
+      "effective_bands": 15,
+      "band_details": [
+        {
+          "band": 18,
+          "count": 62,
+          "probability": 0.07077625570776255,
+          "unique_scores": 49,
+          "entropy": 5.510490261929988,
+          "min_score": 18,
+          "max_score": 271
+        },
+        {
+          "band": 276,
+          "count": 63,
+          "probability": 0.07191780821917808,
+          "unique_scores": 42,
+          "entropy": 5.23093785987049,
+          "min_score": 276,
+          "max_score": 347
+        },
+        {
+          "band": 348,
+          "count": 63,
+          "probability": 0.07191780821917808,
+          "unique_scores": 28,
+          "entropy": 4.469443122552441,
+          "min_score": 348,
+          "max_score": 388
+        },
+        {
+          "band": 389,
+          "count": 62,
+          "probability": 0.07077625570776255,
+          "unique_scores": 40,
+          "entropy": 5.151382802147885,
+          "min_score": 390,
+          "max_score": 449
+        },
+        {
+          "band": 451,
+          "count": 62,
+          "probability": 0.07077625570776255,
+          "unique_scores": 33,
+          "entropy": 4.843005133135566,
+          "min_score": 451,
+          "max_score": 500
+        },
+        {
+          "band": 501,
+          "count": 61,
+          "probability": 0.06963470319634703,
+          "unique_scores": 35,
+          "entropy": 5.004027091448446,
+          "min_score": 501,
+          "max_score": 543
+        },
+        {
+          "band": 544,
+          "count": 64,
+          "probability": 0.0730593607305936,
+          "unique_scores": 28,
+          "entropy": 4.591578664259099,
+          "min_score": 544,
+          "max_score": 574
+        },
+        {
+          "band": 575,
+          "count": 63,
+          "probability": 0.07191780821917808,
+          "unique_scores": 21,
+          "entropy": 4.075887765100516,
+          "min_score": 575,
+          "max_score": 598
+        },
+        {
+          "band": 599,
+          "count": 62,
+          "probability": 0.07077625570776255,
+          "unique_scores": 20,
+          "entropy": 4.177761383170462,
+          "min_score": 599,
+          "max_score": 621
+        },
+        {
+          "band": 622,
+          "count": 61,
+          "probability": 0.06963470319634703,
+          "unique_scores": 17,
+          "entropy": 3.835549429811667,
+          "min_score": 622,
+          "max_score": 640
+        },
+        {
+          "band": 642,
+          "count": 60,
+          "probability": 0.0684931506849315,
+          "unique_scores": 26,
+          "entropy": 4.537907837484892,
+          "min_score": 642,
+          "max_score": 669
+        },
+        {
+          "band": 670,
+          "count": 67,
+          "probability": 0.07648401826484018,
+          "unique_scores": 31,
+          "entropy": 4.703638257395917,
+          "min_score": 670,
+          "max_score": 709
+        },
+        {
+          "band": 711,
+          "count": 61,
+          "probability": 0.06963470319634703,
+          "unique_scores": 38,
+          "entropy": 5.081976066893748,
+          "min_score": 711,
+          "max_score": 769
+        },
+        {
+          "band": 770,
+          "count": 64,
+          "probability": 0.0730593607305936,
+          "unique_scores": 49,
+          "entropy": 5.488204882778696,
+          "min_score": 770,
+          "max_score": 942
+        },
+        {
+          "band": 949,
+          "count": 1,
+          "probability": 0.001141552511415525,
+          "unique_scores": 1,
+          "entropy": -0.0,
+          "min_score": 949,
+          "max_score": 949
+        }
+      ]
+    },
+    "20": {
+      "requested_B": 20,
+      "actual_B": 20,
+      "bands": [
+        18,
+        243,
+        314,
+        357,
+        386,
+        432,
+        471,
+        505,
+        541,
+        562,
+        581,
+        601,
+        618,
+        636,
+        653,
+        671,
+        698,
+        742,
+        791,
+        949
+      ],
+      "prior_entropy_bits": 8.57553447817604,
+      "expected_posterior_entropy_bits": 4.320593130989129,
+      "information_leakage_bits": 4.254941347186912,
+      "log2_B_bound": 4.321928094887363,
+      "leakage_exceeds_bound": false,
+      "effective_bands": 20,
+      "band_details": [
+        {
+          "band": 18,
+          "count": 45,
+          "probability": 0.05136986301369863,
+          "unique_scores": 36,
+          "entropy": 5.07507781850382,
+          "min_score": 18,
+          "max_score": 241
+        },
+        {
+          "band": 243,
+          "count": 47,
+          "probability": 0.05365296803652968,
+          "unique_scores": 36,
+          "entropy": 5.054380872862172,
+          "min_score": 243,
+          "max_score": 308
+        },
+        {
+          "band": 314,
+          "count": 46,
+          "probability": 0.05251141552511415,
+          "unique_scores": 27,
+          "entropy": 4.588354347173233,
+          "min_score": 314,
+          "max_score": 356
+        },
+        {
+          "band": 357,
+          "count": 46,
+          "probability": 0.05251141552511415,
+          "unique_scores": 18,
+          "entropy": 3.7792395439368502,
+          "min_score": 357,
+          "max_score": 385
+        },
+        {
+          "band": 386,
+          "count": 46,
+          "probability": 0.05251141552511415,
+          "unique_scores": 30,
+          "entropy": 4.735199727655047,
+          "min_score": 386,
+          "max_score": 431
+        },
+        {
+          "band": 432,
+          "count": 46,
+          "probability": 0.05251141552511415,
+          "unique_scores": 25,
+          "entropy": 4.433584445460978,
+          "min_score": 432,
+          "max_score": 469
+        },
+        {
+          "band": 471,
+          "count": 45,
+          "probability": 0.05136986301369863,
+          "unique_scores": 24,
+          "entropy": 4.430198929422623,
+          "min_score": 471,
+          "max_score": 504
+        },
+        {
+          "band": 505,
+          "count": 47,
+          "probability": 0.05365296803652968,
+          "unique_scores": 28,
+          "entropy": 4.6818324685147905,
+          "min_score": 505,
+          "max_score": 540
+        },
+        {
+          "band": 541,
+          "count": 43,
+          "probability": 0.04908675799086758,
+          "unique_scores": 20,
+          "entropy": 4.144417883102941,
+          "min_score": 541,
+          "max_score": 561
+        },
+        {
+          "band": 562,
+          "count": 49,
+          "probability": 0.05593607305936073,
+          "unique_scores": 17,
+          "entropy": 3.86677636469185,
+          "min_score": 562,
+          "max_score": 580
+        },
+        {
+          "band": 581,
+          "count": 46,
+          "probability": 0.05251141552511415,
+          "unique_scores": 17,
+          "entropy": 3.715768140925024,
+          "min_score": 581,
+          "max_score": 600
+        },
+        {
+          "band": 601,
+          "count": 44,
+          "probability": 0.0502283105022831,
+          "unique_scores": 14,
+          "entropy": 3.626950016748873,
+          "min_score": 601,
+          "max_score": 617
+        },
+        {
+          "band": 618,
+          "count": 44,
+          "probability": 0.0502283105022831,
+          "unique_scores": 16,
+          "entropy": 3.8027531416013636,
+          "min_score": 618,
+          "max_score": 635
+        },
+        {
+          "band": 636,
+          "count": 50,
+          "probability": 0.05707762557077625,
+          "unique_scores": 15,
+          "entropy": 3.628117942491315,
+          "min_score": 636,
+          "max_score": 652
+        },
+        {
+          "band": 653,
+          "count": 45,
+          "probability": 0.05136986301369863,
+          "unique_scores": 17,
+          "entropy": 3.9077594848820243,
+          "min_score": 653,
+          "max_score": 670
+        },
+        {
+          "band": 671,
+          "count": 48,
+          "probability": 0.0547945205479452,
+          "unique_scores": 22,
+          "entropy": 4.2303885422075345,
+          "min_score": 671,
+          "max_score": 697
+        },
+        {
+          "band": 698,
+          "count": 45,
+          "probability": 0.05136986301369863,
+          "unique_scores": 30,
+          "entropy": 4.747191429566854,
+          "min_score": 699,
+          "max_score": 740
+        },
+        {
+          "band": 742,
+          "count": 46,
+          "probability": 0.05251141552511415,
+          "unique_scores": 27,
+          "entropy": 4.588354347173233,
+          "min_score": 742,
+          "max_score": 788
+        },
+        {
+          "band": 791,
+          "count": 47,
+          "probability": 0.05365296803652968,
+          "unique_scores": 38,
+          "entropy": 5.15554869205714,
+          "min_score": 791,
+          "max_score": 942
+        },
+        {
+          "band": 949,
+          "count": 1,
+          "probability": 0.001141552511415525,
+          "unique_scores": 1,
+          "entropy": -0.0,
+          "min_score": 949,
+          "max_score": 949
+        }
+      ]
+    }
+  },
+  "summary": {
+    "bound_violated": false,
+    "quantile_better_privacy": false,
+    "conclusion": "The log2(B) bound is conservative - true leakage is typically less because within-band score distributions are not uniform. The bound remains valid as an upper limit on information leakage."
+  }
+}

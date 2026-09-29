@@ -1,0 +1,49 @@
+{
+  "timestamp": "2026-08-23T16:58:54.934Z",
+  "hardware": {
+    "cpu": "AMD Ryzen 7 4800H with Radeon Graphics         ",
+    "cores": 16,
+    "ram_gb": 32,
+    "platform": "win32",
+    "node_version": "v20.10.0"
+  },
+  "sanity_checks": {
+    "ineligibility_rejected": true,
+    "forgery_rejected": true
+  },
+  "thresholds": [
+    {
+      "threshold": 600,
+      "gen": 623.6661999225616,
+      "ver": 16.379500031471252,
+      "bytes": 722,
+      "ok": true
+    },
+    {
+      "threshold": 700,
+      "gen": 161.66389989852905,
+      "ver": 15.112000107765198,
+      "bytes": 719,
+      "ok": true
+    },
+    {
+      "threshold": 742,
+      "gen": 143.20730006694794,
+      "ver": 15.327999949455261,
+      "bytes": 720,
+      "ok": true
+    }
+  ],
+  "throughput": {
+    "proof_gen_mean_ms": 144.08463500142096,
+    "proof_gen_p95_ms": 170.51050007343292,
+    "verify_mean_ms": 14.785194998979568,
+    "verify_p95_ms": 23.94319999217987,
+    "verifier_throughput_per_core": 68
+  },
+  "library_versions": {
+    "snarkjs": "0.7.6",
+    "circomlibjs": "0.1.7",
+    "circomlib": "2.0.5"
+  }
+}

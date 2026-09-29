@@ -1,0 +1,98 @@
+{
+  "timestamp": "2026-08-24T15:39:01.238409",
+  "n_samples": 4376,
+  "bank_type_distribution": {
+    "Savings": 2578,
+    "Unknown": 1099,
+    "Other": 653,
+    "Current": 46
+  },
+  "correlation_analysis": {
+    "savings_vs_others": {
+      "relationship_tenure_days": {
+        "r": -0.35354415983074045,
+        "p": 5.1408762672144664e-129
+      },
+      "loan_count": {
+        "r": -0.30664838152562,
+        "p": 6.286594319723046e-96
+      },
+      "amount_mean": {
+        "r": -0.280698539057728,
+        "p": 4.8163178486372816e-80
+      },
+      "amount_total": {
+        "r": -0.2988326045304943,
+        "p": 5.72713489217205e-91
+      },
+      "age": {
+        "r": 0.026792357442784277,
+        "p": 0.07636764388996858
+      }
+    }
+  },
+  "model_with_bank_type": {
+    "savings_selection_rate": 0.539651837524178,
+    "other_selection_rate": 0.32575757575757575,
+    "ratio": 1.6566056407718954
+  },
+  "model_without_bank_type": {
+    "savings_selection_rate": 0.5319148936170213,
+    "other_selection_rate": 0.3484848484848485,
+    "ratio": 1.5263644773358
+  },
+  "mediation_analysis": {
+    "disparity_with_feature": 1.6566056407718954,
+    "disparity_without_feature": 1.5263644773358,
+    "change_percent": 7.861929250428576,
+    "conclusion": "confounded",
+    "explanation": "Removing bank_account_type barely affects the disparity. The 1.66x gap (at median threshold) is carried by correlated features (tenure, loan history, etc.), not by the account type label itself. Dropping the feature will NOT fix the disparity. Note: disparity ratio varies with threshold (see T37).",
+    "top_features": [
+      {
+        "feature": "repay_delay_mean",
+        "coefficient": 0.0742276681282164
+      },
+      {
+        "feature": "term_mean",
+        "coefficient": 0.06143782262175288
+      },
+      {
+        "feature": "repay_delay_std",
+        "coefficient": 0.04178898770214085
+      },
+      {
+        "feature": "early_repay_ratio",
+        "coefficient": -0.03608433252037803
+      },
+      {
+        "feature": "loan_count",
+        "coefficient": 0.035316549134667544
+      },
+      {
+        "feature": "employment_status_Unknown",
+        "coefficient": 0.025587575062602366
+      },
+      {
+        "feature": "employment_status_Permanent",
+        "coefficient": -0.016629370776498963
+      },
+      {
+        "feature": "term_escalation",
+        "coefficient": -0.016109570720338966
+      },
+      {
+        "feature": "region_lat_band_Middle",
+        "coefficient": 0.016076201966699656
+      },
+      {
+        "feature": "region_lat_band_South",
+        "coefficient": -0.014239057442204857
+      }
+    ]
+  },
+  "conclusion": {
+    "is_causal": false,
+    "recommendation": "The disparity is structural (confounded) - dropping bank_account_type alone will not eliminate the gap. Chapter 6 should recommend either: (1) fairness constraints during training, or (2) post-hoc calibration by group.",
+    "chapter_6_framing": "The disparity is carried by correlated features and cannot be engineered away by simple feature removal. This is a structural limitation of the data."
+  }
+}
