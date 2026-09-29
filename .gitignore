@@ -32,3 +32,6 @@ Thumbs.db
 
 # Demo lender loan book (runtime state)
 ui/loan-book.json
+
+# Claude Code local settings
+.claude/
