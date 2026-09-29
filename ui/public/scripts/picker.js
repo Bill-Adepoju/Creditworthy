@@ -13,7 +13,7 @@
 
   function setStatus(el, kind, text) {
     if (!kind) { el.className = 'status hidden'; el.textContent = ''; return; }
-    const icon = kind === 'error' ? 'ban' : 'circle-check';
+    const icon = { error: 'ban', info: 'info' }[kind] || 'circle-check';
     el.className = 'status status--' + kind;
     el.innerHTML = Icons.svg(icon, 18);
     const span = document.createElement('span');

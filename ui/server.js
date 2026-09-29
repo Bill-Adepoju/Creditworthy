@@ -97,6 +97,28 @@ function displayFeatures(row) {
     return out;
 }
 
+// Factor = one displayed feature: a numeric input, or a whole one-hot group.
+const FACTOR_GROUPS = [];
+MODEL.feature_names.forEach((name, i) => {
+    const prefix = CATEGORICAL_PREFIXES.find((p) => name.startsWith(p));
+    const key = prefix ? prefix.slice(0, -1) : name;
+    let group = FACTOR_GROUPS.find((g) => g.key === key);
+    if (!group) FACTOR_GROUPS.push(group = { key, indices: [] });
+    group.indices.push(i);
+});
+
+// Per-factor effect in score points: actual score minus the score this borrower would get
+// if that one factor were at the training mean (a typical borrower), everything else fixed.
+// Exact for this model, but not additive across factors (the logistic link is non-linear).
+function explainScore(borrower) {
+    const actual = scoreFromInputs(borrower.inputs).score;
+    return FACTOR_GROUPS.map(({ key, indices }) => {
+        const typical = borrower.inputs.slice();
+        indices.forEach((i) => { typical[i] = MODEL.scaler_mean[i]; });
+        return { key, value: borrower.features[key], points: actual - scoreFromInputs(typical).score };
+    }).sort((a, b) => Math.abs(b.points) - Math.abs(a.points));
+}
+
 const BAND_NAMES = { 400: 'Basic', 550: 'Standard', 700: 'Good', 850: 'Premium' };
 
 // Demo borrowers: real customers from the canonical TEST split (never seen in training),
@@ -130,6 +152,41 @@ let sampleBorrowers = [];
 // Borrower-held credential {score, salt, commitment}. In deployment this lives in the
 // borrower's wallet and the proof is generated client-side; the demo server plays that role.
 const borrowerWallet = new Map();
+
+// ---------- Lender-side credit exposure (application logic, off-chain) ----------
+// Maximum cumulative ACTIVE lending per borrower, set by the band proven in the ZK step.
+const LOAN_LIMITS = { 400: 100000, 550: 500000, 700: 2000000, 850: 10000000 };
+const LOAN_BOOK_PATH = path.resolve(__dirname, 'loan-book.json');
+
+// The lender's own loan book. Amounts stay here, off the ledger (the chain only records
+// approval events), so exposure is per-lender, not consortium-wide.
+let loanBook = { loans: [] };
+try {
+    loanBook = JSON.parse(fs.readFileSync(LOAN_BOOK_PATH, 'utf8'));
+} catch (e) {
+    if (e.code !== 'ENOENT') throw e;
+}
+
+function saveLoanBook() {
+    fs.writeFileSync(LOAN_BOOK_PATH, JSON.stringify(loanBook, null, 2));
+}
+
+// Proofs the lender has verified, keyed by proof hash. Each authorises exactly one loan.
+const verifiedProofs = new Map();
+
+// Pending loans count too, so two concurrent approvals cannot both pass the check.
+function creditPosition(borrowerId, threshold) {
+    const loans = loanBook.loans.filter((l) => l.borrowerId === borrowerId && l.status !== 'repaid');
+    const active = loans.reduce((sum, l) => sum + l.amount, 0);
+    const limit = LOAN_LIMITS[threshold];
+    return {
+        threshold,
+        limit,
+        active,
+        available: Math.max(0, limit - active),
+        loans: loans.map(({ id, amount, threshold: t, approvedAt, status }) => ({ id, amount, threshold: t, approvedAt, status }))
+    };
+}
 
 // Initialize connections
 async function initialize() {
@@ -277,6 +334,8 @@ app.post('/api/borrower/process', async (req, res) => {
 
         result.score = score;
         result.pDefault = pDefault.toFixed(4);
+        // Borrower-only explanation: stays in L1, never sent to the lender or the ledger.
+        result.factors = explainScore(borrower);
 
         // L1: Commitment computation
         t0 = process.hrtime.bigint();
@@ -464,6 +523,10 @@ app.post('/api/lender/verify', async (req, res) => {
         result.proofValid = isValid;
         result.proofSize = JSON.stringify(proof).length;
         result.proofHash = '0x' + crypto.createHash('sha256').update(JSON.stringify(proof)).digest('hex');
+        if (isValid) {
+            verifiedProofs.set(result.proofHash, { borrowerId, threshold, used: false });
+            result.credit = creditPosition(borrowerId, threshold);
+        }
         result.timings = timings;
         result.totalL3 = (timings.proof_generation + timings.proof_verification).toFixed(2);
 
@@ -475,64 +538,89 @@ app.post('/api/lender/verify', async (req, res) => {
 });
 
 // LENDER FLOW: Approve loan (record on ledger)
+// LENDER FLOW: Approve loan. Gated by (1) a valid, unused eligibility proof for this
+// borrower and (2) the borrower's cumulative active exposure against the proven band's limit.
 app.post('/api/lender/approve', async (req, res) => {
-    const { borrowerId, threshold, proofHash, amount } = req.body;
+    const { borrowerId, proofHash } = req.body;
+    const amount = Number(req.body.amount);
 
-    const did = didFor(borrowerId);
-    const result = {
-        borrowerId,
-        did,
-        threshold,
-        amount,
-        layers: ['L2'],
-        timings: {}
-    };
-
-    try {
-        if (!contract) {
-            return res.status(503).json({ error: 'Fabric not connected' });
-        }
-
-        // Record loan approval event on ledger
-        const t0 = process.hrtime.bigint();
-        console.log(`[LOAN] Recording loan event for ${did}, threshold=${threshold}, amount=${amount}`);
-        try {
-            // Note: valid eventTypes are: verification, approval, rejection, default, repayment
-            await contract.submitTransaction(
-                'RecordLoanEvent',
-                did,
-                'approval',  // Changed from 'loan_approved' to match chaincode validation
-                proofHash || 'no_proof_hash',
-                threshold.toString()
-            );
-            result.timings.ledger_record = timeMs(t0);
-            result.recorded = true;
-            result.txTime = new Date().toISOString();
-            console.log(`[LOAN] Success for ${did}`);
-        } catch (e) {
-            // Parse error details - same as anchor endpoint
-            let errorStr = e.message || '';
-            if (e.details && Array.isArray(e.details)) {
-                const detailMessages = e.details.map(d => {
-                    if (typeof d === 'string') return d;
-                    if (d.message) return d.message;
-                    return JSON.stringify(d);
-                }).join('; ');
-                errorStr += ' | Details: ' + detailMessages;
-            }
-            console.log(`[LOAN] Error for ${did}:`, errorStr);
-            console.log(`[LOAN] Full error details:`, JSON.stringify(e.details, null, 2));
-
-            result.timings.ledger_record = timeMs(t0);
-            result.recorded = false;
-            result.error = errorStr.substring(0, 200);
-        }
-
-        res.json(result);
-
-    } catch (error) {
-        res.status(500).json({ error: error.message });
+    if (!contract) {
+        return res.status(503).json({ error: 'Fabric not connected' });
     }
+
+    // The band comes from the server's own verification record, never from the client.
+    const proof = verifiedProofs.get(proofHash);
+    if (!proof || proof.borrowerId !== borrowerId) {
+        return res.status(403).json({ error: 'No verified eligibility proof for this borrower. Run Check Eligibility first.' });
+    }
+    if (proof.used) {
+        return res.status(409).json({ error: 'This proof has already been used for a loan. Check eligibility again to approve another.' });
+    }
+    if (!Number.isInteger(amount) || amount <= 0) {
+        return res.status(400).json({ error: 'Loan amount must be a positive whole number of naira' });
+    }
+
+    const { threshold } = proof;
+    const position = creditPosition(borrowerId, threshold);
+    if (amount > position.available) {
+        return res.status(422).json({
+            error: `Amount exceeds available limit: ₦${position.available.toLocaleString()} of ₦${position.limit.toLocaleString()} left for the ${threshold}+ band`,
+            credit: position
+        });
+    }
+
+    // Reserve before the ledger call so a concurrent approval sees this exposure.
+    proof.used = true;
+    const loan = {
+        id: crypto.randomUUID(),
+        borrowerId,
+        did: didFor(borrowerId),
+        amount,
+        threshold,
+        proofHash,
+        approvedAt: new Date().toISOString(),
+        status: 'pending'
+    };
+    loanBook.loans.push(loan);
+
+    const result = { borrowerId, did: loan.did, threshold, amount, layers: ['L2'], timings: {} };
+    const t0 = process.hrtime.bigint();
+    try {
+        await contract.submitTransaction('RecordLoanEvent', loan.did, 'approval', proofHash, threshold.toString());
+        result.timings.ledger_record = timeMs(t0);
+        loan.status = 'active';
+        saveLoanBook();
+        result.recorded = true;
+        result.loanId = loan.id;
+        console.log(`[LOAN] Approved ${loan.did}: ₦${amount} at ${threshold}+`);
+    } catch (e) {
+        // Ledger write failed: release the reservation and the proof.
+        loanBook.loans = loanBook.loans.filter((l) => l !== loan);
+        proof.used = false;
+        result.timings.ledger_record = timeMs(t0);
+        result.recorded = false;
+        result.error = fabricErrorDetail(e).substring(0, 300);
+        console.log(`[LOAN] Ledger error for ${loan.did}:`, result.error);
+    }
+    result.credit = creditPosition(borrowerId, threshold);
+    res.json(result);
+});
+
+// LENDER: mark a loan repaid, freeing headroom under the band limit. Off-chain only:
+// the lender's book changes; the ledger is not written.
+app.post('/api/lender/repay', (req, res) => {
+    const { loanId, threshold } = req.body;
+    const loan = loanBook.loans.find((l) => l.id === loanId);
+    if (!loan) {
+        return res.status(404).json({ error: 'Unknown loan' });
+    }
+    if (loan.status !== 'active') {
+        return res.status(409).json({ error: `Loan is ${loan.status}, not active` });
+    }
+    loan.status = 'repaid';
+    loan.repaidAt = new Date().toISOString();
+    saveLoanBook();
+    res.json({ credit: creditPosition(loan.borrowerId, BANDS.includes(threshold) ? threshold : loan.threshold) });
 });
 
 // REGULATOR FLOW: Query ledger history (read-only)

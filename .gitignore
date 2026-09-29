@@ -29,3 +29,6 @@ Thumbs.db
 
 # Jupyter
 .ipynb_checkpoints/
+
+# Demo lender loan book (runtime state)
+ui/loan-book.json

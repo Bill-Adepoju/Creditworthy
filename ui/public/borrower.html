@@ -183,6 +183,17 @@
                         </div>
                     </div>
 
+                    <div id="factors-section" class="hidden">
+                        <button class="collapsible-toggle" aria-expanded="false" aria-controls="factors-content">What Shaped Your Score</button>
+                        <div class="collapsible-content" id="factors-content">
+                            <p class="factor-caption">Points gained or lost compared with a typical borrower's value for each factor, everything else unchanged. Effects are measured one at a time, so they don't add up exactly to your score.</p>
+                            <div class="factor-cols">
+                                <div class="factor-col"><h4>Raised your score</h4><div class="stack-md" id="factors-up"></div></div>
+                                <div class="factor-col"><h4>Lowered your score</h4><div class="stack-md" id="factors-down"></div></div>
+                            </div>
+                        </div>
+                    </div>
+
                     <div id="features-section" class="hidden">
                         <button class="collapsible-toggle" aria-expanded="false" aria-controls="features-content">Data Used for Your Score</button>
                         <div class="collapsible-content" id="features-content">
@@ -279,6 +290,7 @@
             $('total-time').textContent = '---';
             $('features-section').classList.add('hidden');
             $('features-grid').innerHTML = '';
+            $('factors-section').classList.add('hidden');
         }
 
         function setNode(i, state) {
@@ -370,6 +382,50 @@
             $('features-section').classList.remove('hidden');
         }
 
+        const TOP_FACTORS = 4;
+
+        function showFactors(factors) {
+            const up = factors.filter((f) => f.points > 0).slice(0, TOP_FACTORS);
+            const down = factors.filter((f) => f.points < 0).slice(0, TOP_FACTORS);
+            const maxPts = Math.max(1, ...up.concat(down).map((f) => Math.abs(f.points)));
+            const fill = (el, list, dir) => {
+                el.innerHTML = '';
+                if (!list.length) {
+                    const empty = document.createElement('span');
+                    empty.className = 'factor-empty';
+                    empty.textContent = 'No factor moved your score this way.';
+                    el.appendChild(empty);
+                    return;
+                }
+                list.forEach((f) => {
+                    const row = document.createElement('div');
+                    row.className = 'factor-row factor-row--' + dir;
+                    row.innerHTML = '<div class="factor-head"><span class="factor-name"></span><span class="factor-points"></span></div>'
+                        + '<div class="factor-track"><div class="factor-bar"></div></div><span class="factor-value"></span>';
+                    row.querySelector('.factor-name').textContent = FEATURE_NAMES[f.key] || f.key.replace(/_/g, ' ');
+                    row.querySelector('.factor-points').textContent = (f.points > 0 ? '+' : '−') + Math.abs(f.points) + ' pts';
+                    row.querySelector('.factor-value').textContent = 'Yours: ' + formatFeature(f.value);
+                    row.querySelector('.factor-bar').dataset.width = (Math.abs(f.points) / maxPts * 100) + '%';
+                    el.appendChild(row);
+                });
+            };
+            fill($('factors-up'), up, 'up');
+            fill($('factors-down'), down, 'down');
+            $('factors-section').classList.remove('hidden');
+            if ($('factors-content').classList.contains('expanded')) growFactorBars();
+        }
+
+        // Bars grow only once visible, so the animation is actually seen.
+        function growFactorBars() {
+            const bars = document.querySelectorAll('.factor-bar');
+            bars.forEach((b) => { b.style.width = '0'; });
+            void $('factors-content').offsetWidth;
+            bars.forEach((b) => { b.style.width = b.dataset.width; });
+        }
+        document.querySelector('[aria-controls="factors-content"]').addEventListener('click', () => {
+            if ($('factors-content').classList.contains('expanded')) growFactorBars();
+        });
+
         $('copy-hash').addEventListener('click', async () => {
             if (!lastCommitment) return;
             try {
@@ -435,6 +491,7 @@
                 const pill = $('band-pill');
                 pill.textContent = data.bandLabel;
                 pill.classList.remove('hidden');
+                if (data.factors) showFactors(data.factors);
                 if (data.features) showFeatures(data.features);
                 setStatus(statusDiv, 'success', 'Credit score processed successfully');
             } catch (err) {

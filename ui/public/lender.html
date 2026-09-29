@@ -162,18 +162,23 @@
                             <span class="card-subtitle">Borrower is eligible. Record loan approval on the blockchain.</span>
                         </div>
                         <div class="loan-max">
-                            <span class="loan-max-label">Maximum for this band</span>
-                            <span class="loan-max-value" id="max-loan-display">---</span>
+                            <span class="loan-max-label">Available to lend</span>
+                            <span class="loan-max-value" id="available-display">---</span>
+                            <span class="loan-max-caption" id="credit-caption"></span>
                         </div>
                     </div>
                     <div class="loan-input-row">
                         <div class="field">
                             <label for="loan-amount">Loan Amount (NGN)</label>
-                            <input type="number" id="loan-amount" min="10000" step="10000" value="100000">
+                            <input type="number" id="loan-amount" min="1" step="10000" value="100000">
                         </div>
                         <button id="approve-btn" class="btn btn-approve"><i data-icon="book-lock"></i><span class="btn-label">Approve &amp; Record on Ledger</span></button>
                     </div>
                     <div id="approve-status" class="status hidden" role="status" aria-live="polite"></div>
+                    <div class="stack-sm">
+                        <div class="section-title">Active loans with you</div>
+                        <div class="loan-list" id="loan-list"></div>
+                    </div>
                 </div>
             </section>
         </main>
@@ -194,14 +199,10 @@
         const approveBtn = $('approve-btn');
         const approveLabel = approveBtn.querySelector('.btn-label');
 
-        const LOAN_LIMITS = {
-            400: { max: 100000, label: '₦100,000' },
-            550: { max: 500000, label: '₦500,000' },
-            700: { max: 2000000, label: '₦2,000,000' },
-            850: { max: 10000000, label: '₦10,000,000' }
-        };
+        const naira = (n) => '₦' + n.toLocaleString();
 
         let threshold = null;
+        let credit = null;
         let running = false;
         let runId = 0;
         let lastVerified = null;
@@ -266,6 +267,7 @@
             document.querySelectorAll('.redaction-bar').forEach((b) => { b.classList.remove('redaction-bar--in'); b.style.transitionDelay = ''; });
             $('loan-section').classList.add('hidden');
             lastVerified = null;
+            credit = null;
         }
 
         async function runStep(i, durVar, until) {
@@ -326,12 +328,10 @@
                 });
 
                 if (data.eligible) {
-                    const limit = LOAN_LIMITS[th];
-                    $('max-loan-display').textContent = limit.label;
-                    $('loan-amount').max = limit.max;
-                    $('loan-amount').value = Math.min(100000, limit.max);
+                    lastVerified = { borrower, threshold: th, proofHash: data.proofHash, used: false };
+                    renderCredit(data.credit);
+                    $('loan-amount').value = Math.min(100000, data.credit.available);
                     $('loan-section').classList.remove('hidden');
-                    lastVerified = { borrower, threshold: th, proofHash: data.proofHash };
                 }
             } catch (err) {
                 if (id !== runId) return;
@@ -346,18 +346,73 @@
             }
         });
 
-        approveBtn.addEventListener('click', async () => {
-            if (!lastVerified) return;
-            const approveStatus = $('approve-status');
-            const amount = parseInt($('loan-amount').value, 10);
-            const limit = LOAN_LIMITS[lastVerified.threshold];
+        // Server-computed exposure: limit for the proven band, active total, and headroom.
+        function renderCredit(next) {
+            credit = next;
+            $('available-display').textContent = naira(credit.available);
+            $('credit-caption').textContent = `Band limit ${naira(credit.limit)} · Active ${naira(credit.active)}`;
+            $('loan-amount').max = credit.available;
 
-            if (!amount || amount <= 0) {
-                setStatus(approveStatus, 'error', 'Enter a loan amount');
+            const list = $('loan-list');
+            list.innerHTML = '';
+            if (!credit.loans.length) {
+                list.innerHTML = '<div class="loan-list-empty">No active loans</div>';
+            }
+            credit.loans.forEach((loan) => {
+                const row = document.createElement('div');
+                row.className = 'loan-row';
+                row.innerHTML = '<span class="loan-row-amount"></span><span class="loan-row-meta"></span>';
+                row.querySelector('.loan-row-amount').textContent = naira(loan.amount);
+                row.querySelector('.loan-row-meta').textContent = `${loan.threshold}+ · ${loan.approvedAt.slice(0, 16).replace('T', ' ')}`;
+                if (loan.status === 'active') {
+                    const btn = document.createElement('button');
+                    btn.className = 'btn-chip';
+                    btn.type = 'button';
+                    btn.innerHTML = Icons.svg('check', 14) + '<span>Mark repaid</span>';
+                    btn.addEventListener('click', () => markRepaid(loan.id, btn));
+                    row.appendChild(btn);
+                }
+                list.appendChild(row);
+            });
+            updateApproveButton();
+        }
+
+        function updateApproveButton() {
+            approveBtn.disabled = !lastVerified || lastVerified.used || !credit || credit.available <= 0;
+            if (lastVerified && !lastVerified.used && credit && credit.available <= 0) {
+                setStatus($('approve-status'), 'info', `Limit reached for the ${credit.threshold}+ band. Repaying an active loan frees headroom.`);
+            }
+        }
+
+        async function markRepaid(loanId, btn) {
+            btn.disabled = true;
+            try {
+                const resp = await fetch('/api/lender/repay', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ loanId, threshold: lastVerified.threshold })
+                });
+                const data = await resp.json();
+                if (data.error) throw new Error(data.error);
+                setStatus($('approve-status'), null);
+                renderCredit(data.credit);
+            } catch (err) {
+                btn.disabled = false;
+                setStatus($('approve-status'), 'error', 'Error: ' + err.message);
+            }
+        }
+
+        approveBtn.addEventListener('click', async () => {
+            if (!lastVerified || lastVerified.used) return;
+            const approveStatus = $('approve-status');
+            const amount = Number($('loan-amount').value);
+
+            if (!Number.isInteger(amount) || amount <= 0) {
+                setStatus(approveStatus, 'error', 'Enter a whole naira amount above zero');
                 return;
             }
-            if (amount > limit.max) {
-                setStatus(approveStatus, 'error', `Amount exceeds maximum ${limit.label}`);
+            if (amount > credit.available) {
+                setStatus(approveStatus, 'error', `Amount exceeds available limit of ${naira(credit.available)}`);
                 return;
             }
 
@@ -369,24 +424,21 @@
                 const resp = await fetch('/api/lender/approve', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({
-                        borrowerId: lastVerified.borrower.id,
-                        threshold: lastVerified.threshold,
-                        amount,
-                        proofHash: lastVerified.proofHash
-                    })
+                    body: JSON.stringify({ borrowerId: lastVerified.borrower.id, amount, proofHash: lastVerified.proofHash })
                 });
                 const data = await resp.json();
                 if (data.recorded) {
-                    setStatus(approveStatus, 'success', `Loan approved and recorded · Ledger time: ${data.timings.ledger_record.toFixed(1)} ms`);
+                    lastVerified.used = true;
+                    setStatus(approveStatus, 'success', `Loan approved and recorded · Ledger time: ${data.timings.ledger_record.toFixed(1)} ms · Check eligibility again to approve another loan`);
                 } else {
                     setStatus(approveStatus, 'error', 'Error: ' + (data.error || 'Failed to record on ledger'));
                 }
+                if (data.credit) renderCredit(data.credit);
             } catch (err) {
                 setStatus(approveStatus, 'error', 'Connection error: ' + err.message);
             } finally {
-                approveBtn.disabled = false;
                 approveLabel.textContent = 'Approve & Record on Ledger';
+                updateApproveButton();
             }
         });
     </script>
