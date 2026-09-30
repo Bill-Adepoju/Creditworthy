@@ -1,6 +1,6 @@
 # Creditworthy: Privacy-Preserving Credit Scoring
 
-MIT dissertation, University of Lagos (supervisor: Dr. U.C. Ogude).
+
 
 Alternative-data credit scoring for the unbanked, with a consortium blockchain for governance and zero-knowledge proofs for privacy. A lender learns only whether a borrower's score clears a threshold, never the score itself. The project builds the system end to end and **measures what that privacy and decentralisation cost** in accuracy, latency and fairness.
 
