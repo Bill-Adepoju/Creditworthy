@@ -119,5 +119,22 @@
 
   if (window.location.search.includes('demo=clean')) document.body.classList.add('demo-clean');
 
+  // On the hosted site the backend runs on the author's PC; say so when it is unreachable.
+  function showOffline() {
+    const wrapper = document.querySelector('.page-wrapper');
+    if (!wrapper || document.querySelector('.offline-banner')) return;
+    const banner = document.createElement('div');
+    banner.className = 'offline-banner';
+    banner.setAttribute('role', 'status');
+    banner.innerHTML = Icons.svg('info', 18) + '<span>The live backend is offline. The ledger and proof server run on the author\'s machine and are switched on for scheduled demos.</span>';
+    wrapper.prepend(banner);
+  }
+  const ctrl = new AbortController();
+  setTimeout(() => ctrl.abort(), 8000);
+  fetch('/api/health', { signal: ctrl.signal })
+    .then((r) => r.json())
+    .then((h) => { if (!h.ok) showOffline(); })
+    .catch(showOffline);
+
   window.Demo = { $, cssMs, sleep, setStatus, BorrowerPicker };
 })();

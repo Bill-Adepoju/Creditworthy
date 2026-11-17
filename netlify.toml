@@ -1,0 +1,29 @@
+# Netlify hosts the static pages only. Every /api call is proxied to the demo
+# server on the author's PC through a Microsoft Dev Tunnel (ui/start-demo.ps1),
+# because the Fabric ledger cannot run on Netlify. Set the tunnel URL once below.
+
+[build]
+  publish = "ui/public"
+
+[[redirects]]
+  from = "/api/*"
+  to = "https://interesting-hill-8cbv0cz-3000.eun1.devtunnels.ms/api/:splat"
+  status = 200
+  force = true
+  # Skips Dev Tunnels' anti-phishing interstitial, which would otherwise replace the JSON.
+  headers = { X-Tunnel-Skip-AntiPhishing-Page = "True" }
+
+[[redirects]]
+  from = "/borrower"
+  to = "/borrower.html"
+  status = 200
+
+[[redirects]]
+  from = "/lender"
+  to = "/lender.html"
+  status = 200
+
+[[redirects]]
+  from = "/regulator"
+  to = "/regulator.html"
+  status = 200

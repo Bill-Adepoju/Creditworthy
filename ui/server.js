@@ -284,6 +284,11 @@ function computeCommitment(score, salt) {
 
 // API Endpoints
 
+// Lets the hosted pages tell "backend offline" apart from an API error.
+app.get('/api/health', (req, res) => {
+    res.json({ ok: true, fabric: !!contract, regulator: !!regulatorContract });
+});
+
 // Borrower picker list. Deliberately id + label only: every view (including the lender's)
 // loads this, so scores and features must not travel with it.
 app.get('/api/borrowers', (req, res) => {

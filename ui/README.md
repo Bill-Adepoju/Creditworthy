@@ -16,6 +16,22 @@ npm install
 npm start            # http://localhost:3000
 ```
 
+## Hosted version (Netlify + tunnel)
+
+Netlify serves the pages from `ui/public`; every `/api` call is forwarded (`netlify.toml`) through a Microsoft Dev Tunnel to this server on the author's PC. The ledger can't run on Netlify, so the hosted demo only works while the PC is running Fabric, the server and the tunnel. When it isn't, the pages load and show an "offline" banner.
+
+**One-time setup**
+1. Install and sign in: `winget install Microsoft.devtunnel`, then `devtunnel user login -g` (GitHub account).
+2. Create a persistent tunnel open to anonymous visitors: `devtunnel create --allow-anonymous`, then `devtunnel port create <tunnel-id> -p 3000`. `devtunnel show <tunnel-id>` prints its URL, of the form `https://<tunnel-id>-3000.<region>.devtunnels.ms`.
+3. Put that URL in `netlify.toml` in place of the placeholder, then commit and push.
+4. In Netlify: Add new site → Import from GitHub → this repo. No build settings needed; `netlify.toml` provides them. Every push then redeploys.
+
+Dev tunnels are deleted after a period without use (30 days by default). If the hosted demo stops reaching the backend after a long gap, repeat steps 2–3.
+
+**Before each demo:** `powershell -ExecutionPolicy Bypass -File ui\start-demo.ps1`. It starts the Fabric containers (without wiping the ledger), the server, and the tunnel. Keep its window open; Ctrl+C takes the backend offline.
+
+While the tunnel is up, anyone with the link can write to your local ledger (anchor commitments, record loans). That's harmless for a test network, but don't leave it running unattended.
+
 ## Views
 
 **Borrower** (`/borrower`, L1 + L2)

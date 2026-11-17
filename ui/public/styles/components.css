@@ -363,6 +363,8 @@ input[type="number"]:focus-visible { border-color: var(--accent); outline-offset
 .pipeline-scroll { overflow-x: auto; }
 .span-3 { grid-column: span 3; } .span-4 { grid-column: span 4; }
 
+.offline-banner { display: flex; align-items: center; gap: 10px; padding: 12px 14px; border: 1px dashed var(--ink); font-size: var(--text-small); color: var(--ink-secondary); }
+
 /* ---------- Score factors (borrower explanation) ---------- */
 .factor-caption { font-size: var(--text-caption); color: var(--ink-muted); margin-bottom: 10px; }
 .factor-cols { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); border: 1px solid var(--divider); }
